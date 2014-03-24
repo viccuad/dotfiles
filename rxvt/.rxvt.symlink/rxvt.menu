@@ -1,0 +1,176 @@
+#Automatically generated file. Do not edit (see /usr/doc/menu/html)
+
+See the rxvt(1) man page for details on using this file.
+
+[menu]
+/Debian/Applications
+/Debian/Applications/Accessibility
+{Xmag}	xmag&\r
+/Debian/Applications/Data Management
+{LibreOffice Base}	/usr/bin/libreoffice --base&\r
+{Tomboy}	/usr/bin/tomboy&\r
+/Debian/Applications/Editors
+{Gedit}	/usr/bin/gedit&\r
+{Nano}	/bin/nano\r
+{texmaker}	/usr/bin/texmaker&\r
+{Xedit}	xedit&\r
+/Debian/Applications/Emulators
+{VirtualBox}	/usr/bin/virtualbox&\r
+/Debian/Applications/File Management
+{Baobab}	/usr/bin/baobab&\r
+{Brasero}	/usr/bin/brasero&\r
+{File-Roller}	/usr/bin/file-roller&\r
+{Nautilus}	/usr/bin/nautilus&\r
+{Thunar}	/usr/bin/thunar&\r
+{Xfdesktop}	xfdesktop&\r
+/Debian/Applications/Graphics
+{ImageMagick}	/usr/bin/display.im6 logo:&\r
+{Inkscape}	/usr/bin/inkscape&\r
+{LibreOffice Draw}	/usr/bin/libreoffice --draw&\r
+{The GIMP}	/usr/bin/gimp&\r
+{X Window Snapshot}	xwd | xwud&\r
+/Debian/Applications/Network
+/Debian/Applications/Network/Communication
+{Evolution}	/usr/bin/evolution&\r
+{Icedove Mail}	icedove&\r
+{Mutt}	/usr/bin/mutt\r
+{Telnet}	/usr/bin/telnet\r
+{Vinagre}	vinagre&\r
+{weechat-curses}	/usr/bin/weechat-curses\r
+{Xbiff}	xbiff&\r
+{X Chat}	/usr/bin/xchat&\r
+/Debian/Applications/Network/File Transfer
+{Transmission BitTorrent Client (GTK)}	/usr/bin/transmission-gtk&\r
+/Debian/Applications/Network/Monitoring
+{Mtr}	mtr&\r
+/Debian/Applications/Network/Web Browsing
+{Google Chrome}	/opt/google/chrome/google-chrome&\r
+{Iceweasel}	iceweasel&\r
+{w3m}	/usr/bin/w3m /usr/share/doc/w3m/MANUAL.html\r
+/Debian/Applications/Network/Web News
+{Liferea}	/usr/bin/liferea&\r
+/Debian/Applications/Office
+{LibreOffice Calc}	/usr/bin/libreoffice --calc&\r
+{LibreOffice Impress}	/usr/bin/libreoffice --impress&\r
+{LibreOffice Writer}	/usr/bin/libreoffice --writer&\r
+{LyX Document Processor}	lyx&\r
+/Debian/Applications/Programming
+{Data Display Debugger}	/usr/bin/ddd&\r
+{GDB}	/usr/bin/gdb\r
+{Python (v2.6)}	/usr/bin/python2.6\r
+{Python (v2.7)}	/usr/bin/python2.7\r
+{Python (v3.2)}	/usr/bin/python3.2\r
+{Qt4 Assistant}	/usr/lib/*/qt4/bin/assistant&\r
+{Qt4 Designer}	/usr/lib/*/qt4/bin/designer&\r
+{Qt4 Linguist}	/usr/lib/*/qt4/bin/linguist&\r
+{Ruby (irb1.8)}	/usr/bin/irb1.8\r
+{Ruby (irb1.9.1)}	/usr/bin/irb1.9.1\r
+{Tclsh8.5}	/usr/bin/tclsh8.5\r
+{Tclsh8.6}	/usr/bin/tclsh8.6\r
+{TkWish8.5}	x-terminal-emulator -e /usr/bin/wish8.5&\r
+{TkWish8.6}	x-terminal-emulator -e /usr/bin/wish8.6&\r
+/Debian/Applications/Science
+/Debian/Applications/Science/Electronics
+{Arduino}	arduino&\r
+/Debian/Applications/Science/Mathematics
+{Bc}	/usr/bin/bc\r
+{Dc}	/usr/bin/dc\r
+{Gnuplot}	/usr/bin/gnuplot\r
+{LibreOffice Math}	/usr/bin/libreoffice --math&\r
+{Units}	units\r
+{Xcalc}	xcalc&\r
+/Debian/Applications/Shells
+{Bash}	/bin/bash --login\r
+{Dash}	/bin/dash -i\r
+{Sh}	/bin/sh --login\r
+/Debian/Applications/Sound
+{grecord (GNOME 2.0 Recorder)}	/usr/bin/gnome-sound-recorder&\r
+{Rhythmbox}	/usr/bin/rhythmbox&\r
+{Sound Juicer}	/usr/bin/sound-juicer&\r
+{Xfce Mixer}	/usr/bin/xfce4-mixer&\r
+/Debian/Applications/System
+/Debian/Applications/System/Administration
+{Debian Task selector}	su-to-root -c tasksel\r
+{Editres}	editres&\r
+{Gnome Control Center}	/usr/bin/gnome-control-center&\r
+{GNOME Network Tool}	/usr/bin/gnome-nettool&\r
+{GNOME partition editor}	su-to-root -X -c /usr/sbin/gparted&\r
+{Openbox Configuration Manager}	/usr/bin/obconf&\r
+{Openbox Menu Editor}	/usr/bin/obmenu&\r
+{Reportbug}	/usr/bin/reportbug --exit-prompt\r
+{Reportbug (GTK+)}	/usr/bin/reportbug --exit-prompt --ui gtk2&\r
+{TeXconfig}	/usr/bin/texconfig\r
+{Xclipboard}	xclipboard&\r
+{Xfce Application Finder}	xfce4-appfinder&\r
+{Xfontsel}	xfontsel&\r
+{Xkill}	xkill&\r
+{Xrefresh}	xrefresh&\r
+/Debian/Applications/System/Hardware
+{NVIDIA Settings}	/usr/lib/nvidia/current/nvidia-settings&\r
+{Xvidtune}	xvidtune&\r
+/Debian/Applications/System/Monitoring
+{Conky}	/usr/bin/conky\r
+{GNOME system monitor}	/usr/bin/gnome-system-monitor&\r
+{htop}	/usr/bin/htop\r
+{Pstree}	/usr/bin/pstree.x11\r
+{Top}	/usr/bin/top\r
+{Xconsole}	xconsole -file /dev/xconsole&\r
+{Xev}	x-terminal-emulator -e xev&\r
+{Xload}	xload&\r
+/Debian/Applications/System/Package Management
+{Aptitude Package Manager (text)}	/usr/bin/aptitude-curses\r
+{Synaptic Package Manager}	x-terminal-emulator -e synaptic-pkexec&\r
+/Debian/Applications/System/Security
+{Seahorse}	/usr/bin/seahorse&\r
+/Debian/Applications/Terminal Emulators
+{Gnome Terminal}	/usr/bin/gnome-terminal&\r
+{Rxvt}	/usr/bin/rxvt-xterm&\r
+{XTerm}	xterm&\r
+{X-Terminal as root (GKsu)}	/usr/bin/gksu -u root /usr/bin/x-terminal-emulator&\r
+{XTerm (Unicode)}	uxterm&\r
+/Debian/Applications/Text
+{Character map}	/usr/bin/gucharmap&\r
+{GNOME Dictionary}	/usr/bin/gnome-dictionary&\r
+/Debian/Applications/Video
+{Totem}	/usr/bin/totem&\r
+{VLC media player}	/usr/bin/qvlc&\r
+/Debian/Applications/Viewers
+{Evince}	/usr/bin/evince&\r
+{Eye of GNOME}	/usr/bin/eog&\r
+{Shotwell}	/usr/bin/shotwell&\r
+{Xditview}	xditview&\r
+{XDvi}	/usr/bin/xdvi&\r
+/Debian/Games
+/Debian/Games/Board
+{GnuChess}	/usr/games/gnuchess\r
+/Debian/Games/Card
+{Gnome FreeCell}	/usr/games/sol --variation freecell&\r
+{Gnome Solitaire Games}	/usr/games/sol&\r
+/Debian/Games/Tools
+{Rclock}	/usr/bin/rclock&\r
+/Debian/Games/Toys
+{Oclock}	oclock&\r
+{Redshift}	gtk-redshift&\r
+{Xclock (analog)}	xclock -analog&\r
+{Xclock (digital)}	xclock -digital -update 1&\r
+{Xeyes}	xeyes&\r
+{Xlogo}	xlogo&\r
+/Debian/Help
+{Info}	info\r
+{TeXdoctk}	/usr/bin/texdoctk&\r
+{Xman}	xman&\r
+{yelp}	/usr/bin/yelp&\r
+/Debian/Screen
+/Debian/Screen/Locking
+{Lock Screen (XScreenSaver)}	/usr/bin/xscreensaver-command -lock&\r
+/Debian/Screen/Saving
+{Activate ScreenSaver (Next)}	/usr/bin/xscreensaver-command -next&\r
+{Activate ScreenSaver (Previous)}	/usr/bin/xscreensaver-command -prev&\r
+{Activate ScreenSaver (Random)}	/usr/bin/xscreensaver-command -activate&\r
+{Demo Screen Hacks}	/usr/bin/xscreensaver-command -demo&\r
+{Disable XScreenSaver}	/usr/bin/xscreensaver-command -exit&\r
+{Enable XScreenSaver}	/usr/bin/xscreensaver&\r
+{Reinitialize XScreenSaver}	/usr/bin/xscreensaver-command -restart&\r
+{ScreenSaver Preferences}	/usr/bin/xscreensaver-command -prefs&\r
+[show]
+[done]

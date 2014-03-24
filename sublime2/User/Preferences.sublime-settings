@@ -1,0 +1,43 @@
+{
+	"bold_folder_labels": true,
+	"caret_style": "phase",
+	"color_scheme": "Packages/Theme - Spacegray/base16-eighties.dark.tmTheme",
+	"dictionary": "Packages/Language - English/en_GB.dic",
+	"draw_white_space": "selection",
+	"ensure_newline_at_eof_on_save": true,
+	"fade_fold_buttons": false,
+	"folder_exclude_patterns":
+	[
+		".svn",
+		".git",
+		".hg",
+		"CVS"
+	],
+	"font_size": 8,
+	"highlight_line": true,
+	"highlight_modified_tabs": true,
+	"ignored_packages":
+	[
+		"Vintage",
+		"JsFormat"
+	],
+	"indent_subsequent_lines": true,
+	"rulers":
+	[
+		80,
+		120
+	],
+	"save_on_focus_lost": false,
+	"scroll_speed": 0,
+	"shift_tab_unindent": true,
+	"show_tab_close_buttons": true,
+	"soda_classic_tabs": false,
+	"spell_check": false,
+	"tab_completion": true,
+	"tab_size": 4,
+	"theme": "Spacegray Eighties.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"trim_trailing_white_space_on_save": true,
+	"wide_caret": true,
+	"word_wrap": "auto"
+}

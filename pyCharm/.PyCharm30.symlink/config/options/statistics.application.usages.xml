@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+  <component name="StatisticsApplicationUsages">
+    <group name="module type">
+      <project id="workspacePycharmProjects" values="PYTHON_MODULE" />
+      <project id="ManyTimePad" values="PYTHON_MODULE" />
+    </group>
+    <group name="run-configuration-type-temp">
+      <project id="ManyTimePad" values="PythonConfigurationType" />
+    </group>
+    <group name="file-type">
+      <project id="workspacePycharmProjects" values="Python,UNKNOWN,XML" />
+      <project id="ManyTimePad" values="XML,UNKNOWN,Python" />
+    </group>
+    <group name="py-interpreter">
+      <project id="workspacePycharmProjects" values="Python 3.3.3" />
+      <project id="ManyTimePad" values="Python 3.3.3" />
+    </group>
+  </component>
+  <component name="UsageTrigger">
+    <counts>
+      <entry feature="NewDirectoryProjectAction.empty" count="1" />
+      <entry feature="execute.PythonConfigurationType.Run" count="1" />
+    </counts>
+  </component>
+</application>
+

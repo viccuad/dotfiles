@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+  <component name="NotificationConfiguration">
+    <notification groupId="Groovy DSL errors" />
+    <notification groupId="Clean artifact" />
+    <notification groupId="Grape" />
+    <notification groupId="FindInPath" displayType="TOOL_WINDOW" shouldLog="false" />
+    <notification groupId="External Executable Critical Failures" displayType="STICKY_BALLOON" />
+    <notification groupId="Git Minor Notifications" />
+    <notification groupId="Git Important Messages" displayType="STICKY_BALLOON" />
+    <notification groupId="Git Messages" displayType="TOOL_WINDOW" />
+    <notification groupId="Maven Import" displayType="STICKY_BALLOON" />
+    <notification groupId="Compiler" displayType="NONE" />
+    <notification groupId="IDE Usage Statistics" displayType="STICKY_BALLOON" shouldLog="false" />
+    <notification groupId="Android Property Files Updating" />
+    <notification groupId="Framework Detection" />
+    <notification groupId="Debugger messages" displayType="TOOL_WINDOW" shouldLog="false" />
+    <notification groupId="Android Module Importing" />
+    <notification groupId="Vcs Important Messages" displayType="STICKY_BALLOON" />
+    <notification groupId="Vcs Minor Notifications" />
+    <notification groupId="System Messages" />
+    <notification groupId="HotSwap" displayType="TOOL_WINDOW" />
+    <notification groupId="Unknown Natures Detected" />
+    <notification groupId="ANTLR 4 Code Generation" />
+    <notification groupId="IDE Fatal Errors" displayType="NONE" />
+    <toolWindow group="Git Messages" />
+    <toolWindow group="FindInPath" />
+    <toolWindow group="Debugger messages" />
+    <toolWindow group="HotSwap" />
+  </component>
+</application>
+

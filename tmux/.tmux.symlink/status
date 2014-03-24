@@ -1,0 +1,8 @@
+rename-window 'status'
+selectp -t 0              
+splitw -v -p 50 'watch -n 20 tail /var/log/syslog'     		  
+selectp -t 1              
+splitw -h -p 30        
+selectp -t 3             
+splitw -h -p 70 'htop'    
+selectp -t 1  

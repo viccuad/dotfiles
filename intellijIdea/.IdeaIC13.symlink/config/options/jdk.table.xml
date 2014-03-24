@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+  <component name="ProjectJdkTable">
+    <jdk version="2">
+      <name value="1.7 oracle" />
+      <type value="JavaSDK" />
+      <version value="java version &quot;1.7.0_21&quot;" />
+      <homePath value="/usr/lib/jvm/java-7-oracle" />
+      <roots>
+        <annotationsPath>
+          <root type="composite">
+            <root type="simple" url="jar://$APPLICATION_HOME_DIR$/lib/jdkAnnotations.jar!/" />
+          </root>
+        </annotationsPath>
+        <classPath>
+          <root type="composite">
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-oracle/jre/lib/plugin.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-oracle/jre/lib/resources.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-oracle/jre/lib/jfxrt.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-oracle/jre/lib/deploy.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-oracle/jre/lib/javaws.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-oracle/jre/lib/jsse.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-oracle/jre/lib/rt.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-oracle/jre/lib/jfr.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-oracle/jre/lib/charsets.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-oracle/jre/lib/jce.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-oracle/jre/lib/management-agent.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-oracle/jre/lib/ext/sunjce_provider.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-oracle/jre/lib/ext/localedata.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-oracle/jre/lib/ext/dnsns.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-oracle/jre/lib/ext/zipfs.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-oracle/jre/lib/ext/sunec.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-oracle/jre/lib/ext/sunpkcs11.jar!/" />
+          </root>
+        </classPath>
+        <javadocPath>
+          <root type="composite" />
+        </javadocPath>
+        <sourcePath>
+          <root type="composite">
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-oracle/src.zip!/" />
+          </root>
+        </sourcePath>
+      </roots>
+      <additional />
+    </jdk>
+    <jdk version="2">
+      <name value="1.7 openjdk" />
+      <type value="JavaSDK" />
+      <version value="java version &quot;1.7.0_21&quot;" />
+      <homePath value="/usr/lib/jvm/java-7-openjdk-amd64" />
+      <roots>
+        <annotationsPath>
+          <root type="composite">
+            <root type="simple" url="jar://$APPLICATION_HOME_DIR$/lib/jdkAnnotations.jar!/" />
+          </root>
+        </annotationsPath>
+        <classPath>
+          <root type="composite">
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-openjdk-amd64/jre/lib/resources.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-openjdk-amd64/jre/lib/compilefontconfig.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-openjdk-amd64/jre/lib/jsse.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-openjdk-amd64/jre/lib/javazic.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-openjdk-amd64/jre/lib/rt.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-openjdk-amd64/jre/lib/charsets.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-openjdk-amd64/jre/lib/jce.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-openjdk-amd64/jre/lib/rhino.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-openjdk-amd64/jre/lib/management-agent.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-openjdk-amd64/jre/lib/ext/sunjce_provider.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-openjdk-amd64/jre/lib/ext/localedata.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-openjdk-amd64/jre/lib/ext/dnsns.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-openjdk-amd64/jre/lib/ext/zipfs.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-openjdk-amd64/jre/lib/ext/java-atk-wrapper.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-openjdk-amd64/jre/lib/ext/pulse-java.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/java-7-openjdk-amd64/jre/lib/ext/sunpkcs11.jar!/" />
+          </root>
+        </classPath>
+        <javadocPath>
+          <root type="composite" />
+        </javadocPath>
+        <sourcePath>
+          <root type="composite" />
+        </sourcePath>
+      </roots>
+      <additional />
+    </jdk>
+  </component>
+</application>
+

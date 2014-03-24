@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+  <component name="StatisticsApplicationUsages">
+    <group name="language-level">
+      <project id="pract4_parte4" values="JDK_1_6" />
+      <project id="parte1" values="JDK_1_6" />
+      <project id="PLG04Presentacion" values="JDK_1_6" />
+      <project id="pract9_parte2" values="JDK_1_6" />
+      <project id="prac4_parte2" values="JDK_1_6" />
+      <project id="pract9_parte1" values="JDK_1_6" />
+      <project id="PLG04FUNCIONA" values="JDK_1_6" />
+      <project id="PLG04_FINAL" values="JDK_1_6" />
+      <project id="PLG04" values="JDK_1_6" />
+      <project id="prac8_parte4" values="JDK_1_6" />
+      <project id="prac8_parte3" values="JDK_1_6" />
+      <project id="prac8_parte5" values="JDK_1_6" />
+      <project id="G23P3" values="JDK_1_6" />
+      <project id="workspaceIntellij" values="JDK_1_6" />
+      <project id="prac8_parte2" values="JDK_1_6" />
+      <project id="prac8_parte1" values="JDK_1_6" />
+      <project id="prac4_parte3" values="JDK_1_6" />
+      <project id="prac4_parte4" values="JDK_1_6" />
+      <project id="PLG04Victor" values="JDK_1_6" />
+      <project id="Practica PLG" values="JDK_1_6" />
+    </group>
+    <group name="module type">
+      <project id="pract4_parte4" values="JAVA_MODULE" />
+      <project id="parte1" values="JAVA_MODULE" />
+      <project id="PLG04Presentacion" values="JAVA_MODULE" />
+      <project id="pract9_parte2" values="JAVA_MODULE" />
+      <project id="prac4_parte2" values="JAVA_MODULE" />
+      <project id="pract9_parte1" values="JAVA_MODULE" />
+      <project id="PLG04FUNCIONA" values="JAVA_MODULE" />
+      <project id="PLG04_FINAL" values="JAVA_MODULE" />
+      <project id="PLG04" values="JAVA_MODULE" />
+      <project id="prac8_parte4" values="JAVA_MODULE" />
+      <project id="prac8_parte3" values="JAVA_MODULE" />
+      <project id="prac8_parte5" values="JAVA_MODULE" />
+      <project id="G23P3" values="JAVA_MODULE" />
+      <project id="workspaceIntellij" values="JAVA_MODULE" />
+      <project id="prac8_parte2" values="JAVA_MODULE" />
+      <project id="prac8_parte1" values="JAVA_MODULE" />
+      <project id="prac4_parte3" values="JAVA_MODULE" />
+      <project id="prac4_parte4" values="JAVA_MODULE" />
+      <project id="PLG04Victor" values="JAVA_MODULE" />
+    </group>
+    <group name="vcs">
+      <project id="G23P3" values="svn" />
+      <project id="workspaceIntellij" values="svn" />
+    </group>
+    <group name="file-type">
+      <project id="pract4_parte4" values="JAVA,XML,IDEA_MODULE,UNKNOWN" />
+      <project id="parte1" values="XML,PLAIN_TEXT,JAVA,Eclipse,IDEA_MODULE,UNKNOWN" />
+      <project id="PLG04Presentacion" values="ARCHIVE,UNKNOWN,JAVA,PLAIN_TEXT,Eclipse,IDEA_MODULE,XML" />
+      <project id="pract9_parte2" values="IDEA_MODULE,JAVA,PLAIN_TEXT,UNKNOWN,XML" />
+      <project id="prac4_parte2" values="UNKNOWN" />
+      <project id="pract9_parte1" values="PLAIN_TEXT,UNKNOWN,XML,JAVA,IDEA_MODULE" />
+      <project id="PLG04FUNCIONA" values="JAVA,XML,Eclipse,PLAIN_TEXT,ARCHIVE,UNKNOWN,IDEA_MODULE" />
+      <project id="PLG04_FINAL" values="JAVA,PLAIN_TEXT,ARCHIVE,UNKNOWN,XML,Eclipse,IDEA_MODULE" />
+      <project id="PLG04" values="JAVA,CLASS,XML,PLAIN_TEXT,UNKNOWN,IDEA_MODULE,ARCHIVE,ANTLR v4 grammar file,Eclipse" />
+      <project id="prac8_parte4" values="UNKNOWN,XML,IDEA_MODULE,PLAIN_TEXT,JAVA" />
+      <project id="prac8_parte3" values="PLAIN_TEXT,XML,JAVA,IDEA_MODULE,UNKNOWN" />
+      <project id="prac8_parte5" values="IDEA_MODULE,JAVA,PLAIN_TEXT,XML,UNKNOWN" />
+      <project id="G23P3" values="JAVA,Eclipse,ARCHIVE,UNKNOWN,Images,Native,IDEA_MODULE" />
+      <project id="workspaceIntellij" values="ARCHIVE,IDEA_MODULE,JAVA,Images,Native,Eclipse,UNKNOWN" />
+      <project id="prac8_parte2" values="IDEA_MODULE,JAVA,XML,PLAIN_TEXT,UNKNOWN" />
+      <project id="prac8_parte1" values="XML,IDEA_MODULE,Eclipse,JAVA,UNKNOWN,PLAIN_TEXT" />
+      <project id="prac4_parte3" values="UNKNOWN" />
+      <project id="prac4_parte4" values="UNKNOWN" />
+      <project id="PLG04Victor" values="ARCHIVE,JAVA,PLAIN_TEXT,XML,IDEA_MODULE,UNKNOWN,Eclipse" />
+      <project id="Practica PLG" values="UNKNOWN" />
+    </group>
+    <group name="run-configuration-type-temp">
+      <project id="prac8_parte4" values="Application" />
+      <project id="parte1" values="Application" />
+      <project id="PLG04Presentacion" values="Application" />
+      <project id="prac8_parte1" values="Application" />
+      <project id="Practica PLG" values="Application" />
+      <project id="PLG04FUNCIONA" values="Application" />
+      <project id="PLG04" values="Application" />
+      <project id="PLG04_FINAL" values="Application" />
+    </group>
+  </component>
+  <component name="UsageTrigger">
+    <counts>
+      <entry feature="CreateFile.CreateFileAction" count="2" />
+      <entry feature="execute.Application.Debug" count="9" />
+      <entry feature="execute.Application.Run" count="48" />
+    </counts>
+  </component>
+</application>
+

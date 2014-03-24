@@ -1,0 +1,11 @@
+sublime2/User/Package Control.last-run
+git/.gitconfig.symlink
+cmus/.cmus.symlink/cache
+cmus/.cmus.symlink/command-history
+cmus/.cmus.symlink/search-history
+intellijIdea/.IdeaIC13.symlink/system/*
+pyCharm/.PyCharm30.symlink/system/*
+weechat/.weechat.symlink/logs/*
+weechat/.weechat.symlink/*.log
+xchat2/.xchat2.symlink/scrollback/*
+*.cache

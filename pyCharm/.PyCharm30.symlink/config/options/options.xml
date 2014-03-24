@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+  <component name="DimensionService">
+    <location key="#Inspections.0.0.1280.800" x="273" y="93" />
+    <location key="FileChooserDialogImpl.0.0.1280.800" x="417" y="94" />
+    <location key="OptionsEditor.0.0.1280.800" x="0" y="27" />
+    <location key="#Python_Interpreters.0.0.1280.800" x="310" y="27" />
+    <location key="WELCOME_SCREEN.0.0.1280.800" x="634" y="300" />
+    <size key="#Inspections.0.0.1280.800" width="724" height="633" />
+    <size key="FileChooserDialogImpl.0.0.1280.800" width="424" height="483" />
+    <size key="GridCell.Tab.0.center.0.0.1280.800" width="1257" height="183" />
+    <size key="GridCell.Tab.0.left.0.0.1280.800" width="1257" height="183" />
+    <size key="GridCell.Tab.0.right.0.0.1280.800" width="1257" height="183" />
+    <size key="OptionsEditor.0.0.1280.800" width="1224" height="773" />
+    <size key="GridCell.Tab.0.bottom.0.0.1280.800" width="1257" height="183" />
+    <size key="#Python_Interpreters.0.0.1280.800" width="629" height="773" />
+  </component>
+  <component name="LafManager">
+    <laf class-name="idea.dark.laf.classname" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Non-Project Files" value="494539" />
+    <property name="DefaultHtmlDoctype.MigrateToHtml5" value="true" />
+    <property name="installation.uid" value="cacf41fb-8aa5-4b09-abb7-e43792effd64" />
+    <property name="toolwindow.stripes.buttons.info.shown" value="true" />
+    <property name="PyCharm.InitialConfiguration" value="true" />
+    <property name="FileTemplates.CurrentTab" value="Templates" />
+    <property name="SingleInspectionProfilePanel.HORIZONTAL_DIVIDER_PROPORTION" value="0.5" />
+    <property name="file.colors.enable.non.project" value="494539" />
+    <property name="SingleInspectionProfilePanel.VERTICAL_DIVIDER_PROPORTION" value="0.5" />
+    <property name="file.chooser.recent.files" value="$USER_HOME$/code/workspacePycharmProjects/ManyTimePad&#10;/home/vic/code/workspacePycharmProjects" />
+    <property name="ChangesViewManager.DETAILS_SPLITTER_PROPORTION" value="0.5" />
+    <property name="PyCharm.initialConfigurationShown" value="true" />
+    <property name="PyCharm.InitialConfiguration.V5" value="true" />
+    <property name="PyCharm.InitialConfiguration.V4" value="true" />
+    <property name="PyCharm.InitialConfiguration.V3" value="true" />
+    <property name="PyCharm.InitialConfiguration.V2" value="true" />
+    <property name="FileTemplates.SelectedTemplate" value="Html" />
+  </component>
+</application>
+

@@ -1,0 +1,2 @@
+
+alias less='less -R'

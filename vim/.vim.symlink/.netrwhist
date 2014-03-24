@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/vic/code'
+let g:netrw_dirhist_2='/home/vic/code/Arduino-Makefile'
+let g:netrw_dirhist_3='/home/vic/code/Arduino-Makefile/examples'
+let g:netrw_dirhist_4='/home/vic/code/Arduino-Makefile/examples/AnalogInOutSerial'

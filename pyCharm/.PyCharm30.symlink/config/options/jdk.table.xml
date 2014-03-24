@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+  <component name="ProjectJdkTable">
+    <jdk version="2">
+      <name value="Python 3.3.3 (/usr/bin/python3.3)" />
+      <type value="Python SDK" />
+      <version value="Python 3.3.3" />
+      <homePath value="/usr/bin/python3.3" />
+      <roots>
+        <classPath>
+          <root type="composite">
+            <root type="simple" url="jar:///usr/local/lib/python3.3/dist-packages/setuptools-1.1.5-py3.3.egg!/" />
+            <root type="simple" url="file:///usr/local/lib/python3.3/dist-packages/pip-1.4.1-py3.3.egg" />
+            <root type="simple" url="file:///usr/lib/python3.3" />
+            <root type="simple" url="file:///usr/lib/python3.3/plat-x86_64-linux-gnu" />
+            <root type="simple" url="file:///usr/lib/python3.3/lib-dynload" />
+            <root type="simple" url="file:///usr/local/lib/python3.3/dist-packages" />
+            <root type="simple" url="file:///usr/lib/python3/dist-packages" />
+            <root type="simple" url="file://$APPLICATION_HOME_DIR$/helpers/python-skeletons" />
+            <root type="simple" url="file://$USER_HOME$/.PyCharm30/system/python_stubs/-1247971766" />
+            <root type="simple" url="jar:///usr/local/lib/python3.3/dist-packages/setuptools-1.1.5-py3.3.egg!/" />
+            <root type="simple" url="jar:///usr/local/lib/python3.3/dist-packages/setuptools-1.1.5-py3.3.egg!/" />
+            <root type="simple" url="jar:///usr/local/lib/python3.3/dist-packages/setuptools-1.1.5-py3.3.egg!/" />
+          </root>
+        </classPath>
+        <sourcePath>
+          <root type="composite" />
+        </sourcePath>
+      </roots>
+      <additional />
+    </jdk>
+    <jdk version="2">
+      <name value="Python 2.7.6 (/usr/bin/python)" />
+      <type value="Python SDK" />
+      <version value="Python 2.7.6" />
+      <homePath value="/usr/bin/python" />
+      <roots>
+        <classPath>
+          <root type="composite">
+            <root type="simple" url="jar:///usr/local/lib/python2.7/dist-packages/setuptools-1.1.5-py2.7.egg!/" />
+            <root type="simple" url="file:///usr/local/lib/python2.7/dist-packages/pip-1.4.1-py2.7.egg" />
+            <root type="simple" url="file:///usr/lib/python2.7" />
+            <root type="simple" url="file:///usr/lib/python2.7/plat-x86_64-linux-gnu" />
+            <root type="simple" url="file:///usr/lib/python2.7/lib-tk" />
+            <root type="simple" url="file:///usr/lib/python2.7/lib-dynload" />
+            <root type="simple" url="file://$USER_HOME$/.local/lib/python2.7/site-packages" />
+            <root type="simple" url="file:///usr/local/lib/python2.7/dist-packages" />
+            <root type="simple" url="file:///usr/lib/python2.7/dist-packages" />
+            <root type="simple" url="file:///usr/lib/python2.7/dist-packages/PILcompat" />
+            <root type="simple" url="file:///usr/lib/python2.7/dist-packages/gst-0.10" />
+            <root type="simple" url="file:///usr/lib/python2.7/dist-packages/gtk-2.0" />
+            <root type="simple" url="file:///usr/lib/pymodules/python2.7" />
+            <root type="simple" url="file://$APPLICATION_HOME_DIR$/helpers/python-skeletons" />
+            <root type="simple" url="file://$USER_HOME$/.PyCharm30/system/python_stubs/348993582" />
+          </root>
+        </classPath>
+        <sourcePath>
+          <root type="composite" />
+        </sourcePath>
+      </roots>
+      <additional />
+    </jdk>
+  </component>
+</application>
+

@@ -1,0 +1,25 @@
+{
+	"auto_upgrade_last_run": null,
+	"installed_packages":
+	[
+		"AAAPackageDev",
+		"Alignment",
+		"Base16 Color Schemes",
+		"BracketHighlighter",
+		"Clipboard History",
+		"DocBlockr",
+		"Git",
+		"HTML-CSS-JS Prettify",
+		"JsFormat",
+		"LaTeXTools",
+		"Markdown Preview",
+		"Package Control",
+		"Prefixr",
+		"Sass",
+		"SideBarEnhancements",
+		"SublimeLinter",
+		"Theme - Nexus",
+		"Theme - Soda",
+		"Theme - Spacegray"
+	]
+}

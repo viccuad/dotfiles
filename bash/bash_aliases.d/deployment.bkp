@@ -1,0 +1,15 @@
+
+alias fetch='svn diff --diff-cmd /usr/bin/meld'
+alias cut_beta_to_live.py='cut_beta_to_live.py -c ~/.knewton/services/authentication_production.yml'
+alias deploy_server.py='deploy_server.py -c ~/.knewton/services/authentication_production.yml'
+alias fetch_builds.py='fetch_builds.py -c ~/.knewton/services/authentication_production.yml'
+alias fetch_revs.py='fetch_revs.py -c ~/.knewton/services/authentication_production.yml'
+alias fetch_servers.py='fetch_servers.py -c ~/.knewton/services/authentication_production.yml'
+alias fetch_server_types.py='fetch_server_types.py -c ~/.knewton/services/authentication_production.yml'
+alias fetch_services.py='fetch_services.py -c ~/.knewton/services/authentication_production.yml'
+alias make_rev_buildable.py='make_rev_buildable.py -c ~/.knewton/services/authentication_production.yml'
+alias rollback.py='rollback.py -c ~/.knewton/services/authentication_production.yml'
+alias svn_stat.py='svn_stat.py -c ~/.knewton/services/authentication_production.yml'
+
+alias watch_builds='watch "fetch_builds.py -c ~/.knewton/services/authentication_production.yml | column -t"'
+alias watch_servers='watch "fetch_servers.py -c ~/.knewton/services/authentication_production.yml | column -t"'

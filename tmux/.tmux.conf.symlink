@@ -1,0 +1,99 @@
+# set default shell:
+set-option -g default-shell $SHELL
+
+# tell tmux to use 256 colour terminal
+set -g default-terminal "screen-256color"
+
+# keybindings:
+# command prefix:
+set-option -g prefix C-a
+bind-key C-a send-prefix
+#Ctrl-a ? List all keybindings
+
+# panes:
+# set-option -g pane-border-fg colour27
+# set-option -g pane-border-bg colour16
+# set-option -g pane-active-border-fg colour27
+# set-option -g pane-active-border-bg colour16
+set-option -g pane-border-fg blue
+set-option -g pane-border-bg default
+set-option -g pane-active-border-fg blue
+set-option -g pane-active-border-bg default
+
+# panes start at 1 instead of 0
+set-option -g base-index 1
+set-option -g pane-base-index 1
+
+# window title:
+set-option -g set-titles on
+set-option -g set-titles-string '#{pane_current_command}'
+set-window-option -g automatic-rename on
+
+# current window navigation:
+bind-key h select-pane -L
+bind-key j select-pane -D
+bind-key k select-pane -U
+bind-key l select-pane -R
+set-window-option -g mode-mouse on
+
+# resizing:
+bind-key -r C-h resize-pane -L
+bind-key -r C-j resize-pane -D
+bind-key -r C-k resize-pane -U
+bind-key -r C-l resize-pane -R
+# resize panes with mouse (drag borders)
+set -g mouse-select-pane on
+set -g mouse-resize-pane on
+
+# splitting and cycling:
+unbind %
+bind-key - split-window -v
+unbind '"'
+bind-key | split-window -h
+
+bind-key u last-window
+bind-key C-n next-window
+bind-key C-p previous-window
+
+# status bar:
+# set -g message-attr bold
+# set -g message-fg colour16
+# set -g message-bg colour27
+
+# set -g status-justify right
+# set -g status-bg colour16
+# set -g status-fg colour27
+# set -g status-interval 5
+# set -g status-utf8 on
+
+# Set window notifications
+setw -g monitor-activity on
+set -g visual-activity on
+
+# Message/command input colors
+#set -g message-attr bright
+#set -g message-fg black
+#set -g message-bg yellow
+
+set -g status-justify right
+set -g status-bg black
+set -g status-fg blue
+set -g status-interval 5
+set -g status-utf8 on
+
+# setw -g window-status-format "#[bg=colour27,fg=colour16] #I #[bg=colour27,fg=colour16] #{pane_current_command} "
+# setw -g window-status-current-format "#[bg=colour195,fg=colour16] #I #[bg=colour27,fg=colour16] #{pane_current_command} "
+# set -g status-justify left
+# set-option -g status-right '#[bg=colour27,fg=colour16] %H:%M #[colour16]'
+# set-option -g status-left ''
+
+setw -g window-status-format "#[bg=blue,fg=black] #I #[bg=blue,fg=black] #{pane_current_command} "
+#setw -g window-status-format "#[bg=blue,fg=black] #I #[bg=blue,fg=black] #W "
+setw -g window-status-current-format "#[bg=white,fg=black] #I #[bg=blue,fg=black] #{pane_current_command} "
+#setw -g window-status-current-format "#[bg=cyan,fg=black] #I #[bg=blue,fg=black] #W "
+set -g status-justify left
+set-option -g status-right '#[bg=blue,fg=black] #H #[default] #[bg=blue,fg=black] %H:%M #[default]'
+set-option -g status-left ''
+
+# enable vim mode
+setw -g mode-keys vi

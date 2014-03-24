@@ -1,0 +1,8 @@
+[ {
+    "id":"tools", "children":
+    [ {
+        "command": "switch",
+        "caption": "Switch between LaTeX/XeTeX"
+      }
+    ]
+} ]

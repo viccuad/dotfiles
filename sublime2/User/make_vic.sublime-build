@@ -1,0 +1,5 @@
+{  
+    "cmd": ["make"],  
+    "path": "/usr/bin:/usr/local/bin:...",  
+    "shell": true  
+}  

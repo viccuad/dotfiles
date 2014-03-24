@@ -1,0 +1,33 @@
+[user]
+	name = AUTHORNAME
+	email = AUTHOREMAIL
+	signingkey = AUTHORSIGNINGKEY
+[credential]
+	helper = cache --timeout=3600
+[giggle]
+	main-window-maximized = true
+	main-window-geometry = 467x239+0+54
+	history-view-vpane-position = 564
+	main-window-view = HistoryView
+	file-view-vpane-position = 676
+	file-view-hpane-position = 249
+	show-graph = true
+[alias]
+	lg1 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative
+	lg2 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(bold white)— %an%C(reset)' --abbrev-commit
+	lg = !"git lg1"
+	st = status
+	ds = diff --stages
+[color]
+	ui = true
+	branch = auto
+	diff = auto
+	status = auto
+[help]
+	autocorrect = 1
+[http]
+	sslVerify = true
+[push]
+	default = simple
+[core]
+	excludesfile = /home/vic/.gitignore_global

@@ -1,0 +1,6 @@
+# make zsh the default shell for this user:
+sh -s $(which zsh)
+
+# unninstall zsh. as root, and for every user using zsh, do:
+chsh -s /bin/bash user
+# now you can unninstall the zsh package
