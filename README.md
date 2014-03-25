@@ -2,6 +2,7 @@
 
 My dotfiles, based on [Holman's ones](https://github.com/holman/dotfiles). Be careful, mine are NOT compatible with Holman's repos and forks.
 
+![example](https://github.com/viccuad/dotfiles/raw/master/example.png)
 
 ## install
 
