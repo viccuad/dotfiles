@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application>
   <component name="DimensionService">
-    <location key="#Inspections.0.0.1280.800" x="273" y="93" />
-    <location key="FileChooserDialogImpl.0.0.1280.800" x="417" y="94" />
-    <location key="OptionsEditor.0.0.1280.800" x="0" y="27" />
     <location key="#Python_Interpreters.0.0.1280.800" x="310" y="27" />
-    <location key="WELCOME_SCREEN.0.0.1280.800" x="634" y="300" />
-    <size key="#Inspections.0.0.1280.800" width="724" height="633" />
-    <size key="FileChooserDialogImpl.0.0.1280.800" width="424" height="483" />
-    <size key="GridCell.Tab.0.center.0.0.1280.800" width="1257" height="183" />
+    <location key="WELCOME_SCREEN.0.0.1280.800" x="634" y="299" />
+    <location key="OptionsEditor.0.0.1280.800" x="0" y="27" />
+    <location key="FileChooserDialogImpl.0.0.1280.800" x="417" y="94" />
+    <location key="#Inspections.0.0.1280.800" x="273" y="93" />
+    <size key="#Python_Interpreters.0.0.1280.800" width="629" height="773" />
+    <size key="GridCell.Tab.0.bottom.0.0.1280.800" width="1257" height="183" />
+    <size key="OptionsEditor.0.0.1280.800" width="1224" height="773" />
     <size key="GridCell.Tab.0.left.0.0.1280.800" width="1257" height="183" />
     <size key="GridCell.Tab.0.right.0.0.1280.800" width="1257" height="183" />
-    <size key="OptionsEditor.0.0.1280.800" width="1224" height="773" />
-    <size key="GridCell.Tab.0.bottom.0.0.1280.800" width="1257" height="183" />
-    <size key="#Python_Interpreters.0.0.1280.800" width="629" height="773" />
+    <size key="GridCell.Tab.0.center.0.0.1280.800" width="1257" height="183" />
+    <size key="FileChooserDialogImpl.0.0.1280.800" width="424" height="483" />
+    <size key="#Inspections.0.0.1280.800" width="724" height="633" />
   </component>
   <component name="LafManager">
     <laf class-name="idea.dark.laf.classname" />
@@ -36,6 +36,8 @@
     <property name="PyCharm.InitialConfiguration.V3" value="true" />
     <property name="PyCharm.InitialConfiguration.V2" value="true" />
     <property name="FileTemplates.SelectedTemplate" value="Html" />
+    <property name="log.debug.categories" value="" />
+    <property name="PACKAGE_FILTER" value="" />
   </component>
 </application>
 

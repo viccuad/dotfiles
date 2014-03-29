@@ -4,23 +4,28 @@
     <group name="module type">
       <project id="workspacePycharmProjects" values="PYTHON_MODULE" />
       <project id="ManyTimePad" values="PYTHON_MODULE" />
+      <project id="hello_world" values="PYTHON_MODULE" />
     </group>
     <group name="run-configuration-type-temp">
       <project id="ManyTimePad" values="PythonConfigurationType" />
+      <project id="hello_world" values="PythonConfigurationType" />
     </group>
     <group name="file-type">
-      <project id="workspacePycharmProjects" values="Python,UNKNOWN,XML" />
-      <project id="ManyTimePad" values="XML,UNKNOWN,Python" />
+      <project id="workspacePycharmProjects" values="Python,XML,UNKNOWN" />
+      <project id="ManyTimePad" values="Python,XML,UNKNOWN" />
+      <project id="hello_world" values="XML,UNKNOWN,Python" />
     </group>
     <group name="py-interpreter">
       <project id="workspacePycharmProjects" values="Python 3.3.3" />
       <project id="ManyTimePad" values="Python 3.3.3" />
+      <project id="hello_world" values="Python 2.7.6" />
     </group>
   </component>
   <component name="UsageTrigger">
     <counts>
-      <entry feature="NewDirectoryProjectAction.empty" count="1" />
-      <entry feature="execute.PythonConfigurationType.Run" count="1" />
+      <entry feature="CreateFile.CreateFileAction" count="1" />
+      <entry feature="NewDirectoryProjectAction.empty" count="2" />
+      <entry feature="execute.PythonConfigurationType.Run" count="2" />
     </counts>
   </component>
 </application>

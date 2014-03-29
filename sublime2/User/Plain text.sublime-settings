@@ -1,6 +1,4 @@
 {
-    "enable_table_editor": true,
-    "trim_trailing_white_space_on_save": false,
     "spell_check": true,
     "dictionary": "Packages/Language - English/en_GB.dic"
 }

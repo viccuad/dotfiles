@@ -25,9 +25,9 @@
       <component name="ProjectRootManager" version="2" />
       <component name="PropertiesComponent">
         <property name="options.splitter.main.proportions" value="0.3" />
-        <property name="options.lastSelected" value="preferences.sourceCode" />
-        <property name="options.searchVisible" value="true" />
+        <property name="options.lastSelected" value="com.jetbrains.python.configuration.PythonSdkConfigurable" />
         <property name="options.splitter.details.proportions" value="0.2" />
+        <property name="options.searchVisible" value="true" />
       </component>
       <component name="PyConsoleOptionsProvider">
         <option name="myPythonConsoleState">

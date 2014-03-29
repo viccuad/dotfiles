@@ -3,6 +3,8 @@
   <component name="FileBasedIndex">
     <option name="registeredIndices">
       <list>
+        <option value="dom.elementClass" />
+        <option value="dom.namespaceKey" />
         <option value="Py.instanceAttribute.name" />
         <option value="Py.variable.shortName" />
         <option value="Py.class.super" />

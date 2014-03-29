@@ -1,6 +1,6 @@
 # viccuad's dotfiles
 
-My dotfiles, based on [Holman's ones](https://github.com/holman/dotfiles). Be careful, mine are NOT compatible with Holman's repos and forks.
+My dotfiles, based on [Holman's ones](https://github.com/holman/dotfiles) *(why isn't this a fork?).
 
 ![example](https://github.com/viccuad/dotfiles/raw/master/example.png)
 
@@ -47,3 +47,6 @@ There's a few special files in the hierarchy.
   symlinked in when you run `script/bootstrap`. If you want a file *.foo* starting
   by a dot to get symlinked, then, you would need to rename it to *.foo.symlink*.
 
+## *
+1. Holman applied some gitignores. In git, when you untrack files by gitignore and then remove the entries on the gitignore file, those files keep untracked. It was easier to create my own git repo and add my gitignore. 
+2. This repo is NOT compatible with Holman's repos and forks.
