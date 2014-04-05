@@ -18,8 +18,8 @@
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
-		"Vintage",
-		"JsFormat"
+		"JsFormat",
+		"Vintage"
 	],
 	"indent_subsequent_lines": true,
 	"rulers":
