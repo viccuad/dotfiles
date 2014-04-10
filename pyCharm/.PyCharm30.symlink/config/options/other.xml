@@ -92,6 +92,13 @@
     </option>
     <option name="PROXY_EXCEPTIONS" value="" />
   </component>
+  <component name="PyTestFrameworkService">
+    <option name="SDK_TO_PYTEST">
+      <map>
+        <entry key="/usr/bin/python" value="false" />
+      </map>
+    </option>
+  </component>
   <component name="RecentDirectoryProjectsManager">
     <option name="recentPaths">
       <list>
@@ -140,15 +147,14 @@
     </option>
     <option name="myKnownUpdateChannels">
       <value>
-        <list size="8">
+        <list size="7">
           <item index="0" class="java.lang.String" itemvalue="pycharm" />
           <item index="1" class="java.lang.String" itemvalue="pycharm1EAP" />
           <item index="2" class="java.lang.String" itemvalue="pycharm10" />
           <item index="3" class="java.lang.String" itemvalue="pycharm2EAP" />
           <item index="4" class="java.lang.String" itemvalue="pycharm2Beta" />
           <item index="5" class="java.lang.String" itemvalue="pycharm2" />
-          <item index="6" class="java.lang.String" itemvalue="pycharm3EAP" />
-          <item index="7" class="java.lang.String" itemvalue="pycharm3" />
+          <item index="6" class="java.lang.String" itemvalue="pycharm3" />
         </list>
       </value>
     </option>
@@ -158,8 +164,8 @@
       </value>
     </option>
     <option name="CHECK_NEEDED" value="true" />
-    <option name="LAST_TIME_CHECKED" value="1395787092710" />
-    <option name="LAST_BUILD_CHECKED" value="PC-133.881" />
+    <option name="LAST_TIME_CHECKED" value="1396787282541" />
+    <option name="LAST_BUILD_CHECKED" value="PC-133.1229" />
     <option name="UPDATE_CHANNEL_TYPE" value="release" />
   </component>
   <component name="VFSTestFrameworkListener">

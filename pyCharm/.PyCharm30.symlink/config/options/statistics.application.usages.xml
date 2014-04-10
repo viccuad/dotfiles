@@ -11,9 +11,9 @@
       <project id="hello_world" values="PythonConfigurationType" />
     </group>
     <group name="file-type">
-      <project id="workspacePycharmProjects" values="Python,XML,UNKNOWN" />
+      <project id="workspacePycharmProjects" values="XML,UNKNOWN,Python" />
       <project id="ManyTimePad" values="Python,XML,UNKNOWN" />
-      <project id="hello_world" values="XML,UNKNOWN,Python" />
+      <project id="hello_world" values="UNKNOWN,XML,Python" />
     </group>
     <group name="py-interpreter">
       <project id="workspacePycharmProjects" values="Python 3.3.3" />

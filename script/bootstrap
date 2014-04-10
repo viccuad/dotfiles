@@ -122,9 +122,21 @@ install_dotfiles () {
   done
 }
 
-setup_gitconfig
-install_dotfiles
 
+user 'Do you want to set up your gitconfig? (yes/no)'
+read answer
+
+while [[ x$answer != xyes && x$answer != xno ]]
+do
+  echo you have entered an invalid response. Please try again
+  read answer
+done
+if [[ x$answer == xyes ]]
+then
+  setup_gitconfig
+fi
+
+install_dotfiles
 
 # If we're on a Mac, let's install and setup homebrew.
 if [ "$(uname -s)" == "Darwin" ]
