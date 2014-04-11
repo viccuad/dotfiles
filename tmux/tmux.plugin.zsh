@@ -1,7 +1,7 @@
 # Adds several options for effecting the startup behavior of tmux. Each of the options are set by changing the environment variables below:
 #
 # ZSH_TMUX_AUTOSTART: Automatically start a tmux session upon logging in. Set to false by default.
-export ZSH_TMUX_AUTOSTART=true
+export ZSH_TMUX_AUTOSTART=false
 
 # ZSH_TMUX_AUTOSTART_ONCE: Only attempt to autostart tmux once. If this is
 # disabled when the previous option is enabled, then tmux will be autostarted
