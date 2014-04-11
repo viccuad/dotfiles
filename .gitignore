@@ -3,10 +3,12 @@ git/.gitconfig.symlink
 cmus/.cmus.symlink/cache
 cmus/.cmus.symlink/command-history
 cmus/.cmus.symlink/search-history
-intellijIdea/.IdeaIC13.symlink/system/*
-pyCharm/.PyCharm30.symlink/system/*
-weechat/.weechat.symlink/logs/*
+intellijIdea/.IdeaIC13.symlink/system/*   done
+intellijIdea/.IdeaIC13.symlink/config/componentVersions/* done   
+pyCharm/.PyCharm30.symlink/config/componentVersions/* done
+pyCharm/.PyCharm30.symlink/system/* done
+weechat/.weechat.symlink/logs/* done
 weechat/.weechat.symlink/*.log
-xchat2/.xchat2.symlink/scrollback/*
+xchat2/.xchat2.symlink/scrollback/* done
 *.cache
-todotxt/.todo.symlink/*
+todotxt/.todo.symlink/* done
