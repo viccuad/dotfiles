@@ -83,9 +83,8 @@ last_status() {
 todo_count(){
   if (( $+commands[todo.sh] ))
   then
-    num=$(echo $(todo.sh ls $1 | wc -l))
-    let todos=num-2
-    echo $todos
+    num=$(echo $(todo.sh ls $1 | awk -v pattern="$1" '$0 ~ pattern && !/ x /{count++} END {print count}'      ))
+    echo $num
   fi
 }
 
