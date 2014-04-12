@@ -1,7 +1,7 @@
 # Adds several options for effecting the startup behavior of tmux. Each of the options are set by changing the environment variables below:
 #
 # ZSH_TMUX_AUTOSTART: Automatically start a tmux session upon logging in. Set to false by default.
-export ZSH_TMUX_AUTOSTART=false
+export ZSH_TMUX_AUTOSTART=true
 
 # ZSH_TMUX_AUTOSTART_ONCE: Only attempt to autostart tmux once. If this is
 # disabled when the previous option is enabled, then tmux will be autostarted
@@ -83,15 +83,15 @@ if which tmux &> /dev/null
 		# We have other arguments, just run them
 		if [[ -n "$@" ]]
 		then
-			\tmux $@
+			\tmx defaultsession $@
 		# Try to connect to an existing session.
 		elif [[ "$ZSH_TMUX_AUTOCONNECT" == "true" ]]
 		then
-			\tmux `[[ "$ZSH_TMUX_ITERM2" == "true" ]] && echo '-CC '` attach || \tmux `[[ "$ZSH_TMUX_ITERM2" == "true" ]] && echo '-CC '` `[[ "$ZSH_TMUX_FIXTERM" == "true" ]] && echo '-f '$_ZSH_TMUX_FIXED_CONFIG` new-session
+			\tmx defaultsession `[[ "$ZSH_TMUX_ITERM2" == "true" ]] && echo '-CC '` attach || \tmx defaultsession `[[ "$ZSH_TMUX_ITERM2" == "true" ]] && echo '-CC '` `[[ "$ZSH_TMUX_FIXTERM" == "true" ]] && echo '-f '$_ZSH_TMUX_FIXED_CONFIG` new-session
 			[[ "$ZSH_TMUX_AUTOQUIT" == "true" ]] && exit
 		# Just run tmux, fixing the TERM variable if requested.
 		else
-			\tmux `[[ "$ZSH_TMUX_ITERM2" == "true" ]] && echo '-CC '` `[[ "$ZSH_TMUX_FIXTERM" == "true" ]] && echo '-f '$_ZSH_TMUX_FIXED_CONFIG`
+			\tmx defaultsession `[[ "$ZSH_TMUX_ITERM2" == "true" ]] && echo '-CC '` `[[ "$ZSH_TMUX_FIXTERM" == "true" ]] && echo '-f '$_ZSH_TMUX_FIXED_CONFIG`
 			[[ "$ZSH_TMUX_AUTOQUIT" == "true" ]] && exit
 		fi
 	}
