@@ -1,8 +1,2 @@
-sublime2/User/Package Control.last-run
-git/.gitconfig.symlink
-cmus/.cmus.symlink/cache
-cmus/.cmus.symlink/command-history
-cmus/.cmus.symlink/search-history
-weechat/.weechat.symlink/*.log
-weechat/.weechat.symlink/sec.conf
+# each topic directory has its own .gitignore
 *.cache
