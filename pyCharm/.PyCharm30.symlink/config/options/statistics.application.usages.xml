@@ -3,29 +3,33 @@
   <component name="StatisticsApplicationUsages">
     <group name="module type">
       <project id="workspacePycharmProjects" values="PYTHON_MODULE" />
+      <project id="migration-tool" values="PYTHON_MODULE" />
       <project id="ManyTimePad" values="PYTHON_MODULE" />
       <project id="hello_world" values="PYTHON_MODULE" />
     </group>
+    <group name="file-type">
+      <project id="workspacePycharmProjects" values="UNKNOWN,XML,Python" />
+      <project id="migration-tool" values="Markdown,Python,XML,UNKNOWN,PLAIN_TEXT" />
+      <project id="ManyTimePad" values="XML,Python,UNKNOWN" />
+      <project id="hello_world" values="Python,XML,UNKNOWN" />
+    </group>
     <group name="run-configuration-type-temp">
+      <project id="migration-tool" values="PythonConfigurationType" />
       <project id="ManyTimePad" values="PythonConfigurationType" />
       <project id="hello_world" values="PythonConfigurationType" />
     </group>
-    <group name="file-type">
-      <project id="workspacePycharmProjects" values="XML,UNKNOWN,Python" />
-      <project id="ManyTimePad" values="Python,XML,UNKNOWN" />
-      <project id="hello_world" values="UNKNOWN,XML,Python" />
-    </group>
     <group name="py-interpreter">
       <project id="workspacePycharmProjects" values="Python 3.3.3" />
+      <project id="migration-tool" values="Python 2.7.6" />
       <project id="ManyTimePad" values="Python 3.3.3" />
       <project id="hello_world" values="Python 2.7.6" />
     </group>
   </component>
   <component name="UsageTrigger">
     <counts>
-      <entry feature="CreateFile.CreateFileAction" count="1" />
-      <entry feature="NewDirectoryProjectAction.empty" count="2" />
-      <entry feature="execute.PythonConfigurationType.Run" count="2" />
+      <entry feature="CreateFile.CreateFileAction" count="3" />
+      <entry feature="NewDirectoryProjectAction.empty" count="3" />
+      <entry feature="execute.PythonConfigurationType.Run" count="14" />
     </counts>
   </component>
 </application>

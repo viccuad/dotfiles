@@ -52,6 +52,9 @@
             <root type="simple" url="file:///usr/lib/pymodules/python2.7" />
             <root type="simple" url="file://$APPLICATION_HOME_DIR$/helpers/python-skeletons" />
             <root type="simple" url="file://$USER_HOME$/.PyCharm30/system/python_stubs/348993582" />
+            <root type="simple" url="jar:///usr/local/lib/python2.7/dist-packages/setuptools-1.1.5-py2.7.egg!/" />
+            <root type="simple" url="jar:///usr/local/lib/python2.7/dist-packages/setuptools-1.1.5-py2.7.egg!/" />
+            <root type="simple" url="jar:///usr/local/lib/python2.7/dist-packages/setuptools-1.1.5-py2.7.egg!/" />
           </root>
         </classPath>
         <sourcePath>

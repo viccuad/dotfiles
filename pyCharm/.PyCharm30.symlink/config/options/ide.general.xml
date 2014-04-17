@@ -2,7 +2,7 @@
 <application>
   <component name="GeneralSettings">
     <option name="browserPath" value="" />
-    <option name="lastTip" value="3" />
+    <option name="lastTip" value="6" />
     <option name="showTipsOnStartup" value="true" />
     <option name="showOccupiedMemory" value="false" />
     <option name="reopenLastProject" value="true" />
@@ -16,7 +16,7 @@
     <option name="searchInBackground" value="false" />
     <option name="confirmExit" value="true" />
     <option name="confirmOpenNewProject2" value="-1" />
-    <option name="lastProjectLocation" value="$USER_HOME$/code/PycharmProjects" />
+    <option name="lastProjectLocation" value="$USER_HOME$/code/fdroid" />
   </component>
 </application>
 
