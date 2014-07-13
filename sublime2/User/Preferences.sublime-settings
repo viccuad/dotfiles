@@ -1,7 +1,7 @@
 {
 	"bold_folder_labels": true,
 	"caret_style": "phase",
-	"color_scheme": "Packages/Theme - Spacegray/base16-eighties.dark.tmTheme",
+	"color_scheme": "Packages/Base16 Color Schemes/base16-monokai.dark.tmTheme",
 	"dictionary": "Packages/Language - English/en_GB.dic",
 	"draw_white_space": "selection",
 	"ensure_newline_at_eof_on_save": true,
@@ -18,8 +18,12 @@
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
-		"JsFormat",
-		"Vintage"
+		"Theme - Spacegray",
+		"BracketHighlighter",
+		"Vintage",
+		"Dictionaries",
+		"Git",
+		"JsFormat"
 	],
 	"indent_subsequent_lines": true,
 	"rulers":
@@ -35,8 +39,7 @@
 	"spell_check": false,
 	"tab_completion": true,
 	"tab_size": 4,
-	"theme": "Spacegray Eighties.sublime-theme",
-	"translate_tabs_to_spaces": true,
+	"translate_tabs_to_spaces": false,
 	"trim_trailing_white_space_on_save": true,
 	"wide_caret": true,
 	"word_wrap": "auto"

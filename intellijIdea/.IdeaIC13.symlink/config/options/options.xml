@@ -29,21 +29,21 @@
     <size key="svn4idea.checkout.options.0.0.1280.800" width="507" height="245" />
     <size key="#Notifications.0.0.1280.800" width="482" height="529" />
     <size key="#com.intellij.ide.util.MemberChooser.0.0.1280.800" width="380" height="568" />
-    <size key="GridCell.Tab.0.center.0.0.1280.800" width="1240" height="193" />
+    <size key="GridCell.Tab.0.center.0.0.1280.800" width="1240" height="194" />
     <size key="#Project_Structure.0.0.1280.800" width="1048" height="773" />
-    <size key="GridCell.Tab.1.right.0.0.1280.800" width="1240" height="195" />
-    <size key="GridCell.Tab.1.left.0.0.1280.800" width="1240" height="195" />
-    <size key="GridCell.Tab.0.right.0.0.1280.800" width="1240" height="193" />
-    <size key="GridCell.Tab.0.left.0.0.1280.800" width="1240" height="193" />
+    <size key="GridCell.Tab.1.right.0.0.1280.800" width="1240" height="194" />
+    <size key="GridCell.Tab.1.left.0.0.1280.800" width="1240" height="194" />
+    <size key="GridCell.Tab.0.right.0.0.1280.800" width="1240" height="194" />
+    <size key="GridCell.Tab.0.left.0.0.1280.800" width="1240" height="194" />
     <size key="OptionsEditor.0.0.1280.800" width="1224" height="773" />
-    <size key="GridCell.Tab.1.center.0.0.1280.800" width="1240" height="195" />
+    <size key="GridCell.Tab.1.center.0.0.1280.800" width="1240" height="194" />
     <size key="com.intellij.openapi.editor.actions.MultiplePasteAction$1.0.0.1280.800" width="324" height="739" />
     <size key="#Updates.0.0.1280.800" width="674" height="193" />
-    <size key="GridCell.Tab.0.bottom.0.0.1280.800" width="1240" height="193" />
+    <size key="GridCell.Tab.0.bottom.0.0.1280.800" width="1240" height="194" />
     <size key="NewModule_or_Project.wizard.0.0.1280.800" width="782" height="655" />
     <size key="javadoc.popup.0.0.1280.800" width="502" height="300" />
     <size key="FileChooserDialogImpl.0.0.1280.800" width="566" height="545" />
-    <size key="GridCell.Tab.1.bottom.0.0.1280.800" width="1240" height="195" />
+    <size key="GridCell.Tab.1.bottom.0.0.1280.800" width="1240" height="194" />
     <size key="refactoring.ChangeSignatureDialog.0.0.1280.800" width="501" height="748" />
     <size key="EditParametersPopupWindow.0.0.1280.800" width="376" height="222" />
     <size key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog.0.0.1280.800" width="530" height="489" />
@@ -54,6 +54,7 @@
     <size key="#com.intellij.fileTypes.FileTypeChooser.0.0.1280.800" width="573" height="398" />
     <size key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog.0.0.1280.800" width="324" height="512" />
     <size key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog.0.0.1280.800" width="524" height="484" />
+    <size key="DebuggerActiveHint.0.0.1280.800" width="301" height="370" />
   </component>
   <component name="LafManager">
     <laf class-name="idea.dark.laf.classname" />
@@ -77,17 +78,17 @@
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="Non-Project Files" value="Yellow" />
     <property name="installation.uid" value="638ed2b1-fa60-40d7-9f74-d63f7b0eb5fd" />
-    <property name="eclipse.project.dir" value="$USER_HOME$/Escritorio/PLG04FUNCIONA" />
+    <property name="eclipse.project.dir" value="$USER_HOME$/code/workspace/PLG-GRUPO04/PLG-GRUPO04" />
     <property name="file.colors.enable.tests" value="Green" />
     <property name="com.intellij.openapi.editor.actions.MultiplePasteAction$1.splitter" value="0.3" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="com.intellij.openapi.roots.ui.configuration.TabbedModuleEditor.selectedEditor" value="Dependencies" />
     <property name="LayoutCode.processChangedText" value="false" />
-    <property name="file.chooser.recent.files" value="$USER_HOME$/Escritorio/PLG04FUNCIONA&#10;/home/vic/code/workspace/PLG04&#10;/home/vic/code/workspace&#10;/home/vic/code/workspace/PLG04Victor&#10;/home/vic/code&#10;/home/vic/code/workspace/PLG04Presentacion&#10;/home/vic/code/workspace/Practica PLG&#10;/home/vic/code/workspace/PLG04_FINAL&#10;/home/vic/Descargas/intellij-plugin-1.0a4.zip&#10;/home/vic/code/pc/practica4/prac4_parte4&#10;/home/vic/code/pc/practica9/parte2&#10;/home/vic/code/pc/practica9/parte1/src&#10;/home/vic/code/pc/practica9/parte1&#10;/home/vic/code/pc/practica4/prac4_parte2&#10;/home/vic/code/pc/practica4/prac4_parte3&#10;/home/vic/code/pc/practica8/parte5&#10;/home/vic/code/pc/practica8/parte4&#10;/home/vic/code/pc/practica8/parte3/bin&#10;/home/vic/code/pc/practica8/parte3&#10;/home/vic/code/pc/practica8/parte2&#10;/home/vic/code/pc/practica8/parte1&#10;/home/vic/Escritorio/pc/practica8/parte1&#10;/usr/lib/jvm/java-7-openjdk-amd64&#10;/home/vic/code/workspace/G23P3&#10;/usr/lib/jvm/java-7-oracle&#10;/home/vic/code/workspaceIntellij" />
+    <property name="file.chooser.recent.files" value="$USER_HOME$/code/workspace/PLG-GRUPO04/PLG-GRUPO04&#10;/home/vic/Escritorio/PLG04FUNCIONA&#10;/home/vic/code/workspace/PLG04&#10;/home/vic/code/workspace&#10;/home/vic/code/workspace/PLG04Victor&#10;/home/vic/code&#10;/home/vic/code/workspace/PLG04Presentacion&#10;/home/vic/code/workspace/Practica PLG&#10;/home/vic/code/workspace/PLG04_FINAL&#10;/home/vic/Descargas/intellij-plugin-1.0a4.zip&#10;/home/vic/code/pc/practica4/prac4_parte4&#10;/home/vic/code/pc/practica9/parte2&#10;/home/vic/code/pc/practica9/parte1/src&#10;/home/vic/code/pc/practica9/parte1&#10;/home/vic/code/pc/practica4/prac4_parte2&#10;/home/vic/code/pc/practica4/prac4_parte3&#10;/home/vic/code/pc/practica8/parte5&#10;/home/vic/code/pc/practica8/parte4&#10;/home/vic/code/pc/practica8/parte3/bin&#10;/home/vic/code/pc/practica8/parte3&#10;/home/vic/code/pc/practica8/parte2&#10;/home/vic/code/pc/practica8/parte1&#10;/home/vic/Escritorio/pc/practica8/parte1&#10;/usr/lib/jvm/java-7-openjdk-amd64&#10;/home/vic/code/workspace/G23P3&#10;/usr/lib/jvm/java-7-oracle&#10;/home/vic/code/workspaceIntellij" />
     <property name="Tests" value="Green" />
     <property name="LayoutCode.rearrangeEntries" value="false" />
     <property name="LayoutCode.optimizeImports" value="false" />
-    <property name="last.imported.location" value="$USER_HOME$/Escritorio/PLG04FUNCIONA" />
+    <property name="last.imported.location" value="$USER_HOME$/code/workspace/PLG-GRUPO04/PLG-GRUPO04" />
     <property name="toolwindow.stripes.buttons.info.shown" value="true" />
     <property name="PLUGIN_FILTER" value="antlr" />
     <property name="log.debug.categories" value="" />

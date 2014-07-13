@@ -8,6 +8,7 @@
       <project id="pract9_parte2" values="JDK_1_6" />
       <project id="prac4_parte2" values="JDK_1_6" />
       <project id="pract9_parte1" values="JDK_1_6" />
+      <project id="PLG-GRUPO04" values="JDK_1_6" />
       <project id="PLG04FUNCIONA" values="JDK_1_6" />
       <project id="PLG04_FINAL" values="JDK_1_6" />
       <project id="PLG04" values="JDK_1_6" />
@@ -20,12 +21,8 @@
       <project id="prac8_parte1" values="JDK_1_6" />
       <project id="prac4_parte3" values="JDK_1_6" />
       <project id="prac4_parte4" values="JDK_1_6" />
-      <project id="Practica PLG" values="JDK_1_6" />
       <project id="PLG04Victor" values="JDK_1_6" />
-    </group>
-    <group name="vcs">
-      <project id="G23P3" values="svn" />
-      <project id="workspaceIntellij" values="svn" />
+      <project id="Practica PLG" values="JDK_1_6" />
     </group>
     <group name="module type">
       <project id="pract4_parte4" values="JAVA_MODULE" />
@@ -34,6 +31,7 @@
       <project id="pract9_parte2" values="JAVA_MODULE" />
       <project id="prac4_parte2" values="JAVA_MODULE" />
       <project id="pract9_parte1" values="JAVA_MODULE" />
+      <project id="PLG-GRUPO04" values="JAVA_MODULE" />
       <project id="PLG04FUNCIONA" values="JAVA_MODULE" />
       <project id="PLG04_FINAL" values="JAVA_MODULE" />
       <project id="PLG04" values="JAVA_MODULE" />
@@ -48,44 +46,50 @@
       <project id="prac4_parte4" values="JAVA_MODULE" />
       <project id="PLG04Victor" values="JAVA_MODULE" />
     </group>
+    <group name="vcs">
+      <project id="G23P3" values="svn" />
+      <project id="workspaceIntellij" values="svn" />
+    </group>
+    <group name="file-type">
+      <project id="pract4_parte4" values="XML,UNKNOWN,JAVA,IDEA_MODULE" />
+      <project id="parte1" values="IDEA_MODULE,XML,PLAIN_TEXT,UNKNOWN,JAVA,Eclipse" />
+      <project id="PLG04Presentacion" values="ARCHIVE,XML,JAVA,UNKNOWN,PLAIN_TEXT,Eclipse,IDEA_MODULE" />
+      <project id="pract9_parte2" values="PLAIN_TEXT,XML,IDEA_MODULE,JAVA,UNKNOWN" />
+      <project id="prac4_parte2" values="UNKNOWN" />
+      <project id="pract9_parte1" values="PLAIN_TEXT,UNKNOWN,XML,JAVA,IDEA_MODULE" />
+      <project id="PLG-GRUPO04" values="PLAIN_TEXT,JAVA,UNKNOWN,XML,ARCHIVE,Eclipse,IDEA_MODULE" />
+      <project id="PLG04FUNCIONA" values="Eclipse,IDEA_MODULE,XML,UNKNOWN,PLAIN_TEXT,JAVA,ARCHIVE" />
+      <project id="PLG04_FINAL" values="XML,JAVA,Eclipse,IDEA_MODULE,ARCHIVE,PLAIN_TEXT,UNKNOWN" />
+      <project id="PLG04" values="CLASS,IDEA_MODULE,PLAIN_TEXT,JAVA,UNKNOWN,XML,Eclipse,ANTLR v4 grammar file,ARCHIVE" />
+      <project id="prac8_parte4" values="XML,UNKNOWN,IDEA_MODULE,PLAIN_TEXT,JAVA" />
+      <project id="prac8_parte3" values="JAVA,UNKNOWN,PLAIN_TEXT,XML,IDEA_MODULE" />
+      <project id="prac8_parte5" values="IDEA_MODULE,PLAIN_TEXT,JAVA,UNKNOWN,XML" />
+      <project id="G23P3" values="IDEA_MODULE,Eclipse,Images,JAVA,ARCHIVE,Native,UNKNOWN" />
+      <project id="workspaceIntellij" values="UNKNOWN,ARCHIVE,Images,Eclipse,Native,JAVA,IDEA_MODULE" />
+      <project id="prac8_parte2" values="PLAIN_TEXT,UNKNOWN,XML,JAVA,IDEA_MODULE" />
+      <project id="prac8_parte1" values="PLAIN_TEXT,Eclipse,JAVA,XML,UNKNOWN,IDEA_MODULE" />
+      <project id="prac4_parte3" values="UNKNOWN" />
+      <project id="prac4_parte4" values="UNKNOWN" />
+      <project id="PLG04Victor" values="JAVA,UNKNOWN,ARCHIVE,PLAIN_TEXT,IDEA_MODULE,XML,Eclipse" />
+      <project id="Practica PLG" values="UNKNOWN" />
+    </group>
     <group name="run-configuration-type-temp">
       <project id="prac8_parte4" values="Application" />
       <project id="parte1" values="Application" />
       <project id="PLG04Presentacion" values="Application" />
       <project id="prac8_parte1" values="Application" />
       <project id="Practica PLG" values="Application" />
-      <project id="PLG04_FINAL" values="Application" />
-      <project id="PLG04" values="Application" />
+      <project id="PLG-GRUPO04" values="Application" />
       <project id="PLG04FUNCIONA" values="Application" />
-    </group>
-    <group name="file-type">
-      <project id="pract4_parte4" values="UNKNOWN,XML,JAVA,IDEA_MODULE" />
-      <project id="parte1" values="Eclipse,UNKNOWN,XML,IDEA_MODULE,PLAIN_TEXT,JAVA" />
-      <project id="PLG04Presentacion" values="JAVA,UNKNOWN,Eclipse,ARCHIVE,IDEA_MODULE,XML,PLAIN_TEXT" />
-      <project id="pract9_parte2" values="XML,PLAIN_TEXT,IDEA_MODULE,UNKNOWN,JAVA" />
-      <project id="prac4_parte2" values="UNKNOWN" />
-      <project id="pract9_parte1" values="XML,PLAIN_TEXT,IDEA_MODULE,UNKNOWN,JAVA" />
-      <project id="PLG04FUNCIONA" values="ARCHIVE,UNKNOWN,IDEA_MODULE,JAVA,PLAIN_TEXT,Eclipse,XML" />
-      <project id="PLG04_FINAL" values="UNKNOWN,XML,ARCHIVE,JAVA,IDEA_MODULE,PLAIN_TEXT,Eclipse" />
-      <project id="PLG04" values="ARCHIVE,Eclipse,JAVA,PLAIN_TEXT,UNKNOWN,XML,IDEA_MODULE,CLASS,ANTLR v4 grammar file" />
-      <project id="prac8_parte4" values="PLAIN_TEXT,UNKNOWN,IDEA_MODULE,XML,JAVA" />
-      <project id="prac8_parte3" values="PLAIN_TEXT,JAVA,UNKNOWN,IDEA_MODULE,XML" />
-      <project id="prac8_parte5" values="JAVA,PLAIN_TEXT,XML,IDEA_MODULE,UNKNOWN" />
-      <project id="G23P3" values="UNKNOWN,Native,Images,Eclipse,JAVA,IDEA_MODULE,ARCHIVE" />
-      <project id="workspaceIntellij" values="ARCHIVE,Eclipse,UNKNOWN,IDEA_MODULE,Images,Native,JAVA" />
-      <project id="prac8_parte2" values="IDEA_MODULE,JAVA,PLAIN_TEXT,UNKNOWN,XML" />
-      <project id="prac8_parte1" values="PLAIN_TEXT,UNKNOWN,IDEA_MODULE,XML,Eclipse,JAVA" />
-      <project id="prac4_parte3" values="UNKNOWN" />
-      <project id="prac4_parte4" values="UNKNOWN" />
-      <project id="Practica PLG" values="UNKNOWN" />
-      <project id="PLG04Victor" values="PLAIN_TEXT,Eclipse,XML,ARCHIVE,UNKNOWN,IDEA_MODULE,JAVA" />
+      <project id="PLG04" values="Application" />
+      <project id="PLG04_FINAL" values="Application" />
     </group>
   </component>
   <component name="UsageTrigger">
     <counts>
       <entry feature="CreateFile.CreateFileAction" count="2" />
-      <entry feature="execute.Application.Debug" count="9" />
-      <entry feature="execute.Application.Run" count="48" />
+      <entry feature="execute.Application.Debug" count="10" />
+      <entry feature="execute.Application.Run" count="54" />
     </counts>
   </component>
 </application>

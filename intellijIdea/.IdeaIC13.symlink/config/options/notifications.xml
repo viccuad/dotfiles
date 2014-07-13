@@ -27,6 +27,7 @@
     <toolWindow group="FindInPath" />
     <toolWindow group="Debugger messages" />
     <toolWindow group="HotSwap" />
+    <toolWindow group="Find in Path" />
   </component>
 </application>
 

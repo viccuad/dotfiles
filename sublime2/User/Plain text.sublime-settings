@@ -1,4 +1,5 @@
 {
     "spell_check": true,
-    "dictionary": "Packages/Language - English/en_GB.dic"
+    "dictionary": "Packages/Language - English/en_GB.dic",
+    "wrapWidth": 120
 }
