@@ -7,16 +7,16 @@
       <project id="ManyTimePad" values="PYTHON_MODULE" />
       <project id="hello_world" values="PYTHON_MODULE" />
     </group>
-    <group name="file-type">
-      <project id="workspacePycharmProjects" values="UNKNOWN,XML,Python" />
-      <project id="migration-tool" values="Markdown,Python,XML,UNKNOWN,PLAIN_TEXT" />
-      <project id="ManyTimePad" values="XML,Python,UNKNOWN" />
-      <project id="hello_world" values="Python,XML,UNKNOWN" />
-    </group>
     <group name="run-configuration-type-temp">
       <project id="migration-tool" values="PythonConfigurationType" />
       <project id="ManyTimePad" values="PythonConfigurationType" />
       <project id="hello_world" values="PythonConfigurationType" />
+    </group>
+    <group name="file-type">
+      <project id="workspacePycharmProjects" values="XML,Python,UNKNOWN" />
+      <project id="migration-tool" values="UNKNOWN,Markdown,PLAIN_TEXT,Python,XML" />
+      <project id="ManyTimePad" values="Python,XML,UNKNOWN" />
+      <project id="hello_world" values="UNKNOWN,Python,XML" />
     </group>
     <group name="py-interpreter">
       <project id="workspacePycharmProjects" values="Python 3.3.3" />

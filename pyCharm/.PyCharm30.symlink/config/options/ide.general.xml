@@ -2,7 +2,7 @@
 <application>
   <component name="GeneralSettings">
     <option name="browserPath" value="" />
-    <option name="lastTip" value="6" />
+    <option name="lastTip" value="7" />
     <option name="showTipsOnStartup" value="true" />
     <option name="showOccupiedMemory" value="false" />
     <option name="reopenLastProject" value="true" />

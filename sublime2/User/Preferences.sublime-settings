@@ -13,7 +13,7 @@
 		".hg",
 		"CVS"
 	],
-	"font_size": 8,
+	"font_size": 9,
 	"highlight_line": true,
 	"highlight_modified_tabs": true,
 	"ignored_packages":

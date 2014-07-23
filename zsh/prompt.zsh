@@ -83,7 +83,7 @@ last_status() {
 todo_count(){
   if (( $+commands[todo.sh] ))
   then
-    num=$(echo $(todo.sh ls $1 | awk -v pattern="$1" '$0 ~ pattern && !/ x /{count++} END {print count}'      ))
+    num=$(echo $(todo.sh ls $1 | awk -v pattern="$1" '$0 ~ pattern && !/ x /{count++} END {print count}'))
     echo $num
   fi
 }
@@ -97,23 +97,23 @@ function todo_prompt() {
   fi
 }
 
-function notes_count() {
-  if [[ -z $1 ]]; then
-    local NOTES_PATTERN="TODO|FIXME|HACK";
-  else
-    local NOTES_PATTERN=$1;
-  fi
-  grep -ERn "\b($NOTES_PATTERN)\b" {app,config,lib,spec,test} 2>/dev/null | wc -l | sed 's/ //g'
-}
+# function notes_count() {
+#   if [[ -z $1 ]]; then
+#     local NOTES_PATTERN="TODO|FIXME|HACK";
+#   else
+#     local NOTES_PATTERN=$1;
+#   fi
+#   grep -ERn "\b($NOTES_PATTERN)\b" {app,config,lib,spec,test} 2>/dev/null | wc -l | sed 's/ //g'
+# }
 
-function notes_prompt() {
-  local COUNT=$(notes_count $1);
-  if [ $COUNT != 0 ]; then
-    echo "$1: $COUNT";
-  else
-    echo "";
-  fi
-}
+# function notes_prompt() {
+#   local COUNT=$(notes_count $1);
+#   if [ $COUNT != 0 ]; then
+#     echo "$1: $COUNT";
+#   else
+#     echo "";
+#   fi
+# }
 
 export PROMPT=$'\n$(rb_prompt)$(last_status) $(directory_name)$(git_dirty)$(need_push) > '
 set_prompt () {

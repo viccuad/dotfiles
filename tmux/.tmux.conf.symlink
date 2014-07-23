@@ -35,6 +35,7 @@ bind-key j select-pane -D
 bind-key k select-pane -U
 bind-key l select-pane -R
 set-window-option -g mode-mouse on
+set -g mouse-select-window on
 
 # resizing:
 bind-key -r C-h resize-pane -L
@@ -101,3 +102,4 @@ set-option -g status-left ''
 
 # enable vim mode
 setw -g mode-keys vi
+set-option -g status-keys vi
