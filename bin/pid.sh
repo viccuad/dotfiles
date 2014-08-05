@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Find out the pid of a specified process
 # note that the command name can be specified via a regex
 #    E.g. findPid '/d$/' finds pids of all processes with names ending in 'd'

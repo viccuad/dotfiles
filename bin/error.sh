@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Determining the meaning of error codes
 function err()
 {

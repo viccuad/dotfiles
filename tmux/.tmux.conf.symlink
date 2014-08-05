@@ -2,13 +2,13 @@
 set-option -g default-shell $SHELL
 
 # tell tmux to use 256 colour terminal
-set -g default-terminal "screen-256color"
+set -g default-terminal screen-256color
 
 # keybindings:
 # command prefix:
-set-option -g prefix C-a
-bind-key C-a send-prefix
-#Ctrl-a ? List all keybindings
+set-option -g prefix C-b
+bind-key C-b send-prefix
+#Ctrl-b ? List all keybindings
 
 # panes:
 # set-option -g pane-border-fg colour27

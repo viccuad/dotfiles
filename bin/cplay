@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 #
 # Author: Dennis Hodapp
 # Filename: cplay

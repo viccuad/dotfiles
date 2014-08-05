@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 ##################################################
 # Checks to ensure that all 			 #
 # environment variables are valid		 #
