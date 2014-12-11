@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Run a command until a specified time
 # Example: command-timer 04:00
 function command-timer() { echo "notify-send TimeToQuit" | at "$@" ; }
@@ -11,7 +13,7 @@ function program-timer() { perl -e 'alarm shift; exec @ARGV' "$@" & exit; }
 # Reminder for whatever whenever
 function remindme()
 {
-sleep $1 && zenity --info --text "$2" &
+sleep "$1" && zenity --info --text "$2" &
 }
 
 # Stopwatch
@@ -20,10 +22,10 @@ function stopwatch() {
 BEGIN=$(date +%s)
 while true; do
     NOW=$(date +%s)
-    DIFF=$(($NOW - $BEGIN))
-    MINS=$(($DIFF / 60))
-    SECS=$(($DIFF % 60))
-    echo -ne "Time elapsed: $MINS:`printf %02d $SECS`\r"
+    DIFF=$((NOW - BEGIN))
+    MINS=$((DIFF / 60))
+    SECS=$((DIFF % 60))
+    echo -ne "Time elapsed: $MINS:(printf %02d $SECS)\r"
     sleep .1
 done
 }

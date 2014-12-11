@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Reboot machine when everything is hanging, simulating power button press
 alias buttonReboot='<alt> + <print screen/sys rq> + <R> - <S> - <E> - <I> - <U> - <B>'
 
