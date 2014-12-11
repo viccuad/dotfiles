@@ -31,6 +31,8 @@ Plugin 'gmarik/Vundle.vim'
 	"Plugin 'user/L9', {'name': 'newL9'}
 
 Plugin 'chriskempson/base16-vim'
+Plugin 'terryma/vim-smooth-scroll'
+"Plugin 'severin-lemaignan/vim-minimap'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -71,6 +73,7 @@ filetype plugin on            " Enable filetype-specific plugins
 syntax on			" enable syntax processing
 set background=dark	"if using a dark background, for syntax highlighting
 set number          " show line numbers
+set relativenumber	" show relative numbers. can be on at the same time that number
 set cursorline      " highlight current line
 set showcmd			" Show (partial) command in status line
 set wildmenu        " visual autocomplete for command menu
@@ -92,12 +95,24 @@ endif
 set timeout			" time out on key codes
 set ttimeoutlen=100 " The time in milliseconds that is waited for a key code or mapped key sequence to complete
 
+let base16colorspace=256  " Access colors present in 256 colorspace
 if has("gui_running")
-	colorscheme base16-default 
+	colorscheme base16-colors
 	set guioptions-=T		" Remove Toolbar
-	"set guifont=Terminus\ 9 "Terminus is AWESOME
+
+	if has("gui_gtk2")
+		set guifont=Monospace\ 10
+    	"set guifont=DejaVu\ Sans\ Mono\ 10
+		"set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
+		"let Powerline_symbols = 'fancy'
+		"set guifont=Terminus\ 9 "Terminus is AWESOME
+  	elseif has("gui_macvim")
+    	set guifont=Menlo\ Regular:h14
+  	elseif has("gui_win32")
+    	set guifont=Consolas:h11:cANSI
+  	endif
 else
-	colorscheme base16-default 
+	colorscheme base16-colors
 endif
 
 " Allow color schemes to do bright colors without forcing bold.
@@ -131,6 +146,16 @@ set hlsearch        " highlight matches
 inoremap jj <Esc>
 " Open Url on this line with the browser \w . Eg: http://www.google.com
 map <Leader>w :call Browser ()<CR>
+
+
+" }}}
+
+" Plugins settings {{{
+" vim-smooth-scroll
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 10, 2)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 10, 2)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 10, 4)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 10, 4)<CR>
 " }}}
 
 " Folding {{{
@@ -141,6 +166,7 @@ set foldlevelstart=10 " start with fold level of 1
 " }}}
 
 " Launch {{{
+set encoding=utf8
 set autowrite		" Automatically save before commands like :next and :make
 set autochdir		" automatically cd into the directory that the file is in
 set autoread		" watch for file changes
@@ -160,7 +186,23 @@ endfunction
 
 "}}}
 
+" Reload configs {{{
+augroup myvimrc
+    au!
+    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+augroup END
+" }}}
+
 " TODO
 " poner zsh como shell
+" reopen buffers: http://vim.wikia.com/wiki/Vim_buffer_FAQ
+" copy paste en gvim
+" nerdtree
+" fix font rendering
+" autocomplete
+" sublime text multiple cursors
+" arreglar colores de la terminal
+" minimap
+" remapear :
 
 " vim:foldmethod=marker:foldlevel=0
