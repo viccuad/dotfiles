@@ -50,3 +50,7 @@ bindkey '^[[5C' end-of-line
 bindkey '^[[3~' delete-char
 bindkey '^[^N' newtab
 bindkey '^?' backward-delete-char
+
+# Base16-shell colors
+BASE16_SHELL="$ZSH/zsh/base16-shell/base16-bright.dark.sh"
+[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
