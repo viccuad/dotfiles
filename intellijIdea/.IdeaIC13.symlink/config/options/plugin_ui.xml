@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application>
   <component name="PluginManagerConfigurable">
+    <option name="myOutdatedPlugins">
+      <JDOMExternalizableStringList />
+    </option>
     <option name="proportions">
       <list>
         <option value="0.5" />

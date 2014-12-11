@@ -9,6 +9,7 @@
         <option value="gr.class.fqn" />
         <option value="properties.index" />
         <option value="dom.namespaceKey" />
+        <option value="java.method.parameter.types" />
         <option value="dom.elementClass" />
         <option value="java.class.fqn" />
         <option value="java.class.shortname" />

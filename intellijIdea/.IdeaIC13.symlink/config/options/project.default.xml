@@ -62,8 +62,8 @@
             <option name="LOG_MESSAGE" value="" />
           </breakpoint>
         </breakpoint_any>
-        <breakpoint_rules converted="true" />
         <ui_properties converted="true" />
+        <breakpoint_rules converted="true" />
       </component>
       <component name="DependencyValidationManager">
         <option name="SKIP_IMPORT_STATEMENTS" value="false" />
@@ -221,7 +221,7 @@
         <states>
           <state key="ProjectJDKs.UI">
             <settings>
-              <last-edited>1.7 oracle</last-edited>
+              <last-edited>1.7 openjdk</last-edited>
               <splitter-proportions>
                 <option name="proportions">
                   <list>
