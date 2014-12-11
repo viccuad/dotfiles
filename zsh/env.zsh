@@ -5,7 +5,7 @@ if [ "$TERM" = "xterm" ] ; then
     if [ -z "$COLORTERM" ] ; then
         if [ -z "$XTERM_VERSION" ] ; then
             # commented by vic echo "Warning: Terminal wrongly calling itself 'xterm'."
-            TERM="gnome-256color" #added by vic
+            TERM="screen-256color" #added by vic
         else
             case "$XTERM_VERSION" in
             "XTerm(256)") TERM="xterm-256color" ;;
@@ -27,7 +27,7 @@ if [ "$TERM" = "xterm" ] ; then
                 ;;
             *)
                 # commented by vic echo "Warning: Unrecognized COLORTERM: $COLORTERM"
-            	TERM="gnome-256color" #added by vic
+            	TERM="screen-256color" #added by vic
                 ;;
         esac
     fi
