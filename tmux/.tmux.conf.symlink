@@ -37,6 +37,9 @@ bind-key l select-pane -R
 set-window-option -g mode-mouse on
 set -g mouse-select-window on
 
+# Sane scrolling, allow mouse outside boundaries
+set -g terminal-overrides 'xterm*:smcup@:rmcup@'
+
 # resizing:
 bind-key -r C-h resize-pane -L
 bind-key -r C-j resize-pane -D
