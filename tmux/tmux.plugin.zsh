@@ -1,7 +1,7 @@
 # Adds several options for effecting the startup behavior of tmux. Each of the options are set by changing the environment variables below:
 #
 # ZSH_TMUX_AUTOSTART: Automatically start a tmux session upon logging in. Set to false by default.
-export ZSH_TMUX_AUTOSTART=true
+export ZSH_TMUX_AUTOSTART=false
 
 # ZSH_TMUX_AUTOSTART_ONCE: Only attempt to autostart tmux once. If this is
 # disabled when the previous option is enabled, then tmux will be autostarted
@@ -51,7 +51,7 @@ if which tmux &> /dev/null ;
 		# The TERM to use for non-256 color terminals.
 		# Tmux states this should be screen, but you may need to change it on
 		# systems without the proper terminfo
-		[[ -n "$ZSH_TMUX_FIXTERM_WITHOUT_256COLOR" ]] || ZSH_TMUX_FIXTERM_WITHOUT_256COLOR="screen"
+		[[ -n "$ZSH_TMUX_FIXTERM_WITHOUT_256COLOR" ]] || ZSH_TMUX_FIXTERM_WITHOUT_256COLOR="screen-256color"
 		# The TERM to use for 256 color terminals.
 		# Tmux states this should be screen-256color, but you may need to change it on
 		# systems without the proper terminfo
@@ -99,7 +99,7 @@ if which tmux &> /dev/null ;
 		}
 
 		# Use the completions for tmux for our function
-		#compdef _tmux _zsh_tmux_plugin_run               ## COMMENTED: in completions.zsh
+		#compdef _tmux _zsh_tmux_plugin_run               ## by vic, COMMENTED: in completions.zsh
 
 		# Alias tmux to our wrapper function.
 		alias tmux=_zsh_tmux_plugin_run

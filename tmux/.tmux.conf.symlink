@@ -2,7 +2,7 @@
 set-option -g default-shell $SHELL
 
 # tell tmux to use 256 colour terminal
-set -g default-terminal screen-256color
+set -g default-terminal "screen-256color"
 
 # keybindings:
 # command prefix:
@@ -106,3 +106,17 @@ set-option -g status-left ''
 # enable vim mode
 setw -g mode-keys vi
 set-option -g status-keys vi
+
+# y and p as in vim
+# bind Escape copy-mode
+# unbind p
+# bind p paste-buffer
+# bind -t vi-copy 'v' begin-selection
+# bind -t vi-copy 'y' copy-selection
+# bind -t vi-copy 'Space' halfpage-down
+# bind -t vi-copy 'Bspace' halfpage-up
+#  
+#  # extra commands for interacting with the ICCCM clipboard
+#  bind C-c run "tmux save-buffer - | xclip -i -sel clipboard"
+#  bind C-v run "tmux set-buffer \"$(xclip -o -sel clipboard)\"; tmux
+#  paste-buffer" 
