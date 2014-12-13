@@ -69,6 +69,7 @@ Plugin 'airblade/vim-gitgutter'
 "Plugin 'Valloric/YouCompleteMe'			" needs to be compiled, read the docs!
 Plugin 'xolox/vim-misc'						" needed by vim-shell
 Plugin 'xolox/vim-shell'					" provides integration between Vim and environment (fullscreen, etc). requires wmctrl
+Plugin 'scrooloose/nerdcommenter'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -193,6 +194,9 @@ highlight clear SignColumn 	" needs to be after your colorscheme
 " Persistence {{{
 set viminfo+=% "save and restore the buffer list expect if vim is started with a file name argument
 set viminfo+=n$HOME/.vim/viminfo
+" delete the empty buffer that appears on startup
+au VimEnter * nested if  bufname('')==''  &&  line('$') == 1 &&  col('$')==1 &&  !&modified | bd % | endif
+
 set hidden					" don't mark buffers as abandoned if hidden
 set history=1000
 set undofile                " Save undo's after file closes
@@ -239,7 +243,8 @@ map <down> <nop>
 map <left> <nop>
 map <right> <nop>
 " remove trailing whitespaces
-nnoremap <silent> <F4> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let"@/=_s<Bar>:nohl<CR>
+"nnoremap <silent> <F4> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let"@/=_s<Bar>:nohl<CR>
+map <F3> :%s/\s\+$//<CR>
 map <F5> :setlocal spell!<CR>
 " }}}
 
@@ -276,7 +281,5 @@ augroup END
 " tmux con colores, el plugin falla
 " matchit.vim
 " ctrlP fuzzy search
-" http://www.vimgenius.com
-" buffers
 
 " vim:foldmethod=marker:foldlevel=0
