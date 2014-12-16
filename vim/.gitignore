@@ -1,5 +1,5 @@
-/.vim.symlink/bundle/*
-/.vim.symlink/backup/*
-/.vim.symlink/undo
-/.vim.symlink/viminfo
-/.vim.symlink/.netrwhist
+/.vim/bundle/*
+/.vim/backup/*
+/.vim/undo
+/.vim/viminfo
+/.vim/.netrwhist

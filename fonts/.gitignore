@@ -1,0 +1,11 @@
+#Ignore every font
+*.ttf
+*.otf
+*.eot
+*.woff
+*.svg
+
+# Don't ignore free fonts
+!*.fonts/fontAwesome/
+!*.fonts/powerline-fonts/
+!*.fonts/PowerlineSymbols.otf

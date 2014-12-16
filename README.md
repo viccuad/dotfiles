@@ -11,7 +11,7 @@ Run this:
 ```sh
 git clone https://github.com/viccuad/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
-script/bootstrap
+./script/bootstrap
 ```
 
 This will symlink the appropriate files in `.dotfiles` to your home directory.
@@ -46,6 +46,31 @@ There's a few special files in the hierarchy.
   but still keep those autoloaded files in your home directory. These get
   symlinked in when you run `script/bootstrap`. If you want a file *.foo* starting
   by a dot to get symlinked, then, you would need to rename it to *.foo.symlink*.
+
+
+
+  ## install
+
+	all inside /<application>/nostow/* is not going to be stowed.
+	normally is adding path, completions, etc to zsh
+
+
+  put zsh as default
+  sublime2
+  laptop-mode
+  fonts
+
+  ## unninstall
+  remove all links, put backups in place, put bash as default shell
+
+## Using stow
+
+More info:
+
+- http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html
+- http://taihen.org/managing-dotfiles-with-gnu-stow/
+- http://kianmeng.org/blog/2014/03/08/using-gnu-stow-to-manage-your-dotfiles/
+
 
 ## *
 1. Holman applied some gitignores. In git, when you untrack files by gitignore and then remove the entries on the gitignore file, those files keep untracked. It was easier to create my own git repo and add my gitignore. 
