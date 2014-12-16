@@ -2,3 +2,4 @@
 /.vim.symlink/backup/*
 /.vim.symlink/undo
 /.vim.symlink/viminfo
+/.vim.symlink/.netrwhist
