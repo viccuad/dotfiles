@@ -6,6 +6,10 @@ runtime! debian.vim " ensures that various options are properly set to work with
 " for Amiga: s:.vimrc
 " for MS-DOS and Win32: $VIM\_vimrc
 " for OpenVMS: sys$login:.vimrc
+"
+" this file has ordered commands for it to work. don't blindly change
+" the order.
+"
 " }}}
 
 " Lang {{{
@@ -18,7 +22,7 @@ source $VIMRUNTIME/menu.vim
 set spelllang=en,es
 " }}}
 
-" Vundle Config {{{
+" Vundle config {{{
 " This should be on top
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -49,6 +53,9 @@ Plugin 'gmarik/Vundle.vim'
 	"Plugin 'user/L9', {'name': 'newL9'}
 
 " ADD YOUR PLUGINS HERE:
+Plugin 'ScrollColors'
+Plugin 'Colour-Sampler-Pack'
+Plugin 'mimicpak'
 Plugin 'chriskempson/base16-vim'
 Plugin 'yonchu/accelerated-smooth-scroll'
 Plugin 'severin-lemaignan/vim-minimap'		" needs braille capable font, python
@@ -70,6 +77,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'xolox/vim-misc'						" needed by vim-shell
 Plugin 'xolox/vim-shell'					" provides integration between Vim and environment (fullscreen, etc). requires wmctrl
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'nathanaelkane/vim-indent-guides'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -88,13 +96,44 @@ filetype plugin indent on    " required
 " }}}
 
 " Spaces & Tabs {{{
-set tabstop=4       			" number of visual spaces per TAB
+set tabstop=4					" number of visual spaces per TAB
 set autoindent smartindent		" copy indent from current line when starting a new line, smartindent
-"set list                        " show invisible characters
-"set listchars=tab:>·,trail:·    " but only show tabs and trailing whitespace
+set nolist
+set listchars=tab:>·,trail:·	" but only show tabs and trailing whitespace
 let c_space_errors = 1
 let java_space_errors = 1
 let python_space_errors = 1
+
+" }}}
+
+" Line wrap {{{
+" gq: performs 'rewrap the text'
+set wrap					" soft wrap long lines, visually, instead of changing the file
+set linebreak				" wrap long lines at characters in 'breakat' rather than at the last character that fits
+set breakindent				" wrapped lines are visually indented
+set nolist  				" list disables linebreak
+set textwidth=72
+set formatoptions=tcrql 	" t autowrap to textwidth
+							" c autowrap comments to textwidth
+							" r autoinsert comment leader with <enter>
+							" q allow formatting of comments with gq
+							" l	Long lines are not broken in insert mode: When a line was longer than 'textwidth' when the insert command started, Vim does not automatically format it.
+							" 1	Don't break a line after a one-letter word. It's broken before it instead (if possible).
+							" j	Where it makes sense, remove a comment leader when joining lines
+" highilight everything past textwitdh:
+let g:toggleHighlight = 1
+function! ToggleHighlight(...)
+	if a:0 == 1 "toggle behaviour
+		let g:toggleHighlight = 1 - g:toggleHighlight
+	endif
+	if g:toggleHighlight == 0 "normal action, do the hi
+		highlight OverLength ctermbg=darkgrey guibg=#592929
+		match OverLength /\%80v.*/
+	else
+		call clearmatches()
+	endif
+endfunction
+autocmd CursorMoved * call ToggleHighlight()
 " }}}
 
 " Filetype {{{
@@ -107,31 +146,30 @@ filetype plugin on            " Enable filetype-specific plugins
 set title			" change terminal title
 syntax on			" enable syntax processing
 set background=dark "if using a dark background, for syntax highlighting
-set number          " show line numbers
+set number			" show line numbers
 set relativenumber	" show relative numbers. can be on at the same time that number
-set cursorline      " highlight current line
+set cursorline		" highlight current line
 set showcmd			" Show (partial) command in status line
 set wildmenu        " visual autocomplete for command menu
 set showmatch		" Highlight matching brackets
 set mouse=a			" Enable mouse usage (all modes)
 set ruler 			" show the cursor position and line number at the bar
-set lazyredraw      " don't redraw while in macros
+set lazyredraw		" don't redraw while in macros
 set scrolloff=5		" keep at least 5 lines above/below
 set sidescrolloff=5 " keep at least 5 lines left/right
-set wrap			" soft wrap long lines
 set noerrorbells	" no error bells please
 set visualbell
 set vb t_vb=		" no beep or flash
 if has('autocmd')
-  autocmd GUIEnter * set visualbell t_vb= 	"redo t_vb= for gui so it takes place
+	autocmd GUIEnter * set visualbell t_vb= 	"redo t_vb= for gui so it takes place
 endif
 set timeout			" time out on key codes
-set ttimeoutlen=100 " The time in milliseconds that is waited for a key code or mapped key sequence to complete
+set ttimeoutlen=500	" The time in milliseconds that is waited for a key code or mapped key sequence to complete
 
-let base16colorspace=256  	" Access colors present in 256 colorspace
+let base16colorspace=256	" Access colors present in 256 colorspace
 if has("gui_running")
 	"colorscheme base16-colors
-	set guiheadroom=0 		" vim padding: fix it in ~/.gtkrc-2.0
+	set guiheadroom=0		" vim padding: fix it in ~/.gtkrc-2.0
 	colorscheme xoria256
 	set guioptions-=T		" Remove Toolbar
 	set guioptions+=c		" Use console dialogs
@@ -164,10 +202,10 @@ endif
 " Latex Box Plugin
 let g:LatexBox_output_type="pdf"
 let g:LatexBox_latexmk_async=1 					"allow latexmk to run in the background and load any compilation errors in a quickfix window after it finishes running.
-let g:LatexBox_latexmk_preview_continuously=1 	"Latexmk will track the currently edited file for writes and recompile automatically when necessary
-let g:LatexBox_quickfix=2 						" recommended by preview_continously
-let g:LatexBox_latexmk_options="-pdflatex='xelatex --shell-escape -interaction=nonstopmode -synctex=1 %O %S' -cd -f"
-let g:LatexBox_autojump=0 " auto jump to first error after compiling
+"let g:LatexBox_latexmk_preview_continuously=1 	"Latexmk will track the currently edited file for writes and recompile automatically when necessary
+let g:LatexBox_quickfix=3 						" recommended by preview_continously
+let g:LatexBox_latexmk_options="-pdflatex='xelatex --shell-escape -interaction=nonstopmode %O %S' -cd -f"
+let g:LatexBox_autojump=1						" auto jump to first error after compiling
 
 " NERDTree Plugin
 " Open NERDTree automatically on startup if no file is specified
@@ -175,92 +213,91 @@ let g:LatexBox_autojump=0 " auto jump to first error after compiling
 "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Airline
-let g:airline_powerline_fonts = 1 	" automatically populate the g:airline_symbols dictionary with the powerline symbols
-set laststatus=2 					" Always show statusline
-"set showtabline=2 					" Always display the tabline, even if there is only one tab
-set noshowmode 						" Hide the default mode text (e.g. -- INSERT -- below the statusline)
-let g:airline#extensions#tabline#enabled = 1  		" automatically displays all buffers when there's only one tab open
+let g:airline_powerline_fonts = 1 					" automatically populate the g:airline_symbols dictionary with the powerline symbols
+set laststatus=2 									" Always show statusline
+"set showtabline=2 									" Always display the tabline, even if there is only one tab
+set noshowmode 										" Hide the default mode text (e.g. -- INSERT -- below the statusline)
+let g:airline#extensions#tabline#enabled = 1		" automatically displays all buffers when there's only one tab open
 let g:airline#extensions#tabline#left_sep = ' '		" straight separators
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
 " Gitgutter
-highlight clear SignColumn 	" needs to be after your colorscheme
+highlight clear SignColumn		" needs to be after your colorscheme
 
 " YouCompleteMe
-"let g:ycm_auto_trigger = 0 	" turn off the as-you-type popup and the popup you'd get after typing . or -> in say C++. You can still use it by <C-Space> shortcut.
+"let g:ycm_auto_trigger = 0		" turn off the as-you-type popup and the popup you'd get after typing . or -> in say C++. You can still use it by <C-Space> shortcut.
+
+" vim-shell
+let b:shell_fullscreen_items = 'mT'		"hide: m mainmenu, T toolbar, e tabline
 
 " }}}
 
 " Persistence {{{
 set viminfo+=% "save and restore the buffer list expect if vim is started with a file name argument
 set viminfo+=n$HOME/.vim/viminfo
-" delete the empty buffer that appears on startup
+" delete the empty buffer that appears on startup:
 au VimEnter * nested if  bufname('')==''  &&  line('$') == 1 &&  col('$')==1 &&  !&modified | bd % | endif
 
 set hidden					" don't mark buffers as abandoned if hidden
 set history=1000
-set undofile                " Save undo's after file closes
-set undodir=$HOME/.vim/undo " where to save undo histories
-set undolevels=1000         " How many undos
-set undoreload=10000        " number of lines to save for undo
+set undofile				" Save undo's after file closes
+set undodir=$HOME/.vim/undo	" where to save undo histories
+set undolevels=1000			" How many undos
+set undoreload=10000		" number of lines to save for undo
 " }}}
 
 " Backup and Swap files {{{
-"set bdir-=. 	" to make vim use other folders for backup files, (/tmp for example)
+"set bdir-=.					" to make vim use other folders for backup files, (/tmp for example)
 "set bdir+=$HOME/.vim/backup
-"set dir-=.		" to make vim stop using current folder for .swp files
+"set dir-=.						" to make vim stop using current folder for .swp files
 "set dir+=$HOME/.vim/backup
 set backupdir=$HOME/.vim/backup
 set directory=$HOME/.vim/backup
 " }}}
 
-" Line wrap {{{
-set textwidth=80    		" we like 80 columns
-"set formatoptions=tcrql 	" t autowrap to textwidth
-							" c autowrap comments to textwidth
-							" r autoinsert comment leader with <enter>
-							" q allow formatting of comments with gq
-							" don't format already long lines
-" set colorcolumn=+1        " highlight column after 'textwidth'
-" set colorcolumn=+1,+2,+3  " highlight three columns after 'textwidth'
-" highlight ColorColumn ctermbg=gray guibg=lightgrey
-" }}}
-
 " Searching {{{
 set ignorecase		" Do case insensitive matching
-set smartcase		" Do smart case matching
+set smartcase		" Overrides ignorecase if uppercase used in search string
 set incsearch		" Incremental search
-set hlsearch        " highlight matches
+set hlsearch		" highlight matches
 set wrapscan		" jumps to the beginning if reaching end, and viceversa
 " }}}
 
 " Mappings {{{
 " This is totally awesome - remap jj to escape in insert mode.  You'll never type jj anyway, so it's great!
 inoremap jj <Esc>
+" Can be typed even faster than jj
+inoremap jk <Esc>
+
 " force yourself to stop using the arrow keys
 map <up> <nop>
 map <down> <nop>
 map <left> <nop>
 map <right> <nop>
-" remove trailing whitespaces
-"nnoremap <silent> <F4> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let"@/=_s<Bar>:nohl<CR>
-map <F3> :%s/\s\+$//<CR>
-map <F5> :setlocal spell!<CR>
+
+" list of shared binds:
+"nnoremap <silent> <F3> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let"@/=_s<Bar>:nohl<CR> " remove trailing whitespaces
+map <F3> :%s/\s\+$//<CR>				" remove trailing whitespaces
+map <F5> :setlocal spell!<CR>			" toggle spell checking
+"   <F6>								" open (from vim-shell)
+map <F8> :call ToggleHighlight(1)<CR>	" highlight all past 80 chars
+" <F11> 								" fullscreen (from vim-shell)
 " }}}
 
 " Folding {{{
-set foldmethod=marker	" fold based on marker level
-set foldnestmax=10 	" max 10 depth
-set nofoldenable  		" don't fold files by default on open
-set foldlevelstart=10 	" start with fold level of 1
+set foldmethod=marker		" fold based on marker level
+set foldnestmax=10			" max 10 depth
+set nofoldenable			" don't fold files by default on open
+set foldlevelstart=10		" start with fold level of 1
 " }}}
 
 " Launch {{{
 set encoding=utf8
-set autowrite		" Automatically save before commands like :next and :make
-"set autochdir		" automatically cd into the directory that the file is in (this will break plugins if activated!!!)
-set autoread		" watch for file changes
-set modeline	 	" make vim check beginning and ending lines of files for options
+set autowrite								" Automatically save before commands like :next and :make
+"set autochdir								" automatically cd into the directory that the file is in (this will break plugins if activated!!!)
+"autocmd BufEnter * silent! lcd %:p:h		" automatically cd into the dir of the file. this breaks less
+set autoread								" watch for file changes
+set modeline								" make vim check beginning and ending lines of files for options
 " jump to the last position when reopening a file
 if has("autocmd")
 	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -270,16 +307,20 @@ endif
 " Reload configs {{{
 " reload configs at save
 augroup myvimrc
-    au!
-    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+	au!
+	au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC
 augroup END
 " }}}
 
 " TODO
+" http://zzapper.co.uk/vimtips.html
 " sublime text multiple cursors
 " remapear :
 " tmux con colores, el plugin falla
 " matchit.vim
 " ctrlP fuzzy search
+" open new files with double clic on the same gvim instance: http://vim.wikia.com/wiki/Launch_files_in_new_tabs_under_Unix
+" vim-indent-guides
+" wrap bien
 
 " vim:foldmethod=marker:foldlevel=0
