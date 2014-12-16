@@ -1,0 +1,78 @@
+" vimperatorrc does not allow comments on the same line than other things!
+
+
+" Look and feel {{{
+colorscheme indigo
+set visualbell
+
+" remove navigation bar
+"set gui=nonavigation
+
+" show up to 35 items in the completion list
+"set maxitems="35"
+
+" Don't go into insert mode when loading a page
+set focuscontent
+
+" smooth scroll setting
+"let g:smooziee_scroll_amount="100"
+"let g:smooziee_scroll_interval="150"
+
+"}}}
+
+
+" Search {{{
+" makes searches case-insensitive
+set ignorecase
+
+" unless they contain upper-case letters
+set smartcase
+
+" find as you type
+set incsearch
+
+" highlight the terms
+set hlsearch
+"}}}
+
+" Open and search suggestions {{{
+"Items which are completed at the :open prompts. Available
+"		s		Search engines and keyword URLs
+"		f		Local files
+"		l		Iceweasel	location bar entries (bookmarks and history sorted in an intelligent way)
+"		b		BookmarkshHistory
+"		S		Search engine suggestions
+"		t		Open tabs
+set complete=sS
+
+set defsearch=duckduckgo
+"set suggestengines=duckduckgo
+
+"}}}
+
+" Mappings {{{
+nnoremap j 3j
+nnoremap k 3k
+nnoremap h 3h
+nnoremap l 3l
+nnoremap H <C-p>
+nnoremap L <C-n>
+" This is totally awesome - remap jj to escape in insert mode.  You'll never type jj anyway, so it's great!
+inoremap jj <Esc>
+" Can be typed even faster than jj
+inoremap jk <Esc>
+
+" Move the current tab to the left
+noremap <leader>h <Esc>:tabmove! -1<CR>
+
+" Move the current tab to the right
+noremap <leader>l <Esc>:tabmove! +1<CR>
+
+" Fullscreen
+noremap <F11> <C-v><F11>
+"}}}
+
+
+" vimperator cheatsheet: http://sheet.shiar.nl/vimperator
+
+" vim: ts=2 sw=2 sts=2 fdm=marker ft=vim
