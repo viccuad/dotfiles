@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DOTFILES_ROOT="$HOME/.dotfiles"
+DOTFILES_ROOT="."
 
 set +e
 
@@ -33,11 +33,11 @@ setup_gitconfig () {
       git_credential='osxkeychain'
     fi
 
-    user ' - What is your github author name?'
+    user ' - What is your github author name? '
     read -e git_authorname
-    user ' - What is your github author email?'
+    user ' - What is your github author email? '
     read -e git_authoremail
-    user ' - What is your gpg key id?'
+    user ' - What is your gpg key id? '
     read -e git_authorsigningkey
 
     sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/AUTHORSIGNINGKEY/$git_authorsigningkey/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" "$DOTFILES_ROOT/git/.gitconfig.example.nostow" > "$DOTFILES_ROOT/git/.gitconfig"
