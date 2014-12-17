@@ -46,17 +46,17 @@ set hlsearch
 set complete=sS
 
 set defsearch=duckduckgo
-"set suggestengines=duckduckgo
+set suggestengines=yahoo
 
 "}}}
 
 " Mappings {{{
 nnoremap j 3j
 nnoremap k 3k
-nnoremap h 3h
-nnoremap l 3l
-nnoremap H <C-p>
-nnoremap L <C-n>
+"nnoremap h 3<left>
+"nnoremap l 3<right>
+nnoremap h <C-p>
+nnoremap l <C-n>
 " This is totally awesome - remap jj to escape in insert mode.  You'll never type jj anyway, so it's great!
 inoremap jj <Esc>
 " Can be typed even faster than jj
