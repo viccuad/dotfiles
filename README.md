@@ -19,6 +19,8 @@ them, stowable files that follow to path they should have from `~/`.
 
 There's a few special files in the hierarchy.
 
+- containing **nostow**: Any files containing `nostow` in their filename will not 
+	get symlinked by stow. 
 - **/nostow/bin/**: Anything in `bin/` will get added to your `$PATH` and be made
   available everywhere.
 - **topic/nostow/*.zsh**: Any files ending in `.zsh` get loaded into your
@@ -27,8 +29,6 @@ There's a few special files in the hierarchy.
   expected to setup `$PATH` or similar.
 - **topic/nostow/completion.zsh**: Any file named `completion.zsh` is loaded
   last and is expected to setup autocomplete.
-- **topic/**nostow**: Any files containing `nostow` will not get
-	symlinked by stow. 
 
 If you're adding a new area to your forked dotfiles — say, "Java" — you 
 can simply add a `java` directory and put files in there. Anything with 
