@@ -31,3 +31,5 @@
 	default = simple
 [core]
 	excludesfile = /home/vic/.gitignore_global
+[diff]
+	tool = gvimdiff
