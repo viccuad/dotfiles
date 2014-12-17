@@ -28,6 +28,8 @@
 [http]
 	sslVerify = true
 [push]
+	# default = simple is new since Git 2.0, use default = current if you
+	# use older version of Git 
 	default = simple
 [core]
 	excludesfile = /home/vic/.gitignore_global
