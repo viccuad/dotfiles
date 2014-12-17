@@ -1,4 +1,4 @@
-runtime! debian.vim " ensures that various options are properly set to work with the Vim-related packages in Debian. this sets nocompatible
+runtime! debian.vim " ensures that various options are properly set to work
 
 " Usage {{{
 " To use it, copy it to
@@ -54,36 +54,38 @@ Plugin 'gmarik/Vundle.vim'
 
 " ADD YOUR PLUGINS HERE:
 " Looks:
-Plugin 'ScrollColors'
-Plugin 'Colour-Sampler-Pack'
-Plugin 'chriskempson/base16-vim'
-Plugin 'mimicpak'
-Plugin 'severin-lemaignan/vim-minimap'		" needs braille capable font, python
-Plugin 'yonchu/accelerated-smooth-scroll'
-Plugin 'bling/vim-airline'					" needs powerline font
+Plugin 'ScrollColors'						" scroll themes with :SCROLLCOLOR
+Plugin 'Colour-Sampler-Pack'				" more color themes
+Plugin 'chriskempson/base16-vim'			" base16 color themes
+Plugin 'mimicpak'							" more color theme
+Plugin 'severin-lemaignan/vim-minimap'		" sublime-text style minimap (NEEDS braille capable font, python)
+Plugin 'yonchu/accelerated-smooth-scroll'	" smooth scroll on <C-d>, <C-u>, <C-f>, <C-b>
+Plugin 'bling/vim-airline'					" status/tabline (NEEDS powerline font)
 
 " Functionality:
-Plugin 'jwhitley/vim-matchit' 				" http://www.catonmat.net/blog/vim-plugins-matchit-vim/
-Plugin 'tpope/vim-surround'					" http://www.catonmat.net/blog/vim-plugins-surround-vim/
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-fugitive'
-Plugin 'majutsushi/tagbar'					" needs ctags
-"Plugin 'kien/ctrlp.vim'
-"Plugin 'sjl/gundo.vim'
-"Plugin 'Valloric/YouCompleteMe'			" needs to be compiled, read the docs!
-Plugin 'airblade/vim-gitgutter'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'scrooloose/syntastic'
-Plugin 'xolox/vim-misc'						" needed by vim-shell
+Plugin 'jwhitley/vim-matchit' 				" cycle also between if, else, etc 	(http://www.catonmat.net/blog/vim-plugins-matchit-vim/)
+Plugin 'tpope/vim-surround'					" surround strings faster 			(http://www.catonmat.net/blog/vim-plugins-surround-vim/)
+Plugin 'scrooloose/nerdtree'				" navigation tree
+Plugin 'tpope/vim-fugitive'					" git support
+Plugin 'majutsushi/tagbar'					" show list of variables, functions, classes.. (NEEDS ctags)
+"Plugin 'kien/ctrlp.vim'					" full path fuzzy file,buffer,mru,tag.. finder
+"Plugin 'sjl/gundo.vim'						" visualize vim undo tree
+"Plugin 'Valloric/YouCompleteMe'			" (NEEDS to be compiled, read the docs!)
+Plugin 'airblade/vim-gitgutter'				" show +,-,~ git changes on the gutter
+"Plugin 'nathanaelkane/vim-indent-guides'	" visually display indent levels
+Plugin 'scrooloose/syntastic'				" automatic syntax checking
+Plugin 'xolox/vim-misc'						" (NEEDED by vim-shell)
 Plugin 'xolox/vim-shell'					" provides integration between Vim and environment (fullscreen, etc). requires wmctrl
-Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdcommenter'			" toggle comments
+Plugin 'Raimondi/delimitMate'				" provides insert mode auto-completion for quotes,parens,brackets..
 
 " Filetype:
-Plugin 'msanders/snipmate.vim'
+Plugin 'msanders/snipmate.vim'				" adds a lot of snippets with tab
 Plugin 'godlygeek/tabular' 					" needed by vim-markdown
 Plugin 'plasticboy/vim-markdown'
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
-Plugin 'linuxsty.vim'						" add Linux kernel style for c files
+Plugin 'vivien/vim-addon-linux-coding-style'
+"Plugin 'linuxsty.vim'						" add Linux kernel style for c files
 Plugin 'c.vim'
 
 " All of your Plugins must be added before the following line
@@ -220,13 +222,19 @@ let g:LatexBox_autojump=1						" auto jump to first error after compiling
 "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Airline
-let g:airline_powerline_fonts = 1 					" automatically populate the g:airline_symbols dictionary with the powerline symbols
-set laststatus=2 									" Always show statusline
-"set showtabline=2 									" Always display the tabline, even if there is only one tab
-set noshowmode 										" Hide the default mode text (e.g. -- INSERT -- below the statusline)
-let g:airline#extensions#tabline#enabled = 1		" automatically displays all buffers when there's only one tab open
-let g:airline#extensions#tabline#left_sep = ' '		" straight separators
+let g:airline_powerline_fonts = 1 						" automatically populate the g:airline_symbols dictionary with the powerline symbols
+set laststatus=2 										" Always show statusline
+"set showtabline=2 										" Always display the tabline, even if there is only one tab
+set noshowmode 											" Hide the default mode text (e.g. -- INSERT -- below the statusline)
+let g:airline#extensions#tabline#enabled = 1			" automatically displays all buffers when there's only one tab open
+let g:airline#extensions#tabline#left_sep = ' '			" straight separators
 let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#buffer_idx_mode = 1	" display numbers in the tab line, and use mappings \1 to \9
+
+" Accelerated smooth scroll
+let g:ac_smooth_scroll_du_sleep_time_msec = 5   
+let g:ac_smooth_scroll_fb_sleep_time_msec = 5 
+
 
 " Gitgutter
 highlight clear SignColumn		" needs to be after your colorscheme
@@ -282,11 +290,24 @@ map <down> <nop>
 map <left> <nop>
 map <right> <nop>
 
+" move between tabs
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+	
 " list of shared binds:
 "nnoremap <silent> <F3> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let"@/=_s<Bar>:nohl<CR> " remove trailing whitespaces
 map <F3> :%s/\s\+$//<CR>				" remove trailing whitespaces
 map <F5> :setlocal spell!<CR>			" toggle spell checking
 "   <F6>								" open (from vim-shell)
+" apply Linux C style (NEEDS astyle installed)
+map <F7> :%!astyle --style=linux --indent=tab=8
 map <F8> :call ToggleHighlight(1)<CR>	" highlight all past 80 chars
 " <F11> 								" fullscreen (from vim-shell)
 " }}}
