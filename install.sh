@@ -40,7 +40,7 @@ setup_gitconfig () {
     user ' - What is your gpg key id?'
     read -e git_authorsigningkey
 
-    sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/AUTHORSIGNINGKEY/$git_authorsigningkey/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" "$DOTFILES_ROOT/git/.gitconfig.example" > "$DOTFILES_ROOT/git/.gitconfig"
+    sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/AUTHORSIGNINGKEY/$git_authorsigningkey/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" "$DOTFILES_ROOT/git/.gitconfig.example.nostow" > "$DOTFILES_ROOT/git/.gitconfig"
 
     success 'gitconfig'
   fi
