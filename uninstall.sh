@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DOTFILES_ROOT="$HOME/.dotfiles"
+DOTFILES_ROOT=${PWD}
 
 set +e
 
@@ -20,30 +20,6 @@ success () {
 
 fail () {
   printf "\r\033[2K  [\033[0;31mFAIL\033[0m] %s\n" "$1"
-}
-
-setup_gitconfig () {
-  if ! [ -f git/.gitconfig ]
-  then
-    info 'setup gitconfig'
-
-    git_credential='cache --timeout=3600'
-    if [ "$(uname -s)" == "Darwin" ]
-    then
-      git_credential='osxkeychain'
-    fi
-
-    user ' - What is your github author name?'
-    read -e git_authorname
-    user ' - What is your github author email?'
-    read -e git_authoremail
-    user ' - What is your gpg key id?'
-    read -e git_authorsigningkey
-
-    sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/AUTHORSIGNINGKEY/$git_authorsigningkey/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" "$DOTFILES_ROOT/git/.gitconfig.example" > "$DOTFILES_ROOT/git/.gitconfig"
-
-    success 'gitconfig'
-  fi
 }
 
 unstow_dotfiles() {
@@ -86,20 +62,9 @@ unstow_dotfiles() {
   done
 }
 
-setup_homebrew(){
-  if [ "$(uname -s)" == "Darwin" ]
-  then
-    info "installing dependencies"
-    if source bin/dot > /tmp/dotfiles-dot 2>&1
-    then
-      success "dependencies installed"
-    else
-      fail "error installing dependencies"
-    fi
-  fi
-}
-
 ###############################################################################
+
+echo This script thinks that dotfiles dir is in "$DOTFILES_ROOT"
 
 # Setup default shell
 user 'Do you want to unset Zsh as the default shell and set up Bash? (yes/no) '
@@ -115,7 +80,6 @@ then
   success "Changed default shell"
 fi
 
-#install_dotfiles
 unstow_dotfiles
 
 echo ''

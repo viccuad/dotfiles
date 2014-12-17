@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-DOTFILES_ROOT="."
+DOTFILES_ROOT=${PWD}
+
 
 set +e
 
@@ -114,6 +115,8 @@ setup_homebrew(){
 }
 
 ###############################################################################
+
+echo This script thinks that dotfiles dir is in "$DOTFILES_ROOT"
 
 # Setup zsh as default
 user 'Do you want to set up Zsh as the default shell? (yes/no) '
