@@ -4,7 +4,7 @@ My dotfiles!
 
 ![example](https://github.com/viccuad/dotfiles/raw/master/example.png)
 
-## install/uninstall
+## install
 
 To install run this:
 
