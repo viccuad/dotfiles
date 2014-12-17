@@ -242,7 +242,7 @@ highlight clear SignColumn		" needs to be after your colorscheme
 "let g:ycm_auto_trigger = 0		" turn off the as-you-type popup and the popup you'd get after typing . or -> in say C++. You can still use it by <C-Space> shortcut.
 
 " vim-shell
-let b:shell_fullscreen_items = 'mT'		"hide: m mainmenu, T toolbar, e tabline
+let g:shell_fullscreen_items = ''		"hide: m mainmenu, T toolbar, e tabline
 
 " }}}
 
