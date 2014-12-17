@@ -1,8 +1,42 @@
 # viccuad's dotfiles
 
-My dotfiles!
+My dotfiles! 
+
 
 ![example](https://github.com/viccuad/dotfiles/raw/master/example.png)
+
+
+
+## Layout
+
+I use `stow` for deployment (and a little script), so the layout of the
+dotfiles is as follows:
+
+![tree](https://github.com/viccuad/dotfiles/raw/master/tree.png)
+
+As you can see, 'applications' are separated on directories, and inside
+them, stowable files that follow to path they should have from `~/`.
+
+There's a few special files in the hierarchy.
+
+- **/nostow/bin/**: Anything in `bin/` will get added to your `$PATH` and be made
+  available everywhere.
+- **topic/nostow/*.zsh**: Any files ending in `.zsh` get loaded into your
+  environment.
+- **topic/nostow/path.zsh**: Any file named `path.zsh` is loaded first and is
+  expected to setup `$PATH` or similar.
+- **topic/nostow/completion.zsh**: Any file named `completion.zsh` is loaded
+  last and is expected to setup autocomplete.
+- **topic/**nostow**: Any files containing `nostow` will not get
+	symlinked by stow. 
+
+If you're adding a new area to your forked dotfiles — say, "Java" — you 
+can simply add a `java` directory and put files in there. Anything with 
+an extension of `.zsh` inside of `java/nostow/` will get automatically 
+included into your shell. All the things inside `java` that aren't inside
+of `nostow` or don't have `nostow` in their filenames will get symlinked 
+into `$HOME` when you run `install.sh`.
+
 
 ## install
 
@@ -30,28 +64,3 @@ To uninstall run:
 ```
 ./uninstall.sh
 ```
-
-## topical
-
-Everything's built around topic areas. If you're adding a new area to your
-forked dotfiles — say, "Java" — you can simply add a `java` directory and put
-files in there. Anything with an extension of `.zsh` inside of `java/nostow/` 
-will get automatically included into your shell. All the things inside `java`
-that aren't inside of `nostow` or don't have `nostow` in their filenames
-will get symlinked into `$HOME` when you run `install.sh`.
-
-## components
-
-There's a few special files in the hierarchy.
-
-- **/nostow/bin/**: Anything in `bin/` will get added to your `$PATH` and be made
-  available everywhere.
-- **topic/nostow/*.zsh**: Any files ending in `.zsh` get loaded into your
-  environment.
-- **topic/nostow/path.zsh**: Any file named `path.zsh` is loaded first and is
-  expected to setup `$PATH` or similar.
-- **topic/nostow/completion.zsh**: Any file named `completion.zsh` is loaded
-  last and is expected to setup autocomplete.
-- **topic/**nostow**: Any files containing `nostow` will not get
-	symlinked by stow. 
-
