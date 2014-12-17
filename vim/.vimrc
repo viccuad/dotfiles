@@ -85,7 +85,6 @@ Plugin 'godlygeek/tabular' 					" needed by vim-markdown
 Plugin 'plasticboy/vim-markdown'
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'vivien/vim-addon-linux-coding-style'
-"Plugin 'linuxsty.vim'						" add Linux kernel style for c files
 Plugin 'c.vim'
 
 " All of your Plugins must be added before the following line
@@ -232,7 +231,7 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#buffer_idx_mode = 1	" display numbers in the tab line, and use mappings \1 to \9
 
 " Accelerated smooth scroll
-let g:ac_smooth_scroll_du_sleep_time_msec = 5   
+let g:ac_smooth_scroll_du_sleep_time_msec = 2   
 let g:ac_smooth_scroll_fb_sleep_time_msec = 5 
 
 
