@@ -53,31 +53,38 @@ Plugin 'gmarik/Vundle.vim'
 	"Plugin 'user/L9', {'name': 'newL9'}
 
 " ADD YOUR PLUGINS HERE:
+" Looks:
 Plugin 'ScrollColors'
 Plugin 'Colour-Sampler-Pack'
-Plugin 'mimicpak'
 Plugin 'chriskempson/base16-vim'
-Plugin 'yonchu/accelerated-smooth-scroll'
+Plugin 'mimicpak'
 Plugin 'severin-lemaignan/vim-minimap'		" needs braille capable font, python
+Plugin 'yonchu/accelerated-smooth-scroll'
+Plugin 'bling/vim-airline'					" needs powerline font
+
+" Functionality:
 Plugin 'jwhitley/vim-matchit' 				" http://www.catonmat.net/blog/vim-plugins-matchit-vim/
 Plugin 'tpope/vim-surround'					" http://www.catonmat.net/blog/vim-plugins-surround-vim/
-Plugin 'godlygeek/tabular' 					" needed by vim-markdown
-Plugin 'plasticboy/vim-markdown'
-Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'scrooloose/nerdtree'
-Plugin 'msanders/snipmate.vim'
-Plugin 'majutsushi/tagbar'					" needs ctags
-Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-fugitive'
+Plugin 'majutsushi/tagbar'					" needs ctags
 "Plugin 'kien/ctrlp.vim'
 "Plugin 'sjl/gundo.vim'
-Plugin 'scrooloose/syntastic'
-Plugin 'airblade/vim-gitgutter'
 "Plugin 'Valloric/YouCompleteMe'			" needs to be compiled, read the docs!
+Plugin 'airblade/vim-gitgutter'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'scrooloose/syntastic'
 Plugin 'xolox/vim-misc'						" needed by vim-shell
 Plugin 'xolox/vim-shell'					" provides integration between Vim and environment (fullscreen, etc). requires wmctrl
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'nathanaelkane/vim-indent-guides'
+
+" Filetype:
+Plugin 'msanders/snipmate.vim'
+Plugin 'godlygeek/tabular' 					" needed by vim-markdown
+Plugin 'plasticboy/vim-markdown'
+Plugin 'LaTeX-Box-Team/LaTeX-Box'
+Plugin 'linuxsty.vim'						" add Linux kernel style for c files
+Plugin 'c.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -316,10 +323,9 @@ augroup END
 " http://zzapper.co.uk/vimtips.html
 " sublime text multiple cursors
 " remapear :
-" tmux con colores, el plugin falla
+" tmux con colores falla
 " matchit.vim
 " ctrlP fuzzy search
-" open new files with double clic on the same gvim instance: http://vim.wikia.com/wiki/Launch_files_in_new_tabs_under_Unix
 " vim-indent-guides
 " wrap bien
 
