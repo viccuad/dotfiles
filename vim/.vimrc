@@ -63,12 +63,12 @@ Plugin 'yonchu/accelerated-smooth-scroll'	" smooth scroll on <C-d>, <C-u>, <C-f>
 Plugin 'bling/vim-airline'					" status/tabline (NEEDS powerline font)
 
 " Functionality:
-Plugin 'jwhitley/vim-matchit' 				" cycle also between if, else, etc 	(http://www.catonmat.net/blog/vim-plugins-matchit-vim/)
+Plugin 'matchit.zip'						" cicles between if, then, else..
 Plugin 'tpope/vim-surround'					" surround strings faster 			(http://www.catonmat.net/blog/vim-plugins-surround-vim/)
 Plugin 'scrooloose/nerdtree'				" navigation tree
 Plugin 'tpope/vim-fugitive'					" git support
 Plugin 'majutsushi/tagbar'					" show list of variables, functions, classes.. (NEEDS ctags)
-"Plugin 'kien/ctrlp.vim'					" full path fuzzy file,buffer,mru,tag.. finder
+Plugin 'kien/ctrlp.vim'						" full path fuzzy file,buffer,mru,tag.. finder
 "Plugin 'sjl/gundo.vim'						" visualize vim undo tree
 "Plugin 'Valloric/YouCompleteMe'			" (NEEDS to be compiled, read the docs!)
 Plugin 'airblade/vim-gitgutter'				" show +,-,~ git changes on the gutter
@@ -103,24 +103,20 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 " }}}
 
-" Spaces & Tabs {{{
+" zaSpaces & Tabs {{{
 set tabstop=4					" number of visual spaces per TAB
 set autoindent smartindent		" copy indent from current line when starting a new line, smartindent
-set nolist
+set nolist						" don't show white separators, toggle :set list!
 set listchars=tab:>·,trail:·	" but only show tabs and trailing whitespace
-let c_space_errors = 1
-let java_space_errors = 1
-let python_space_errors = 1
-
 " }}}
 
 " Line wrap {{{
 " gq: performs 'rewrap the text'
 set wrap					" soft wrap long lines, visually, instead of changing the file
-set linebreak				" wrap long lines at characters in 'breakat' rather than at the last character that fits
+"set linebreak				" wrap long lines at characters in 'breakat' rather than at the last character that fits
 set breakindent				" wrapped lines are visually indented
 set nolist  				" list disables linebreak
-set textwidth=72
+set textwidth=80
 set formatoptions=tcrql 	" t autowrap to textwidth
 							" c autowrap comments to textwidth
 							" r autoinsert comment leader with <enter>
@@ -144,30 +140,43 @@ endfunction
 autocmd CursorMoved * call ToggleHighlight()
 " }}}
 
-" Filetype {{{
-filetype on                   " Enable filetype detection
-filetype indent on            " Enable filetype-specific indenting
-filetype plugin on            " Enable filetype-specific plugins
+" Filetype & languages {{{
+filetype on						" Enable filetype detection
+filetype indent on				" Enable filetype-specific indenting
+filetype plugin on				" Enable filetype-specific plugins
+
+" C language
+let c_space_errors = 1
+let c_comment_strings=1			" highlight strings inside C comments
+
+" Python language
+let python_space_errors = 1
+au FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
+
+" Java language
+let java_space_errors = 1
 " }}}
 
 " Look and feel {{{
-set title			" change terminal title
-syntax on			" enable syntax processing
-set background=dark "if using a dark background, for syntax highlighting
-set number			" show line numbers
-set relativenumber	" show relative numbers. can be on at the same time that number
-set cursorline		" highlight current line
-set showcmd			" Show (partial) command in status line
-set wildmenu        " visual autocomplete for command menu
-set showmatch		" Highlight matching brackets
-set mouse=a			" Enable mouse usage (all modes)
-set ruler 			" show the cursor position and line number at the bar
-set lazyredraw		" don't redraw while in macros
-set scrolloff=5		" keep at least 5 lines above/below
-set sidescrolloff=5 " keep at least 5 lines left/right
-set noerrorbells	" no error bells please
+set title						" change terminal title
+syntax on						" enable syntax processing
+set background=dark 			" if using a dark background, for syntax highlighting
+set number						" show line numbers
+set relativenumber				" show relative numbers. can be on at the same time that number
+set cursorline					" highlight current line
+set showcmd						" Show (partial) command in status line
+set wildmenu        			" visual autocomplete for command menu
+set showmatch					" Highlight matching brackets
+set mouse=a						" Enable mouse usage (all modes)
+set mousehide					" Hide the mouse when typing text
+set backspace=indent,eol,start	" allow backspacing over all of that
+set ruler 						" show the cursor position and line number at the bar
+set lazyredraw					" don't redraw while in macros
+set scrolloff=5					" keep at least 5 lines above/below
+set sidescrolloff=5 			" keep at least 5 lines left/right
+set noerrorbells				" no error bells please
 set visualbell
-set vb t_vb=		" no beep or flash
+set vb t_vb=					" no beep or flash
 if has('autocmd')
 	autocmd GUIEnter * set visualbell t_vb= 	"redo t_vb= for gui so it takes place
 endif
@@ -199,11 +208,6 @@ if has("gui_running")
 else
 	colorscheme xoria256
 endif
-
-" Allow color schemes to do bright colors without forcing bold.
-"if &t_Co == 8 && $TERM !~# '^linux'
-"	set t_Co=16
-"endif
 " }}}
 
 " Plugins settings {{{
@@ -231,8 +235,8 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#buffer_idx_mode = 1	" display numbers in the tab line, and use mappings \1 to \9
 
 " Accelerated smooth scroll
-let g:ac_smooth_scroll_du_sleep_time_msec = 2   
-let g:ac_smooth_scroll_fb_sleep_time_msec = 5 
+let g:ac_smooth_scroll_du_sleep_time_msec = 5
+let g:ac_smooth_scroll_fb_sleep_time_msec = 5
 
 
 " Gitgutter
@@ -248,7 +252,7 @@ let g:shell_fullscreen_items = ''		"hide: m mainmenu, T toolbar, e tabline
 
 " Persistence {{{
 set viminfo+=% "save and restore the buffer list expect if vim is started with a file name argument
-set viminfo+=n$HOME/.vim/viminfo
+set viminfo+=n$HOME/.vim/.viminfo
 " delete the empty buffer that appears on startup:
 au VimEnter * nested if  bufname('')==''  &&  line('$') == 1 &&  col('$')==1 &&  !&modified | bd % | endif
 
@@ -299,10 +303,13 @@ nmap <leader>6 <Plug>AirlineSelectTab6
 nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
-	
+
+nnoremap  <C-w> :qall<CR> 				" close window
+
 " list of shared binds:
 "nnoremap <silent> <F3> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let"@/=_s<Bar>:nohl<CR> " remove trailing whitespaces
 map <F3> :%s/\s\+$//<CR>				" remove trailing whitespaces
+map <silent> <F4> :write<CR>			" write file without confirmation
 map <F5> :setlocal spell!<CR>			" toggle spell checking
 "   <F6>								" open (from vim-shell)
 " apply Linux C style (NEEDS astyle installed)
@@ -315,13 +322,13 @@ map <F8> :call ToggleHighlight(1)<CR>	" highlight all past 80 chars
 set foldmethod=marker		" fold based on marker level
 set foldnestmax=10			" max 10 depth
 set nofoldenable			" don't fold files by default on open
-set foldlevelstart=10		" start with fold level of 1
+set foldlevelstart=1		" start with fold level of 1
 " }}}
 
 " Launch {{{
 set encoding=utf8
 set autowrite								" Automatically save before commands like :next and :make
-"set autochdir								" automatically cd into the directory that the file is in (this will break plugins if activated!!!)
+set autochdir								" automatically cd into the directory that the file is in (this will break plugins if activated!!!)
 "autocmd BufEnter * silent! lcd %:p:h		" automatically cd into the dir of the file. this breaks less
 set autoread								" watch for file changes
 set modeline								" make vim check beginning and ending lines of files for options
@@ -344,9 +351,6 @@ augroup END
 " sublime text multiple cursors
 " remapear :
 " tmux con colores falla
-" matchit.vim
-" ctrlP fuzzy search
-" vim-indent-guides
 " wrap bien
 
 " vim:foldmethod=marker:foldlevel=0
