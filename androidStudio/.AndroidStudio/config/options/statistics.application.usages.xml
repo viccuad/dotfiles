@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+  <component name="StatisticsApplicationUsages">
+    <group name="language-level">
+      <project id="My Application" values="JDK_1_7" />
+    </group>
+    <group name="run-configuration-type">
+      <project id="My Application" values="AndroidRunConfigurationType" />
+    </group>
+    <group name="module type">
+      <project id="My Application" values="JAVA_MODULE" />
+    </group>
+    <group name="frameworks">
+      <project id="My Application" values="android,android-gradle,java-gradle" />
+    </group>
+    <group name="file-type">
+      <project id="My Application" values="ProGuard File,IDEA_MODULE,Groovy,AIDL,PLAIN_TEXT,JAVA,XML,UNKNOWN,Properties,Images,ARCHIVE" />
+    </group>
+  </component>
+  <component name="UsageTrigger">
+    <counts>
+      <entry feature="execute.AndroidRunConfigurationType.Run" count="1" />
+      <entry feature="ide.settings.Appearance" count="1" />
+      <entry feature="ideaapp.started" count="3" />
+      <entry feature="tips.of.the.day.next" count="3" />
+    </counts>
+  </component>
+</application>
+

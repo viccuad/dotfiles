@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+  <component name="DimensionService">
+    <location key="WELCOME_SCREEN.0.0.1280.800" x="636" y="277" />
+    <location key="com.intellij.ide.util.TipDialog.0.0.1280.800" x="351" y="231" />
+    <location key="AndroidExtendedDeviceChooserDialog.0.0.1280.800" x="398" y="195" />
+    <size key="AndroidExtendedDeviceChooserDialog.0.0.1280.800" width="476" height="446" />
+  </component>
+  <component name="LafManager">
+    <laf class-name="idea.dark.laf.classname" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="log.debug.categories" value="" />
+    <property name="DefaultHtmlDoctype.MigrateToHtml5" value="true" />
+    <property name="DefaultHtmlDoctype.Refreshed" value="1" />
+    <property name="AndroidInitConfigurator.V4" value="true" />
+    <property name="AndroidInitConfigurator.V3" value="true" />
+    <property name="AndroidInitConfigurator.V1" value="true" />
+    <property name="AndroidInitConfigurator.V2" value="true" />
+    <property name="installation.uid" value="8203a72c-91f4-4bc9-9924-a2de931bd1f8" />
+    <property name="SAVED_COMPANY_DOMAIN" value="vic.example.com" />
+    <property name="MobileminApi" value="15" />
+    <property name="TVminApi" value="21" />
+    <property name="file.colors.enable.non.project" value="494539" />
+    <property name="file.colors.enable.tests" value="2a3b2c" />
+    <property name="Non-Project Files" value="494539" />
+    <property name="Tests" value="2a3b2c" />
+    <property name="android.logcat.filter.apply.if.client.selection.changes" value="false" />
+  </component>
+</application>
+
