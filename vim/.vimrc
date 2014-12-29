@@ -103,7 +103,7 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 " }}}
 
-" zaSpaces & Tabs {{{
+" Spaces & Tabs {{{
 set tabstop=4					" number of visual spaces per TAB
 set autoindent smartindent		" copy indent from current line when starting a new line, smartindent
 set nolist						" don't show white separators, toggle :set list!
