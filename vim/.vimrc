@@ -68,7 +68,7 @@ Plugin 'tpope/vim-surround'					" surround strings faster 			(http://www.catonma
 Plugin 'scrooloose/nerdtree'				" navigation tree
 Plugin 'tpope/vim-fugitive'					" git support
 Plugin 'majutsushi/tagbar'					" show list of variables, functions, classes.. (NEEDS ctags)
-Plugin 'kien/ctrlp.vim'						" full path fuzzy file,buffer,mru,tag.. finder
+"Plugin 'kien/ctrlp.vim'						" full path fuzzy file,buffer,mru,tag.. finder
 "Plugin 'sjl/gundo.vim'						" visualize vim undo tree
 "Plugin 'Valloric/YouCompleteMe'			" (NEEDS to be compiled, read the docs!)
 Plugin 'airblade/vim-gitgutter'				" show +,-,~ git changes on the gutter
@@ -116,6 +116,7 @@ set wrap					" soft wrap long lines, visually, instead of changing the file
 "set linebreak				" wrap long lines at characters in 'breakat' rather than at the last character that fits
 set breakindent				" wrapped lines are visually indented
 set nolist  				" list disables linebreak
+let &colorcolumn=join(range(81,200),",") " colors columns past 80
 set textwidth=80
 set formatoptions=tcrql 	" t autowrap to textwidth
 							" c autowrap comments to textwidth
@@ -187,7 +188,10 @@ let base16colorspace=256	" Access colors present in 256 colorspace
 if has("gui_running")
 	"colorscheme base16-colors
 	set guiheadroom=0		" vim padding: fix it in ~/.gtkrc-2.0
+
 	colorscheme xoria256
+	highlight ColorColumn ctermbg=233 guibg=#121212 " colorcolumn for xoria256
+
 	set guioptions-=T		" Remove Toolbar
 	set guioptions+=c		" Use console dialogs
 	set guioptions-=r		" Remove right-hand scrollbar
@@ -207,6 +211,7 @@ if has("gui_running")
 	endif
 else
 	colorscheme xoria256
+	highlight ColorColumn ctermbg=233 guibg=#121212 " colorcolumn for xoria256
 endif
 " }}}
 
@@ -254,7 +259,7 @@ let g:shell_fullscreen_items = ''		"hide: m mainmenu, T toolbar, e tabline
 set viminfo+=% "save and restore the buffer list expect if vim is started with a file name argument
 set viminfo+=n$HOME/.vim/.viminfo
 " delete the empty buffer that appears on startup:
-au VimEnter * nested if  bufname('')==''  &&  line('$') == 1 &&  col('$')==1 &&  !&modified | bd % | endif
+autocmd VimEnter * nested if  bufname('')==''  &&  line('$') == 1 &&  col('$')==1 &&  !&modified | bd % | endif
 
 set hidden					" don't mark buffers as abandoned if hidden
 set history=1000
@@ -308,14 +313,14 @@ nnoremap  <C-w> :qall<CR> 				" close window
 
 " list of shared binds:
 "nnoremap <silent> <F3> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let"@/=_s<Bar>:nohl<CR> " remove trailing whitespaces
-map <F3> :%s/\s\+$//<CR>				" remove trailing whitespaces
-map <silent> <F4> :write<CR>			" write file without confirmation
-map <F5> :setlocal spell!<CR>			" toggle spell checking
-"   <F6>								" open (from vim-shell)
-" apply Linux C style (NEEDS astyle installed)
-map <F7> :%!astyle --style=linux --indent=tab=8
-map <F8> :call ToggleHighlight(1)<CR>	" highlight all past 80 chars
-" <F11> 								" fullscreen (from vim-shell)
+map <F3> :%s/\s\+$//<CR>							" remove trailing whitespaces
+map <silent> <F4> :write<CR>						" write file without confirmation
+map <F5> :setlocal spell!<CR>						" toggle spell checking
+"   <F6>											" open (from vim-shell)
+map <F7> :%!astyle --style=linux --indent=tab=8		" apply Linux C style (NEEDS astyle installed)
+map <F8> :call ToggleHighlight(1)<CR>				" highlight all past 80 chars
+" <F9>												" link c code (alt+<F9> compile)
+" <F11> 											" fullscreen (from vim-shell)
 " }}}
 
 " Folding {{{
