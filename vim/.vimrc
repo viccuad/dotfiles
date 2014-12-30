@@ -312,14 +312,17 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 nnoremap  <C-w> :qall<CR> 				" close window
 
 " list of shared binds:
+map <silent> <F2> :write<CR>						" write file without confirmation
 "nnoremap <silent> <F3> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let"@/=_s<Bar>:nohl<CR> " remove trailing whitespaces
 map <F3> :%s/\s\+$//<CR>							" remove trailing whitespaces
-map <silent> <F4> :write<CR>						" write file without confirmation
+map <silent> <F4> <Esc>:bd<CR>						" close buffer 
 map <F5> :setlocal spell!<CR>						" toggle spell checking
 "   <F6>											" open (from vim-shell)
-map <F7> :%!astyle --style=linux --indent=tab=8		" apply Linux C style (NEEDS astyle installed)
-map <F8> :call ToggleHighlight(1)<CR>				" highlight all past 80 chars
-" <F9>												" link c code (alt+<F9> compile)
+"map <F7> :%!astyle --style=linux --indent=tab=8		" apply Linux C style (NEEDS astyle installed)
+"map <F8> :call ToggleHighlight(1)<CR>				" highlight all past 80 chars
+map  <silent> <F7>    <Esc>:cprevious<CR>			" previous c error
+map  <silent> <F8>    <Esc>:cnext<CR>				" next c error
+" <F9>												" compile & link c code (alt+<F9> write + compile)
 " <F11> 											" fullscreen (from vim-shell)
 " }}}
 
