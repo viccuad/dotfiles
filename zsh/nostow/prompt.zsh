@@ -78,20 +78,21 @@ last_status() {
 
 
 # This keeps the number of todos always available the right hand side of my
-# command line. I filter it to only count those tagged as "+next", so it's more
-# of a motivation to clear out the list. $1 = +next
+# command line. I filter it to only count those tagged as "next", so it's more
+# of a motivation to clear out the list. $1 = @next
 todo_count(){
-  if (( $+commands[todo.sh] ))
-  then
+  if (( $+commands[todo.sh] )) then
     num=$(echo $(todo.sh ls $1 | awk -v pattern="$1" '$0 ~ pattern && !/ x /{count++} END {print count}'))
     echo $num
+  else
+    echo 0
   fi
 }
 
 function todo_prompt() {
   local COUNT=$(todo_count $1);
-  if [ $COUNT -eq  0 ]; then
-    echo "";
+  if [ -z $COUNT ]; then
+	echo "";
   else
     echo "$1: $COUNT";
   fi
