@@ -16,7 +16,6 @@
           <root type="composite">
             <root type="simple" url="jar://$USER_HOME$/bin/adt-bundle-linux-x86_64/sdk/platforms/android-21/android.jar!/" />
             <root type="simple" url="file://$USER_HOME$/bin/adt-bundle-linux-x86_64/sdk/platforms/android-21/data/res" />
-            <root type="simple" url="jar://$USER_HOME$/bin/adt-bundle-linux-x86_64/sdk/tools/support/annotations.jar!/" />
           </root>
         </classPath>
         <javadocPath>

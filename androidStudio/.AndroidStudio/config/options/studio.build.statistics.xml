@@ -7,6 +7,33 @@
     <record utc_ms="1418784195642">
       <value key="sync-time" value="48421" />
     </record>
+    <record utc_ms="1420756281519">
+      <value key="project-opened" value="gradle" />
+    </record>
+    <record utc_ms="1420756993092">
+      <value key="sync-time" value="9801" />
+    </record>
+    <record utc_ms="1420756993271">
+      <value key="project-opened" value="gradle" />
+    </record>
+    <record utc_ms="1420757003202">
+      <value key="sync-time" value="9950" />
+    </record>
+    <record utc_ms="1420757083841">
+      <value key="project-opened" value="gradle" />
+    </record>
+    <record utc_ms="1420757142296">
+      <value key="project-opened" value="gradle" />
+    </record>
+    <record utc_ms="1420757187099">
+      <value key="project-opened" value="not-gradle" />
+    </record>
+    <record utc_ms="1420757189033">
+      <value key="sync-time" value="13251" />
+    </record>
+    <record utc_ms="1420757246083">
+      <value key="project-opened" value="gradle" />
+    </record>
   </component>
 </application>
 
