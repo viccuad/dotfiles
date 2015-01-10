@@ -7,8 +7,7 @@ runtime! debian.vim " ensures that various options are properly set to work
 " for MS-DOS and Win32: $VIM\_vimrc
 " for OpenVMS: sys$login:.vimrc
 "
-" this file has ordered commands for it to work. don't blindly change
-" the order.
+" this file has ordered commands for it to work. don't blindly change the order.
 "
 " }}}
 
@@ -19,6 +18,7 @@ set langmenu=en_US.utf8
 let $LANG = 'en_US.utf8'
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
+
 set spelllang=en,es
 " }}}
 
@@ -106,8 +106,8 @@ filetype plugin indent on    " required
 " Spaces & Tabs {{{
 set tabstop=4					" number of visual spaces per TAB
 set autoindent smartindent		" copy indent from current line when starting a new line, smartindent
-set nolist						" don't show white separators, toggle :set list!
-set listchars=tab:>·,trail:·	" but only show tabs and trailing whitespace
+set nolist						" don't show white separators. toggle with :set list!
+set listchars=tab:>·,trail:·	" only show tabs and trailing whitespace when showing separators
 " }}}
 
 " Line wrap {{{
@@ -238,6 +238,7 @@ let g:airline#extensions#tabline#enabled = 1			" automatically displays all buff
 let g:airline#extensions#tabline#left_sep = ' '			" straight separators
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#buffer_idx_mode = 1	" display numbers in the tab line, and use mappings \1 to \9
+let g:airline_theme= "badwolf"
 
 " Accelerated smooth scroll
 let g:ac_smooth_scroll_du_sleep_time_msec = 5
@@ -251,7 +252,7 @@ highlight clear SignColumn		" needs to be after your colorscheme
 "let g:ycm_auto_trigger = 0		" turn off the as-you-type popup and the popup you'd get after typing . or -> in say C++. You can still use it by <C-Space> shortcut.
 
 " vim-shell
-let g:shell_fullscreen_items = ''		"hide: m mainmenu, T toolbar, e tabline
+let g:shell_fullscreen_items = ''		" hide: m mainmenu, T toolbar, e tabline
 
 " }}}
 
@@ -287,9 +288,7 @@ set wrapscan		" jumps to the beginning if reaching end, and viceversa
 " }}}
 
 " Mappings {{{
-" This is totally awesome - remap jj to escape in insert mode.  You'll never type jj anyway, so it's great!
-inoremap jj <Esc>
-" Can be typed even faster than jj
+" This is totally awesome - remap jk to escape in insert mode.  You'll never type jk anyway, so it's great!
 inoremap jk <Esc>
 
 " force yourself to stop using the arrow keys
@@ -315,7 +314,7 @@ nnoremap  <C-w> :qall<CR> 				" close window
 map <silent> <F2> :write<CR>						" write file without confirmation
 "nnoremap <silent> <F3> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let"@/=_s<Bar>:nohl<CR> " remove trailing whitespaces
 map <F3> :%s/\s\+$//<CR>							" remove trailing whitespaces
-map <silent> <F4> <Esc>:bd<CR>						" close buffer 
+map <silent> <F4> <Esc>:bd<CR>						" close buffer
 map <F5> :setlocal spell!<CR>						" toggle spell checking
 "   <F6>											" open (from vim-shell)
 "map <F7> :%!astyle --style=linux --indent=tab=8		" apply Linux C style (NEEDS astyle installed)
@@ -327,7 +326,7 @@ map  <silent> <F8>    <Esc>:cnext<CR>				" next c error
 " }}}
 
 " Folding {{{
-set foldmethod=marker		" fold based on marker level
+set foldmethod=syntax		" fold based on marker level
 set foldnestmax=10			" max 10 depth
 set nofoldenable			" don't fold files by default on open
 set foldlevelstart=1		" start with fold level of 1
