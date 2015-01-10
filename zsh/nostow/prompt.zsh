@@ -90,10 +90,10 @@ todo_count(){
 
 function todo_prompt() {
   local COUNT=$(todo_count $1);
-  if [ $COUNT > 0 ]; then
-    echo "$1: $COUNT";
-  else
+  if [ $COUNT -eq  0 ]; then
     echo "";
+  else
+    echo "$1: $COUNT";
   fi
 }
 
