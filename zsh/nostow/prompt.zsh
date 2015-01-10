@@ -90,7 +90,7 @@ todo_count(){
 
 function todo_prompt() {
   local COUNT=$(todo_count $1);
-  if [ $COUNT != 0 ]; then
+  if [ $COUNT > 0 ]; then
     echo "$1: $COUNT";
   else
     echo "";
@@ -118,7 +118,7 @@ function todo_prompt() {
 export PROMPT=$'\n$(rb_prompt)$(last_status) $(directory_name)$(git_dirty)$(need_push) > '
 set_prompt () {
   #export RPROMPT="$(notes_prompt TODO) %{$fg_bold[yellow]%}$(notes_prompt HACK)%{$reset_color%} %{$fg_bold[red]%}$(notes_prompt FIXME)%{$reset_color%} %{$fg_bold[blue]%}$(todo_prompt +next)%{$reset_color%} %{$fg[blue]%}%T%{$reset_color%}"
-  export RPROMPT="%{$fg_bold[blue]%}$(todo_prompt +next)%{$reset_color%} %{$fg[blue]%}%T%{$reset_color%}"
+  export RPROMPT="%{$fg_bold[blue]%}$(todo_prompt @next)%{$reset_color%} %{$fg[blue]%}%T%{$reset_color%}"
 
 
 }
