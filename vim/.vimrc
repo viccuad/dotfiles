@@ -86,6 +86,7 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'vivien/vim-addon-linux-coding-style'
 Plugin 'c.vim'
+Plugin 'freitass/todo.txt-vim' 
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
