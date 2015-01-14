@@ -169,6 +169,7 @@ set relativenumber				" show relative numbers. can be on at the same time that n
 set cursorline					" highlight current line
 set showcmd						" Show (partial) command in status line
 set wildmenu        			" visual autocomplete for command menu
+set wildmode=longest,list,full	" complete longest common string, then list alternatives, then select the sortest first
 set showmatch					" Highlight matching brackets
 set mouse=a						" Enable mouse usage (all modes)
 set mousehide					" Hide the mouse when typing text
@@ -292,6 +293,8 @@ set wrapscan		" jumps to the beginning if reaching end, and viceversa
 " }}}
 
 " Mappings {{{
+let mapleader = ","
+
 " This is totally awesome - remap jk to escape in insert mode.  You'll never type jk anyway, so it's great!
 inoremap jk <Esc>
 
