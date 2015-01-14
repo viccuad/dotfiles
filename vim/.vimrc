@@ -78,6 +78,7 @@ Plugin 'xolox/vim-misc'						" (NEEDED by vim-shell)
 Plugin 'xolox/vim-shell'					" provides integration between Vim and environment (fullscreen, etc). requires wmctrl
 Plugin 'scrooloose/nerdcommenter'			" toggle comments
 Plugin 'Raimondi/delimitMate'				" provides insert mode auto-completion for quotes,parens,brackets..
+Plugin 'jamessan/vim-gnupg'							" encrypts/decrypts with gpg files that end in .gpg,.pgp or .asc. plaintext only on ram 
 
 " Filetype:
 Plugin 'msanders/snipmate.vim'				" adds a lot of snippets with tab
@@ -245,7 +246,6 @@ let g:airline_theme= "badwolf"
 let g:ac_smooth_scroll_du_sleep_time_msec = 5
 let g:ac_smooth_scroll_fb_sleep_time_msec = 5
 
-
 " Gitgutter
 highlight clear SignColumn		" needs to be after your colorscheme
 
@@ -254,6 +254,9 @@ highlight clear SignColumn		" needs to be after your colorscheme
 
 " vim-shell
 let g:shell_fullscreen_items = ''		" hide: m mainmenu, T toolbar, e tabline
+
+" vim-gpg
+let g:GPGDefaultRecipients = ["0x5702AA3A <me@viccuad.me>"]
 
 " }}}
 
