@@ -163,6 +163,7 @@ let java_space_errors = 1
 " Look and feel {{{
 set title						" change terminal title
 syntax on						" enable syntax processing
+set synmaxcol=2048				" prevents huge slow downs from syntax highlighting
 set background=dark 			" if using a dark background, for syntax highlighting
 set number						" show line numbers
 set relativenumber				" show relative numbers. can be on at the same time that number
