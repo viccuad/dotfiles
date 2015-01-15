@@ -78,7 +78,7 @@ Plugin 'xolox/vim-misc'						" (NEEDED by vim-shell)
 Plugin 'xolox/vim-shell'					" provides integration between Vim and environment (fullscreen, etc). requires wmctrl
 Plugin 'scrooloose/nerdcommenter'			" toggle comments
 Plugin 'Raimondi/delimitMate'				" provides insert mode auto-completion for quotes,parens,brackets..
-Plugin 'jamessan/vim-gnupg'							" encrypts/decrypts with gpg files that end in .gpg,.pgp or .asc. plaintext only on ram 
+Plugin 'jamessan/vim-gnupg'					" encrypts/decrypts with gpg files that end in .gpg,.pgp or .asc. plaintext only on ram 
 
 " Filetype:
 Plugin 'msanders/snipmate.vim'				" adds a lot of snippets with tab
@@ -115,7 +115,7 @@ set listchars=tab:>·,trail:·	" only show tabs and trailing whitespace when sho
 " Line wrap {{{
 " gq: performs 'rewrap the text'
 set wrap					" soft wrap long lines, visually, instead of changing the file
-"set linebreak				" wrap long lines at characters in 'breakat' rather than at the last character that fits
+set linebreak				" wrap long lines at characters in 'breakat' rather than at the last character that fits
 set breakindent				" wrapped lines are visually indented
 set nolist  				" list disables linebreak
 let &colorcolumn=join(range(81,200),",") " colors columns past 80
@@ -241,7 +241,7 @@ set noshowmode 											" Hide the default mode text (e.g. -- INSERT -- below 
 let g:airline#extensions#tabline#enabled = 1			" automatically displays all buffers when there's only one tab open
 let g:airline#extensions#tabline#left_sep = ' '			" straight separators
 let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#tabline#buffer_idx_mode = 1	" display numbers in the tab line, and use mappings \1 to \9
+let g:airline#extensions#tabline#buffer_idx_mode = 1	" display numbers in the tab line, and use mappings <leader>1 to <leader>9
 let g:airline_theme= "badwolf"
 
 " Accelerated smooth scroll
@@ -324,7 +324,7 @@ map <silent> <F2> :write<CR>						" write file without confirmation
 map <F3> :%s/\s\+$//<CR>							" remove trailing whitespaces
 map <silent> <F4> <Esc>:bd<CR>						" close buffer
 map <F5> :setlocal spell!<CR>						" toggle spell checking
-"   <F6>											" open (from vim-shell)
+"   <F6>											" open urls, etc (from vim-shell)
 "map <F7> :%!astyle --style=linux --indent=tab=8		" apply Linux C style (NEEDS astyle installed)
 "map <F8> :call ToggleHighlight(1)<CR>				" highlight all past 80 chars
 map  <silent> <F7>    <Esc>:cprevious<CR>			" previous c error
@@ -354,7 +354,7 @@ endif
 " }}}
 
 " Reload configs {{{
-" reload configs at save
+" reload configs at configs save
 augroup myvimrc
 	au!
 	au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC
