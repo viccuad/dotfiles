@@ -261,13 +261,24 @@ let g:shell_fullscreen_items = ''		" hide: m mainmenu, T toolbar, e tabline
 " vim-gpg
 let g:GPGDefaultRecipients = ["0x5702AA3A <me@viccuad.me>"]
 
+" startify
+let g:startify_session_persistence = 1		" automatically update sessions
+let g:startify_session_delete_buffers = 1	" delete open buffers before loading a new session
+let g:startify_custom_footer = [
+	\ '',
+	\ '    b   ➤ open in new buffer  :SLoad   ➤ load a session     ',  
+	\ '    s,v ➤ open in split       :SSave   ➤ save a session     ',       
+	\ '    t   ➤ open in tab         :SDelete ➤ delete a session   ',
+	\ '',
+	\ ]
+
 " }}}
 
 " Persistence {{{
-set viminfo+=% "save and restore the buffer list expect if vim is started with a file name argument
+set viminfo+=% "save and restore the buffer list expected if vim is started with a file name argument
 set viminfo+=n$HOME/.vim/.viminfo
 " delete the empty buffer that appears on startup:
-autocmd VimEnter * nested if  bufname('')==''  &&  line('$') == 1 &&  col('$')==1 &&  !&modified | bd % | endif
+"autocmd VimEnter * nested if  bufname('')==''  &&  line('$') == 1 &&  col('$')==1 &&  !&modified | bd % | endif
 
 set hidden					" don't mark buffers as abandoned if hidden
 set history=1000
