@@ -4,3 +4,5 @@
 /.vim/undo/*
 /.vim/.viminfo
 /.vim/.netrwhist
+/.vim/session/
+/.vim/session/*

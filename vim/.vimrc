@@ -79,6 +79,7 @@ Plugin 'xolox/vim-shell'					" provides integration between Vim and environment 
 Plugin 'scrooloose/nerdcommenter'			" toggle comments
 Plugin 'Raimondi/delimitMate'				" provides insert mode auto-completion for quotes,parens,brackets..
 Plugin 'jamessan/vim-gnupg'					" encrypts/decrypts with gpg files that end in .gpg,.pgp or .asc. plaintext only on ram 
+Plugin 'mhinz/vim-startify'					" a start screen with recently modified files and vim sessions
 
 " Filetype:
 Plugin 'msanders/snipmate.vim'				" adds a lot of snippets with tab
@@ -239,8 +240,8 @@ set laststatus=2 										" Always show statusline
 "set showtabline=2 										" Always display the tabline, even if there is only one tab
 set noshowmode 											" Hide the default mode text (e.g. -- INSERT -- below the statusline)
 let g:airline#extensions#tabline#enabled = 1			" automatically displays all buffers when there's only one tab open
-let g:airline#extensions#tabline#left_sep = ' '			" straight separators
-let g:airline#extensions#tabline#left_alt_sep = '|'
+"let g:airline#extensions#tabline#left_sep = ' '			" straight separators
+"let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#buffer_idx_mode = 1	" display numbers in the tab line, and use mappings <leader>1 to <leader>9
 let g:airline_theme= "badwolf"
 
@@ -249,7 +250,7 @@ let g:ac_smooth_scroll_du_sleep_time_msec = 5
 let g:ac_smooth_scroll_fb_sleep_time_msec = 5
 
 " Gitgutter
-highlight clear SignColumn		" needs to be after your colorscheme
+highlight clear SignColumn		" sets the git gutter to the same color as the number column (needs to be after your colorscheme)
 
 " YouCompleteMe
 "let g:ycm_auto_trigger = 0		" turn off the as-you-type popup and the popup you'd get after typing . or -> in say C++. You can still use it by <C-Space> shortcut.
