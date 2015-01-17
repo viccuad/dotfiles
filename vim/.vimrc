@@ -271,6 +271,8 @@ let g:startify_custom_footer = [
 	\ '    t   ➤ open in tab         :SDelete ➤ delete a session   ',
 	\ '',
 	\ ]
+let g:startify_custom_header =
+      \ map(split(system('fortune'), '\n'), '"   ". v:val') + ['']
 
 " }}}
 
