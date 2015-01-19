@@ -310,8 +310,9 @@ set wrapscan		" jumps to the beginning if reaching end, and viceversa
 " Mappings {{{
 let mapleader = ","
 
-" This is totally awesome - remap jk to escape in insert mode.  You'll never type jk anyway, so it's great!
+" remap jk to escape in insert mode.  You'll never type jk anyway, so it's great!
 inoremap jk <Esc>
+inoremap kj <Esc>
 
 " force yourself to stop using the arrow keys
 map <up> <nop>
