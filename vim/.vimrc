@@ -84,7 +84,7 @@ Plugin 'mhinz/vim-startify'					" a start screen with recently modified files an
 " Filetype:
 Plugin 'msanders/snipmate.vim'				" adds a lot of snippets with tab
 Plugin 'godlygeek/tabular' 					" needed by vim-markdown
-Plugin 'plasticboy/vim-markdown'
+Plugin 'plasticboy/vim-markdown'			" markdown style
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'vivien/vim-addon-linux-coding-style'
 Plugin 'c.vim'
@@ -164,6 +164,7 @@ let java_space_errors = 1
 " Look and feel {{{
 set title						" change terminal title
 syntax on						" enable syntax processing
+"set virtualedit=all				" move the cursor everywhere
 set synmaxcol=2048				" prevents huge slow downs from syntax highlighting
 set background=dark 			" if using a dark background, for syntax highlighting
 set number						" show line numbers
@@ -172,6 +173,7 @@ set cursorline					" highlight current line
 set showcmd						" Show (partial) command in status line
 set wildmenu        			" visual autocomplete for command menu
 set wildmode=longest,list,full	" complete longest common string, then list alternatives, then select the sortest first
+set cpoptions+=$				" put a '$' at the end of the changed text
 set showmatch					" Highlight matching brackets
 set mouse=a						" Enable mouse usage (all modes)
 set mousehide					" Hide the mouse when typing text
@@ -262,7 +264,7 @@ let g:shell_fullscreen_items = ''		" hide: m mainmenu, T toolbar, e tabline
 let g:GPGDefaultRecipients = ["0x5702AA3A <me@viccuad.me>"]
 
 " startify
-let g:startify_session_persistence = 1		" automatically update sessions
+let g:startify_session_persistence = 0		" automatically update sessions
 let g:startify_session_delete_buffers = 1	" delete open buffers before loading a new session
 let g:startify_custom_footer = [
 	\ '',
@@ -331,7 +333,7 @@ nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 
-nnoremap  <C-w> :qall<CR> 				" close window
+"nnoremap  <C-w> :qall<CR> 							" close window
 
 " list of shared binds:
 map <silent> <F2> :write<CR>						" write file without confirmation
