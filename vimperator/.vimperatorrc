@@ -5,8 +5,10 @@
 colorscheme indigo
 set visualbell
 
-" remove navigation bar
+" remove gui things
 "set gui=nonavigation
+set gui=noaddons,nobookmarks,nomenu,navigation,tabs
+set noscrollbars
 
 " show up to 35 items in the completion list
 "set maxitems="35"
@@ -18,8 +20,10 @@ set focuscontent
 "let g:smooziee_scroll_amount="100"
 "let g:smooziee_scroll_interval="150"
 
-"}}}
+" use chars for hint links, ala vimium
+set hintchars=asdfghklqwertyuiop
 
+"}}}
 
 " Search {{{
 " makes searches case-insensitive
@@ -59,7 +63,7 @@ nnoremap h <C-p>
 nnoremap l <C-n>
 " This is totally awesome - remap jj to escape in insert mode.  You'll never type jj anyway, so it's great!
 inoremap jj <Esc>
-" Can be typed even faster than jj
+" Can be typed even faster than esc 
 inoremap jk <Esc>
 
 " Move the current tab to the left
@@ -71,7 +75,6 @@ noremap <leader>l <Esc>:tabmove! +1<CR>
 " Fullscreen
 noremap <F11> <C-v><F11>
 "}}}
-
 
 " vimperator cheatsheet: http://sheet.shiar.nl/vimperator
 
