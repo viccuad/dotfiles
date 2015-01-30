@@ -3,7 +3,6 @@
 	"caret_style": "phase",
 	"color_scheme": "Packages/Base16 Color Schemes/base16-monokai.dark.tmTheme",
 	"dictionary": "Packages/Language - English/en_GB.dic",
-	"draw_white_space": "all",
 	"ensure_newline_at_eof_on_save": true,
 	"fade_fold_buttons": false,
 	"folder_exclude_patterns":
