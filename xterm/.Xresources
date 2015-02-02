@@ -1,0 +1,39 @@
+! xterm settings {{{
+xterm*termName: xterm-256color
+xterm*iconName: Terminal
+xterm*eightBitInput:    false
+xterm*cursorBlink:      true
+xterm*cursorOffTime:    600
+xterm*cursorOnTime:     600
+xterm*cursorUnderLine:  false
+xterm*faceName: DejaVu Sans Mono for Powerline
+xterm*faceSize: 8
+xterm*metaSendsEscape:  true
+xterm*title:    Terminal
+xterm*utf8:      true
+xterm*utf8Title: true
+xterm*locale: true
+!xterm*Background:     #000000
+!xterm*Foreground:     #E6E6E6
+xterm*geometry: 110x31
+xterm*borderLess: true
+xterm*scrollBar: false
+xterm*saveLines: 65535
+xterm*bellIsUrgent: true
+xterm*visualBell: true
+XTerm*VT100*translations: #override\nShift Ctrl <KeyPress> v:insert-selection(CLIPBOARD)\nShift Ctrl <KeyPress> c:select-set(CLIPBOARD)
+!}}}
+
+! Xft settings {{{
+Xft.antialias: 1
+Xft.autohint: 0
+Xft.dpi: 96
+Xft.hinting: 1
+Xft.lcdfilter: lcddefault
+Xft.rgba: rgb
+Xft.hintstyle: hintfull
+! hintstyle: medium means that (for Postscript fonts) we
+! position the stems for maximum constrast and consistency
+! but do not force the stems to integral widths. hintnone,
+! hintslight, and hintfull are the other possibilities.
+!}}}
