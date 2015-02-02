@@ -1,15 +1,6 @@
 runtime! debian.vim " ensures that various options are properly set to work
 
-" Usage {{{
-" To use it, copy it to
-" for Unix and OS/2: ~/.vimrc
-" for Amiga: s:.vimrc
-" for MS-DOS and Win32: $VIM\_vimrc
-" for OpenVMS: sys$login:.vimrc
-"
 " this file has ordered commands for it to work. don't blindly change the order.
-"
-" }}}
 
 " Lang {{{
 " stackoverflow says it should be as up as possible, but it works anyways
@@ -54,41 +45,44 @@ Plugin 'gmarik/Vundle.vim'
 
 " ADD YOUR PLUGINS HERE:
 " Looks:
-Plugin 'ScrollColors'						" scroll themes with :SCROLLCOLOR
-Plugin 'Colour-Sampler-Pack'				" more color themes
-Plugin 'chriskempson/base16-vim'			" base16 color themes
-Plugin 'mimicpak'							" more color theme
-Plugin 'severin-lemaignan/vim-minimap'		" sublime-text style minimap (NEEDS braille capable font, python)
+"Plugin 'ScrollColors'						" scroll themes with :SCROLLCOLOR
+"Plugin 'Colour-Sampler-Pack'				" more color themes
+"Plugin 'chriskempson/base16-vim'			" base16 color themes
+"Plugin 'mimicpak'							" more color theme
+"Plugin 'severin-lemaignan/vim-minimap'		" sublime-text style minimap (NEEDS braille capable font, python)
 Plugin 'yonchu/accelerated-smooth-scroll'	" smooth scroll on <C-d>, <C-u>, <C-f>, <C-b>
 Plugin 'bling/vim-airline'					" status/tabline (NEEDS powerline font)
 
 " Functionality:
-Plugin 'matchit.zip'						" cicles between if, then, else..
+"Plugin 'matchit.zip'						" cicles between if, then, else.. 
 Plugin 'tpope/vim-surround'					" surround strings faster 			(http://www.catonmat.net/blog/vim-plugins-surround-vim/)
-Plugin 'scrooloose/nerdtree'				" navigation tree
-Plugin 'tpope/vim-fugitive'					" git support
-Plugin 'majutsushi/tagbar'					" show list of variables, functions, classes.. (NEEDS ctags)
+"Plugin 'scrooloose/nerdtree'				" navigation tree
+"Plugin 'tpope/vim-fugitive'					" git support
+"Plugin 'majutsushi/tagbar'					" show list of variables, functions, classes.. (NEEDS ctags)
 "Plugin 'kien/ctrlp.vim'						" full path fuzzy file,buffer,mru,tag.. finder
 "Plugin 'sjl/gundo.vim'						" visualize vim undo tree
 "Plugin 'Valloric/YouCompleteMe'			" (NEEDS to be compiled, read the docs!)
 Plugin 'airblade/vim-gitgutter'				" show +,-,~ git changes on the gutter
 "Plugin 'nathanaelkane/vim-indent-guides'	" visually display indent levels
-Plugin 'scrooloose/syntastic'				" automatic syntax checking
+"Plugin 'scrooloose/syntastic'				" automatic syntax checking
 Plugin 'xolox/vim-misc'						" (NEEDED by vim-shell)
 Plugin 'xolox/vim-shell'					" provides integration between Vim and environment (fullscreen, etc). requires wmctrl
 Plugin 'scrooloose/nerdcommenter'			" toggle comments
 Plugin 'Raimondi/delimitMate'				" provides insert mode auto-completion for quotes,parens,brackets..
 Plugin 'jamessan/vim-gnupg'					" encrypts/decrypts with gpg files that end in .gpg,.pgp or .asc. plaintext only on ram 
 Plugin 'mhinz/vim-startify'					" a start screen with recently modified files and vim sessions
+Plugin 'tasklist.vim'						" <leader> t shows a list of TODOs and FIXMEs
+Plugin 'christoomey/vim-tmux-navigator'		" seamlessly navigate between tmux and vim panels
 
 " Filetype:
 Plugin 'msanders/snipmate.vim'				" adds a lot of snippets with tab
-Plugin 'godlygeek/tabular' 					" needed by vim-markdown
-Plugin 'plasticboy/vim-markdown'			" markdown style
+"Plugin 'godlygeek/tabular' 					" needed by vim-markdown
+"Plugin 'plasticboy/vim-markdown'			" markdown style
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'vivien/vim-addon-linux-coding-style'
 Plugin 'c.vim'
-Plugin 'freitass/todo.txt-vim' 
+Plugin 'justinmk/vim-syntax-extra'			" bison, flex, c syntax (operators, delimiters, functions..)
+Plugin 'freitass/todo.txt-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -107,10 +101,10 @@ filetype plugin indent on    " required
 " }}}
 
 " Spaces & Tabs {{{
-set tabstop=4					" number of visual spaces per TAB
-set autoindent smartindent		" copy indent from current line when starting a new line, smartindent
-set nolist						" don't show white separators. toggle with :set list!
-set listchars=tab:>·,trail:·	" only show tabs and trailing whitespace when showing separators
+set tabstop=4						" number of visual spaces per TAB
+set autoindent smartindent			" copy indent from current line when starting a new line, smartindent
+set nolist							" don't show white separators. toggle with :set list!
+set listchars=tab:>·,trail:·,eol:¬	" only show tabs and trailing whitespace when showing separators
 " }}}
 
 " Line wrap {{{
@@ -128,20 +122,6 @@ set formatoptions=tcrql 	" t autowrap to textwidth
 							" l	Long lines are not broken in insert mode: When a line was longer than 'textwidth' when the insert command started, Vim does not automatically format it.
 							" 1	Don't break a line after a one-letter word. It's broken before it instead (if possible).
 							" j	Where it makes sense, remove a comment leader when joining lines
-" highilight everything past textwitdh:
-let g:toggleHighlight = 1
-function! ToggleHighlight(...)
-	if a:0 == 1 "toggle behaviour
-		let g:toggleHighlight = 1 - g:toggleHighlight
-	endif
-	if g:toggleHighlight == 0 "normal action, do the hi
-		highlight OverLength ctermbg=darkgrey guibg=#592929
-		match OverLength /\%80v.*/
-	else
-		call clearmatches()
-	endif
-endfunction
-autocmd CursorMoved * call ToggleHighlight()
 " }}}
 
 " Filetype & languages {{{
@@ -151,7 +131,7 @@ filetype plugin on				" Enable filetype-specific plugins
 
 " C language
 let c_space_errors = 1
-let c_comment_strings=1			" highlight strings inside C comments
+let c_comment_strings= 0		" dont highlight strings inside C comments
 
 " Python language
 let python_space_errors = 1
@@ -159,6 +139,10 @@ au FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
 
 " Java language
 let java_space_errors = 1
+
+" Markdown instead of modula2
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
 " }}}
 
 " Look and feel {{{
@@ -179,7 +163,7 @@ set mouse=a						" Enable mouse usage (all modes)
 set mousehide					" Hide the mouse when typing text
 set backspace=indent,eol,start	" allow backspacing over all of that
 set ruler 						" show the cursor position and line number at the bar
-set lazyredraw					" don't redraw while in macros
+"set lazyredraw					" don't redraw while in macros
 set scrolloff=5					" keep at least 5 lines above/below
 set sidescrolloff=5 			" keep at least 5 lines left/right
 set noerrorbells				" no error bells please
@@ -188,23 +172,23 @@ set vb t_vb=					" no beep or flash
 if has('autocmd')
 	autocmd GUIEnter * set visualbell t_vb= 	"redo t_vb= for gui so it takes place
 endif
-set timeout			" time out on key codes
-set ttimeoutlen=500	" The time in milliseconds that is waited for a key code or mapped key sequence to complete
+set timeout						" time out on key codes
+set ttimeoutlen=500				" The time in milliseconds that is waited for a key code or mapped key sequence to complete
 
-let base16colorspace=256	" Access colors present in 256 colorspace
+let base16colorspace=256		" Access colors present in 256 colorspace
 if has("gui_running")
 	"colorscheme base16-colors
-	set guiheadroom=0		" vim padding: fix it in ~/.gtkrc-2.0
+	set guiheadroom=0			" vim padding: fix it in ~/.gtkrc-2.0
 
 	colorscheme xoria256
 	highlight ColorColumn ctermbg=233 guibg=#121212 " colorcolumn for xoria256
 
-	set guioptions-=T		" Remove Toolbar
-	set guioptions+=c		" Use console dialogs
-	set guioptions-=r		" Remove right-hand scrollbar
-	set guioptions-=R		" Remove right-hand scrollbar
-	set guioptions-=l		" Remove left-hand scrollbar
-	set guioptions-=L		" Remove left-hand scrollbar
+	set guioptions-=T			" Remove Toolbar
+	set guioptions+=c			" Use console dialogs
+	set guioptions-=r			" Remove right-hand scrollbar
+	set guioptions-=R			" Remove right-hand scrollbar
+	set guioptions-=l			" Remove left-hand scrollbar
+	set guioptions-=L			" Remove left-hand scrollbar
 
 	if has("gui_gtk2")
 		"set guifont=Monospace\ 10
@@ -314,7 +298,6 @@ let mapleader = ","
 
 " remap jk to escape in insert mode.  You'll never type jk anyway, so it's great!
 inoremap jk <Esc>
-inoremap kj <Esc>
 
 " force yourself to stop using the arrow keys
 map <up> <nop>
@@ -333,8 +316,6 @@ nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 
-"nnoremap  <C-w> :qall<CR> 							" close window
-
 " list of shared binds:
 map <silent> <F2> :write<CR>						" write file without confirmation
 "nnoremap <silent> <F3> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let"@/=_s<Bar>:nohl<CR> " remove trailing whitespaces
@@ -342,8 +323,6 @@ map <F3> :%s/\s\+$//<CR>							" remove trailing whitespaces
 map <silent> <F4> <Esc>:bd<CR>						" close buffer
 map <F5> :setlocal spell!<CR>						" toggle spell checking
 "   <F6>											" open urls, etc (from vim-shell)
-"map <F7> :%!astyle --style=linux --indent=tab=8		" apply Linux C style (NEEDS astyle installed)
-"map <F8> :call ToggleHighlight(1)<CR>				" highlight all past 80 chars
 map  <silent> <F7>    <Esc>:cprevious<CR>			" previous c error
 map  <silent> <F8>    <Esc>:cnext<CR>				" next c error
 " <F9>												" compile & link c code (alt+<F9> write + compile)
@@ -351,7 +330,8 @@ map  <silent> <F8>    <Esc>:cnext<CR>				" next c error
 " }}}
 
 " Folding {{{
-set foldmethod=syntax		" fold based on marker level
+set foldmethod=syntax
+set foldlevel=99
 set foldnestmax=10			" max 10 depth
 set nofoldenable			" don't fold files by default on open
 set foldlevelstart=1		" start with fold level of 1
@@ -369,20 +349,5 @@ if has("autocmd")
 	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 " }}}
-
-" Reload configs {{{
-" reload configs at configs save
-augroup myvimrc
-	au!
-	au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC
-augroup END
-" }}}
-
-" TODO
-" http://zzapper.co.uk/vimtips.html
-" sublime text multiple cursors
-" remapear :
-" tmux con colores falla
-" wrap bien
 
 " vim:foldmethod=marker:foldlevel=0
