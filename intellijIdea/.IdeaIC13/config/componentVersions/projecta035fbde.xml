@@ -1,12 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <versions>
-  <component name="ChangeListManager" version="1410893356062" />
-  <component name="CompilerConfiguration" version="1410893190329" />
-  <component name="ProjectModuleManager" version="1410893190369" />
-  <component name="ProjectRootManager" version="1410893187898" />
-  <component name="PropertiesComponent" version="1410893784219" />
-  <component name="TaskManager" version="1410893190402" />
-  <component name="ToolWindowManager" version="1410893784223" />
-  <component name="VcsDirectoryMappings" version="1410893190414" />
+  <component name="ChangeListManager" version="1422730896287" />
+  <component name="ChangesViewManager" version="1422730896288" />
+  <component name="CompilerConfiguration" version="1422730896298" />
+  <component name="CreatePatchCommitExecutor" version="1422730896304" />
+  <component name="DaemonCodeAnalyzer" version="1422730896304" />
+  <component name="DebuggerManager" version="1422730896305" />
+  <component name="Encoding" version="1422730896309" />
+  <component name="ExecutionTargetManager" version="1422730896309" />
+  <component name="FavoritesManager" version="1422730896309" />
+  <component name="ProjectFrameBounds" version="1422730896388" />
+  <component name="ProjectLevelVcsManager" version="1422730896388" />
+  <component name="ProjectModuleManager" version="1422730896389" />
+  <component name="ProjectReloadState" version="1422730896390" />
+  <component name="ProjectRootManager" version="1422730896390" />
+  <component name="ProjectView" version="1422730896391" />
+  <component name="PropertiesComponent" version="1422730896391" />
+  <component name="RunManager" version="1422730896419" />
+  <component name="ShelveChangesManager" version="1422730896420" />
+  <component name="TaskManager" version="1422730896423" />
+  <component name="ToolWindowManager" version="1422730896425" />
+  <component name="Vcs.Log.UiProperties" version="1422730896426" />
+  <component name="VcsContentAnnotationSettings" version="1422730896436" />
+  <component name="VcsDirectoryMappings" version="1422730896436" />
+  <component name="VcsManagerConfiguration" version="1422730896437" />
+  <component name="XDebuggerManager" version="1422730896447" />
 </versions>
 
