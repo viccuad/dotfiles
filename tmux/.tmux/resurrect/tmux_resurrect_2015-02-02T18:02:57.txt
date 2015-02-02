@@ -1,0 +1,4 @@
+pane	defaultsession	1	:vim	1	:*	1	:/home/vic	1	vim	:vim
+pane	defaultsession	1	:vim	1	:*	2	:/home/vic	0	zsh	:
+window	defaultsession	1	1	:*	e14f,182x34,0,0[182x17,0,0,0,182x16,0,18,1]
+state	defaultsession	defaultsession
