@@ -1,0 +1,169 @@
+!to reload this file: xrdb -load .Xresources 
+
+! Xft settings {{{
+Xft.antialias: 1
+Xft.autohint: 0
+Xft.dpi: 96
+Xft.hinting: 1
+Xft.lcdfilter: lcddefault
+Xft.rgba: rgb
+Xft.hintstyle: hintslight
+! hintstyle: medium means that (for Postscript fonts) we
+! position the stems for maximum constrast and consistency
+! but do not force the stems to integral widths. hintnone,
+! hintslight, and hintfull are the other possibilities.
+!}}}
+
+!! Base16 Bright dark 256 {{{ 
+!! Scheme: Chris Kempson (http://chriskempson.com)
+!#define base00 #000000
+!#define base01 #303030
+!#define base02 #505050
+!#define base03 #b0b0b0
+!#define base04 #d0d0d0
+!#define base05 #e0e0e0
+!#define base06 #f5f5f5
+!#define base07 #ffffff
+!#define base08 #fb0120
+!#define base09 #fc6d24
+!#define base0A #fda331
+!#define base0B #a1c659
+!#define base0C #76c7b7
+!#define base0D #6fb3d2
+!#define base0E #d381c3
+!#define base0F #be643c
+!*.foreground: base05
+!*.background: base00
+!*.cursorColor: base05
+!*.color0: base00
+!*.color1: base08
+!*.color2: base0B
+!*.color3: base0A
+!*.color4: base0D
+!*.color5: base0E
+!*.color6: base0C
+!*.color7: base05
+!*.color8: base03
+!*.color9: base08
+!*.color10: base0B
+!*.color11: base0A
+!*.color12: base0D
+!*.color13: base0E
+!*.color14: base0C
+!*.color15: base07
+!! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
+!! use 'shell' template to set these if necessary
+!*.color16: base09
+!*.color17: base0F
+!*.color18: base01
+!*.color19: base02
+!*.color20: base04
+!*.color21: base06
+!! }}}
+
+!! Molokai theme {{{
+!*xterm*background: #101010
+!*xterm*foreground: #d0d0d0
+!*xterm*cursorColor: #d0d0d0
+!*xterm*color0: #101010
+!*xterm*color1: #960050
+!*xterm*color2: #66aa11
+!*xterm*color3: #c47f2c
+!*xterm*color4: #30309b
+!*xterm*color5: #7e40a5
+!*xterm*color6: #3579a8
+!*xterm*color7: #9999aa
+!*xterm*color8: #303030
+!*xterm*color9: #ff0090
+!*xterm*color10: #80ff00
+!*xterm*color11: #ffba68
+!*xterm*color12: #5f5fee
+!*xterm*color13: #bb88dd
+!*xterm*color14: #4eb4fa
+!*xterm*color15: #d0d0d0 
+!! }}}
+
+! xterm settings {{{
+xterm*termName: xterm-256color
+xterm*iconName: Terminal
+xterm*eightBitInput:    false
+xterm*cursorBlink:      true
+xterm*cursorOffTime:    600
+xterm*cursorOnTime:     600
+xterm*cursorUnderLine:  false
+xterm*faceName: DejaVu Sans Mono for Powerline
+xterm*faceSize: 8
+xterm*metaSendsEscape:  true
+xterm*title:    Terminal
+xterm*utf8:      true
+xterm*utf8Title: true
+xterm*locale: true
+xterm*geometry: 110x30
+xterm*borderLess: true
+xterm*scrollBar: false
+xterm*saveLines: 65535
+xterm*bellIsUrgent: true
+xterm*visualBell: true
+XTerm*VT100*translations: #override\nShift Ctrl <KeyPress> v:insert-selection(CLIPBOARD)\nShift Ctrl <KeyPress> c:select-set(CLIPBOARD)
+xterm*VT100*pointerMode: 2
+!}}}
+
+! URXVTconfig {{{
+URxvt*termName:                       rxvt-unicode-256color
+URxvt*geometry:                       110x30
+! scrollbar style: rxvt (default), plain (most compact), next, or xterm
+! URxvt*scrollstyle:                    plain
+URxvt*scrollBar:                      false
+! URxvt*thickness:                      number
+! URxvt*transparent:                    boolean
+! URxvt*tintColor:                      color
+! URxvt*shading:                        number
+URxvt*urgentOnBell:                   true
+URxvt*visualBell:                     true 
+URxvt*cursorBlink:                    true
+! URxvt*pointerBlank:                   boolean
+URxvt*font: xft:DejaVu Sans Mono for Powerline:pixelsize=11
+URxvt*boldFont: xft:DejaVu Sans Mono for Powerline:bold:pixelsize=11
+! URxvt*italicFont:                     fontname
+! URxvt*boldItalicFont:                 fontname
+! URxvt*intensityStyles:                boolean
+! URxvt*inputMethod:                    name
+! URxvt*preeditType:                    style
+URxvt*title:                          Terminal
+URxvt*iconName:                       Terminal 
+URxvt*saveLines:                      65535
+URxvt*borderLess:                     false
+! URxvt*lineSpace:                      number
+URxvt*letterSpace:                    -1
+
+! plugins:
+!URxvt*perl-lib:                       ~/.urxvt
+! URxvt*perl-eval:                      perl-eval
+! fullscreen depends on wmctrl
+! fontsize depends on xorg-xlsfonts, xorg-xrdb
+URxvt*perl-ext-common: default,matcher,fullscreen,clipboard,font-size
+! URxvt*perl-ext:                       string
+
+! clipboard access
+URxvt*iso14755:                       false
+URxvt.clipboard.copycmd:  			  xclip -i -selection clipboard
+URxvt.clipboard.pastecmd:             xclip -o -selection clipboard
+URxvt*keysym.S-C-C:                   perl:clipboard:copy
+URxvt*keysym.S-C-V:                   perl:clipboard:paste
+ 
+! url matcher
+URxvt*url-launcher:                   xdg-open
+URxvt*matcher.pattern.1:              \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+URxvt*matcher.button:                 1 
+
+! font size
+URxvt*keysym.C-Up:                    perl:font-size:increase
+URxvt*keysym.C-Down:                  perl:font-size:decrease
+URxvt*keysym.C-S-Up:                  perl:font-size:incglobal
+URxvt*keysym.C-S-Down:                perl:font-size:decglobal
+
+! fullscreen 
+URxvt*keysym.C-F11:                   perl:fullscreen:switch
+! }}}
+
+! vim:foldmethod=marker:foldlevel=0
