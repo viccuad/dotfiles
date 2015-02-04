@@ -46,15 +46,17 @@ Plugin 'gmarik/Vundle.vim'
 " ADD YOUR PLUGINS HERE:
 " Looks:
 "Plugin 'ScrollColors'						" scroll themes with :SCROLLCOLOR
-"Plugin 'Colour-Sampler-Pack'				" more color themes
-"Plugin 'chriskempson/base16-vim'			" base16 color themes
+Plugin 'chriskempson/base16-vim'			" base16 color themes
 "Plugin 'mimicpak'							" more color theme
 "Plugin 'severin-lemaignan/vim-minimap'		" sublime-text style minimap (NEEDS braille capable font, python)
 Plugin 'yonchu/accelerated-smooth-scroll'	" smooth scroll on <C-d>, <C-u>, <C-f>, <C-b>
 Plugin 'bling/vim-airline'					" status/tabline (NEEDS powerline font)
+"Plugin 'edkolev/tmuxline.vim'				" clone airline to tmux (its set up, only uncomment if you want to change the tmux statusline theme again)
+"Plugin 'CSApprox'							" makes gvim-only colorschemes work in terminal vim
+"Plugin 'sjl/badwolf'
 
 " Functionality:
-"Plugin 'matchit.zip'						" cicles between if, then, else.. 
+"Plugin 'matchit.zip'						" cicles between if, then, else..
 Plugin 'tpope/vim-surround'					" surround strings faster 			(http://www.catonmat.net/blog/vim-plugins-surround-vim/)
 "Plugin 'scrooloose/nerdtree'				" navigation tree
 "Plugin 'tpope/vim-fugitive'					" git support
@@ -69,7 +71,7 @@ Plugin 'xolox/vim-misc'						" (NEEDED by vim-shell)
 Plugin 'xolox/vim-shell'					" provides integration between Vim and environment (fullscreen, etc). requires wmctrl
 Plugin 'scrooloose/nerdcommenter'			" toggle comments
 Plugin 'Raimondi/delimitMate'				" provides insert mode auto-completion for quotes,parens,brackets..
-Plugin 'jamessan/vim-gnupg'					" encrypts/decrypts with gpg files that end in .gpg,.pgp or .asc. plaintext only on ram 
+Plugin 'jamessan/vim-gnupg'					" encrypts/decrypts with gpg files that end in .gpg,.pgp or .asc. plaintext only on ram
 Plugin 'mhinz/vim-startify'					" a start screen with recently modified files and vim sessions
 Plugin 'tasklist.vim'						" <leader> t shows a list of TODOs and FIXMEs
 Plugin 'christoomey/vim-tmux-navigator'		" seamlessly navigate between tmux and vim panels
@@ -103,8 +105,9 @@ filetype plugin indent on    " required
 " Spaces & Tabs {{{
 set tabstop=4						" number of visual spaces per TAB
 set autoindent smartindent			" copy indent from current line when starting a new line, smartindent
-set nolist							" don't show white separators. toggle with :set list!
-set listchars=tab:>·,trail:·,eol:¬	" only show tabs and trailing whitespace when showing separators
+set listchars=tab:>·,trail:·,eol:¬	" show tabs, eol and trailing whitespace when showing separators
+"set listchars=tab:\ \ ,trail:·		" only show trailing whitespace when showing separators. the tab is 2 spaces
+"set list							" to show listchars
 " }}}
 
 " Line wrap {{{
@@ -112,7 +115,6 @@ set listchars=tab:>·,trail:·,eol:¬	" only show tabs and trailing whitespace w
 set wrap					" soft wrap long lines, visually, instead of changing the file
 set linebreak				" wrap long lines at characters in 'breakat' rather than at the last character that fits
 set breakindent				" wrapped lines are visually indented
-set nolist  				" list disables linebreak
 let &colorcolumn=join(range(81,200),",") " colors columns past 80
 set textwidth=80
 set formatoptions=tcrql 	" t autowrap to textwidth
@@ -150,7 +152,6 @@ set title						" change terminal title
 syntax on						" enable syntax processing
 "set virtualedit=all				" move the cursor everywhere
 set synmaxcol=2048				" prevents huge slow downs from syntax highlighting
-set background=dark 			" if using a dark background, for syntax highlighting
 set number						" show line numbers
 set relativenumber				" show relative numbers. can be on at the same time that number
 set cursorline					" highlight current line
@@ -175,13 +176,11 @@ endif
 set timeout						" time out on key codes
 set ttimeoutlen=500				" The time in milliseconds that is waited for a key code or mapped key sequence to complete
 
-let base16colorspace=256		" Access colors present in 256 colorspace
 if has("gui_running")
-	"colorscheme base16-colors
 	set guiheadroom=0			" vim padding: fix it in ~/.gtkrc-2.0
 
-	colorscheme xoria256
-	highlight ColorColumn ctermbg=233 guibg=#121212 " colorcolumn for xoria256
+	set background=dark 		" if using a dark background, for syntax highlighting
+	colorscheme base16-monokai
 
 	set guioptions-=T			" Remove Toolbar
 	set guioptions+=c			" Use console dialogs
@@ -198,15 +197,85 @@ if has("gui_running")
 	elseif has("gui_macvim")
 		set guifont=Menlo\ Regular:h14
 	elseif has("gui_win32")
-	set guifont=Consolas:h11:cANSI
+		set guifont=Consolas:h11:cANSI
 	endif
 else
-	colorscheme xoria256
-	highlight ColorColumn ctermbg=233 guibg=#121212 " colorcolumn for xoria256
+	"let base16colorspace=256	" Access colors present in 256 colorspace
+	set background=dark 		" if using a dark background, for syntax highlighting
+	colorscheme wombat256mod
+	"colorscheme badwolf
+	"colorscheme xoria256
+	"colorscheme base16-default
+	"colorscheme wombat256
+	"colorscheme base16-tomorrow
+	highlight ColorColumn ctermbg=232 guibg=#080808 	" colorcolumn for wombat256mod
+	"highlight ColorColumn ctermbg=0 guibg=#000000 	" colorcolumn for wombat256
+	"highlight ColorColumn ctermbg=233 guibg=#121212 " colorcolumn for xoria256
+	"highlight ColorColumn ctermbg=0 guibg=#303030 	" colorcolumn for base16
+	"highlight ColorColumn ctermbg=235 guibg=#262626	" colorcolumn for base16-default
 endif
+
+" screen terminal: Use a blinking upright bar cursor in Insert mode, a blinking block in normal
+" this could be done with Plugin 'jszakmeister/vim-togglecursor'		" change cursor to a | when on vim console and insert mode
+if &term == 'xterm-256color' || &term == 'screen-256color' || &term == 'rxvt-unicode-256color'
+	let &t_SI = "\<Esc>[5 q"
+	let &t_EI = "\<Esc>[1 q"
+endif
+" urxvt and rxvt have not implemented the bar cursor yet, lets use an underbar:
+if &term == 'rxvt-unicode-256color'
+	let &t_SI = "\<Esc>[3 q"
+	let &t_EI = "\<Esc>[1 q"
+endif
+
+
+
 " }}}
 
 " Plugins settings {{{
+" Airline
+let g:airline_powerline_fonts = 1 						" automatically populate the g:airline_symbols dictionary with the powerline symbols
+set laststatus=2 										" Always show statusline
+"set showtabline=2 										" Always display the tabline, even if there is only one tab
+set noshowmode 											" Hide the default mode text (e.g. -- INSERT -- below the statusline)
+let g:airline#extensions#tabline#enabled = 1			" automatically displays all buffers when there's only one tab open
+"let g:airline#extensions#tabline#left_sep = ' '			" straight separators
+"let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#buffer_idx_mode = 1	" display numbers in the tab line, and use mappings <leader>1 to <leader>9
+if has("gui_running")
+	let g:airline_theme= "base16"
+else
+	let g:airline_theme= "wombat"
+endif
+
+" Tmuxline
+" To export current statusline to a file which can be sourced by tmux.conf on startup:
+" :TmuxlineSnapshot ~/.tmux/tmuxline
+"let g:tmuxline_powerline_separators = 0				" Use block separators instead
+let g:tmuxline_preset = {
+      \'a'    : '#S',
+      \'b'    : '#W',
+      \'win'  : '#I #W',
+      \'cwin' : '#I #W',
+      \'y'    : '%R',
+      \'z'    : '#H'}
+" tmux statusline options:
+"#Character pair  Replaced with
+"#(shell-command) First line of the command's output
+"#[attributes]    Colour or attribute change
+"#H               Hostname of local host
+"#h               Hostname of local host without the domain name
+"#F               Current window flag
+"#I               Current window index
+"#D               Current pane unique identifier
+"#P               Current pane index
+"#S               Session name
+"#T               Current pane title
+"#W               Current window name
+"##               A literal ‘#’
+
+" Badwolf
+let g:badwolf_darkgutter = 1 " Make the gutters darker than the background.
+
 " Latex Box Plugin
 let g:LatexBox_output_type="pdf"
 let g:LatexBox_latexmk_async=1 					"allow latexmk to run in the background and load any compilation errors in a quickfix window after it finishes running.
@@ -219,17 +288,6 @@ let g:LatexBox_autojump=1						" auto jump to first error after compiling
 " Open NERDTree automatically on startup if no file is specified
 "autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
-" Airline
-let g:airline_powerline_fonts = 1 						" automatically populate the g:airline_symbols dictionary with the powerline symbols
-set laststatus=2 										" Always show statusline
-"set showtabline=2 										" Always display the tabline, even if there is only one tab
-set noshowmode 											" Hide the default mode text (e.g. -- INSERT -- below the statusline)
-let g:airline#extensions#tabline#enabled = 1			" automatically displays all buffers when there's only one tab open
-"let g:airline#extensions#tabline#left_sep = ' '			" straight separators
-"let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#tabline#buffer_idx_mode = 1	" display numbers in the tab line, and use mappings <leader>1 to <leader>9
-let g:airline_theme= "badwolf"
 
 " Accelerated smooth scroll
 let g:ac_smooth_scroll_du_sleep_time_msec = 5
@@ -252,8 +310,8 @@ let g:startify_session_persistence = 0		" automatically update sessions
 let g:startify_session_delete_buffers = 1	" delete open buffers before loading a new session
 let g:startify_custom_footer = [
 	\ '',
-	\ '    b   ➤ open in new buffer  :SLoad   ➤ load a session     ',  
-	\ '    s,v ➤ open in split       :SSave   ➤ save a session     ',       
+	\ '    b   ➤ open in new buffer  :SLoad   ➤ load a session     ',
+	\ '    s,v ➤ open in split       :SSave   ➤ save a session     ',
 	\ '    t   ➤ open in tab         :SDelete ➤ delete a session   ',
 	\ '',
 	\ ]
