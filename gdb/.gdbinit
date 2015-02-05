@@ -107,8 +107,9 @@ set verbose off
 set history filename ~/.gdb_history
 set history save
 
-set output-radix 0x10
-set input-radix 0x10
+# Use radix input and output:
+#set output-radix 0x10
+#set input-radix 0x10
 
 # These make gdb never pause in its output
 set height 0
