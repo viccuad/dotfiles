@@ -2,9 +2,14 @@
 
 My dotfiles! 
 
+#### gvim
+![gvim](https://github.com/viccuad/dotfiles/raw/master/gvim.png)
 
-![example](https://github.com/viccuad/dotfiles/raw/master/example.png)
+#### vim inside tmux
+![vim_tmux](https://github.com/viccuad/dotfiles/raw/master/vim_tmux.png)
 
+#### vim + gdb (ConqueGDB plugin)
+![vim_gdb](https://github.com/viccuad/dotfiles/raw/master/vim-gdb.png)
 
 
 ## Layout
