@@ -9,7 +9,6 @@ set langmenu=en_US.utf8
 let $LANG = 'en_US.utf8'
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
-
 set spelllang=en,es
 " }}}
 
@@ -53,28 +52,29 @@ Plugin 'yonchu/accelerated-smooth-scroll'	" smooth scroll on <C-d>, <C-u>, <C-f>
 Plugin 'bling/vim-airline'					" status/tabline (NEEDS powerline font)
 "Plugin 'edkolev/tmuxline.vim'				" clone airline to tmux (its set up, only uncomment if you want to change the tmux statusline theme again)
 "Plugin 'CSApprox'							" makes gvim-only colorschemes work in terminal vim
-"Plugin 'sjl/badwolf'
+"Plugin 'sjl/badwolf'						" badwolf color theme
 
 " Functionality:
 "Plugin 'matchit.zip'						" cicles between if, then, else..
 Plugin 'tpope/vim-surround'					" surround strings faster 			(http://www.catonmat.net/blog/vim-plugins-surround-vim/)
 "Plugin 'scrooloose/nerdtree'				" navigation tree
-"Plugin 'tpope/vim-fugitive'					" git support
+Plugin 'tpope/vim-fugitive'					" git support
 "Plugin 'majutsushi/tagbar'					" show list of variables, functions, classes.. (NEEDS ctags)
 "Plugin 'kien/ctrlp.vim'						" full path fuzzy file,buffer,mru,tag.. finder
 "Plugin 'sjl/gundo.vim'						" visualize vim undo tree
 "Plugin 'Valloric/YouCompleteMe'			" (NEEDS to be compiled, read the docs!)
 Plugin 'airblade/vim-gitgutter'				" show +,-,~ git changes on the gutter
 "Plugin 'nathanaelkane/vim-indent-guides'	" visually display indent levels
-"Plugin 'scrooloose/syntastic'				" automatic syntax checking
-Plugin 'xolox/vim-misc'						" (NEEDED by vim-shell)
-Plugin 'xolox/vim-shell'					" provides integration between Vim and environment (fullscreen, etc). requires wmctrl
+Plugin 'scrooloose/syntastic'				" automatic syntax checking
+"Plugin 'xolox/vim-misc'						" (NEEDED by vim-shell)
+"Plugin 'xolox/vim-shell'					" provides integration between Vim and environment (fullscreen, etc). requires wmctrl
 Plugin 'scrooloose/nerdcommenter'			" toggle comments
 Plugin 'Raimondi/delimitMate'				" provides insert mode auto-completion for quotes,parens,brackets..
 Plugin 'jamessan/vim-gnupg'					" encrypts/decrypts with gpg files that end in .gpg,.pgp or .asc. plaintext only on ram
 Plugin 'mhinz/vim-startify'					" a start screen with recently modified files and vim sessions
-Plugin 'tasklist.vim'						" <leader> t shows a list of TODOs and FIXMEs
+"Plugin 'tasklist.vim'						" <leader> t shows a list of TODOs and FIXMEs
 Plugin 'christoomey/vim-tmux-navigator'		" seamlessly navigate between tmux and vim panels
+Plugin 'vim-scripts/Conque-GDB'				" GDB integration inside vim
 
 " Filetype:
 Plugin 'msanders/snipmate.vim'				" adds a lot of snippets with tab
@@ -107,7 +107,7 @@ set tabstop=4						" number of visual spaces per TAB
 set autoindent smartindent			" copy indent from current line when starting a new line, smartindent
 set listchars=tab:>·,trail:·,eol:¬	" show tabs, eol and trailing whitespace when showing separators
 "set listchars=tab:\ \ ,trail:·		" only show trailing whitespace when showing separators. the tab is 2 spaces
-"set list							" to show listchars
+"set list							" show listchars
 " }}}
 
 " Line wrap {{{
@@ -153,7 +153,7 @@ syntax on						" enable syntax processing
 "set virtualedit=all				" move the cursor everywhere
 set synmaxcol=2048				" prevents huge slow downs from syntax highlighting
 set number						" show line numbers
-set relativenumber				" show relative numbers. can be on at the same time that number
+"set relativenumber				" show relative numbers. can be on at the same time that number
 set cursorline					" highlight current line
 set showcmd						" Show (partial) command in status line
 set wildmenu        			" visual autocomplete for command menu
@@ -164,7 +164,7 @@ set mouse=a						" Enable mouse usage (all modes)
 set mousehide					" Hide the mouse when typing text
 set backspace=indent,eol,start	" allow backspacing over all of that
 set ruler 						" show the cursor position and line number at the bar
-"set lazyredraw					" don't redraw while in macros
+set lazyredraw					" don't redraw while in macros
 set scrolloff=5					" keep at least 5 lines above/below
 set sidescrolloff=5 			" keep at least 5 lines left/right
 set noerrorbells				" no error bells please
@@ -200,6 +200,7 @@ if has("gui_running")
 		set guifont=Consolas:h11:cANSI
 	endif
 else
+	set t_Co=256				" force number of colors to 256 inside vim. this shouldn't be done, better with TERM
 	"let base16colorspace=256	" Access colors present in 256 colorspace
 	set background=dark 		" if using a dark background, for syntax highlighting
 	colorscheme wombat256mod
@@ -215,27 +216,23 @@ else
 	"highlight ColorColumn ctermbg=235 guibg=#262626	" colorcolumn for base16-default
 endif
 
-" screen terminal: Use a blinking upright bar cursor in Insert mode, a blinking block in normal
+" terminal: Use a blinking upright bar cursor in Insert mode, and a blinking block in normal
 " this could be done with Plugin 'jszakmeister/vim-togglecursor'		" change cursor to a | when on vim console and insert mode
 if &term == 'xterm-256color' || &term == 'screen-256color' || &term == 'rxvt-unicode-256color'
 	let &t_SI = "\<Esc>[5 q"
 	let &t_EI = "\<Esc>[1 q"
 endif
-" urxvt and rxvt have not implemented the bar cursor yet, lets use an underbar:
+" urxvt has not implemented the bar cursor until 9.21, lets use an underbar:
 if &term == 'rxvt-unicode-256color'
 	let &t_SI = "\<Esc>[3 q"
 	let &t_EI = "\<Esc>[1 q"
 endif
-
-
-
 " }}}
 
 " Plugins settings {{{
 " Airline
 let g:airline_powerline_fonts = 1 						" automatically populate the g:airline_symbols dictionary with the powerline symbols
 set laststatus=2 										" Always show statusline
-"set showtabline=2 										" Always display the tabline, even if there is only one tab
 set noshowmode 											" Hide the default mode text (e.g. -- INSERT -- below the statusline)
 let g:airline#extensions#tabline#enabled = 1			" automatically displays all buffers when there's only one tab open
 "let g:airline#extensions#tabline#left_sep = ' '			" straight separators
@@ -258,23 +255,12 @@ let g:tmuxline_preset = {
       \'cwin' : '#I #W',
       \'y'    : '%R',
       \'z'    : '#H'}
-" tmux statusline options:
-"#Character pair  Replaced with
-"#(shell-command) First line of the command's output
-"#[attributes]    Colour or attribute change
-"#H               Hostname of local host
-"#h               Hostname of local host without the domain name
-"#F               Current window flag
-"#I               Current window index
-"#D               Current pane unique identifier
-"#P               Current pane index
-"#S               Session name
-"#T               Current pane title
-"#W               Current window name
-"##               A literal ‘#’
 
 " Badwolf
 let g:badwolf_darkgutter = 1 " Make the gutters darker than the background.
+
+" C.vim
+let g:C_LocalTemplateFile = $HOME.'/.vim/c-support/templates/Templates' " this allows for the templates to be versioned on .dotfiles
 
 " Latex Box Plugin
 let g:LatexBox_output_type="pdf"
@@ -283,11 +269,6 @@ let g:LatexBox_latexmk_async=1 					"allow latexmk to run in the background and 
 let g:LatexBox_quickfix=3 						" recommended by preview_continously
 let g:LatexBox_latexmk_options="-pdflatex='xelatex --shell-escape -interaction=nonstopmode %O %S' -cd -f"
 let g:LatexBox_autojump=1						" auto jump to first error after compiling
-
-" NERDTree Plugin
-" Open NERDTree automatically on startup if no file is specified
-"autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Accelerated smooth scroll
 let g:ac_smooth_scroll_du_sleep_time_msec = 5
@@ -318,6 +299,12 @@ let g:startify_custom_footer = [
 let g:startify_custom_header =
       \ map(split(system('fortune'), '\n'), '"   ". v:val') + ['']
 
+" ConqueGDB
+let g:ConqueTerm_Color = 2					" 1: strip color after 200 lines, 2: always with color
+let g:ConqueTerm_CloseOnEnd = 1 			" close conque when program ends running
+let g:ConqueTerm_StartMessages = 0			" display warning messages if conqueTerm is configured incorrectly
+" add a new command definition,':Gdb' as an alias for ':ConqueGdb' :
+command -nargs=* -complete=buffer Gdb ConqueGdb				
 " }}}
 
 " Persistence {{{
@@ -335,12 +322,8 @@ set undoreload=10000		" number of lines to save for undo
 " }}}
 
 " Backup and Swap files {{{
-"set bdir-=.					" to make vim use other folders for backup files, (/tmp for example)
-"set bdir+=$HOME/.vim/backup
-"set dir-=.						" to make vim stop using current folder for .swp files
-"set dir+=$HOME/.vim/backup
-set backupdir=$HOME/.vim/backup
-set directory=$HOME/.vim/backup
+set backupdir=$HOME/.vim/backup	" for backup files
+set directory=$HOME/.vim/backup " for .swp files
 " }}}
 
 " Searching {{{
@@ -380,11 +363,13 @@ map <silent> <F2> :write<CR>						" write file without confirmation
 map <F3> :%s/\s\+$//<CR>							" remove trailing whitespaces
 map <silent> <F4> <Esc>:bd<CR>						" close buffer
 map <F5> :setlocal spell!<CR>						" toggle spell checking
-"   <F6>											" open urls, etc (from vim-shell)
+noremap <F6> :!xdg-open <cfile><CR><CR>				" open urls, files, etc. example: http://google.com
+set isfname+=32										" to open files with spaces
+" <F6>                                              " open from vim-shell plugin
 map  <silent> <F7>    <Esc>:cprevious<CR>			" previous c error
 map  <silent> <F8>    <Esc>:cnext<CR>				" next c error
-" <F9>												" compile & link c code (alt+<F9> write + compile)
-" <F11> 											" fullscreen (from vim-shell)
+" <F9>												" compile & link c code (alt+<F9> write + compile, ctrl+<F9> compile + run)
+" <F11> 											" maximize from vim-shell plugin
 " }}}
 
 " Folding {{{
@@ -401,8 +386,8 @@ set autowrite								" Automatically save before commands like :next and :make
 set autochdir								" automatically cd into the directory that the file is in (this will break plugins if activated!!!)
 "autocmd BufEnter * silent! lcd %:p:h		" automatically cd into the dir of the file. this breaks less
 set autoread								" watch for file changes
-set modeline								" make vim check beginning and ending lines of files for options
-" jump to the last position when reopening a file
+set nomodeline								" dont make vim check beginning and ending lines of files for options. HUGE VULNERABILITY
+" jump to the last position when reopening a file:
 if has("autocmd")
 	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
