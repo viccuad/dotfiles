@@ -114,7 +114,7 @@ set input-radix 0x10
 set height 0
 set width 0
 
-set $SHOW_CONTEXT = 1
+set $SHOW_CONTEXT = 0
 set $SHOW_NEST_INSN = 0
 
 set $CONTEXTSIZE_STACK = 6
