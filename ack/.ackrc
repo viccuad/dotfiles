@@ -1,0 +1,12 @@
+# only search with case sensitivity if there is mixed case
+--smart-case
+
+# Always color, even if piping to a another program
+--color
+
+# search other filetypes
+--type-add=ruby=haml,rabl,builder
+--type-add=js=json,tmpl,jst,coffee
+
+# ignore dirs:
+--ignore-dir=.idea/
