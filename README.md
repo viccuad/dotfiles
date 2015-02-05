@@ -9,7 +9,7 @@ My dotfiles!
 ![vim_tmux](https://github.com/viccuad/dotfiles/raw/master/vim_tmux.png)
 
 #### vim + gdb (ConqueGDB plugin)
-![vim_gdb](https://github.com/viccuad/dotfiles/raw/master/vim-gdb.png)
+![vim_gdb](https://github.com/viccuad/dotfiles/raw/master/vim_gdb.png)
 
 
 ## Layout
