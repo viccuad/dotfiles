@@ -34,4 +34,4 @@
 [core]
 	excludesfile = /home/vic/.gitignore_global
 [diff]
-	tool = gvimdiff
+	tool = vimdiff
