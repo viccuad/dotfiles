@@ -62,27 +62,31 @@ Plugin 'tpope/vim-fugitive'					" git support
 "Plugin 'majutsushi/tagbar'					" show list of variables, functions, classes.. (NEEDS ctags)
 "Plugin 'kien/ctrlp.vim'						" full path fuzzy file,buffer,mru,tag.. finder
 "Plugin 'sjl/gundo.vim'						" visualize vim undo tree
-"Plugin 'Valloric/YouCompleteMe'			" (NEEDS to be compiled, read the docs!)
 Plugin 'airblade/vim-gitgutter'				" show +,-,~ git changes on the gutter
 "Plugin 'nathanaelkane/vim-indent-guides'	" visually display indent levels
 Plugin 'scrooloose/syntastic'				" automatic syntax checking
-"Plugin 'xolox/vim-misc'						" (NEEDED by vim-shell)
+"Plugin 'xolox/vim-misc'					" (NEEDED by vim-shell)
 "Plugin 'xolox/vim-shell'					" provides integration between Vim and environment (fullscreen, etc). requires wmctrl
 Plugin 'scrooloose/nerdcommenter'			" toggle comments
-Plugin 'Raimondi/delimitMate'				" provides insert mode auto-completion for quotes,parens,brackets..
 Plugin 'jamessan/vim-gnupg'					" encrypts/decrypts with gpg files that end in .gpg,.pgp or .asc. plaintext only on ram
 Plugin 'mhinz/vim-startify'					" a start screen with recently modified files and vim sessions
 "Plugin 'tasklist.vim'						" <leader> t shows a list of TODOs and FIXMEs
 Plugin 'christoomey/vim-tmux-navigator'		" seamlessly navigate between tmux and vim panels
 Plugin 'vim-scripts/Conque-GDB'				" GDB integration inside vim
 
+" CompletionAndSnippets:
+Plugin 'Raimondi/delimitMate'				" provides insert mode auto-completion for quotes,parens,brackets..
+Plugin 'Valloric/YouCompleteMe'				" (NEEDS to be compiled, read the docs!) ~/.vim/bundle/YouCompleteMe/install.sh --clang-completer
+" Ultisnips (compatible with YouCompleteMe)
+Plugin 'SirVer/ultisnips'					" Track the engine.
+Plugin 'honza/vim-snippets'					" Snippets are separated from the engine.
+
 " Filetype:
-Plugin 'msanders/snipmate.vim'				" adds a lot of snippets with tab
-"Plugin 'godlygeek/tabular' 					" needed by vim-markdown
-"Plugin 'plasticboy/vim-markdown'			" markdown style
+"Plugin 'godlygeek/tabular'					" to order lines by a separator easily
+"Plugin 'plasticboy/vim-markdown'			" markdown style (needs tabular plugin)
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'vivien/vim-addon-linux-coding-style'
-Plugin 'c.vim'
+"Plugin 'c.vim'
 Plugin 'justinmk/vim-syntax-extra'			" bison, flex, c syntax (operators, delimiters, functions..)
 Plugin 'freitass/todo.txt-vim'
 
@@ -100,6 +104,128 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+" }}}
+
+" Plugins settings {{{
+" Airline
+let g:airline_powerline_fonts = 1 						" automatically populate the g:airline_symbols dictionary with the powerline symbols
+set laststatus=2 										" Always show statusline
+set noshowmode 											" Hide the default mode text (e.g. -- INSERT -- below the statusline)
+let g:airline#extensions#tabline#enabled = 1			" automatically displays all buffers when there's only one tab open
+"let g:airline#extensions#tabline#left_sep = ' '			" straight separators
+"let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#buffer_idx_mode = 1	" display numbers in the tab line, and use mappings <leader>1 to <leader>9
+if has("gui_running")
+	let g:airline_theme= "base16"
+else
+	let g:airline_theme= "wombat"
+endif
+
+" Tmuxline
+" To export current statusline to a file which can be sourced by tmux.conf on startup:
+" :TmuxlineSnapshot ~/.tmux/tmuxline
+"let g:tmuxline_powerline_separators = 0				" Use block separators instead
+let g:tmuxline_preset = {
+      \'a'    : '#S',
+      \'b'    : '#W',
+      \'win'  : '#I #W',
+      \'cwin' : '#I #W',
+      \'y'    : '%R',
+      \'z'    : '#H'}
+
+" Badwolf
+let g:badwolf_darkgutter = 1 " Make the gutters darker than the background.
+
+" C.vim
+let g:C_LocalTemplateFile = $HOME.'/.vim/snippets_Cvim/c-support/templates/Templates' " this allows for the templates to be versioned on .dotfiles
+
+" Latex Box Plugin
+let g:LatexBox_output_type="pdf"
+let g:LatexBox_latexmk_async=1 					"allow latexmk to run in the background and load any compilation errors in a quickfix window after it finishes running.
+"let g:LatexBox_latexmk_preview_continuously=1 	"Latexmk will track the currently edited file for writes and recompile automatically when necessary
+let g:LatexBox_quickfix=3 						" recommended by preview_continously
+let g:LatexBox_latexmk_options="-pdflatex='xelatex --shell-escape -interaction=nonstopmode %O %S' -cd -f"
+let g:LatexBox_autojump=1						" auto jump to first error after compiling
+
+" Accelerated smooth scroll
+let g:ac_smooth_scroll_du_sleep_time_msec = 5
+let g:ac_smooth_scroll_fb_sleep_time_msec = 5
+
+" YouCompleteMe
+"let g:ycm_auto_trigger = 0		" turn off the as-you-type popup and the popup you'd get after typing . or -> in say C++. You can still use it by <C-Space> shortcut.
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+
+" Ultisnips
+let g:UltiSnipsEnableSnipMate = 0 " don't look for SnipMate snippets, in the 'snippets' dir
+let g:UltiSnipsSnippetDirectories=["snippets_UltiSnips"]
+
+" Ultisnips and YouCompleteMe integration, both work with tab
+function! g:UltiSnips_Complete()
+    call UltiSnips#ExpandSnippet()
+    if g:ulti_expand_res == 0
+        if pumvisible()
+            return "\<C-n>"
+        else
+            call UltiSnips#JumpForwards()
+            if g:ulti_jump_forwards_res == 0
+               return "\<TAB>"
+            endif
+        endif
+    endif
+    return ""
+endfunction
+au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsListSnippets="<c-e>"
+" this mapping Enter key to <C-y> to chose the current highlight item 
+" and close the selection list, same as other IDEs.
+" CONFLICT with some plugins like tpope/Endwise
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" vim-shell
+let g:shell_fullscreen_items = ''		" hide: m mainmenu, T toolbar, e tabline
+
+" vim-gpg
+let g:GPGDefaultRecipients = ["0x5702AA3A <me@viccuad.me>"]
+
+" startify
+let g:startify_session_persistence = 0		" automatically update sessions
+let g:startify_session_delete_buffers = 1	" delete open buffers before loading a new session
+let g:startify_custom_footer = [
+	\ '',
+	\ '    b   ➤ open in new buffer  :SLoad   ➤ load a session     ',
+	\ '    s,v ➤ open in split       :SSave   ➤ save a session     ',
+	\ '    t   ➤ open in tab         :SDelete ➤ delete a session   ',
+	\ '',
+	\ ]
+let g:startify_custom_header =
+      \ map(split(system('fortune'), '\n'), '"   ". v:val') + ['']
+
+" ConqueGDB
+let g:ConqueTerm_Color = 2					" 1: strip color after 200 lines, 2: always with color
+let g:ConqueTerm_CloseOnEnd = 1 			" close conque when program ends running
+let g:ConqueTerm_StartMessages = 0			" display warning messages if conqueTerm is configured incorrectly
+" }}}
+
+" Filetype & languages {{{
+filetype on						" Enable filetype detection
+filetype indent on				" Enable filetype-specific indenting
+filetype plugin on				" Enable filetype-specific plugins
+
+" C language
+let c_space_errors = 1
+let c_comment_strings= 0		" dont highlight strings inside C comments
+
+" Python language
+let python_space_errors = 1
+au FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
+
+" Java language
+let java_space_errors = 1
+
+" Markdown instead of modula2
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
 " }}}
 
 " Spaces & Tabs {{{
@@ -124,27 +250,6 @@ set formatoptions=tcrql 	" t autowrap to textwidth
 							" l	Long lines are not broken in insert mode: When a line was longer than 'textwidth' when the insert command started, Vim does not automatically format it.
 							" 1	Don't break a line after a one-letter word. It's broken before it instead (if possible).
 							" j	Where it makes sense, remove a comment leader when joining lines
-" }}}
-
-" Filetype & languages {{{
-filetype on						" Enable filetype detection
-filetype indent on				" Enable filetype-specific indenting
-filetype plugin on				" Enable filetype-specific plugins
-
-" C language
-let c_space_errors = 1
-let c_comment_strings= 0		" dont highlight strings inside C comments
-
-" Python language
-let python_space_errors = 1
-au FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
-
-" Java language
-let java_space_errors = 1
-
-" Markdown instead of modula2
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-
 " }}}
 
 " Look and feel {{{
@@ -216,6 +321,8 @@ else
 	"highlight ColorColumn ctermbg=235 guibg=#262626	" colorcolumn for base16-default
 endif
 
+highlight clear SignColumn		" sets the git gutter to the same color as the number column (needs to be after your colorscheme)
+
 " terminal: Use a blinking upright bar cursor in Insert mode, and a blinking block in normal
 " this could be done with Plugin 'jszakmeister/vim-togglecursor'		" change cursor to a | when on vim console and insert mode
 if &term == 'xterm-256color' || &term == 'screen-256color' || &term == 'rxvt-unicode-256color'
@@ -227,82 +334,6 @@ if &term == 'rxvt-unicode-256color'
 	let &t_SI = "\<Esc>[3 q"
 	let &t_EI = "\<Esc>[1 q"
 endif
-" }}}
-
-" Plugins settings {{{
-" Airline
-let g:airline_powerline_fonts = 1 						" automatically populate the g:airline_symbols dictionary with the powerline symbols
-set laststatus=2 										" Always show statusline
-set noshowmode 											" Hide the default mode text (e.g. -- INSERT -- below the statusline)
-let g:airline#extensions#tabline#enabled = 1			" automatically displays all buffers when there's only one tab open
-"let g:airline#extensions#tabline#left_sep = ' '			" straight separators
-"let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#tabline#buffer_idx_mode = 1	" display numbers in the tab line, and use mappings <leader>1 to <leader>9
-if has("gui_running")
-	let g:airline_theme= "base16"
-else
-	let g:airline_theme= "wombat"
-endif
-
-" Tmuxline
-" To export current statusline to a file which can be sourced by tmux.conf on startup:
-" :TmuxlineSnapshot ~/.tmux/tmuxline
-"let g:tmuxline_powerline_separators = 0				" Use block separators instead
-let g:tmuxline_preset = {
-      \'a'    : '#S',
-      \'b'    : '#W',
-      \'win'  : '#I #W',
-      \'cwin' : '#I #W',
-      \'y'    : '%R',
-      \'z'    : '#H'}
-
-" Badwolf
-let g:badwolf_darkgutter = 1 " Make the gutters darker than the background.
-
-" C.vim
-let g:C_LocalTemplateFile = $HOME.'/.vim/c-support/templates/Templates' " this allows for the templates to be versioned on .dotfiles
-
-" Latex Box Plugin
-let g:LatexBox_output_type="pdf"
-let g:LatexBox_latexmk_async=1 					"allow latexmk to run in the background and load any compilation errors in a quickfix window after it finishes running.
-"let g:LatexBox_latexmk_preview_continuously=1 	"Latexmk will track the currently edited file for writes and recompile automatically when necessary
-let g:LatexBox_quickfix=3 						" recommended by preview_continously
-let g:LatexBox_latexmk_options="-pdflatex='xelatex --shell-escape -interaction=nonstopmode %O %S' -cd -f"
-let g:LatexBox_autojump=1						" auto jump to first error after compiling
-
-" Accelerated smooth scroll
-let g:ac_smooth_scroll_du_sleep_time_msec = 5
-let g:ac_smooth_scroll_fb_sleep_time_msec = 5
-
-" Gitgutter
-highlight clear SignColumn		" sets the git gutter to the same color as the number column (needs to be after your colorscheme)
-
-" YouCompleteMe
-"let g:ycm_auto_trigger = 0		" turn off the as-you-type popup and the popup you'd get after typing . or -> in say C++. You can still use it by <C-Space> shortcut.
-
-" vim-shell
-let g:shell_fullscreen_items = ''		" hide: m mainmenu, T toolbar, e tabline
-
-" vim-gpg
-let g:GPGDefaultRecipients = ["0x5702AA3A <me@viccuad.me>"]
-
-" startify
-let g:startify_session_persistence = 0		" automatically update sessions
-let g:startify_session_delete_buffers = 1	" delete open buffers before loading a new session
-let g:startify_custom_footer = [
-	\ '',
-	\ '    b   ➤ open in new buffer  :SLoad   ➤ load a session     ',
-	\ '    s,v ➤ open in split       :SSave   ➤ save a session     ',
-	\ '    t   ➤ open in tab         :SDelete ➤ delete a session   ',
-	\ '',
-	\ ]
-let g:startify_custom_header =
-      \ map(split(system('fortune'), '\n'), '"   ". v:val') + ['']
-
-" ConqueGDB
-let g:ConqueTerm_Color = 2					" 1: strip color after 200 lines, 2: always with color
-let g:ConqueTerm_CloseOnEnd = 1 			" close conque when program ends running
-let g:ConqueTerm_StartMessages = 0			" display warning messages if conqueTerm is configured incorrectly
 " }}}
 
 " Persistence {{{
@@ -363,11 +394,11 @@ map <silent> <F4> <Esc>:bd<CR>						" close buffer
 map <F5> :setlocal spell!<CR>						" toggle spell checking
 noremap <F6> :!xdg-open <cfile><CR><CR>				" open urls, files, etc. example: http://google.com
 set isfname+=32										" to open files with spaces
-" <F6>                                              " open from vim-shell plugin
-map  <silent> <F7>    <Esc>:cprevious<CR>			" previous c error
-map  <silent> <F8>    <Esc>:cnext<CR>				" next c error
-" <F9>												" compile & link c code (alt+<F9> write + compile, ctrl+<F9> compile + run)
-" <F11> 											" maximize from vim-shell plugin
+" <F6>                                              " open (vim-shell plugin)
+map  <silent> <F7>    <Esc>:cprevious<CR>			" previous c error (c.vim plugin)
+map  <silent> <F8>    <Esc>:cnext<CR>				" next c error (c.vim plugin)
+" <F9>												" compile & link c code (alt+<F9> write + compile, ctrl+<F9> compile + run) (c.vim plugin)
+" <F11> 											" maximize (vim-shell plugin)
 " }}}
 
 " Folding {{{
