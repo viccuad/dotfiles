@@ -86,7 +86,7 @@ Plugin 'honza/vim-snippets'					" Snippets are separated from the engine.
 "Plugin 'plasticboy/vim-markdown'			" markdown style (needs tabular plugin)
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'vivien/vim-addon-linux-coding-style'
-"Plugin 'c.vim'
+Plugin 'c.vim'
 Plugin 'justinmk/vim-syntax-extra'			" bison, flex, c syntax (operators, delimiters, functions..)
 Plugin 'freitass/todo.txt-vim'
 
@@ -138,6 +138,9 @@ let g:badwolf_darkgutter = 1 " Make the gutters darker than the background.
 
 " C.vim
 let g:C_LocalTemplateFile = $HOME.'/.vim/snippets_Cvim/c-support/templates/Templates' " this allows for the templates to be versioned on .dotfiles
+
+" NERDComenter
+let g:NERDSpaceDelims = 1    " Add space before and after comment delimiters
 
 " Latex Box Plugin
 let g:LatexBox_output_type="pdf"
