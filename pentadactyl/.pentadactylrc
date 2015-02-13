@@ -1,0 +1,80 @@
+
+" LookAndFeel {{{
+" colorscheme molokai
+colorscheme simple_dark
+
+" no bells
+set visualbell
+highlight Bell display: none;
+
+" remove gui things
+"set gui=nonavigation
+set guioptions=s
+set showtabline=multitab
+
+" no smoothscrolling:
+set scrollsteps=1
+set scrolltime=0
+
+" hint keys vimium style
+set hintkeys="asdfgqwert;lkjhuiop"
+" hi -a Hint font-size: 9pt !important;
+
+" editor, i_C-i, gF invokes it in text fields (default gvim):
+" set editor="gvim"
+
+" change the default register to the clipboard
+js editor.defaultRegister="+"
+
+"}}}
+
+
+" Search {{{
+" show pattern matches as you type:
+set incfind
+" highlight previous search pattern matches
+set hlfind
+"}}}
+
+" Open and search suggestions {{{
+"Items which are completed at the :open prompts. Available
+"		s		Search engines and keyword URLs
+"		f		Local files
+"		l		Iceweasel	location bar entries (bookmarks and history sorted in an intelligent way)
+"		b		BookmarkshHistory
+"		S		Search engine suggestions
+"		t		Open tabs
+set complete=sSl
+
+set defsearch=duckduckgo
+set suggestengines=yahoo
+
+"}}}
+
+" Mappings {{{
+map -b j 5j
+map -b k 5k
+" go to next tab:
+nmap h gT
+" go to previous tab:
+nmap l gt
+" Can be typed even faster than esc
+imap jk <Esc>
+
+nmap <S-h> <Esc>:back<CR>
+nmap <S-l> <Esc>:forward<CR>
+
+" Move the current tab to the left
+nmap <leader>h <Esc>:tabmove! -1<CR>
+
+" Move the current tab to the right
+nmap <leader>l <Esc>:tabmove! +1<CR>
+
+" make a passthrough to have cut, copy and paste
+map <C-c> <pass>
+map <C-x> <pass>
+map <C-v> <Pass> 
+
+"}}}
+
+" vim: ts=2 sw=2 sts=2 fdm=marker ft=vim
