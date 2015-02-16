@@ -180,7 +180,7 @@ endfunction
 au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsListSnippets="<c-e>"
-" this mapping Enter key to <C-y> to chose the current highlight item 
+" this mapping Enter key to <C-y> to chose the current highlight item
 " and close the selection list, same as other IDEs.
 " CONFLICT with some plugins like tpope/Endwise
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -221,13 +221,16 @@ let c_comment_strings= 0		" dont highlight strings inside C comments
 
 " Python language
 let python_space_errors = 1
-au FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
+autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
 
 " Java language
 let java_space_errors = 1
 
 " Markdown instead of modula2
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+autocmd BufNewFile,BufReadPost *.md setl filetype=markdown textwidth=0 wrapmargin=0
+
+" TXT files
+autocmd BufNewFile,BufReadPost *.txt setl textwidth=0 wrapmargin=0
 
 " }}}
 
