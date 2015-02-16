@@ -17,7 +17,8 @@ set scrollsteps=1
 set scrolltime=0
 
 " hint keys vimium style
-set hintkeys="asdfgqwert;lkjhuiop"
+set hintkeys="asdfgqwertlkjhuiop"
+highlight -a Hint text-transform: uppercase;
 " hi -a Hint font-size: 9pt !important;
 
 " editor, i_C-i, gF invokes it in text fields (default gvim):
