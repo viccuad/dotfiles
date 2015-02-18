@@ -1,0 +1,119 @@
+# load mutt private config, encrypted with GPG
+source "gpg2 -dq $HOME/.mutt/private_config.gpg |"
+
+# Wait to enter mailbox manually
+set imap_passive
+# Automatically poll subscribed mailboxes for new mail (new in 1.5.11)
+# set imap_check_subscribed
+# Reduce polling frequency to a sane level
+# set mail_check=60
+# And poll the current mailbox more often (not needed with IDLE in post 1.5.11)
+# set timeout=10
+# keep a cache of headers for faster loading (1.5.9+?)
+# set header_cache=~/.hcache
+# Display download progress every 5K
+set net_inc=5
+
+# Use 1 dir per mail directory, and each mail is a file:
+set mbox_type=Maildir
+
+set send_charset="utf-8"
+
+# if enter-command is available from the UI, it is possible to see the pw
+# unencripted. we make every command that the user intends to use bound to a key
+# in advance, to fix this:
+bind generic,alias,attach,browser,editor,index,compose,pager,pgp,postpone ':' noop
+
+## Extra info.
+#my_hdr X-Info: Keep It Simple, Stupid.
+#
+### OS Info.
+my_hdr X-Operating-System: `uname -o` #, kernel `uname -r`
+#
+### This header only appears to MS Outlook users
+my_hdr X-Message-Flag: WARNING!! Outlook sucks
+#
+### Custom Mail-User-Agent ID.
+#my_hdr User-Agent: Every email client sucks, this one just sucks less.
+
+# Signature:
+# set signature="fortune pathtofortunefile|"
+set signature = "~/.mutt/signature"
+
+# Asks to include message when replying
+# set include=ask-yes
+#
+# # Asks to postpone a message when not sent
+# set postpone=ask-yes
+#
+# # Ask before printing
+# set print=ask-yes
+
+# Pass the html body to an external HTML program and then dump it back, to keep
+# email uniform and unobtrusive:
+# Automatically open HTML in the defined program at ~/.mutt/mailcap:
+auto_view text/html
+# Have mutt default to text when available first
+alternative_order text/plain text/html
+
+# Load colors:
+# source ~/.mutt/colors/mutt-colors-solarized-dark-256.mutt
+source ~/.mutt/colors/mutt-colors-solarized-dark-256.mutt
+
+set date_format="%y-%m-%d %T"
+set index_format="%2C | %Z [%d] %-30.30F (%-4.4c) %s"
+
+# Display recipient instead of sender in "Sent" folder view:
+# folder-hook   *[sS]ent* 'set index_format="%2C | %Z [%d] %-30.30t (%-4.4c) %s"'
+# folder-hook ! *[sS]ent* 'set index_format="%2C | %Z [%d] %-30.30F (%-4.4c) %s"'
+
+# Resize when changing folders:
+folder-hook .*[sS]ent.* 'set my_col_from = `echo $((30 * ($(tput cols)-35-24) / 100))`; set my_col_subject = `echo $((70 * ($(tput cols)-35-24) / 100))`; set index_format="%2C | %Z [%d] %-$my_col_from.${my_col_from}t (%-4.4c) %-$my_col_subject.${my_col_subject}s"'
+folder-hook ! .*[sS]ent.* 'set my_col_from = `echo $((30 * ($(tput cols)-35-24) / 100))`; set my_col_subject = `echo $((70 * ($(tput cols)-35-24) / 100))`; set index_format="%2C | %Z [%d] %-$my_col_from.${my_col_from}F (%-4.4c) %-$my_col_subject.${my_col_subject}s"'
+
+# Alias file:
+set alias_file = "~/.mutt/aliases"
+set sort_alias = alias
+set reverse_alias = yes
+source $alias_file
+
+# GPG hooks for mutt:
+# set pgp_decode_command="gpg %?p?--passphrase-fd 0? --no-verbose --batch --output - %f"
+# set pgp_verify_command="gpg --no-verbose --batch --output - --verify %s %f"
+# set pgp_decrypt_command="gpg --passphrase-fd 0 --no-verbose --batch --output - %f"
+# set pgp_sign_command="gpg --no-verbose --batch --output - --passphrase-fd 0 --armor --detach-sign --textmode %?a?-u %a? %f"
+# set pgp_clearsign_command="gpg --no-verbose --batch --output - --passphrase-fd 0 --armor --textmode --clearsign %?a?-u %a? %f"
+# set pgp_encrypt_only_command="pgpewrap gpg --batch --quiet --no-verbose --output - --encrypt --textmode --armor --always-trust --encrypt-to 0x5702AA3A -- -r %r -- %f"
+# set pgp_encrypt_sign_command="pgpewrap gpg --passphrase-fd 0 --batch --quiet --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust --encrypt-to 0x5702AA3A -- -r %r -- %f"
+# set pgp_import_command="gpg --no-verbose --import -v %f"
+# set pgp_export_command="gpg --no-verbose --export --armor %r"
+# set pgp_verify_key_command="gpg --no-verbose --batch --fingerprint --check-sigs %r"
+# set pgp_list_pubring_command="gpg --no-verbose --batch --with-colons --list-keys %r"
+# set pgp_list_secring_command="gpg --no-verbose --batch --with-colons --list-secret-keys %r"
+# set pgp_autosign=yes
+# set pgp_sign_as=0x5702AA3A
+# set pgp_replyencrypt=yes
+# set pgp_timeout=120
+# set pgp_good_sign="^gpg: Good signature from"
+
+set pgp_auto_decode = yes
+# send-hook "~f @work.tld" set pgp_autosign = no
+send-hook "~f @viccuad.me" set pgp_autosign = yes
+set pgp_replysign = yes
+set pgp_replyencrypt = yes
+set crypt_replysignencrypted = yes
+set crypt_verify_sig = yes
+send-hook "~f @viccuad.me" set pgp_sign_as=0x5702AA3A
+set pgp_use_gpg_agent = yes
+set crypt_use_gpgme = yes
+
+# Binds:
+# Request fetch imap:
+bind index "^" imap-fetch-mail
+# Open a graphical browser for HTML mail:
+macro attach 'V' "<pipe-entry>cat >~/.cache/mutt/mail.html && xdg-open ~/.cache/mutt/mail.html && rm ~/.cache/mutt/mail.html<enter>"
+# Rebind backspace so it works in some xterm-like terminals:
+bind index,pager ^? previous-line
+
+# TODO
+# dotfiles, .muttrc, ~/.mutt/ .signature
