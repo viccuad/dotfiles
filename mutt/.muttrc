@@ -1,4 +1,8 @@
-# load mutt private config, encrypted with GPG
+# load mutt private config, encrypted with GPG:
+# If you are storing the GPG config in a public place, check that it is signed
+# by you, so nobody can substitute *your* config with a rogue one that has been
+# merely encripted *to* your key.
+# WARNING: WE AREN'T CHECKING IF THE GPG FILE IS SIGNED TO YOU
 source "gpg2 -dq $HOME/.mutt/private_config.gpg |"
 
 # Wait to enter mailbox manually
