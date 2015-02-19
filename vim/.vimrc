@@ -232,6 +232,8 @@ autocmd BufNewFile,BufReadPost *.md setl filetype=markdown textwidth=0 wrapmargi
 " TXT files
 autocmd BufNewFile,BufReadPost *.txt setl textwidth=0 wrapmargin=0
 
+" Mail files from mutt
+autocmd FileType mail setl spell nonumber
 " }}}
 
 " Spaces & Tabs {{{
@@ -370,7 +372,11 @@ set wrapscan		" jumps to the beginning if reaching end, and viceversa
 " }}}
 
 " Mappings {{{
-let mapleader = ","
+let mapleader = "\<Space>"
+
+" use tab key to cycle through the buffers:
+nnoremap <leader><Tab> :bnext<CR>
+nnoremap <leader><S-Tab> :bprevious<CR>
 
 " remap jk to escape in insert mode.  You'll never type jk anyway, so it's great!
 inoremap jk <Esc>
