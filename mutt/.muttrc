@@ -5,30 +5,28 @@
 # WARNING: WE AREN'T CHECKING IF THE GPG FILE IS SIGNED TO YOU
 source "gpg2 -dq $HOME/.mutt/private_config.gpg |"
 
-# Wait to enter mailbox manually
+# MailRetrieval {{{
+# Wait to enter mailbox manually:
 set imap_passive
-# Automatically poll subscribed mailboxes for new mail (new in 1.5.11)
-# set imap_check_subscribed
-# Reduce polling frequency to a sane level
-# set mail_check=60
-# And poll the current mailbox more often (not needed with IDLE in post 1.5.11)
-# set timeout=10
-# keep a cache of headers for faster loading (1.5.9+?)
+# Automatically poll subscribed mailboxes for new mail: (new in 1.5.11)
+set imap_check_subscribed
+# Reduce polling frequency to a sane level: (in seconds)
+set mail_check=120
+# And poll the current mailbox more often: (not needed with IDLE in post 1.5.11)
+set timeout=60
+# keep a cache of headers for faster loading: (1.5.9+?)
 # set header_cache=~/.hcache
 # Display download progress every 5K
 set net_inc=5
-
 # Use 1 dir per mail directory, and each mail is a file:
 set mbox_type=Maildir
+# set up default folders:
+set record= +Sent
+set postponed= +Drafts
+set trash= +Trash
+# }}}
 
-set send_charset="utf-8"
-
-# if enter-command is available from the UI, it is possible to see the pw
-# unencripted. we make every command that the user intends to use bound to a key
-# in advance, to fix this:
-bind generic,alias,attach,browser,editor,index,compose,pager,pgp,postpone ':' noop
-
-## Extra info.
+# MailHeader {{{
 #my_hdr X-Info: Keep It Simple, Stupid.
 #
 ### OS Info.
@@ -39,48 +37,22 @@ my_hdr X-Message-Flag: WARNING!! Outlook sucks
 #
 ### Custom Mail-User-Agent ID.
 #my_hdr User-Agent: Every email client sucks, this one just sucks less.
+# }}}
 
-# Signature:
+# Signature {{{
 # set signature="fortune pathtofortunefile|"
 set signature = "~/.mutt/signature"
+# }}}
 
-# Asks to include message when replying
-# set include=ask-yes
-#
-# # Asks to postpone a message when not sent
-# set postpone=ask-yes
-#
-# # Ask before printing
-# set print=ask-yes
-
-# Pass the html body to an external HTML program and then dump it back, to keep
-# email uniform and unobtrusive:
-# Automatically open HTML in the defined program at ~/.mutt/mailcap:
-auto_view text/html
-# Have mutt default to text when available first
-alternative_order text/plain text/html
-
-# Load colors:
-# source ~/.mutt/colors/mutt-colors-solarized-dark-256.mutt
-source ~/.mutt/colors/mutt-colors-solarized-dark-256.mutt
-
-set date_format="%y-%m-%d %T"
-set index_format="%2C | %Z [%d] %-30.30F (%-4.4c) %s"
-
-# Display recipient instead of sender in "Sent" folder view:
-# folder-hook   *[sS]ent* 'set index_format="%2C | %Z [%d] %-30.30t (%-4.4c) %s"'
-# folder-hook ! *[sS]ent* 'set index_format="%2C | %Z [%d] %-30.30F (%-4.4c) %s"'
-
-# Resize when changing folders:
-folder-hook .*[sS]ent.* 'set my_col_from = `echo $((30 * ($(tput cols)-35-24) / 100))`; set my_col_subject = `echo $((70 * ($(tput cols)-35-24) / 100))`; set index_format="%2C | %Z [%d] %-$my_col_from.${my_col_from}t (%-4.4c) %-$my_col_subject.${my_col_subject}s"'
-folder-hook ! .*[sS]ent.* 'set my_col_from = `echo $((30 * ($(tput cols)-35-24) / 100))`; set my_col_subject = `echo $((70 * ($(tput cols)-35-24) / 100))`; set index_format="%2C | %Z [%d] %-$my_col_from.${my_col_from}F (%-4.4c) %-$my_col_subject.${my_col_subject}s"'
-
-# Alias file:
+# Alias {{{
+# file for contacts:
 set alias_file = "~/.mutt/aliases"
 set sort_alias = alias
 set reverse_alias = yes
 source $alias_file
+# }}}
 
+# GPG {{{
 # GPG hooks for mutt:
 # set pgp_decode_command="gpg %?p?--passphrase-fd 0? --no-verbose --batch --output - %f"
 # set pgp_verify_command="gpg --no-verbose --batch --output - --verify %s %f"
@@ -98,26 +70,89 @@ source $alias_file
 # set pgp_sign_as=0x5702AA3A
 # set pgp_replyencrypt=yes
 # set pgp_timeout=120
-# set pgp_good_sign="^gpg: Good signature from"
 
 set pgp_auto_decode = yes
 # send-hook "~f @work.tld" set pgp_autosign = no
-send-hook "~f @viccuad.me" set pgp_autosign = yes
+# send-hook "~f @personal.tld" set pgp_autosign = yes
+set pgp_autosign = yes
+set pgp_sign_as=0x5702AA3A
 set pgp_replysign = yes
 set pgp_replyencrypt = yes
 set crypt_replysignencrypted = yes
 set crypt_verify_sig = yes
-send-hook "~f @viccuad.me" set pgp_sign_as=0x5702AA3A
 set pgp_use_gpg_agent = yes
 set crypt_use_gpgme = yes
+set pgp_good_sign="^gpg: Good signature from"
+# }}}
 
-# Binds:
+# Binds {{{
 # Request fetch imap:
 bind index "^" imap-fetch-mail
 # Open a graphical browser for HTML mail:
 macro attach 'V' "<pipe-entry>cat >~/.cache/mutt/mail.html && xdg-open ~/.cache/mutt/mail.html && rm ~/.cache/mutt/mail.html<enter>"
 # Rebind backspace so it works in some xterm-like terminals:
 bind index,pager ^? previous-line
+# if enter-command is available from the UI, it is possible to see the pw
+# unencripted. we make every command that the user intends to use bound to a key
+# in advance, to fix this:
+bind generic,alias,attach,browser,editor,index,compose,pager,pgp,postpone ':' noop
+# }}}
 
-# TODO
-# dotfiles, .muttrc, ~/.mutt/ .signature
+# LookAndFeel {{{
+set send_charset="utf-8"
+
+# Sort messages by topic:
+set sort=threads
+
+set date_format="%y-%m-%d %T"
+set index_format="%2C | %Z [%d] %-30.30F (%-4.4c) %s"
+
+# see some lines of the current mail thread on top, when inside a mail:
+set pager_index_lines=5
+
+# Load colors:
+source ~/.mutt/colors/mutt-colors-solarized-dark-256.mutt
+
+# Display recipient instead of sender in "Sent" folder view:
+# folder-hook   *[sS]ent* 'set index_format="%2C | %Z [%d] %-30.30t (%-4.4c) %s"'
+# folder-hook ! *[sS]ent* 'set index_format="%2C | %Z [%d] %-30.30F (%-4.4c) %s"'
+
+# Pass the html body to an external HTML program and then dump it back, to keep
+# email uniform and unobtrusive:
+# Automatically open HTML in the defined program at ~/.mutt/mailcap:
+auto_view text/html
+# Have mutt default to text when available first
+alternative_order text/plain text/html
+
+# Resize when changing folders:
+folder-hook .*[sS]ent.* 'set my_col_from = `echo $((30 * ($(tput cols)-35-24) / 100))`; set my_col_subject = `echo $((70 * ($(tput cols)-35-24) / 100))`; set index_format="%2C | %Z [%d] %-$my_col_from.${my_col_from}t (%-4.4c) %-$my_col_subject.${my_col_subject}s"'
+folder-hook ! .*[sS]ent.* 'set my_col_from = `echo $((30 * ($(tput cols)-35-24) / 100))`; set my_col_subject = `echo $((70 * ($(tput cols)-35-24) / 100))`; set index_format="%2C | %Z [%d] %-$my_col_from.${my_col_from}F (%-4.4c) %-$my_col_subject.${my_col_subject}s"'
+
+# Asks to include message when replying
+# set include=ask-yes
+#
+# # Asks to postpone a message when not sent
+# set postpone=ask-yes
+#
+# # Ask before printing
+# set print=ask-yes
+# }}}
+
+# Sidebar {{{
+# you need mutt-patched, patched for sidebar
+set sidebar_sort = no
+# which mailboxes to list in the sidebar
+mailboxes +INBOX
+set sidebar_delim='|'
+
+# ctrl-shift-n, ctrl-shift-p to select next, prev folder
+# ctrl-shift-o to open selected folder
+bind index \CP sidebar-prev
+bind index \CN sidebar-next
+bind index \CO sidebar-open
+bind pager \CP sidebar-prev
+bind pager \CN sidebar-next
+bind pager \CO sidebar-open
+# }}}
+
+# vim:foldmethod=marker:foldlevel=0
