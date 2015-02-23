@@ -12,98 +12,92 @@ source $VIMRUNTIME/menu.vim
 set spelllang=en,es
 " }}}
 
-" Vundle config {{{
-" This should be on top
-set nocompatible              " be iMproved, required
-filetype off                  " required
+" Vim-Plug Config {{{
+" Example config:
+" call plug#begin('~/.vim/plugged')
+" Make sure you use single quotes
+" Plug 'junegunn/seoul256.vim'
+" Plug 'junegunn/vim-easy-align'
+"
+" " On-demand loading
+" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+"
+" " Using git URL
+" Plug 'https://github.com/junegunn/vim-github-dashboard.git'
+"
+" " Plugin options
+" Plug 'nsf/gocode', { 'tag': 'go.weekly.2012-03-13', 'rtp': 'vim' }
+"
+" " Plugin outside ~/.vim/plugged with post-update hook
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+"
+" " Unmanaged plugin (manually installed and updated)
+" Plug '~/my-prototype-plugin'
+"
+" call plug#end()
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+" Automatic installation:
+if empty(glob('~/.vim/autoload/plug.vim'))
+		silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+		\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+		autocmd VimEnter * PlugInstall
+endif
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-	"Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-	"Plugin 'L9'
-" Git plugin not hosted on GitHub
-	"Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-	"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-	"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Avoid a name conflict with L9
-	"Plugin 'user/L9', {'name': 'newL9'}
+" For Mac/Linux users
+call plug#begin('~/.vim/bundle')
+" For Windows users
+" call plug#begin('~/vimfiles/bundle')
 
 " ADD YOUR PLUGINS HERE:
 " Looks:
-"Plugin 'ScrollColors'						" scroll themes with :SCROLLCOLOR
-Plugin 'chriskempson/base16-vim'			" base16 color themes
-"Plugin 'mimicpak'							" more color theme
-"Plugin 'severin-lemaignan/vim-minimap'		" sublime-text style minimap (NEEDS braille capable font, python)
-Plugin 'yonchu/accelerated-smooth-scroll'	" smooth scroll on <C-d>, <C-u>, <C-f>, <C-b>
-Plugin 'bling/vim-airline'					" status/tabline (NEEDS powerline font)
-"Plugin 'edkolev/tmuxline.vim'				" clone airline to tmux (its set up, only uncomment if you want to change the tmux statusline theme again)
-"Plugin 'CSApprox'							" makes gvim-only colorschemes work in terminal vim
-"Plugin 'sjl/badwolf'						" badwolf color theme
+"Plug 'ScrollColors'						" scroll themes with :SCROLLCOLOR
+Plug 'chriskempson/base16-vim'				" base16 color themes
+"Plug 'mimicpak'							" more color theme
+"Plug 'severin-lemaignan/vim-minimap'		" sublime-text style minimap (NEEDS braille capable font, python)
+Plug 'yonchu/accelerated-smooth-scroll'		" smooth scroll on <C-d>, <C-u>, <C-f>, <C-b>
+Plug 'bling/vim-airline'					" status/tabline (NEEDS powerline font)
+"Plug 'edkolev/tmuxline.vim'				" clone airline to tmux (its set up, only uncomment if you want to change the tmux statusline theme again)
+"Plug 'CSApprox'							" makes gvim-only colorschemes work in terminal vim
+"Plug 'sjl/badwolf'							" badwolf color theme
 
 " Functionality:
-"Plugin 'matchit.zip'						" cicles between if, then, else..
-Plugin 'tpope/vim-surround'					" surround strings faster 			(http://www.catonmat.net/blog/vim-plugins-surround-vim/)
-"Plugin 'scrooloose/nerdtree'				" navigation tree
-Plugin 'tpope/vim-fugitive'					" git support
-"Plugin 'majutsushi/tagbar'					" show list of variables, functions, classes.. (NEEDS ctags)
-"Plugin 'kien/ctrlp.vim'						" full path fuzzy file,buffer,mru,tag.. finder
-"Plugin 'sjl/gundo.vim'						" visualize vim undo tree
-Plugin 'airblade/vim-gitgutter'				" show +,-,~ git changes on the gutter
-"Plugin 'nathanaelkane/vim-indent-guides'	" visually display indent levels
-Plugin 'scrooloose/syntastic'				" automatic syntax checking
-"Plugin 'xolox/vim-misc'					" (NEEDED by vim-shell)
-"Plugin 'xolox/vim-shell'					" provides integration between Vim and environment (fullscreen, etc). requires wmctrl
-Plugin 'scrooloose/nerdcommenter'			" toggle comments
-Plugin 'jamessan/vim-gnupg'					" encrypts/decrypts with gpg files that end in .gpg,.pgp or .asc. plaintext only on ram
-Plugin 'mhinz/vim-startify'					" a start screen with recently modified files and vim sessions
-"Plugin 'tasklist.vim'						" <leader> t shows a list of TODOs and FIXMEs
-Plugin 'christoomey/vim-tmux-navigator'		" seamlessly navigate between tmux and vim panels
-Plugin 'vim-scripts/Conque-GDB'				" GDB integration inside vim
+"Plug 'matchit.zip'							" cicles between if, then, else..
+Plug 'tpope/vim-surround'					" surround strings faster 			(http://www.catonmat.net/blog/vim-plugins-surround-vim/)
+"Plug 'scrooloose/nerdtree'					" navigation tree
+Plug 'tpope/vim-fugitive'					" git support
+"Plug 'majutsushi/tagbar'					" show list of variables, functions, classes.. (NEEDS ctags)
+"Plug 'kien/ctrlp.vim'						" full path fuzzy file,buffer,mru,tag.. finder
+"Plug 'sjl/gundo.vim'						" visualize vim undo tree
+Plug 'airblade/vim-gitgutter'				" show +,-,~ git changes on the gutter
+"Plug 'nathanaelkane/vim-indent-guides'		" visually display indent levels
+Plug 'scrooloose/syntastic'					" automatic syntax checking
+"Plug 'xolox/vim-misc'						" (NEEDED by vim-shell)
+"Plug 'xolox/vim-shell'						" provides integration between Vim and environment (fullscreen, etc). requires wmctrl
+Plug 'scrooloose/nerdcommenter'				" toggle comments
+Plug 'jamessan/vim-gnupg'					" encrypts/decrypts with gpg files that end in .gpg,.pgp or .asc. plaintext only on ram
+Plug 'mhinz/vim-startify'					" a start screen with recently modified files and vim sessions
+"Plug 'tasklist.vim'						" <leader> t shows a list of TODOs and FIXMEs
+Plug 'christoomey/vim-tmux-navigator'		" seamlessly navigate between tmux and vim panels
+Plug 'vim-scripts/Conque-GDB'				" GDB integration inside vim
 
 " CompletionAndSnippets:
-Plugin 'Raimondi/delimitMate'				" provides insert mode auto-completion for quotes,parens,brackets..
-Plugin 'Valloric/YouCompleteMe'				" (NEEDS to be compiled, read the docs!) ~/.vim/bundle/YouCompleteMe/install.sh --clang-completer
-" Ultisnips (compatible with YouCompleteMe)
-Plugin 'SirVer/ultisnips'					" Track the engine.
-Plugin 'honza/vim-snippets'					" Snippets are separated from the engine.
+Plug 'Raimondi/delimitMate'					" provides insert mode auto-completion for quotes,parens,brackets..
+Plug 'Valloric/YouCompleteMe'				" (NEEDS to be compiled, read the docs!) ~/.vim/bundle/YouCompleteMe/install.sh --clang-completer
+" Ultisnips (compatible with YouCompleteMe):
+Plug 'SirVer/ultisnips'						" Track the engine.
+Plug 'honza/vim-snippets'					" Snippets are separated from the engine.
 
 " Filetype:
-"Plugin 'godlygeek/tabular'					" to order lines by a separator easily
-"Plugin 'plasticboy/vim-markdown'			" markdown style (needs tabular plugin)
-Plugin 'LaTeX-Box-Team/LaTeX-Box'
-Plugin 'vivien/vim-addon-linux-coding-style'
-Plugin 'c.vim'
-Plugin 'justinmk/vim-syntax-extra'			" bison, flex, c syntax (operators, delimiters, functions..)
-Plugin 'freitass/todo.txt-vim'
+"Plug 'godlygeek/tabular'					" to order lines by a separator easily
+"Plug 'plasticboy/vim-markdown'				" markdown style (needs tabular plugin)
+Plug 'LaTeX-Box-Team/LaTeX-Box'
+Plug 'vivien/vim-addon-linux-coding-style'
+Plug 'c.vim'
+Plug 'justinmk/vim-syntax-extra'			" bison, flex, c syntax (operators, delimiters, functions..)
+Plug 'freitass/todo.txt-vim'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+call plug#end()
 " }}}
 
 " Plugins settings {{{
@@ -155,6 +149,7 @@ let g:ac_smooth_scroll_du_sleep_time_msec = 5
 let g:ac_smooth_scroll_fb_sleep_time_msec = 5
 
 " YouCompleteMe
+" NEEDS to be compiled, see docs: ~/.vim/bundle/YouCompleteMe/install.sh --clang-completer 
 "let g:ycm_auto_trigger = 0		" turn off the as-you-type popup and the popup you'd get after typing . or -> in say C++. You can still use it by <C-Space> shortcut.
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 
@@ -233,7 +228,7 @@ autocmd BufNewFile,BufReadPost *.md setl filetype=markdown textwidth=0 wrapmargi
 autocmd BufNewFile,BufReadPost *.txt setl textwidth=0 wrapmargin=0
 
 " Mail files from mutt
-autocmd FileType mail setl spell nonumber
+autocmd FileType mail setl spell nonumber textwidth=0 wrapmargin=0
 " }}}
 
 " Spaces & Tabs {{{
@@ -380,6 +375,12 @@ nnoremap <leader><S-Tab> :bprevious<CR>
 
 " remap jk to escape in insert mode.  You'll never type jk anyway, so it's great!
 inoremap jk <Esc>
+
+" Use hjkl-movement between rows when soft wrapping
+" nnoremap j gj
+" nnoremap k gk
+" vnoremap j gj
+" vnoremap k gk
 
 " force yourself to stop using the arrow keys
 map <up> <nop>
