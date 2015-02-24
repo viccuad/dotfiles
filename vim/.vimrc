@@ -1,9 +1,6 @@
-runtime! debian.vim " ensures that various options are properly set to work
-
 " this file has ordered commands for it to work. don't blindly change the order.
 
 " Lang {{{
-" stackoverflow says it should be as up as possible, but it works anyways
 language messages en_US.utf8
 set langmenu=en_US.utf8
 let $LANG = 'en_US.utf8'
@@ -22,7 +19,7 @@ set spelllang=en,es
 " " On-demand loading
 " Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-"
+
 " " Using git URL
 " Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 "
@@ -51,50 +48,50 @@ call plug#begin('~/.vim/bundle')
 
 " ADD YOUR PLUGINS HERE:
 " Looks:
-"Plug 'ScrollColors'						" scroll themes with :SCROLLCOLOR
-Plug 'chriskempson/base16-vim'				" base16 color themes
-"Plug 'mimicpak'							" more color theme
-"Plug 'severin-lemaignan/vim-minimap'		" sublime-text style minimap (NEEDS braille capable font, python)
-Plug 'yonchu/accelerated-smooth-scroll'		" smooth scroll on <C-d>, <C-u>, <C-f>, <C-b>
-Plug 'bling/vim-airline'					" status/tabline (NEEDS powerline font)
-"Plug 'edkolev/tmuxline.vim'				" clone airline to tmux (its set up, only uncomment if you want to change the tmux statusline theme again)
-"Plug 'CSApprox'							" makes gvim-only colorschemes work in terminal vim
-"Plug 'sjl/badwolf'							" badwolf color theme
+"Plug 'ScrollColors'								" scroll themes with :SCROLLCOLOR
+Plug 'chriskempson/base16-vim'						" base16 color themes
+"Plug 'mimicpak'									" more color theme
+"Plug 'severin-lemaignan/vim-minimap'				" sublime-text style minimap (NEEDS braille capable font, python)
+Plug 'yonchu/accelerated-smooth-scroll'				" smooth scroll on <C-d>, <C-u>, <C-f>, <C-b>
+Plug 'bling/vim-airline'							" status/tabline (NEEDS powerline font)
+"Plug 'edkolev/tmuxline.vim'						" clone airline to tmux (its set up, only uncomment if you want to change the tmux statusline theme again)
+"Plug 'CSApprox'									" makes gvim-only colorschemes work in terminal vim
+"Plug 'sjl/badwolf'									" badwolf color theme
 
 " Functionality:
-"Plug 'matchit.zip'							" cicles between if, then, else..
-Plug 'tpope/vim-surround'					" surround strings faster 			(http://www.catonmat.net/blog/vim-plugins-surround-vim/)
-"Plug 'scrooloose/nerdtree'					" navigation tree
-Plug 'tpope/vim-fugitive'					" git support
-"Plug 'majutsushi/tagbar'					" show list of variables, functions, classes.. (NEEDS ctags)
-"Plug 'kien/ctrlp.vim'						" full path fuzzy file,buffer,mru,tag.. finder
-"Plug 'sjl/gundo.vim'						" visualize vim undo tree
-Plug 'airblade/vim-gitgutter'				" show +,-,~ git changes on the gutter
-"Plug 'nathanaelkane/vim-indent-guides'		" visually display indent levels
-Plug 'scrooloose/syntastic'					" automatic syntax checking
-"Plug 'xolox/vim-misc'						" (NEEDED by vim-shell)
-"Plug 'xolox/vim-shell'						" provides integration between Vim and environment (fullscreen, etc). requires wmctrl
-Plug 'scrooloose/nerdcommenter'				" toggle comments
-Plug 'jamessan/vim-gnupg'					" encrypts/decrypts with gpg files that end in .gpg,.pgp or .asc. plaintext only on ram
-Plug 'mhinz/vim-startify'					" a start screen with recently modified files and vim sessions
-"Plug 'tasklist.vim'						" <leader> t shows a list of TODOs and FIXMEs
-Plug 'christoomey/vim-tmux-navigator'		" seamlessly navigate between tmux and vim panels
-Plug 'vim-scripts/Conque-GDB'				" GDB integration inside vim
+"Plug 'matchit.zip'									" cicles between if, then, else..
+Plug 'tpope/vim-surround'							" surround strings faster 			(http://www.catonmat.net/blog/vim-plugins-surround-vim/)
+"Plug 'scrooloose/nerdtree'							" navigation tree
+Plug 'tpope/vim-fugitive'							" git support
+"Plug 'majutsushi/tagbar'							" show list of variables, functions, classes.. (NEEDS ctags)
+"Plug 'kien/ctrlp.vim'								" full path fuzzy file,buffer,mru,tag.. finder
+"Plug 'sjl/gundo.vim'								" visualize vim undo tree
+Plug 'airblade/vim-gitgutter'						" show +,-,~ git changes on the gutter
+"Plug 'nathanaelkane/vim-indent-guides'				" visually display indent levels
+Plug 'scrooloose/syntastic'							" automatic syntax checking
+"Plug 'xolox/vim-misc'								" (NEEDED by vim-shell)
+"Plug 'xolox/vim-shell'								" provides integration between Vim and environment (fullscreen, etc). requires wmctrl
+Plug 'scrooloose/nerdcommenter'						" toggle comments
+Plug 'jamessan/vim-gnupg'							" encrypts/decrypts with gpg files that end in .gpg,.pgp or .asc. plaintext only on ram
+Plug 'mhinz/vim-startify'							" a start screen with recently modified files and vim sessions
+"Plug 'tasklist.vim'								" <leader> t shows a list of TODOs and FIXMEs
+Plug 'christoomey/vim-tmux-navigator'				" seamlessly navigate between tmux and vim panels
+Plug 'vim-scripts/Conque-GDB', {'on': 'ConqueGDB'}	" GDB integration inside vim
 
 " CompletionAndSnippets:
-Plug 'Raimondi/delimitMate'					" provides insert mode auto-completion for quotes,parens,brackets..
-Plug 'Valloric/YouCompleteMe'				" (NEEDS to be compiled, read the docs!) ~/.vim/bundle/YouCompleteMe/install.sh --clang-completer
+Plug 'Raimondi/delimitMate'							" provides insert mode auto-completion for quotes,parens,brackets..
+Plug 'Valloric/YouCompleteMe', {'do': '~/.vim/bundle/YouCompleteMe/install.sh --clang-completer'}		" (NEEDS to be compiled, read the docs!)
 " Ultisnips (compatible with YouCompleteMe):
-Plug 'SirVer/ultisnips'						" Track the engine.
-Plug 'honza/vim-snippets'					" Snippets are separated from the engine.
+Plug 'SirVer/ultisnips'								" Track the engine.
+Plug 'honza/vim-snippets'							" Snippets are separated from the engine.
 
 " Filetype:
-"Plug 'godlygeek/tabular'					" to order lines by a separator easily
-"Plug 'plasticboy/vim-markdown'				" markdown style (needs tabular plugin)
-Plug 'LaTeX-Box-Team/LaTeX-Box'
-Plug 'vivien/vim-addon-linux-coding-style'
-Plug 'c.vim'
-Plug 'justinmk/vim-syntax-extra'			" bison, flex, c syntax (operators, delimiters, functions..)
+"Plug 'godlygeek/tabular'							" to order lines by a separator easily
+"Plug 'plasticboy/vim-markdown'						" markdown style (needs tabular plugin)
+Plug 'LaTeX-Box-Team/LaTeX-Box', {'for': 'tex'}
+Plug 'vivien/vim-addon-linux-coding-style', {'for': 'c'}
+Plug 'c.vim', {'for': 'c'}
+Plug 'justinmk/vim-syntax-extra', {'for': 'c'}		" bison, flex, c syntax (operators, delimiters, functions..)
 Plug 'freitass/todo.txt-vim'
 
 call plug#end()
@@ -149,7 +146,7 @@ let g:ac_smooth_scroll_du_sleep_time_msec = 5
 let g:ac_smooth_scroll_fb_sleep_time_msec = 5
 
 " YouCompleteMe
-" NEEDS to be compiled, see docs: ~/.vim/bundle/YouCompleteMe/install.sh --clang-completer 
+" NEEDS to be compiled, see docs: ~/.vim/bundle/YouCompleteMe/install.sh --clang-completer
 "let g:ycm_auto_trigger = 0		" turn off the as-you-type popup and the popup you'd get after typing . or -> in say C++. You can still use it by <C-Space> shortcut.
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 
@@ -258,7 +255,7 @@ set formatoptions=tcrql 	" t autowrap to textwidth
 " Look and feel {{{
 set title						" change terminal title
 syntax on						" enable syntax processing
-"set virtualedit=all				" move the cursor everywhere
+"set virtualedit=all			" move the cursor everywhere
 set synmaxcol=2048				" prevents huge slow downs from syntax highlighting
 set number						" show line numbers
 "set relativenumber				" show relative numbers. can be on at the same time that number
@@ -328,7 +325,7 @@ highlight clear SignColumn		" sets the git gutter to the same color as the numbe
 
 " terminal: Use a blinking upright bar cursor in Insert mode, and a blinking block in normal
 " this could be done with Plugin 'jszakmeister/vim-togglecursor'		" change cursor to a | when on vim console and insert mode
-if &term == 'xterm-256color' || &term == 'screen-256color' || &term == 'rxvt-unicode-256color'
+if &term == 'xterm-256color' || &term == 'screen-256color'
 	let &t_SI = "\<Esc>[5 q"
 	let &t_EI = "\<Esc>[1 q"
 endif
@@ -370,22 +367,22 @@ set wrapscan		" jumps to the beginning if reaching end, and viceversa
 let mapleader = "\<Space>"
 
 " use tab key to cycle through the buffers:
-nnoremap <leader><Tab> :bnext<CR>
+nnoremap <leader><Tab>   :bnext<CR>
 nnoremap <leader><S-Tab> :bprevious<CR>
 
 " remap jk to escape in insert mode.  You'll never type jk anyway, so it's great!
 inoremap jk <Esc>
 
 " Use hjkl-movement between rows when soft wrapping
-" nnoremap j gj
-" nnoremap k gk
-" vnoremap j gj
-" vnoremap k gk
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
 
 " force yourself to stop using the arrow keys
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
+map <up>    <nop>
+map <down>  <nop>
+map <left>  <nop>
 map <right> <nop>
 
 " move between tabs
