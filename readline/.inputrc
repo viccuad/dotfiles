@@ -1,0 +1,6 @@
+# this config is for shells that use Readline:
+# http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html
+
+# enable vim-like editing:
+set editing-mode vi
+set blink-matching-paren on
