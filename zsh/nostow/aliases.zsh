@@ -4,7 +4,7 @@ alias reload!='. ~/.zshrc'
 LS_OPTIONS=(-F --color);
 alias ls='ls $LS_OPTIONS'
 alias ll='ls -lh'
-alias la='ls -Ah'
+alias la='ls -lah'
 
 # To navigate to the different directories
 alias ..='cd ..'

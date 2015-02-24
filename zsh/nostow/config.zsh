@@ -4,10 +4,6 @@ else
   export PS1='%3~$(git_info_for_prompt)%# '
 fi
 
-export LSCOLORS="exfxcxdxbxegedabagacad"
-export CLICOLOR=true
-export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
-
 # load functions:
 fpath=($ZSH/zsh/nostow/functions $fpath)
 autoload -U $ZSH/zsh/nostow/functions/*(:t)
@@ -39,17 +35,6 @@ setopt HIST_REDUCE_BLANKS   # remove superflous blanks from each line added to h
 #   like: git comm-[tab]
 #   this makes the alias a distinct command for completion purposes
 setopt complete_aliases
-
-# zsh line editor:
-zle -N newtab
-
-bindkey '^[^[[D' backward-word
-bindkey '^[^[[C' forward-word
-bindkey '^[[5D' beginning-of-line
-bindkey '^[[5C' end-of-line
-bindkey '^[[3~' delete-char
-bindkey '^[^N' newtab
-bindkey '^?' backward-delete-char
 
 # Base16-shell colors
 BASE16_SHELL="$ZSH/zsh/nostow/base16-shell/base16-bright.dark.sh"
