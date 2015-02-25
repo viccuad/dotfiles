@@ -1,9 +1,3 @@
-if [[ -n $SSH_CONNECTION ]]; then
-  export PS1='%m:%3~$(git_info_for_prompt)%# '
-else
-  export PS1='%3~$(git_info_for_prompt)%# '
-fi
-
 # load functions:
 fpath=($ZSH/zsh/nostow/functions $fpath)
 autoload -U $ZSH/zsh/nostow/functions/*(:t)

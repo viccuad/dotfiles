@@ -1,81 +1,17 @@
+# load ZSH colors, easier than bash ones
 autoload colors && colors
-# cheers, @ehrenmurdick
-# http://github.com/ehrenmurdick/config/blob/master/zsh/prompt.zsh
 
-if (( $+commands[git] ))
-then
-		git="$commands[git]"
-else
-		git="/usr/bin/git"
-fi
+# GIT prompt:
+# at ./git-prompt.zsh
+export GIT_PS1_SHOWDIRTYSTATE="true"
+export GIT_PS1_SHOWSTASHSTATE="true"
+export GIT_PS1_SHOWUNTRACKEDFILES="true"
+export GIT_PS1_SHOWUPSTREAM="auto verbose"
+export GIT_PS1_DESCRIBE_STYLE="branch"
+export GIT_PS1_SHOWCOLORHINTS="true"
+export GIT_PS1_HIDE_IF_PWD_IGNORED="true"
 
-git_branch() {
-		echo $($git symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'})
-}
-
-git_dirty() {
-		st=$($git status 2>/dev/null | tail -n 1)
-		if [[ ! -d .git ]]
-		then
-				echo ""
-		else
-				if [[ $($git status --porcelain) == "" ]]
-				then
-						echo " on %{$fg_bold[green]%}$(git_prompt_info)%{$reset_color%}"
-				else
-						echo " on %{$fg_bold[red]%}$(git_prompt_info)%{$reset_color%}"
-				fi
-		fi
-}
-
-git_prompt_info () {
-		ref=$($git symbolic-ref HEAD 2>/dev/null) || return
-		# echo "(%{\e[0;33m%}${ref#refs/heads/}%{\e[0m%})"
-		echo "${ref#refs/heads/}"
-}
-
-unpushed () {
-		$git cherry -v @{upstream} 2>/dev/null
-}
-
-need_push () {
-		if [[ $(unpushed) == "" ]]
-		then
-				echo ""
-		else
-				echo " with %{$fg_bold[magenta]%}unpushed%{$reset_color%}"
-		fi
-}
-
-ruby_version() {
-		if (( $+commands[rbenv] ))
-		then
-				echo "$(rbenv version | awk '{print $1}')"
-		fi
-
-		if (( $+commands[rvm-prompt] ))
-		then
-				echo "$(rvm-prompt | awk '{print $1}')"
-		fi
-}
-
-rb_prompt() {
-		if ! [[ -z "$(ruby_version)" ]]
-		then
-				echo "%{$fg_bold[yellow]%}$(ruby_version)%{$reset_color%} "
-		else
-				echo ""
-		fi
-}
-
-directory_name() {
-		echo "%{$fg_bold[blue]%}%~%{$reset_color%}"
-}
-
-last_status() {
-		echo "%{$fg_bold[cyan]%}%n@%M%{$reset_color%}%(?..%{$fg_bold[red]%} %?% %{$reset_color%})"
-}
-
+## TODO.txt prompt:
 
 # This keeps the number of todos always available the right hand side of my
 # command line. I filter it to only count those tagged as "next", so it's more
@@ -98,6 +34,10 @@ function todo_prompt() {
 		fi
 }
 
+rprompt_todo() {
+echo  "%{$fg_bold[white]%}$(todo_prompt @next)%{$reset_color%}" 
+}
+
 # function notes_count() {
 #   if [[ -z $1 ]]; then
 #     local NOTES_PATTERN="TODO|FIXME|HACK";
@@ -116,57 +56,43 @@ function todo_prompt() {
 #   fi
 # }
 
+
 # VIM prompt:
-#
-# Ensures that $terminfo values are valid and updates editor information when
-# the keymap changes.
-function zle-keymap-select zle-line-init zle-line-finish {
-		# The terminal must be in application mode when ZLE is active for $terminfo
-		# values to be valid.
-		if (( ${+terminfo[smkx]} )); then
-				printf '%s' ${terminfo[smkx]}
-		fi
-		if (( ${+terminfo[rmkx]} )); then
-				printf '%s' ${terminfo[rmkx]}
-		fi
+
+zle-keymap-select() {
+		# RPROMPT=""
+		RPROMPT=" $(rprompt_todo) $(rprompt_time)" 
+		[[ $KEYMAP = vicmd ]] && RPROMPT="%{$fg_bold[white]%}--NORMAL--%{$reset_color%}" 
 		zle reset-prompt
-		zle -R
 }
-# Ensure that the prompt is redrawn when the terminal size changes.
-TRAPWINCH() {
-		zle && { zle reset-prompt; zle -R }
-}
-zle -N zle-line-init
-zle -N zle-line-finish
 zle -N zle-keymap-select
-zle -N edit-command-line
+zle -N zle-line-init
 
-# if mode indicator wasn't setup by theme, define default
-if [[ "$MODE_INDICATOR" == "" ]]; then
-		MODE_INDICATOR="%{$fg_bold[white]%}--NORMAL--%{$reset_color%}"
-fi
+# PROMPT build:
 
-function vi_mode_prompt_info() {
-		echo "${${KEYMAP/vicmd/$MODE_INDICATOR}/(main|viins)/}"
+prompt_pwd() {
+		echo "%{$fg_bold[white]%}%~%{$reset_color%}"
+}
+
+prompt_names() {
+		echo "%{$fg_bold[white]%}%n@%M%{$reset_color%}"
+}
+
+prompt_symbol() {
+		echo "%{$fg_bold[white]%}$%{$reset_color%}"
+}
+prompt_last_status() {
+		echo "%(?..%{$fg_bold[red]%} %?% %{$reset_color%})"
+}
+
+rprompt_time() {
+	echo "%{$fg[white]%}%T%{$reset_color%}"
 }
 
 
-
-
-
-export PROMPT=$'\n$(rb_prompt)$(last_status) $(directory_name)$(git_dirty)$(need_push) > '
-set_prompt () {
-		#export RPROMPT="$(notes_prompt TODO) %{$fg_bold[yellow]%}$(notes_prompt HACK)%{$reset_color%} %{$fg_bold[red]%}$(notes_prompt FIXME)%{$reset_color%} %{$fg_bold[blue]%}$(todo_prompt +next)%{$reset_color%} %{$fg[blue]%}%T%{$reset_color%}"
-		# export RPROMPT="%{$fg_bold[blue]%}$(todo_prompt @next)%{$reset_color%} %{$fg[blue]%}%T%{$reset_color%}"
-		RPS1='$(vi_mode_prompt_info) %{$fg_bold[blue]%}$(todo_prompt @next)%{$reset_color%} %{$fg[blue]%}%T%{$reset_color%}'
-
-}
 
 precmd() {
-		set_prompt
+		# set_prompt
+		__git_ps1 "$(prompt_names)$(prompt_last_status) $(prompt_pwd)" "$(prompt_symbol) "
+		RPROMPT="$(rprompt_todo) $(rprompt_time)" 
 }
-
-# define right prompt, if it wasn't defined by a theme
-# if [[ "$RPS1" == "" && "$RPROMPT" == "" ]]; then
-		# RPS1='$(vi_mode_prompt_info)'
-# fi
