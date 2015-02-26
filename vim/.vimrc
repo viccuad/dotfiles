@@ -61,7 +61,7 @@ Plug 'bling/vim-airline'							" status/tabline (NEEDS powerline font)
 " Functionality:
 "Plug 'matchit.zip'									" cicles between if, then, else..
 Plug 'tpope/vim-surround'							" surround strings faster 			(http://www.catonmat.net/blog/vim-plugins-surround-vim/)
-"Plug 'scrooloose/nerdtree'							" navigation tree
+"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " navigation tree
 Plug 'tpope/vim-fugitive'							" git support
 "Plug 'majutsushi/tagbar'							" show list of variables, functions, classes.. (NEEDS ctags)
 "Plug 'kien/ctrlp.vim'								" full path fuzzy file,buffer,mru,tag.. finder
@@ -92,7 +92,7 @@ Plug 'LaTeX-Box-Team/LaTeX-Box', {'for': 'tex'}
 Plug 'vivien/vim-addon-linux-coding-style', {'for': 'c'}
 Plug 'c.vim', {'for': 'c'}
 Plug 'justinmk/vim-syntax-extra', {'for': 'c'}		" bison, flex, c syntax (operators, delimiters, functions..)
-Plug 'freitass/todo.txt-vim'
+Plug 'freitass/todo.txt-vim', {'for': 'todo'}
 
 call plug#end()
 " }}}
