@@ -219,13 +219,13 @@ autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
 let java_space_errors = 1
 
 " Markdown instead of modula2
-autocmd BufNewFile,BufReadPost *.md setl filetype=markdown textwidth=0 wrapmargin=0
+autocmd BufNewFile,BufReadPost *.md setl filetype=markdown spell textwidth=0 wrapmargin=0
 
 " TXT files
-autocmd BufNewFile,BufReadPost *.txt setl textwidth=0 wrapmargin=0
+autocmd BufNewFile,BufReadPost *.txt setl spell textwidth=0 wrapmargin=0
 
 " Mail files from mutt
-autocmd FileType mail setl spell nonumber textwidth=0 wrapmargin=0
+autocmd FileType mail setl nonumber spell textwidth=0 wrapmargin=0
 " }}}
 
 " Spaces & Tabs {{{
