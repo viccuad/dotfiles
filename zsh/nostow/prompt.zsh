@@ -35,7 +35,7 @@ function todo_prompt() {
 }
 
 rprompt_todo() {
-echo  "%{$fg_bold[white]%}$(todo_prompt @next)%{$reset_color%}" 
+echo  "%{$fg[white]%}$(todo_prompt @next)%{$reset_color%}"
 }
 
 # function notes_count() {
@@ -61,8 +61,8 @@ echo  "%{$fg_bold[white]%}$(todo_prompt @next)%{$reset_color%}"
 
 zle-keymap-select() {
 		# RPROMPT=""
-		RPROMPT=" $(rprompt_todo) $(rprompt_time)" 
-		[[ $KEYMAP = vicmd ]] && RPROMPT="%{$fg_bold[white]%}--NORMAL--%{$reset_color%}" 
+		RPROMPT=" $(rprompt_todo) $(rprompt_time)"
+		[[ $KEYMAP = vicmd ]] && RPROMPT="%{$fg_bold[white]%}--NORMAL--%{$reset_color%}"
 		zle reset-prompt
 }
 zle -N zle-keymap-select
@@ -75,7 +75,7 @@ prompt_pwd() {
 }
 
 prompt_names() {
-		echo "%{$fg_bold[white]%}%n@%M%{$reset_color%}"
+		echo "%{$fg_bold[yellow]%}%n@%M%{$reset_color%}"
 }
 
 prompt_symbol() {
@@ -94,5 +94,5 @@ rprompt_time() {
 precmd() {
 		# set_prompt
 		__git_ps1 "$(prompt_names)$(prompt_last_status) $(prompt_pwd)" "$(prompt_symbol) "
-		RPROMPT="$(rprompt_todo) $(rprompt_time)" 
+		RPROMPT="$(rprompt_todo) $(rprompt_time)"
 }
