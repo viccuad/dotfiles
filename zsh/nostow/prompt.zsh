@@ -59,7 +59,8 @@ echo  "%{$fg[white]%}$(todo_prompt @next)%{$reset_color%}"
 
 # VIM prompt:
 
-zle-keymap-select() {
+function zle-keymap-select zle-line-init
+{
 		# RPROMPT=""
 		RPROMPT=" $(rprompt_todo) $(rprompt_time)"
 		[[ $KEYMAP = vicmd ]] && RPROMPT="%{$fg_bold[white]%}--NORMAL--%{$reset_color%}"
