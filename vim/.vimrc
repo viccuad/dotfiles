@@ -56,17 +56,18 @@ Plug 'yonchu/accelerated-smooth-scroll'				" smooth scroll on <C-d>, <C-u>, <C-f
 Plug 'bling/vim-airline'							" status/tabline (NEEDS powerline font)
 "Plug 'edkolev/tmuxline.vim'						" clone airline to tmux (its set up, only uncomment if you want to change the tmux statusline theme again)
 "Plug 'CSApprox'									" makes gvim-only colorschemes work in terminal vim
-"Plug 'sjl/badwolf'									" badwolf color theme
+" Plug 'sjl/badwolf'									" badwolf color theme
 
 " Functionality:
 "Plug 'matchit.zip'									" cicles between if, then, else..
 Plug 'tpope/vim-surround'							" surround strings faster 			(http://www.catonmat.net/blog/vim-plugins-surround-vim/)
+Plug 'tpope/vim-speeddating'						" fixes vim incrementing of dates, times, etc (<C-A>, <C-X>)
 "Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " navigation tree
 Plug 'tpope/vim-fugitive'							" git support
+Plug 'airblade/vim-gitgutter'						" show +,-,~ git changes on the gutter
 "Plug 'majutsushi/tagbar'							" show list of variables, functions, classes.. (NEEDS ctags)
 "Plug 'kien/ctrlp.vim'								" full path fuzzy file,buffer,mru,tag.. finder
 "Plug 'sjl/gundo.vim'								" visualize vim undo tree
-Plug 'airblade/vim-gitgutter'						" show +,-,~ git changes on the gutter
 "Plug 'nathanaelkane/vim-indent-guides'				" visually display indent levels
 Plug 'scrooloose/syntastic'							" automatic syntax checking
 "Plug 'xolox/vim-misc'								" (NEEDED by vim-shell)
@@ -92,7 +93,8 @@ Plug 'LaTeX-Box-Team/LaTeX-Box', {'for': 'tex'}
 Plug 'vivien/vim-addon-linux-coding-style', {'for': 'c'}
 Plug 'c.vim', {'for': 'c'}
 Plug 'justinmk/vim-syntax-extra', {'for': 'c'}		" bison, flex, c syntax (operators, delimiters, functions..)
-Plug 'freitass/todo.txt-vim', {'for': 'todo'}
+Plug 'freitass/todo.txt-vim', {'for': 'todo'}		" neccesary, vim default python syntax has a regex bug as of 7.4.663
+Plug 'hdima/python-syntax', {'for': 'python'}
 
 call plug#end()
 " }}}
@@ -125,7 +127,8 @@ let g:tmuxline_preset = {
       \'z'    : '#H'}
 
 " Badwolf
-let g:badwolf_darkgutter = 1 " Make the gutters darker than the background.
+let g:badwolf_darkgutter = 1 	" Make the gutters darker than the background.
+let g:badwolf_tabline = 1 		" Make the tabline the same color as the background 
 
 " C.vim
 let g:C_LocalTemplateFile = $HOME.'/.vim/snippets_Cvim/c-support/templates/Templates' " this allows for the templates to be versioned on .dotfiles
@@ -182,6 +185,7 @@ let g:shell_fullscreen_items = ''		" hide: m mainmenu, T toolbar, e tabline
 
 " vim-gpg
 let g:GPGDefaultRecipients = ["0x5702AA3A <me@viccuad.me>"]
+" let g:GPGUsePipes=1			" (might break the prompt) use pipes instead of vim /temp files (no writing to disk)
 
 " startify
 let g:startify_session_persistence = 0		" automatically update sessions
@@ -200,6 +204,10 @@ let g:startify_custom_header =
 let g:ConqueTerm_Color = 2					" 1: strip color after 200 lines, 2: always with color
 let g:ConqueTerm_CloseOnEnd = 1 			" close conque when program ends running
 let g:ConqueTerm_StartMessages = 0			" display warning messages if conqueTerm is configured incorrectly
+
+" python-syntax
+let python_highlight_all = 1
+" you can change between py v2 and v3 with :Python2Syntax and :Python3Syntax
 " }}}
 
 " Filetype & languages {{{
@@ -309,7 +317,7 @@ else
 	"let base16colorspace=256	" Access colors present in 256 colorspace
 	set background=dark 		" if using a dark background, for syntax highlighting
 	colorscheme wombat256mod
-	"colorscheme badwolf
+	" colorscheme badwolf
 	"colorscheme xoria256
 	"colorscheme base16-default
 	"colorscheme wombat256
