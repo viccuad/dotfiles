@@ -1,0 +1,36 @@
+# usage: beet import
+# config at: /home/vic/.config/beets/config.yaml
+directory: ~/Música
+library: ~/Música/musiclibrary.blb
+log: ~/Música/beetslog.txt
+
+threaded: yes
+color: yes
+
+import:
+        # move: no
+        copy: yes
+        resume: ask
+
+# Plugins: 
+#
+# fetch album art, genres, and lyrics: fetchart lyrics lastgenre
+#   dependencies: sudo pip install requests pylast 
+# acoustic fingerprinting: chroma
+#   dependencies: sudo apt-get install libchromaprint0 libchromaprint-tools
+#                 sudo pip install pyacoustid
+plugins: fetchart lyrics lastgenre chroma
+
+# Plugins configs:
+lastgenre:
+        canonical: yes # make a genre tree, good for more obscure genres
+chroma:
+        auto: no
+# acoustid:
+        # apikey: 
+
+paths:
+        default: $albumartist/(${year}) $album%aunique{}/$track $title
+        singleton: Non-Album/$artist/$title
+        comp: Compilations/$album%aunique{}/$track $title
+        albumtype:soundtrack: Soundtracks/$(${year}) album/$track $title
