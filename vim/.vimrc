@@ -78,6 +78,7 @@ Plug 'mhinz/vim-startify'							" a start screen with recently modified files an
 "Plug 'tasklist.vim'								" <leader> t shows a list of TODOs and FIXMEs
 Plug 'christoomey/vim-tmux-navigator'				" seamlessly navigate between tmux and vim panels
 Plug 'vim-scripts/Conque-GDB', {'on': 'ConqueGDB'}	" GDB integration inside vim
+Plug 'jez/vim-superman'								" Wrapper around man.vim's Man command
 
 " CompletionAndSnippets:
 Plug 'Raimondi/delimitMate'							" provides insert mode auto-completion for quotes,parens,brackets..
