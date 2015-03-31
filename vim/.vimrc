@@ -129,7 +129,7 @@ let g:tmuxline_preset = {
 
 " Badwolf
 let g:badwolf_darkgutter = 1 	" Make the gutters darker than the background.
-let g:badwolf_tabline = 1 		" Make the tabline the same color as the background 
+let g:badwolf_tabline = 1 		" Make the tabline the same color as the background
 
 " C.vim
 let g:C_LocalTemplateFile = $HOME.'/.vim/snippets_Cvim/c-support/templates/Templates' " this allows for the templates to be versioned on .dotfiles
@@ -209,6 +209,10 @@ let g:ConqueTerm_StartMessages = 0			" display warning messages if conqueTerm is
 " python-syntax
 let python_highlight_all = 1
 " you can change between py v2 and v3 with :Python2Syntax and :Python3Syntax
+
+" vim-superman
+" better man page support
+noremap K :SuperMan <cword><CR>
 " }}}
 
 " Filetype & languages {{{
@@ -281,6 +285,8 @@ set ruler 						" show the cursor position and line number at the bar
 set lazyredraw					" don't redraw while in macros
 set scrolloff=5					" keep at least 5 lines above/below
 set sidescrolloff=5 			" keep at least 5 lines left/right
+set splitright 					" Vertical splits use right half of screen
+set splitbelow 					" Horizontal splits use bottom half of screen
 set noerrorbells				" no error bells please
 set visualbell
 set vb t_vb=					" no beep or flash
@@ -373,6 +379,13 @@ set wrapscan		" jumps to the beginning if reaching end, and viceversa
 " }}}
 
 " Mappings {{{
+" Make these commonly mistyped commands still work
+command! WQ wq
+command! Wq wq
+command! Wqa wqa
+command! W w
+command! Q q
+
 let mapleader = "\<Space>"
 
 " use tab key to cycle through the buffers:
