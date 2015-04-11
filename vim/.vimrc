@@ -56,7 +56,7 @@ Plug 'yonchu/accelerated-smooth-scroll'				" smooth scroll on <C-d>, <C-u>, <C-f
 Plug 'bling/vim-airline'							" status/tabline (NEEDS powerline font)
 "Plug 'edkolev/tmuxline.vim'						" clone airline to tmux (its set up, only uncomment if you want to change the tmux statusline theme again)
 "Plug 'CSApprox'									" makes gvim-only colorschemes work in terminal vim
-" Plug 'sjl/badwolf'								" badwolf color theme
+"Plug 'sjl/badwolf'									" badwolf color theme
 
 " Functionality:
 "Plug 'matchit.zip'									" cicles between if, then, else..
@@ -94,8 +94,8 @@ Plug 'LaTeX-Box-Team/LaTeX-Box', {'for': 'tex'}
 Plug 'vivien/vim-addon-linux-coding-style', {'for': 'c'}
 Plug 'c.vim', {'for': 'c'}
 Plug 'justinmk/vim-syntax-extra', {'for': 'c'}		" bison, flex, c syntax (operators, delimiters, functions..)
-Plug 'freitass/todo.txt-vim', {'for': 'todo'}		" neccesary, vim default python syntax has a regex bug as of 7.4.663
-Plug 'hdima/python-syntax', {'for': 'python'}
+Plug 'freitass/todo.txt-vim', {'for': 'todo'}	
+Plug 'hdima/python-syntax', {'for': 'python'}		" neccesary, vim default python syntax has a regex bug as of 7.4.663
 
 call plug#end()
 " }}}
@@ -217,7 +217,7 @@ noremap K :SuperMan <cword><CR>
 
 " Filetype & languages {{{
 filetype on						" enable filetype detection
-filetype indent on				" enable filetype-specific indenting
+filetype indent on				" enable filetype-specific indenting. can conflict with set autoindent smartindent
 filetype plugin on				" enable filetype-specific plugins
 
 " C language
@@ -243,7 +243,7 @@ autocmd FileType mail setl nonumber spell textwidth=0 wrapmargin=0
 
 " Spaces & Tabs {{{
 set tabstop=4						" number of visual spaces per TAB
-set autoindent smartindent			" copy indent from current line when starting a new line, smartindent
+"set autoindent smartindent			" copy indent from current line when starting a new line, and smart indent automatically inserts one level of indentation in some cases.
 set listchars=tab:>·,trail:·,eol:¬	" show tabs, eol and trailing whitespace when showing separators
 "set listchars=tab:\ \ ,trail:·		" only show trailing whitespace when showing separators. the tab is 2 spaces
 "set list							" show listchars
@@ -420,18 +420,39 @@ nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 
 " list of shared binds:
-map <silent> <F2> :write<CR>						" write file without confirmation
-"nnoremap <silent> <F3> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let"@/=_s<Bar>:nohl<CR> " remove trailing whitespaces
-map <F3> :%s/\s\+$//<CR>							" remove trailing whitespaces
-map <silent> <F4> <Esc>:bd<CR>						" close buffer
-map <F5> :setlocal spell!<CR>						" toggle spell checking
-noremap <F6> :!xdg-open <cfile><CR><CR>				" open urls, files, etc. example: http://google.com
+" write file without confirmation:
+map <silent> <F2> :write<CR>						
+
+" remove trailing whitespaces:
+"nnoremap <silent> <F3> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let"@/=_s<Bar>:nohl<CR> 
+
+" remove trailing whitespaces:
+map <F3> :%s/\s\+$//<CR>	
+
+" close buffer:
+map <silent> <F4> <Esc>:bd<CR>
+
+" toggle spell checking:
+map <F5> :setlocal spell!<CR>				
+
+" open urls, files, etc. example: http://google.com:
+noremap <F6> :!xdg-open <cfile><CR><CR>
 set isfname+=32										" to open files with spaces
-" <F6>                                              " open (vim-shell plugin)
-map  <silent> <F7>    <Esc>:cprevious<CR>			" previous c error (c.vim plugin)
-map  <silent> <F8>    <Esc>:cnext<CR>				" next c error (c.vim plugin)
-" <F9>												" compile & link c code (alt+<F9> write + compile, ctrl+<F9> compile + run) (c.vim plugin)
-" <F11> 											" maximize (vim-shell plugin)
+
+" open (vim-shell plugin):
+"<F6>                   
+
+" previous c error (c.vim plugin):
+map  <silent> <F7>    <Esc>:cprevious<CR>			
+
+" next c error (c.vim plugin)
+map  <silent> <F8>    <Esc>:cnext<CR>			
+
+" compile & link c code (alt+<F9> write + compile, ctrl+<F9> compile + run) (c.vim plugin)
+"<F9>				
+
+" maximize (vim-shell plugin)
+"<F11>
 " }}}
 
 " Folding {{{
