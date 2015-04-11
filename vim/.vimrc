@@ -82,7 +82,7 @@ Plug 'jez/vim-superman'								" wrapper around man.vim's Man command
 
 " CompletionAndSnippets:
 Plug 'Raimondi/delimitMate'							" provides insert mode auto-completion for quotes,parens,brackets..
-Plug 'Valloric/YouCompleteMe', {'do': '~/.vim/bundle/YouCompleteMe/install.sh --clang-completer'}		" (NEEDS to be compiled, read the docs!)
+Plug 'Valloric/YouCompleteMe', {'do': './install.sh --clang-completer'}		" (NEEDS to be compiled, read the docs!)
 " Ultisnips (compatible with YouCompleteMe):
 Plug 'SirVer/ultisnips'								" track the engine.
 Plug 'honza/vim-snippets'							" Snippets are separated from the engine.
