@@ -56,7 +56,7 @@ Plug 'yonchu/accelerated-smooth-scroll'				" smooth scroll on <C-d>, <C-u>, <C-f
 Plug 'bling/vim-airline'							" status/tabline (NEEDS powerline font)
 "Plug 'edkolev/tmuxline.vim'						" clone airline to tmux (its set up, only uncomment if you want to change the tmux statusline theme again)
 "Plug 'CSApprox'									" makes gvim-only colorschemes work in terminal vim
-" Plug 'sjl/badwolf'									" badwolf color theme
+" Plug 'sjl/badwolf'								" badwolf color theme
 
 " Functionality:
 "Plug 'matchit.zip'									" cicles between if, then, else..
@@ -78,13 +78,13 @@ Plug 'mhinz/vim-startify'							" a start screen with recently modified files an
 "Plug 'tasklist.vim'								" <leader> t shows a list of TODOs and FIXMEs
 Plug 'christoomey/vim-tmux-navigator'				" seamlessly navigate between tmux and vim panels
 Plug 'vim-scripts/Conque-GDB', {'on': 'ConqueGDB'}	" GDB integration inside vim
-Plug 'jez/vim-superman'								" Wrapper around man.vim's Man command
+Plug 'jez/vim-superman'								" wrapper around man.vim's Man command
 
 " CompletionAndSnippets:
 Plug 'Raimondi/delimitMate'							" provides insert mode auto-completion for quotes,parens,brackets..
 Plug 'Valloric/YouCompleteMe', {'do': '~/.vim/bundle/YouCompleteMe/install.sh --clang-completer'}		" (NEEDS to be compiled, read the docs!)
 " Ultisnips (compatible with YouCompleteMe):
-Plug 'SirVer/ultisnips'								" Track the engine.
+Plug 'SirVer/ultisnips'								" track the engine.
 Plug 'honza/vim-snippets'							" Snippets are separated from the engine.
 
 " Filetype:
@@ -103,10 +103,10 @@ call plug#end()
 " Plugins settings {{{
 " Airline
 let g:airline_powerline_fonts = 1 						" automatically populate the g:airline_symbols dictionary with the powerline symbols
-set laststatus=2 										" Always show statusline
-set noshowmode 											" Hide the default mode text (e.g. -- INSERT -- below the statusline)
+set laststatus=2 										" always show statusline
+set noshowmode 											" hide the default mode text (e.g. -- INSERT -- below the statusline)
 let g:airline#extensions#tabline#enabled = 1			" automatically displays all buffers when there's only one tab open
-"let g:airline#extensions#tabline#left_sep = ' '			" straight separators
+"let g:airline#extensions#tabline#left_sep = ' '		" straight separators
 "let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#buffer_idx_mode = 1	" display numbers in the tab line, and use mappings <leader>1 to <leader>9
 if has("gui_running")
@@ -118,7 +118,7 @@ endif
 " Tmuxline
 " To export current statusline to a file which can be sourced by tmux.conf on startup:
 " :TmuxlineSnapshot ~/.tmux/tmuxline
-"let g:tmuxline_powerline_separators = 0				" Use block separators instead
+"let g:tmuxline_powerline_separators = 0				" use block separators instead
 let g:tmuxline_preset = {
       \'a'    : '#S',
       \'b'    : '#W',
@@ -128,19 +128,19 @@ let g:tmuxline_preset = {
       \'z'    : '#H'}
 
 " Badwolf
-let g:badwolf_darkgutter = 1 	" Make the gutters darker than the background.
-let g:badwolf_tabline = 1 		" Make the tabline the same color as the background
+let g:badwolf_darkgutter = 1					" make the gutters darker than the background.
+let g:badwolf_tabline = 1 						" make the tabline the same color as the background
 
 " C.vim
 let g:C_LocalTemplateFile = $HOME.'/.vim/snippets_Cvim/c-support/templates/Templates' " this allows for the templates to be versioned on .dotfiles
 
 " NERDComenter
-let g:NERDSpaceDelims = 1    " Add space before and after comment delimiters
+let g:NERDSpaceDelims = 1						" add space before and after comment delimiters
 
 " Latex Box Plugin
 let g:LatexBox_output_type="pdf"
-let g:LatexBox_latexmk_async=1 					"allow latexmk to run in the background and load any compilation errors in a quickfix window after it finishes running.
-"let g:LatexBox_latexmk_preview_continuously=1 	"Latexmk will track the currently edited file for writes and recompile automatically when necessary
+let g:LatexBox_latexmk_async=1 					" allow latexmk to run in the background and load any compilation errors in a quickfix window after it finishes running.
+"let g:LatexBox_latexmk_preview_continuously=1 	" Latexmk will track the currently edited file for writes and recompile automatically when necessary
 let g:LatexBox_quickfix=3 						" recommended by preview_continously
 let g:LatexBox_latexmk_options="-pdflatex='xelatex --shell-escape -interaction=nonstopmode %O %S' -cd -f"
 let g:LatexBox_autojump=1						" auto jump to first error after compiling
@@ -216,13 +216,13 @@ noremap K :SuperMan <cword><CR>
 " }}}
 
 " Filetype & languages {{{
-filetype on						" Enable filetype detection
-filetype indent on				" Enable filetype-specific indenting
-filetype plugin on				" Enable filetype-specific plugins
+filetype on						" enable filetype detection
+filetype indent on				" enable filetype-specific indenting
+filetype plugin on				" enable filetype-specific plugins
 
 " C language
 let c_space_errors = 1
-let c_comment_strings= 0		" dont highlight strings inside C comments
+let c_comment_strings = 0		" dont highlight strings inside C comments
 
 " Python language
 let python_space_errors = 1
@@ -251,63 +251,63 @@ set listchars=tab:>·,trail:·,eol:¬	" show tabs, eol and trailing whitespace w
 
 " Line wrap {{{
 " gq: performs 'rewrap the text'
-set wrap					" soft wrap long lines, visually, instead of changing the file
-set linebreak				" wrap long lines at characters in 'breakat' rather than at the last character that fits
-set breakindent				" wrapped lines are visually indented
+set wrap							" soft wrap long lines, visually, instead of changing the file
+set linebreak						" wrap long lines at characters in 'breakat' rather than at the last character that fits
+set breakindent						" wrapped lines are visually indented
 let &colorcolumn=join(range(81,200),",") " colors columns past 80
 set textwidth=80
-set formatoptions=tcrql 	" t autowrap to textwidth
-							" c autowrap comments to textwidth
-							" r autoinsert comment leader with <enter>
-							" q allow formatting of comments with gq
-							" l	Long lines are not broken in insert mode: When a line was longer than 'textwidth' when the insert command started, Vim does not automatically format it.
-							" 1	Don't break a line after a one-letter word. It's broken before it instead (if possible).
-							" j	Where it makes sense, remove a comment leader when joining lines
+set formatoptions=tcrql 			" t autowrap to textwidth
+									" c autowrap comments to textwidth
+									" r autoinsert comment leader with <enter>
+									" q allow formatting of comments with gq
+									" l	Long lines are not broken in insert mode: When a line was longer than 'textwidth' when the insert command started, Vim does not automatically format it.
+									" 1	Don't break a line after a one-letter word. It's broken before it instead (if possible).
+									" j	Where it makes sense, remove a comment leader when joining lines
 " }}}
 
 " Look and feel {{{
-set title						" change terminal title
-syntax on						" enable syntax processing
-"set virtualedit=all			" move the cursor everywhere
-set synmaxcol=2048				" prevents huge slow downs from syntax highlighting
-set number						" show line numbers
-"set relativenumber				" show relative numbers. can be on at the same time that number
-set cursorline					" highlight current line
-set showcmd						" Show (partial) command in status line
-set wildmenu        			" visual autocomplete for command menu
-set wildmode=longest,list,full	" complete longest common string, then list alternatives, then select the sortest first
-set cpoptions+=$				" put a '$' at the end of the changed text
-set showmatch					" Highlight matching brackets
-set mouse=a						" Enable mouse usage (all modes)
-set mousehide					" Hide the mouse when typing text
-set backspace=indent,eol,start	" allow backspacing over all of that
-set ruler 						" show the cursor position and line number at the bar
-set lazyredraw					" don't redraw while in macros
-set scrolloff=5					" keep at least 5 lines above/below
-set sidescrolloff=5 			" keep at least 5 lines left/right
-set splitright 					" Vertical splits use right half of screen
-set splitbelow 					" Horizontal splits use bottom half of screen
-set noerrorbells				" no error bells please
+set title							" change terminal title
+syntax on							" enable syntax processing
+"set virtualedit=all				" move the cursor everywhere
+set synmaxcol=2048					" prevents huge slow downs from syntax highlighting
+set number							" show line numbers
+"set relativenumber					" show relative numbers. can be on at the same time that number
+set cursorline						" highlight current line
+set showcmd							" show (partial) command in status line
+set wildmenu        				" visual autocomplete for command menu
+set wildmode=longest,list,full		" complete longest common string, then list alternatives, then select the sortest first
+set cpoptions+=$					" put a '$' at the end of the changed text
+set showmatch						" highlight matching brackets
+set mouse=a							" enable mouse usage (all modes)
+set mousehide						" hide the mouse when typing text
+set backspace=indent,eol,start		" allow backspacing over all of that
+set ruler 							" show the cursor position and line number at the bar
+set lazyredraw						" don't redraw while in macros
+set scrolloff=5						" keep at least 5 lines above/below
+set sidescrolloff=5 				" keep at least 5 lines left/right
+set splitright 						" vertical splits use right half of screen
+set splitbelow 						" horizontal splits use bottom half of screen
+set noerrorbells					" no error bells please
 set visualbell
-set vb t_vb=					" no beep or flash
+set vb t_vb=						" no beep or flash
 if has('autocmd')
 	autocmd GUIEnter * set visualbell t_vb= 	"redo t_vb= for gui so it takes place
 endif
-set timeout						" time out on key codes
-set ttimeoutlen=500				" The time in milliseconds that is waited for a key code or mapped key sequence to complete
+set timeout							" time out on key codes
+set ttimeoutlen=500					" the time in milliseconds that is waited for a key code or mapped key sequence to complete
 
 if has("gui_running")
-	set guiheadroom=0			" vim padding: fix it in ~/.gtkrc-2.0
+	set guiheadroom=0				" vim padding: fix it in ~/.gtkrc-2.0
 
-	set background=dark 		" if using a dark background, for syntax highlighting
+	set background=dark 			" if using a dark background, for syntax highlighting
 	colorscheme base16-monokai
 
-	set guioptions-=T			" Remove Toolbar
-	set guioptions+=c			" Use console dialogs
-	set guioptions-=r			" Remove right-hand scrollbar
-	set guioptions-=R			" Remove right-hand scrollbar
-	set guioptions-=l			" Remove left-hand scrollbar
-	set guioptions-=L			" Remove left-hand scrollbar
+	set guioptions-=T				" remove Toolbar
+	set guioptions+=c				" use console dialogs
+	set guioptions-=r				" remove right-hand scrollbar
+	set guioptions-=R				" remove right-hand scrollbar
+	set guioptions-=l				" remove left-hand scrollbar
+	set guioptions-=L				" remove left-hand scrollbar
 
 	if has("gui_gtk2")
 		"set guifont=Monospace\ 10
@@ -320,26 +320,27 @@ if has("gui_running")
 		set guifont=Consolas:h11:cANSI
 	endif
 else
-	set t_Co=256				" force number of colors to 256 inside vim. this shouldn't be done, better with TERM
-	"let base16colorspace=256	" Access colors present in 256 colorspace
-	set background=dark 		" if using a dark background, for syntax highlighting
-	colorscheme wombat256mod
+	set t_Co=256					" force number of colors to 256 inside vim. this shouldn't be done, better with TERM
+	"let base16colorspace=256		" access colors present in 256 colorspace
+	set background=dark 			" if using a dark background, for syntax highlighting
+	" colorscheme wombat256
 	" colorscheme badwolf
-	"colorscheme xoria256
+	colorscheme xoria256
 	"colorscheme base16-default
 	"colorscheme wombat256
 	"colorscheme base16-tomorrow
-	highlight ColorColumn ctermbg=232 guibg=#080808 	" colorcolumn for wombat256mod
-	"highlight ColorColumn ctermbg=0 guibg=#000000 	" colorcolumn for wombat256
-	"highlight ColorColumn ctermbg=233 guibg=#121212 " colorcolumn for xoria256
-	"highlight ColorColumn ctermbg=0 guibg=#303030 	" colorcolumn for base16
+	" highlight ColorColumn ctermbg=232 guibg=#080808 	" colorcolumn for wombat256mod
+	" highlight ColorColumn ctermbg=0 guibg=#000000 	" colorcolumn for wombat256
+	highlight ColorColumn ctermbg=233 guibg=#121212		" colorcolumn for xoria256
+	"highlight ColorColumn ctermbg=0 guibg=#303030		" colorcolumn for base16
 	"highlight ColorColumn ctermbg=235 guibg=#262626	" colorcolumn for base16-default
 endif
 
 highlight clear SignColumn		" sets the git gutter to the same color as the number column (needs to be after your colorscheme)
 
 " terminal: Use a blinking upright bar cursor in Insert mode, and a blinking block in normal
-" this could be done with Plugin 'jszakmeister/vim-togglecursor'		" change cursor to a | when on vim console and insert mode
+" this could be done with Plugin 'jszakmeister/vim-togglecursor'
+" change cursor to a '|' when on vim console and insert mode:
 if &term == 'xterm-256color' || &term == 'screen-256color'
 	let &t_SI = "\<Esc>[5 q"
 	let &t_EI = "\<Esc>[1 q"
@@ -357,29 +358,29 @@ set viminfo+=n$HOME/.vim/.viminfo
 " delete the empty buffer that appears on startup:
 "autocmd VimEnter * nested if  bufname('')==''  &&  line('$') == 1 &&  col('$')==1 &&  !&modified | bd % | endif
 
-set hidden					" don't mark buffers as abandoned if hidden
+set hidden							" don't mark buffers as abandoned if hidden
 set history=1000
-set undofile				" Save undo's after file closes
-set undodir=$HOME/.vim/undo	" where to save undo histories
-set undolevels=1000			" How many undos
-set undoreload=10000		" number of lines to save for undo
+set undofile						" save undo's after file closes
+set undodir=$HOME/.vim/undo			" where to save undo histories
+set undolevels=1000					" how many undos
+set undoreload=10000				" number of lines to save for undo
 " }}}
 
 " Backup and Swap files {{{
-set backupdir=$HOME/.vim/backup	" for backup files
-set directory=$HOME/.vim/backup " for .swp files
+set backupdir=$HOME/.vim/backup		" for backup files
+set directory=$HOME/.vim/backup		" for .swp files
 " }}}
 
 " Searching {{{
-set ignorecase		" Do case insensitive matching
-set smartcase		" Overrides ignorecase if uppercase used in search string
-set incsearch		" Incremental search
-set hlsearch		" highlight matches
-set wrapscan		" jumps to the beginning if reaching end, and viceversa
+set ignorecase						" do case insensitive matching
+set smartcase						" overrides ignorecase if uppercase used in search string
+set incsearch						" incremental search
+set hlsearch						" highlight matches
+set wrapscan						" jumps to the beginning if reaching end, and viceversa
 " }}}
 
 " Mappings {{{
-" Make these commonly mistyped commands still work
+" make these commonly mistyped commands still work:
 command! WQ wq
 command! Wq wq
 command! Wqa wqa
@@ -392,22 +393,22 @@ let mapleader = "\<Space>"
 nnoremap <leader><Tab>   :bnext<CR>
 nnoremap <leader><S-Tab> :bprevious<CR>
 
-" remap jk to escape in insert mode.  You'll never type jk anyway, so it's great!
+" remap jk to escape in insert mode:  You'll never type jk anyway, so it's great!
 inoremap jk <Esc>
 
-" Use hjkl-movement between rows when soft wrapping
+" use hjkl-movement between rows when soft wrapping:
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
-" force yourself to stop using the arrow keys
+" force yourself to stop using the arrow keys:
 map <up>    <nop>
 map <down>  <nop>
 map <left>  <nop>
 map <right> <nop>
 
-" move between tabs
+" move between tabs:
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
 nmap <leader>3 <Plug>AirlineSelectTab3
@@ -443,7 +444,7 @@ set foldlevelstart=1		" start with fold level of 1
 
 " Launch {{{
 set encoding=utf8
-set autowrite								" Automatically save before commands like :next and :make
+set autowrite								" automatically save before commands like :next and :make
 set autochdir								" automatically cd into the directory that the file is in (this will break plugins if activated!!!)
 "autocmd BufEnter * silent! lcd %:p:h		" automatically cd into the dir of the file. this breaks less
 set autoread								" watch for file changes
