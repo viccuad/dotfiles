@@ -109,6 +109,7 @@ Plug 'scrooloose/syntastic'							" automatic syntax checking
 Plug 'LargeFile'									" disables certain features of vim for speed in large files
 Plug 'AndrewRadev/inline_edit.vim'					" change code inside other code with ':InlineEdit'
 Plug 'tpope/vim-commentary'							" comment with motion support
+Plug 'tmux-plugins/vim-tmux-focus-events'			" lets terminal vim to know about focus changes (autoread, etc)
 " Plug 'scrooloose/nerdcommenter'					" toggle comments
 	let g:NERDSpaceDelims = 1						" add space before and after comment delimiters
 
