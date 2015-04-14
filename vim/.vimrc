@@ -66,22 +66,30 @@ Plug 'bling/vim-airline'							" status/tabline (NEEDS powerline font)
 	if has("gui_running")
 		let g:airline_theme= "base16"
 	else
-		let g:airline_theme= "wombat"
+		let g:airline_theme= "badwolf"
 	endif
+	let g:airline_theme_patch_func = 'AirlineThemePatch'
+	function! AirlineThemePatch(palette)
+			if g:airline_theme == 'badwolf'
+					let a:palette.normal.airline_c = [ '#8cffba' , '#242321' , 121 , 233 ]
+					let a:palette.insert.airline_c = [ '#0a9dff' , '#242321' , 39  , 233 ]
 
-"Plug 'edkolev/tmuxline.vim'						" clone airline to tmux (its set up, only uncomment if you want to change the tmux statusline theme again)
+			endif
+	endfunction
+
+" Plug 'edkolev/tmuxline.vim'						" clone airline to tmux (its set up, only uncomment if you want to change the tmux statusline theme again)
 	" To export current statusline to a file which can be sourced by tmux.conf on startup:
 	" :TmuxlineSnapshot ~/.tmux/tmuxline
 	"let g:tmuxline_powerline_separators = 0		" use block separators instead
 	let g:tmuxline_preset = {
-    	  \'a'    : '#S',
-    	  \'b'    : '#W',
-    	  \'win'  : '#I #W',
-    	  \'cwin' : '#I #W',
-    	  \'y'    : '%R',
-    	  \'z'    : '#H'}
+		\'a'    : '#S',
+		\'b'    : '#W',
+		\'win'  : '#I #W',
+		\'cwin' : '#I #W',
+		\'y'    : '%R',
+		\'z'    : '#H'}
 
-"Plug 'sjl/badwolf'									" badwolf color theme
+Plug 'sjl/badwolf'									" badwolf color theme
 	let g:badwolf_darkgutter = 1					" make the gutters darker than the background.
 	let g:badwolf_tabline = 1 						" make the tabline the same color as the background
 
@@ -96,13 +104,13 @@ Plug 'airblade/vim-gitgutter'						" show +,-,~ git changes on the gutter
 "Plug 'majutsushi/tagbar'							" show list of variables, functions, classes.. (NEEDS ctags)
 "Plug 'kien/ctrlp.vim'								" full path fuzzy file,buffer,mru,tag.. finder
 "Plug 'sjl/gundo.vim'								" visualize vim undo tree
-Plug 'nathanaelkane/vim-indent-guides'				" visually display indent levels
+" Plug 'nathanaelkane/vim-indent-guides'			" visually display indent levels
 Plug 'scrooloose/syntastic'							" automatic syntax checking
 Plug 'LargeFile'									" disables certain features of vim for speed in large files
 Plug 'AndrewRadev/inline_edit.vim'					" change code inside other code with ':InlineEdit'
 Plug 'tpope/vim-commentary'							" comment with motion support
 " Plug 'scrooloose/nerdcommenter'					" toggle comments
-	let g:NERDSpaceDelims = 1	" add space before and after comment delimiters
+	let g:NERDSpaceDelims = 1						" add space before and after comment delimiters
 
 "Plug 'tasklist.vim'								" <leader> t shows a list of TODOs and FIXMEs
 Plug 'christoomey/vim-tmux-navigator'				" seamlessly navigate between tmux and vim panels
@@ -113,7 +121,7 @@ Plug 'yonchu/accelerated-smooth-scroll'				" smooth scroll on <C-d>, <C-u>, <C-f
 
 "Plug 'xolox/vim-shell'								" provides integration between Vim and environment (fullscreen, etc). requires wmctrl
 "Plug 'xolox/vim-misc'								" (NEEDED by vim-shell)
-	let g:shell_fullscreen_items = ''		" hide: m mainmenu, T toolbar, e tabline
+	let g:shell_fullscreen_items = ''				" hide: m mainmenu, T toolbar, e tabline
 
 Plug 'mhinz/vim-startify'							" a start screen with recently modified files and vim sessions
 	let g:startify_session_persistence = 0			" automatically update sessions
@@ -126,7 +134,7 @@ Plug 'mhinz/vim-startify'							" a start screen with recently modified files an
 		\ '',
 		\ ]
 	let g:startify_custom_header =
-      	\ map(split(system('fortune'), '\n'), '"   ". v:val') + ['']
+		\ map(split(system('fortune'), '\n'), '"   ". v:val') + ['']
 
 Plug 'vim-scripts/Conque-GDB', {'on': 'ConqueGDB'}	" GDB integration inside vim
 	let g:ConqueTerm_Color = 2						" 1: strip color after 200 lines, 2: always with color
@@ -149,24 +157,24 @@ Plug 'honza/vim-snippets'							" Snippets are separated from the engine.
 	let g:UltiSnipsSnippetDirectories=["snippets_UltiSnips"]
 	" Ultisnips and YouCompleteMe integration, both work with tab
 	function! g:UltiSnips_Complete()
-    	call UltiSnips#ExpandSnippet()
-    	if g:ulti_expand_res == 0
-        	if pumvisible()
-            	return "\<C-n>"
-        	else
-            	call UltiSnips#JumpForwards()
-            	if g:ulti_jump_forwards_res == 0
-               	return "\<TAB>"
-            	endif
-        	endif
-    	endif
-    	return ""
+		call UltiSnips#ExpandSnippet()
+		if g:ulti_expand_res == 0
+			if pumvisible()
+				return "\<C-n>"
+			else
+				call UltiSnips#JumpForwards()
+				if g:ulti_jump_forwards_res == 0
+					return "\<TAB>"
+				endif
+			endif
+		endif
+		return ""
 	endfunction
 	au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
 	let g:UltiSnipsJumpForwardTrigger="<tab>"
 	let g:UltiSnipsListSnippets="<c-e>"
-	" this mapping Enter key to <C-y> to chose the current highlight item
-	" and close the selection list, same as other IDEs.
+	" this maps Enter key to <C-y> to chose the current highlight item
+	" and close the selection list, same as other IDEs:
 	" CONFLICTS with some plugins like tpope/Endwise
 	inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
@@ -190,7 +198,7 @@ Plug 'c.vim', {'for': 'c'}
 	let g:C_LocalTemplateFile = $HOME.'/.vim/snippets_Cvim/c-support/templates/Templates' " this allows for the templates to be versioned on .dotfiles
 
 Plug 'hdima/python-syntax', {'for': 'python'}		" neccesary, vim default python syntax has a regex bug as of 7.4.663
-	let python_highlight_all = 1					
+	let python_highlight_all = 1
 	" you can change between py v2 and v3 with :Python2Syntax and :Python3Syntax
 
 Plug 'jamessan/vim-gnupg'							" encrypts/decrypts with gpg files that end in .gpg,.pgp or .asc. plaintext only on ram
@@ -309,16 +317,17 @@ else
 	"let base16colorspace=256		" access colors present in 256 colorspace
 	set background=dark 			" if using a dark background, for syntax highlighting
 	" colorscheme wombat256
-	" colorscheme badwolf
-	colorscheme xoria256
+	colorscheme badwolf
+	" colorscheme xoria256
 	" colorscheme base16-default
 	" colorscheme wombat256mod
-	"colorscheme base16-tomorrow
+	" colorscheme base16-tomorrow
 	" highlight ColorColumn ctermbg=232 guibg=#080808 	" colorcolumn for wombat256mod
 	" highlight ColorColumn ctermbg=0 guibg=#000000 	" colorcolumn for wombat256
-	highlight ColorColumn ctermbg=233 guibg=#121212		" colorcolumn for xoria256
-	"highlight ColorColumn ctermbg=0 guibg=#303030		" colorcolumn for base16
-	"highlight ColorColumn ctermbg=235 guibg=#262626	" colorcolumn for base16-default
+	" highlight ColorColumn ctermbg=233 guibg=#121212	" colorcolumn for xoria256
+	highlight ColorColumn ctermbg=232 guibg=#080808		" colorcolumn for badwolf
+	" highlight ColorColumn ctermbg=0 guibg=#303030		" colorcolumn for base16
+	" highlight ColorColumn ctermbg=235 guibg=#262626	" colorcolumn for base16-default
 endif
 
 highlight clear SignColumn		" sets the git gutter to the same color as the number column (needs to be after your colorscheme)
