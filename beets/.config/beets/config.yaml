@@ -8,7 +8,7 @@ threaded: yes
 color: yes
 
 import:
-        # move: no
+        move: no
         copy: yes
         resume: ask
 
