@@ -2,3 +2,4 @@
 /.weechat/*.log
 /.weechat/logs/*
 /.weechat/certs/*
+/.weechat/otr/*
