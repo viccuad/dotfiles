@@ -1,0 +1,69 @@
+#######################################################################
+#                            Rust Snippets                            #
+#######################################################################
+
+priority -50
+
+snippet fn "A function, optionally with arguments and return type." b
+fn ${1:function_name}(${2})${3/..*/ -> /}${3} {
+	${VISUAL}${0}
+}
+endsnippet
+
+snippet pri "print!(..)" b
+print!("${1}"${2/..*/, /}${2});
+endsnippet
+
+snippet pln "println!(..)" b
+println!("${1}"${2/..*/, /}${2});
+endsnippet
+
+snippet fmt "format!(..)"
+format!("${1}"${2/..*/, /}${2});
+endsnippet
+
+snippet macro "macro_rules!" b
+macro_rules! ${1:name} (
+	(${2:matcher}) => (
+		${3}
+	)
+)
+endsnippet
+
+snippet mod	 "A module" b
+mod ${1:`!p snip.rv = snip.basename.lower() or "name"`} {
+	${VISUAL}${0}
+}
+endsnippet
+
+snippet for "for .. in .." b
+for ${1:i} in ${2:${3:0us}..${4:10}} {
+	${VISUAL}${0}
+}
+endsnippet
+
+snippet todo "A Todo comment"
+// [TODO]: ${1:Description} - `!v strftime("%Y-%m-%d %I:%M%P")`
+endsnippet
+
+snippet st "Struct" b
+struct ${1:`!p snip.rv = snip.basename.title() or "Name"`} {
+	${VISUAL}${0}
+}
+endsnippet
+
+snippet stn "Struct with new constructor." b
+pub struct ${1:`!p snip.rv = snip.basename.title() or "Name"`} {
+	${3}
+}
+
+impl $1 {
+	pub fn new(${2}) -> $1 {
+		${4}return $1 {
+			${5}
+		};
+	}
+}
+endsnippet
+
+# vim:ft=snippets:

@@ -1,0 +1,8 @@
+/.nvim/bundle/*
+/.nvim/backup/*
+/.nvim/undo/*
+/.nvim/.viminfo
+/.nvim/.netrwhist
+/.nvim/session/
+/.nvim/session/*
+/.nvim/autoload/plug.vim
