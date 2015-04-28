@@ -22,7 +22,6 @@ set focuscontent
 
 " use chars for hint links, ala vimium
 set hintchars=asdfghklqwertyuiop
-
 "}}}
 
 " Search {{{
@@ -51,10 +50,18 @@ set complete=sS
 
 set defsearch=duckduckgo
 set suggestengines=yahoo
-
 "}}}
 
 " Mappings {{{
+" remap C-c:
+noremap  <C-c> <C-v><C-c>
+inoremap <C-c> <C-v><C-c>
+cnoremap <C-c> <C-v><C-c>
+" remap C-v:
+noremap  <C-v> <C-v><C-v>
+inoremap <C-v> <C-v><C-v>
+cnoremap <C-v> <C-v><C-v>
+
 nnoremap j 3j
 nnoremap k 3k
 "nnoremap h 3<left>
@@ -63,7 +70,7 @@ nnoremap h <C-p>
 nnoremap l <C-n>
 " This is totally awesome - remap jj to escape in insert mode.  You'll never type jj anyway, so it's great!
 inoremap jj <Esc>
-" Can be typed even faster than esc 
+" Can be typed even faster than esc
 inoremap jk <Esc>
 
 " Move the current tab to the left
