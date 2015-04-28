@@ -54,6 +54,8 @@ Plug 'chriskempson/base16-vim'						" base16 color themes
 "Plug 'mimicpak'									" more color themes
 "Plug 'severin-lemaignan/vim-minimap'				" sublime-text style minimap (NEEDS braille capable font, python)
 "Plug 'CSApprox'									" makes gvim-only colorschemes work in terminal vim
+" Plug 'zefei/vim-colortuner'						" only works with true colours (neovim, gvim)
+	let g:colortuner_filepath = '~/.vim/.vim-colortuner'
 
 Plug 'bling/vim-airline'							" status/tabline (NEEDS powerline font)
 	let g:airline_powerline_fonts = 1 						" automatically populate the g:airline_symbols dictionary with the powerline symbols
@@ -96,12 +98,12 @@ Plug 'sjl/badwolf'									" badwolf color theme
 
 " FUNCTIONALITY:
 "Plug 'matchit.zip'									" cicles between if, then, else..
-Plug 'tpope/vim-surround'							" surround strings faster 			(http://www.catonmat.net/blog/vim-plugins-surround-vim/)
+Plug 'tpope/vim-surround'							" surround strings faster (csXX, dsX, ysMX, yssX)
 Plug 'tpope/vim-speeddating'						" fixes vim incrementing of dates, times, etc (<C-A>, <C-X>)
 "Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " navigation tree
 Plug 'tpope/vim-fugitive'							" git support
 Plug 'airblade/vim-gitgutter'						" show +,-,~ git changes on the gutter
-"Plug 'majutsushi/tagbar'							" show list of variables, functions, classes.. (NEEDS ctags)
+" Plug 'majutsushi/tagbar' , { 'on': ['Tagbar', 'TagbarToggle'] }				" show list of variables, functions, classes.. (NEEDS exuberant-ctags)
 "Plug 'kien/ctrlp.vim'								" full path fuzzy file,buffer,mru,tag.. finder
 "Plug 'sjl/gundo.vim'								" visualize vim undo tree
 " Plug 'nathanaelkane/vim-indent-guides'			" visually display indent levels
@@ -388,8 +390,10 @@ let mapleader = "\<Space>"
 nnoremap <leader><Tab>   :bnext<CR>
 nnoremap <leader><S-Tab> :bprevious<CR>
 
-" remap jk to escape in insert mode:  You'll never type jk anyway, so it's great!
+" remap jk to escape:  You'll never type jk anyway, so it's great!
 inoremap jk <Esc>
+xnoremap jk <Esc>
+cnoremap jk <Esc>
 
 " use hjkl-movement between rows when soft wrapping:
 nnoremap j gj
@@ -446,8 +450,23 @@ map  <silent> <F8>    <Esc>:cnext<CR>
 " compile & link c code (alt+<F9> write + compile, ctrl+<F9> compile + run) (c.vim plugin)
 "<F9>
 
-" maximize (vim-shell plugin)
+" maximize (vim-shell plugin):
 "<F11>
+
+" Google it:
+" <leader>?
+function! s:goog()
+  let url = 'https://encrypted.google.com/search?hl=en&q='
+  " Excerpt from vim-unimpared
+  let q = substitute(
+        \ '"'.@0.'"',
+        \ '[^A-Za-z0-9_.~-]',
+        \ '\="%".printf("%02X", char2nr(submatch(0)))',
+        \ 'g')
+  call system('open ' . url . q)
+endfunction
+xnoremap <leader>? y:call <SID>goog()<cr>
+
 " }}}
 
 " Folding {{{
