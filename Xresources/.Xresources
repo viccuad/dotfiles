@@ -112,10 +112,12 @@ xterm*VT100*pointerMode: 2
 URxvt*termName:                       rxvt-unicode-256color
 URxvt*geometry:                       110x30
 ! scrollbar style: rxvt (default), plain (most compact), next, or xterm
-! URxvt*scrollstyle:                    plain
+URxvt*scrollstyle:                    plain
 URxvt*scrollBar:                      false
 ! URxvt*thickness:                      number
-! URxvt*transparent:                    boolean
+! URxvt*transparent:                    false
+! URxvt*.shading: 0 to 99 darkens, 101 to 200 lightens
+! URxvt*.shading: 110
 ! URxvt*tintColor:                      color
 ! URxvt*shading:                        number
 URxvt*urgentOnBell:                   true
@@ -124,8 +126,8 @@ URxvt*cursorBlink:                    true
 ! URxvt*pointerBlank:                   boolean
 URxvt*font: xft:DejaVu Sans Mono for Powerline:pixelsize=11
 URxvt*boldFont: xft:DejaVu Sans Mono for Powerline:bold:pixelsize=11
-! URxvt*italicFont:                     fontname
-! URxvt*boldItalicFont:                 fontname
+URxvt*italicFont: xft:DejaVu Sans Mono for Powerline:italic:pixelsize=11
+URxvt*boldItalicFont: xft:DejaVu Sans Mono for Powerline:italic:pixelsize=11
 ! URxvt*intensityStyles:                boolean
 ! URxvt*inputMethod:                    name
 ! URxvt*preeditType:                    style
@@ -133,16 +135,21 @@ URxvt*title:                          Terminal
 URxvt*iconName:                       Terminal 
 URxvt*saveLines:                      65535
 URxvt*borderLess:                     false
-! URxvt*lineSpace:                      number
+URxvt.borderColor:                    #000000
+URxvt.internalBorder:                 0
+! URxvt*lineSpace:                    number
 URxvt*letterSpace:                    -1
+! Hide the mouse pointer:
+URxvt.pointerBlank: true
+! URxvt.pointerBlankDelay: number [default 2, secods]
 
 ! plugins:
-!URxvt*perl-lib:                       ~/.urxvt
-! URxvt*perl-eval:                      perl-eval
+! URxvt*perl-lib:                       ~/.urxvt
+URxvt*perl-eval:                      perl-eval
 ! fullscreen depends on wmctrl
 ! fontsize depends on xorg-xlsfonts, xorg-xrdb
 URxvt*perl-ext-common: default,matcher,fullscreen,clipboard,font-size
-! URxvt*perl-ext:                       string
+URxvt*perl-ext:                       string
 
 ! clipboard access
 URxvt*iso14755:                       false
@@ -164,6 +171,116 @@ URxvt*keysym.C-S-Down:                perl:font-size:decglobal
 
 ! fullscreen 
 URxvt*keysym.C-F11:                   perl:fullscreen:switch
+
+! emulate XTerm for proper recognition of key combinations in Vim
+! ! original source: https://github.com/sunaku/home/
+URxvt.keysym.S-F1 : \033[1;2P
+URxvt.keysym.S-F2 : \033[1;2Q
+URxvt.keysym.S-F3 : \033[1;2R
+URxvt.keysym.S-F4 : \033[1;2S
+URxvt.keysym.S-F5 : \033[15;2~
+URxvt.keysym.S-F6 : \033[17;2~
+URxvt.keysym.S-F7 : \033[18;2~
+URxvt.keysym.S-F8 : \033[19;2~
+URxvt.keysym.S-F9 : \033[20;2~
+URxvt.keysym.S-F10 : \033[21;2~
+URxvt.keysym.S-F11 : \033[23;2~
+URxvt.keysym.S-F12 : \033[24;2~
+URxvt.keysym.M-F1 : \033[1;3P
+URxvt.keysym.M-F2 : \033[1;3Q
+URxvt.keysym.M-F3 : \033[1;3R
+URxvt.keysym.M-F4 : \033[1;3S
+URxvt.keysym.M-F5 : \033[15;3~
+URxvt.keysym.M-F6 : \033[17;3~
+URxvt.keysym.M-F7 : \033[18;3~
+URxvt.keysym.M-F8 : \033[19;3~
+URxvt.keysym.M-F9 : \033[20;3~
+URxvt.keysym.M-F10 : \033[21;3~
+URxvt.keysym.M-F11 : \033[23;3~
+URxvt.keysym.M-F12 : \033[24;3~
+URxvt.keysym.C-F1 : \033[1;5P
+URxvt.keysym.C-F2 : \033[1;5Q
+URxvt.keysym.C-F3 : \033[1;5R
+URxvt.keysym.C-F4 : \033[1;5S
+URxvt.keysym.C-F5 : \033[15;5~
+URxvt.keysym.C-F6 : \033[17;5~
+URxvt.keysym.C-F7 : \033[18;5~
+URxvt.keysym.C-F8 : \033[19;5~
+URxvt.keysym.C-F9 : \033[20;5~
+URxvt.keysym.C-F10 : \033[21;5~
+URxvt.keysym.C-F11 : \033[23;5~
+URxvt.keysym.C-F12 : \033[24;5~
+URxvt.keysym.S-Up : \033[1;2A
+URxvt.keysym.S-Down : \033[1;2B
+URxvt.keysym.S-Right : \033[1;2C
+URxvt.keysym.S-Left : \033[1;2D
+! !URxvt.keysym.S-Page_Up : captured by terminal for scrolling
+! !URxvt.keysym.S-Page_Down : captured by terminal for scrolling
+URxvt.keysym.S-Home : \033[1;2H
+URxvt.keysym.S-End : \033[1;2F
+! !URxvt.keysym.S-Insert : captured by terminal as paste
+URxvt.keysym.S-Delete : \033[3;2~
+URxvt.keysym.M-Up : \033[1;3A
+URxvt.keysym.M-Down : \033[1;3B
+URxvt.keysym.M-Right : \033[1;3C
+URxvt.keysym.M-Left : \033[1;3D
+URxvt.keysym.M-Page_Up : \033[5;3~
+URxvt.keysym.M-Page_Down : \033[6;3~
+URxvt.keysym.M-Home : \033[1;3H
+URxvt.keysym.M-End : \033[1;3F
+URxvt.keysym.M-Insert : \033[2;3~
+URxvt.keysym.M-Delete : \033[3;3~
+URxvt.keysym.M-S-Up : \033[1;4A
+URxvt.keysym.M-S-Down : \033[1;4B
+URxvt.keysym.M-S-Right : \033[1;4C
+URxvt.keysym.M-S-Left : \033[1;4D
+URxvt.keysym.M-S-Page_Up : \033[5;4~
+URxvt.keysym.M-S-Page_Down : \033[6;4~
+URxvt.keysym.M-S-Home : \033[1;4H
+URxvt.keysym.M-S-End : \033[1;4F
+URxvt.keysym.M-S-Insert : \033[2;4~
+URxvt.keysym.M-S-Delete : \033[3;4~
+URxvt.keysym.C-Up : \033[1;5A
+URxvt.keysym.C-Down : \033[1;5B
+URxvt.keysym.C-Right : \033[1;5C
+URxvt.keysym.C-Left : \033[1;5D
+URxvt.keysym.C-Page_Up : \033[5;5~
+URxvt.keysym.C-Page_Down : \033[6;5~
+URxvt.keysym.C-Home : \033[1;5H
+URxvt.keysym.C-End : \033[1;5F
+URxvt.keysym.C-Insert : \033[2;5~
+URxvt.keysym.C-Delete : \033[3;5~
+URxvt.keysym.C-S-Up : \033[1;6A
+URxvt.keysym.C-S-Down : \033[1;6B
+URxvt.keysym.C-S-Right : \033[1;6C
+URxvt.keysym.C-S-Left : \033[1;6D
+URxvt.keysym.C-S-Page_Up : \033[5;6~
+URxvt.keysym.C-S-Page_Down : \033[6;6~
+URxvt.keysym.C-S-Home : \033[1;6H
+URxvt.keysym.C-S-End : \033[1;6F
+URxvt.keysym.C-S-Insert : \033[2;6~
+URxvt.keysym.C-S-Delete : \033[3;6~
+URxvt.keysym.M-C-Up : \033[1;7A
+URxvt.keysym.M-C-Down : \033[1;7B
+URxvt.keysym.M-C-Right : \033[1;7C
+URxvt.keysym.M-C-Left : \033[1;7D
+URxvt.keysym.M-C-Page_Up : \033[5;7~
+URxvt.keysym.M-C-Page_Down : \033[6;7~
+URxvt.keysym.M-C-Home : \033[1;7H
+URxvt.keysym.M-C-End : \033[1;7F
+URxvt.keysym.M-C-Insert : \033[2;7~
+URxvt.keysym.M-C-Delete : \033[3;7~
+URxvt.keysym.M-C-S-Up : \033[1;8A
+URxvt.keysym.M-C-S-Down : \033[1;8B
+URxvt.keysym.M-C-S-Right : \033[1;8C
+URxvt.keysym.M-C-S-Left : \033[1;8D
+URxvt.keysym.M-C-S-Page_Up : \033[5;8~
+URxvt.keysym.M-C-S-Page_Down : \033[6;8~
+URxvt.keysym.M-C-S-Home : \033[1;8H
+URxvt.keysym.M-C-S-End : \033[1;8F
+URxvt.keysym.M-C-S-Insert : \033[2;8~
+URxvt.keysym.M-C-S-Delete : \033[3;8~
+
 ! }}}
 
 ! vim:foldmethod=marker:foldlevel=0
