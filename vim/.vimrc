@@ -342,9 +342,9 @@ if &term == 'xterm-256color' || &term == 'screen-256color'
 	let &t_SI = "\<Esc>[5 q"
 	let &t_EI = "\<Esc>[1 q"
 endif
-" urxvt has not implemented the bar cursor until 9.21, lets use an underbar:
+" urxvt has not implemented the bar cursor until 9.21, lets use an underbar: let &t_SI = "\<Esc>[3 q"
 if &term == 'rxvt-unicode-256color'
-	let &t_SI = "\<Esc>[3 q"
+	let &t_SI = "\<Esc>[5 q"
 	let &t_EI = "\<Esc>[1 q"
 endif
 " }}}
