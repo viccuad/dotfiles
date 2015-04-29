@@ -1,7 +1,7 @@
 /.nvim/bundle/*
 /.nvim/backup/*
 /.nvim/undo/*
-/.nvim/.viminfo
+/.nvim/.nviminfo
 /.nvim/.netrwhist
 /.nvim/session/
 /.nvim/session/*
