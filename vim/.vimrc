@@ -297,7 +297,6 @@ if has("gui_running")
 	set background=dark 			" if using a dark background, for syntax highlighting
 
 	colorscheme base16-monokai
-
 	set guioptions-=T				" remove Toolbar
 	set guioptions+=c				" use console dialogs
 	set guioptions-=r				" remove right-hand scrollbar
@@ -333,7 +332,8 @@ else
 	" highlight ColorColumn ctermbg=235 guibg=#262626	" colorcolumn for base16-default
 endif
 
-highlight clear SignColumn		" sets the git gutter to the same color as the number column (needs to be after your colorscheme)
+highlight Comment cterm=italic gui=italic	" put comments in italic (needs to be after your colorscheme) (needs tmux to be correctly set)
+highlight clear SignColumn					" sets the git gutter to the same color as the number column (needs to be after your colorscheme)
 
 " terminal: Use a blinking upright bar cursor in Insert mode, and a blinking block in normal
 " this could be done with Plugin 'jszakmeister/vim-togglecursor'
