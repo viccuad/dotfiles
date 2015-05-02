@@ -55,6 +55,35 @@ Plug 'chriskempson/base16-vim'						" base16 color themes
 "Plug 'severin-lemaignan/vim-minimap'				" sublime-text style minimap (NEEDS braille capable font, python)
 "Plug 'CSApprox'									" makes gvim-only colorschemes work in terminal vim
 " Plug 'zefei/vim-colortuner'						" only works with true colours (neovim, gvim)
+Plug 'junegunn/goyo.vim', {'on': 'Goyo'}			" distraction free mode
+Plug 'junegunn/limelight.vim', {'on': 'Limelight'}	" hyperfocus mode
+	let g:limelight_paragraph_span = 0
+	function! s:goyo_enter()
+		if has('gui_running')
+			set fullscreen
+			set linespace=7
+		elseif exists('$TMUX')
+			silent !tmux set status off
+		endif
+		" hi NonText ctermfg=101
+		Limelight
+	endfunction
+	function! s:goyo_leave()
+		if has('gui_running')
+			set nofullscreen
+			set linespace=0
+		elseif exists('$TMUX')
+			silent !tmux set status on
+		endif
+		Limelight!
+	endfunction
+	augroup goyo_plus_limeligh
+		autocmd!
+		autocmd! User GoyoEnter
+		autocmd! User GoyoLeave
+		autocmd  User GoyoEnter nested call <SID>goyo_enter()
+		autocmd  User GoyoLeave nested call <SID>goyo_leave()
+	augroup END
 	let g:colortuner_filepath = '~/.vim/.vim-colortuner'
 
 Plug 'bling/vim-airline'							" status/tabline (NEEDS powerline font)
