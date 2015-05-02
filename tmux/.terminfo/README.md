@@ -36,7 +36,7 @@ If your terminal supports 256 colors, use:
 
 	$ screen_terminfo="screen-256color"
 	$ infocmp "$screen_terminfo" | sed \
-	  -e 's/^screen-256color[^|]*|[^,]*,/screen-256color-it|screen with italics support,/' \
+	  -e 's/^screen-256color[^|]*|[^,]*,/screen-256color|screen with italics support,/' \
 	  -e 's/%?%p1%t;3%/%?%p1%t;7%/' \
 	  -e 's/smso=[^,]*,/smso=\\E[7m,/' \
 	  -e 's/rmso=[^,]*,/rmso=\\E[27m,/' \
