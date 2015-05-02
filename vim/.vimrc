@@ -68,18 +68,21 @@ Plug 'bling/vim-airline'							" status/tabline (NEEDS powerline font)
 	if has("gui_running")
 		let g:airline_theme= "base16"
 	else
-		let g:airline_theme= "badwolf"
+		" let g:airline_theme= "badwolf"
+		let g:airline_theme= "gruvbox"
 	endif
+	let g:airline#extensions#tmuxline#enabled = 0
 	let g:airline_theme_patch_func = 'AirlineThemePatch'
 	function! AirlineThemePatch(palette)
 			if g:airline_theme == 'badwolf'
 					let a:palette.normal.airline_c = [ '#8cffba' , '#242321' , 121 , 233 ]
 					let a:palette.insert.airline_c = [ '#0a9dff' , '#242321' , 39  , 233 ]
-
+			elseif g:airline_theme == 'gruvbox'
+					let a:palette.normal.airline_c = [ '#8cffba' , '#1C1C1C' , 121 , 234 ]
 			endif
 	endfunction
 
-" Plug 'edkolev/tmuxline.vim'						" clone airline to tmux (its set up, only uncomment if you want to change the tmux statusline theme again)
+Plug 'edkolev/tmuxline.vim', {'on': 'TmuxlineSnapshot'}		" clone airline to tmux (its set up, only uncomment if you want to change the tmux statusline theme again)
 	" To export current statusline to a file which can be sourced by tmux.conf on startup:
 	" :TmuxlineSnapshot ~/.tmux/tmuxline
 	"let g:tmuxline_powerline_separators = 0		" use block separators instead
@@ -89,7 +92,7 @@ Plug 'bling/vim-airline'							" status/tabline (NEEDS powerline font)
 		\'win'  : '#I #W',
 		\'cwin' : '#I #W',
 		\'y'    : '%R',
-		\'z'    : '#H'}
+		\'z'    : '#H #(rainbarf --width 10 --bolt --remaining --rgb)'}
 
 Plug 'sjl/badwolf'									" badwolf color theme
 	let g:badwolf_darkgutter = 1					" make the gutters darker than the background.
@@ -100,31 +103,32 @@ Plug 'sjl/badwolf'									" badwolf color theme
 "Plug 'matchit.zip'									" cicles between if, then, else..
 Plug 'tpope/vim-surround'							" surround strings faster (csXX, dsX, ysMX, yssX)
 Plug 'tpope/vim-speeddating'						" fixes vim incrementing of dates, times, etc (<C-A>, <C-X>)
-"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " navigation tree
+Plug 'tpope/vim-vinegar'							" enhances the netrw split file explorer
 Plug 'tpope/vim-fugitive'							" git support
 Plug 'airblade/vim-gitgutter'						" show +,-,~ git changes on the gutter
-" Plug 'majutsushi/tagbar' , { 'on': ['Tagbar', 'TagbarToggle'] }				" show list of variables, functions, classes.. (NEEDS exuberant-ctags)
+Plug 'majutsushi/tagbar'							" show list of variables, functions, classes.. (NEEDS exuberant-ctags)
 "Plug 'kien/ctrlp.vim'								" full path fuzzy file,buffer,mru,tag.. finder
-"Plug 'sjl/gundo.vim'								" visualize vim undo tree
-" Plug 'nathanaelkane/vim-indent-guides'			" visually display indent levels
 Plug 'scrooloose/syntastic'							" automatic syntax checking
 Plug 'LargeFile'									" disables certain features of vim for speed in large files
-Plug 'AndrewRadev/inline_edit.vim'					" change code inside other code with ':InlineEdit'
+Plug 'AndrewRadev/inline_edit.vim', {'on': 'InlineEdit'}	" change code inside other code with ':InlineEdit'
 Plug 'tpope/vim-commentary'							" comment with motion support
-Plug 'tmux-plugins/vim-tmux-focus-events'			" lets terminal vim to know about focus changes (autoread, etc)
-" Plug 'scrooloose/nerdcommenter'					" toggle comments
-	let g:NERDSpaceDelims = 1						" add space before and after comment delimiters
-
+Plug 'tmux-plugins/vim-tmux-focus-events'			" lterminal vim to know about focus changes (autoread, etc)
+Plug 'junegunn/vim-peekaboo'						" shows the contents of the registers on pop-up buffer
 "Plug 'tasklist.vim'								" <leader> t shows a list of TODOs and FIXMEs
 Plug 'christoomey/vim-tmux-navigator'				" seamlessly navigate between tmux and vim panels
+" Plug 'utl.vim'									" universal Text Linking: execute URLs, footnotes, open emails, organize
+" Plug 'jceb/vim-orgmode'							" emacs org-mode in vim (needs utl.vim for links)
+" Plug 'kshenoy/vim-signature'						" place, toggle and display marks
+Plug 'reedes/vim-wordy', {'on': 'NextWordy'}		" adds dictionaries for uncovering usage problems in your writing
+
+Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}			" visualize vim undo tree
+	let g:gundo_auto_preview = 0
+	let g:gundo_preview_bottom = 1
+	let g:gundo_width = 30
 
 Plug 'yonchu/accelerated-smooth-scroll'				" smooth scroll on <C-d>, <C-u>, <C-f>, <C-b>
 	let g:ac_smooth_scroll_du_sleep_time_msec = 5
 	let g:ac_smooth_scroll_fb_sleep_time_msec = 5
-
-"Plug 'xolox/vim-shell'								" provides integration between Vim and environment (fullscreen, etc). requires wmctrl
-"Plug 'xolox/vim-misc'								" (NEEDED by vim-shell)
-	let g:shell_fullscreen_items = ''				" hide: m mainmenu, T toolbar, e tabline
 
 Plug 'mhinz/vim-startify'							" a start screen with recently modified files and vim sessions
 	let g:startify_session_persistence = 0			" automatically update sessions
