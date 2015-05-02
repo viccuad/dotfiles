@@ -1,3 +1,5 @@
+" vimperatorrc does not allow comments on the same line than other things!
+
 
 " LookAndFeel {{{
 " colorscheme molokai
@@ -53,6 +55,11 @@ set suggestengines=yahoo
 "}}}
 
 " Mappings {{{
+" make a passthrough to have cut, copy and paste
+map <C-c> <C-v><C-c>
+map <C-x> <C-v><C-x>
+map <C-v> <C-v><C-v> 
+
 map -b j 5j
 map -b k 5k
 " go to next tab:
@@ -70,11 +77,6 @@ nmap <leader>h <Esc>:tabmove! -1<CR>
 
 " Move the current tab to the right
 nmap <leader>l <Esc>:tabmove! +1<CR>
-
-" make a passthrough to have cut, copy and paste
-map <C-c> <pass>
-map <C-x> <pass>
-map <C-v> <Pass> 
 
 "}}}
 
