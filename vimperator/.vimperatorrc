@@ -7,8 +7,9 @@ set visualbell
 
 " remove gui things
 "set gui=nonavigation
-set gui=noaddons,nobookmarks,nomenu,navigation,tabs
+set gui=noaddons,nobookmarks,nomenu,nonavigation,tabs
 set noscrollbars
+set status+=ssl
 
 " show up to 35 items in the completion list
 "set maxitems="35"
@@ -46,7 +47,7 @@ set hlsearch
 "		b		BookmarkshHistory
 "		S		Search engine suggestions
 "		t		Open tabs
-set complete=sS
+set complete=sSb
 
 set defsearch=duckduckgo
 set suggestengines=yahoo
@@ -54,24 +55,26 @@ set suggestengines=yahoo
 
 " Mappings {{{
 " remap C-c:
-noremap  <C-c> <C-v><C-c>
-inoremap <C-c> <C-v><C-c>
-cnoremap <C-c> <C-v><C-c>
+"noremap  <C-c> <C-v><C-c>
+"inoremap <C-c> <C-v><C-c>
+"cnoremap <C-c> <C-v><C-c>
 " remap C-v:
-noremap  <C-v> <C-v><C-v>
-inoremap <C-v> <C-v><C-v>
-cnoremap <C-v> <C-v><C-v>
+"noremap  <C-v> <C-v><C-v>
+"inoremap <C-v> <C-v><C-v>
+"cnoremap <C-v> <C-v><C-v>
+" remap C-x:
+"noremap  <C-x> <C-v><C-x>
+"inoremap <C-x> <C-v><C-x>
+"cnoremap <C-x> <C-v><C-x>
 
-nnoremap j 3j
-nnoremap k 3k
-"nnoremap h 3<left>
-"nnoremap l 3<right>
+nnoremap j 5j
+nnoremap k 5k
 nnoremap h <C-p>
 nnoremap l <C-n>
-" This is totally awesome - remap jj to escape in insert mode.  You'll never type jj anyway, so it's great!
-inoremap jj <Esc>
-" Can be typed even faster than esc
+
+" This is totally awesome - remap jk to escape.  You'll never type jk anyway, so it's great!
 inoremap jk <Esc>
+cnoremap jk <Esc>
 
 " Move the current tab to the left
 noremap <leader>h <Esc>:tabmove! -1<CR>

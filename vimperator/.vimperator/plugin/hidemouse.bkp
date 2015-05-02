@@ -1,0 +1,90 @@
+// vim:set sw=4 ts=4 et:
+var INFO = //{{{
+xml`<plugin name="hidemouse" version="0.0.1"
+        href="http://github.com/viccuad/vimperator-hidemouse/blob/master/plugin/hidemouse.js"
+        summary="Hide mouse when idle"
+        xmlns="http://vimperator.org">
+    <author href="http://viccuad.me">viccuad</author>
+    <license href="http://www.opensource.org/licenses/bsd-license.php">New BSD License</license>
+    <project name="Vimperator" minVersion="3.0"/>
+    <item>
+        <description>
+            <p>
+                Hides the mouse cursor when idle.
+            </p>
+        </description>
+    </item>
+</plugin>`; //}}}
+
+
+//  http://stackoverflow.com/questions/3354239/hiding-the-mouse-cursor-when-idle-using-javascript
+// https://gist.github.com/josephwegner/1228975
+// (function() {
+//     var mouseTimer = null, cursorVisible = true;
+
+//     function disappearCursor() {
+//         mouseTimer = null;
+//         document.body.style.cursor = "none";
+//         cursorVisible = false;
+//     }
+
+//     document.onmousemove = function() {
+//         if (mouseTimer) {
+//             window.clearTimeout(mouseTimer);
+//         }
+//         if (!cursorVisible) {
+//             document.body.style.cursor = "default";
+//             cursorVisible = true;
+//         }
+//         mouseTimer = window.setTimeout(disappearCursor, 50);
+//     };
+// }).call(this);
+////Requires jQuery - http://code.jquery.com/jquery-1.6.4.min.js
+// (function() { 
+//     var idleMouseTimer;
+//     var forceMouseHide = false;
+
+//     $("body").css('cursor', 'none');
+
+//     $("body").mousemove(function(ev) {
+//             if(!forceMouseHide) {
+//                     $("body").css('cursor', '');
+
+//                     clearTimeout(idleMouseTimer);
+
+//                     idleMouseTimer = setTimeout(function() {
+//                             $("body").css('cursor', 'none');
+
+//                             forceMouseHide = true;
+//                             setTimeout(function() {
+//                                     forceMouseHide = false;
+//                             }, 200);
+//                     }, 1000);
+//             }
+//     });
+// }).call(this);
+//
+//
+var timeout;
+var isHidden = false;
+(function() {
+	document.addEventListener("mousemove", magicMouse);
+}).call(this);
+
+function magicMouse() {
+    if (timeout) {
+        clearTimeout(timeout);
+    }
+    timeout = setTimeout(function() {
+        if (!isHidden) {
+            document.querySelector("body").style.cursor = "none";
+            document.querySelector("#editor").style.background = "#fff";
+            isHidden = true;
+        }
+    }, 1000);
+    if (isHidden) {
+        document.querySelector("body").style.cursor = "auto";
+        document.querySelector("#editor").style.background = "#000";
+        isHidden = false;
+    }
+};
