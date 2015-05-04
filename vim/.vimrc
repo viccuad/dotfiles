@@ -50,8 +50,27 @@ call plug#begin('~/.vim/bundle')
 
 " LOOKS:
 "Plug 'ScrollColors'								" scroll themes with :SCROLLCOLOR
-Plug 'chriskempson/base16-vim'						" base16 color themes
 "Plug 'mimicpak'									" more color themes
+Plug 'chriskempson/base16-vim'						" base16 color themes
+Plug 'morhetz/gruvbox'
+	let g:gruvbox_bold=1
+	let g:gruvbox_italic=1
+	let g:gruvbox_underline=1
+	let g:gruvbox_undercurl=1
+	let g:gruvbox_termcolors=256
+	let g:gruvbox_contrast_dark="hard"
+	let g:gruvbox_contrast_light="hard"
+	" let g:gruvbox_hls_cursor="orange"
+	let g:gruvbox_sign_column="dark0"
+	let g:gruvbox_color_column="dark0"
+	let g:gruvbox_vert_split="dark0"
+	let g:gruvbox_italicize_comments=1
+	let g:gruvbox_italicize_strings=1
+	let g:gruvbox_invert_selection=0
+	let g:gruvbox_invert_signs=0
+	let g:gruvbox_invert_indent_guides=0
+	let g:gruvbox_invert_tabline=0
+	let g:gruvbox_improved_warnings=1
 "Plug 'severin-lemaignan/vim-minimap'				" sublime-text style minimap (NEEDS braille capable font, python)
 "Plug 'CSApprox'									" makes gvim-only colorschemes work in terminal vim
 " Plug 'zefei/vim-colortuner'						" only works with true colours (neovim, gvim)
@@ -94,13 +113,8 @@ Plug 'bling/vim-airline'							" status/tabline (NEEDS powerline font)
 	"let g:airline#extensions#tabline#left_sep = ' '		" straight separators
 	"let g:airline#extensions#tabline#left_alt_sep = '|'
 	let g:airline#extensions#tabline#buffer_idx_mode = 1	" display numbers in the tab line, and use mappings <leader>1 to <leader>9
-	if has("gui_running")
-		let g:airline_theme= "base16"
-	else
-		" let g:airline_theme= "badwolf"
-		let g:airline_theme= "gruvbox"
-	endif
 	let g:airline#extensions#tmuxline#enabled = 0
+	let g:airline#extensions#tagbar#enabled = 0
 	let g:airline_theme_patch_func = 'AirlineThemePatch'
 	function! AirlineThemePatch(palette)
 			if g:airline_theme == 'badwolf'
@@ -111,9 +125,9 @@ Plug 'bling/vim-airline'							" status/tabline (NEEDS powerline font)
 			endif
 	endfunction
 
-Plug 'edkolev/tmuxline.vim', {'on': 'TmuxlineSnapshot'}		" clone airline to tmux (its set up, only uncomment if you want to change the tmux statusline theme again)
+" Plug 'edkolev/tmuxline.vim'							" clone airline to tmux (its set up, only uncomment if you want to change the tmux statusline theme again)
 	" To export current statusline to a file which can be sourced by tmux.conf on startup:
-	" :TmuxlineSnapshot ~/.tmux/tmuxline
+	" :TmuxlineSnapshot! ~/.tmux/tmuxline
 	"let g:tmuxline_powerline_separators = 0		" use block separators instead
 	let g:tmuxline_preset = {
 		\'a'    : '#S',
@@ -272,8 +286,8 @@ autocmd FileType mail setl nonumber spell textwidth=0 wrapmargin=0
 
 " Spaces & Tabs {{{
 set tabstop=4						" number of visual spaces per TAB
-"set autoindent smartindent			" copy indent from current line when starting a new line, and smart indent automatically inserts one level of indentation in some cases.
-set listchars=tab:>·,trail:·,eol:¬	" show tabs, eol and trailing whitespace when showing separators
+" set autoindent smartindent		" copy indent from current line when starting a new line, and smart indent automatically inserts one level of indentation in some cases.
+set listchars=tab:\|·,trail:·,eol:¬	" show tabs, eol and trailing whitespace when showing separators
 "set listchars=tab:\ \ ,trail:·		" only show trailing whitespace when showing separators. the tab is 2 spaces
 "set list							" show listchars
 " }}}
@@ -302,6 +316,9 @@ set synmaxcol=2048					" prevents huge slow downs from syntax highlighting
 set number							" show line numbers
 "set relativenumber					" show relative numbers. can be on at the same time that number
 set cursorline						" highlight current line
+set conceallevel=2					" display unicode characters instead of they plaintext counterparts (epsilon, lambda, etc)
+" don't change colors of concealed characters:
+highlight Conceal ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 set showcmd							" show (partial) command in status line
 set wildmenu        				" visual autocomplete for command menu
 set wildmode=longest,list,full		" complete longest common string, then list alternatives, then select the sortest first
@@ -330,6 +347,8 @@ if has("gui_running")
 	set background=dark 			" if using a dark background, for syntax highlighting
 
 	colorscheme base16-monokai
+	let g:airline_theme= "base16"
+
 	set guioptions-=T				" remove Toolbar
 	set guioptions+=c				" use console dialogs
 	set guioptions-=r				" remove right-hand scrollbar
@@ -349,24 +368,45 @@ if has("gui_running")
 	endif
 else
 	set t_Co=256					" force number of colors to 256 inside vim. this shouldn't be done, better with TERM
-	"let base16colorspace=256		" access colors present in 256 colorspace
 	set background=dark 			" if using a dark background, for syntax highlighting
 	" colorscheme wombat256
-	colorscheme badwolf
+	" colorscheme wombat256mod
 	" colorscheme xoria256
 	" colorscheme base16-default
-	" colorscheme wombat256mod
 	" colorscheme base16-tomorrow
-	" highlight ColorColumn ctermbg=232 guibg=#080808 	" colorcolumn for wombat256mod
+	" let base16colorspace=256		" access colors present in 256 colorspace
+	" colorscheme base16-flat
+	" colorscheme gruvbox
+	colorscheme badwolf
+	if g:colors_name == "badwolf"
+		let g:airline_theme= "badwolf"
+		" fix sign column:
+		highlight SignColumn ctermbg=232 guibg=#080808		" SignColumn for badwolf
+		highlight SignifySignAdd ctermfg=154 guifg=#aeee00 ctermbg=232 guibg=#080808
+		highlight SignifySignChange ctermfg=214 guifg=#ffa724 ctermbg=232 guibg=#080808
+		highlight SignifySignDelete ctermfg=196 guifg=#ff2c4b ctermbg=232 guibg=#080808
+		" change color column:
+		highlight ColorColumn ctermbg=233 guibg=#121212		" ColorColumn for badwolf
+		" change vertical splits:
+		" highlight VertSplit ctermbg=232 guibg=#080808		" same as SignColumn
+		" highlight VertSplit ctermbg=238 guibg=#444444		" same as status line
+		highlight VertSplit ctermfg=238 guifg=#444444 ctermbg=233 guibg=#121212		" fg: same as status line, bg: same as ColorColumn
+		" set fillchars+=vert:\ 				" delete split | separators
+		set fillchars+=vert:│					" complete utf fill separator
+	endif
+	if g:colors_name == "gruvbox"
+		let g:airline_theme= "gruvbox"
+	endif
 	" highlight ColorColumn ctermbg=0 guibg=#000000 	" colorcolumn for wombat256
+	" highlight ColorColumn ctermbg=232 guibg=#080808 	" colorcolumn for wombat256mod
 	" highlight ColorColumn ctermbg=233 guibg=#121212	" colorcolumn for xoria256
-	highlight ColorColumn ctermbg=232 guibg=#080808		" colorcolumn for badwolf
-	" highlight ColorColumn ctermbg=0 guibg=#303030		" colorcolumn for base16
 	" highlight ColorColumn ctermbg=235 guibg=#262626	" colorcolumn for base16-default
+	" highlight ColorColumn ctermbg=0 guibg=#303030		" colorcolumn for base16
 endif
 
+" colorscheme settings I want to be there even if I change themes:
 highlight Comment cterm=italic gui=italic	" put comments in italic (needs to be after your colorscheme) (needs tmux to be correctly set)
-highlight clear SignColumn					" sets the git gutter to the same color as the number column (needs to be after your colorscheme)
+highlight String cterm=italic gui=italic	" put strings in italic (needs to be after your colorscheme) (needs tmux to be correctly set)
 
 " terminal: Use a blinking upright bar cursor in Insert mode, and a blinking block in normal
 " this could be done with Plugin 'jszakmeister/vim-togglecursor'
