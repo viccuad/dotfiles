@@ -345,8 +345,7 @@ set sidescrolloff=5 				" keep at least 5 lines left/right
 set splitright 						" vertical splits use right half of screen
 set splitbelow 						" horizontal splits use bottom half of screen
 set noerrorbells					" no error bells please
-set visualbell
-set vb t_vb=						" no beep or flash
+set visualbell t_vb=				" no beep or flash
 if has('autocmd')
 	autocmd GUIEnter * set visualbell t_vb= 	"redo t_vb= for gui so it takes place
 endif
@@ -422,15 +421,13 @@ highlight String cterm=italic gui=italic	" put strings in italic (needs to be af
 " terminal: Use a blinking upright bar cursor in Insert mode, and a blinking block in normal
 " this could be done with Plugin 'jszakmeister/vim-togglecursor'
 " change cursor to a '|' when on vim console and insert mode:
-if &term == 'xterm-256color' || &term == 'screen-256color'
+if &term == 'xterm-256color' || &term == 'rxvt-unicode-256color' || &term == 'screen-256color' || &term == 'screen-256color-it'
 	let &t_SI = "\<Esc>[5 q"
 	let &t_EI = "\<Esc>[1 q"
+	" urxvt has not implemented the bar cursor until 9.21, if that's the case, use an underbar: let &t_SI = "\<Esc>[3 q"
 endif
-" urxvt has not implemented the bar cursor until 9.21, lets use an underbar: let &t_SI = "\<Esc>[3 q"
-if &term == 'rxvt-unicode-256color'
-	let &t_SI = "\<Esc>[5 q"
-	let &t_EI = "\<Esc>[1 q"
-endif
+
+set isfname+=32										"netrw: to open files with spaces
 " }}}
 
 " Persistence {{{
@@ -474,10 +471,9 @@ let mapleader = "\<Space>"
 nnoremap <leader><Tab>   :bnext<CR>
 nnoremap <leader><S-Tab> :bprevious<CR>
 
-" remap jk to escape:  You'll never type jk anyway, so it's great!
+" remap jk and kj to escape:  You'll never type it anyway, so it's great!
 inoremap jk <Esc>
-xnoremap jk <Esc>
-cnoremap jk <Esc>
+inoremap kj <Esc>
 
 " use hjkl-movement between rows when soft wrapping:
 nnoremap j gj
