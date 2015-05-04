@@ -10,30 +10,6 @@ set spelllang=en,es
 " }}}
 
 " Vim-Plug Config {{{
-" Example config:
-" call plug#begin('~/.vim/plugged')
-" Make sure you use single quotes
-" Plug 'junegunn/seoul256.vim'
-" Plug 'junegunn/vim-easy-align'
-"
-" " On-demand loading
-" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-" Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-
-" " Using git URL
-" Plug 'https://github.com/junegunn/vim-github-dashboard.git'
-"
-" " Plugin options
-" Plug 'nsf/gocode', { 'tag': 'go.weekly.2012-03-13', 'rtp': 'vim' }
-"
-" " Plugin outside ~/.vim/plugged with post-update hook
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
-"
-" " Unmanaged plugin (manually installed and updated)
-" Plug '~/my-prototype-plugin'
-"
-" call plug#end()
-
 " Automatic installation:
 if empty(glob('~/.vim/autoload/plug.vim'))
 		silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -71,9 +47,7 @@ Plug 'morhetz/gruvbox'
 	let g:gruvbox_invert_indent_guides=0
 	let g:gruvbox_invert_tabline=0
 	let g:gruvbox_improved_warnings=1
-"Plug 'severin-lemaignan/vim-minimap'				" sublime-text style minimap (NEEDS braille capable font, python)
-"Plug 'CSApprox'									" makes gvim-only colorschemes work in terminal vim
-" Plug 'zefei/vim-colortuner'						" only works with true colours (neovim, gvim)
+
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}			" distraction free mode
 Plug 'junegunn/limelight.vim', {'on': 'Limelight'}	" hyperfocus mode
 	let g:limelight_paragraph_span = 0
@@ -103,6 +77,8 @@ Plug 'junegunn/limelight.vim', {'on': 'Limelight'}	" hyperfocus mode
 		autocmd  User GoyoEnter nested call <SID>goyo_enter()
 		autocmd  User GoyoLeave nested call <SID>goyo_leave()
 	augroup END
+
+" Plug 'zefei/vim-colortuner', {'on': 'Colorturner'}			" saturation, hue, etc tuning (only works with true colours: neovim, gvim)
 	let g:colortuner_filepath = '~/.vim/.vim-colortuner'
 
 Plug 'bling/vim-airline'							" status/tabline (NEEDS powerline font)
@@ -143,19 +119,19 @@ Plug 'sjl/badwolf'									" badwolf color theme
 
 
 " FUNCTIONALITY:
-"Plug 'matchit.zip'									" cicles between if, then, else..
+Plug 'matchit.zip'									" cicles between if, then, else..
 Plug 'tpope/vim-surround'							" surround strings faster (csXX, dsX, ysMX, yssX)
 Plug 'tpope/vim-speeddating'						" fixes vim incrementing of dates, times, etc (<C-A>, <C-X>)
-Plug 'tpope/vim-vinegar'							" enhances the netrw split file explorer
-Plug 'tpope/vim-fugitive'							" git support
-Plug 'airblade/vim-gitgutter'						" show +,-,~ git changes on the gutter
-Plug 'majutsushi/tagbar'							" show list of variables, functions, classes.. (NEEDS exuberant-ctags)
+" Plug 'tpope/vim-vinegar'							" enhances the netrw split file explorer
+" Plug 'tpope/vim-fugitive'							" git support
+" Plug 'airblade/vim-gitgutter'						" show +,-,~ git changes on the gutter
+Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}	" show list of variables, functions, classes.. (NEEDS exuberant-ctags)
 "Plug 'kien/ctrlp.vim'								" full path fuzzy file,buffer,mru,tag.. finder
 Plug 'scrooloose/syntastic'							" automatic syntax checking
 Plug 'LargeFile'									" disables certain features of vim for speed in large files
 Plug 'AndrewRadev/inline_edit.vim', {'on': 'InlineEdit'}	" change code inside other code with ':InlineEdit'
 Plug 'tpope/vim-commentary'							" comment with motion support
-Plug 'tmux-plugins/vim-tmux-focus-events'			" lterminal vim to know about focus changes (autoread, etc)
+Plug 'tmux-plugins/vim-tmux-focus-events'			" let terminal vim to know about focus changes (autoread, etc)
 Plug 'junegunn/vim-peekaboo'						" shows the contents of the registers on pop-up buffer
 "Plug 'tasklist.vim'								" <leader> t shows a list of TODOs and FIXMEs
 Plug 'christoomey/vim-tmux-navigator'				" seamlessly navigate between tmux and vim panels
@@ -163,6 +139,12 @@ Plug 'christoomey/vim-tmux-navigator'				" seamlessly navigate between tmux and 
 " Plug 'jceb/vim-orgmode'							" emacs org-mode in vim (needs utl.vim for links)
 " Plug 'kshenoy/vim-signature'						" place, toggle and display marks
 Plug 'reedes/vim-wordy', {'on': 'NextWordy'}		" adds dictionaries for uncovering usage problems in your writing
+Plug 'Keithbsmiley/investigate.vim'					" search the language docs with gK
+" Plug 'drawit'										" to draw lines and diagrams (<leader>di to start, <leader>ds to stop)
+
+Plug 'mhinz/vim-signify'							" show +,-,~ git changes on the gutter
+	let g:signify_vcs_list = ['git']
+	let g:signify_sign_change = '~'
 
 Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}			" visualize vim undo tree
 	let g:gundo_auto_preview = 0
@@ -230,11 +212,9 @@ Plug 'honza/vim-snippets'							" Snippets are separated from the engine.
 
 
 " FILETYPE:
-"Plug 'godlygeek/tabular'							" to order lines by a separator easily
-"Plug 'plasticboy/vim-markdown'						" markdown style (needs tabular plugin)
-Plug 'justinmk/vim-syntax-extra', {'for': 'c'}		" bison, flex, c syntax (operators, delimiters, functions..)
 Plug 'freitass/todo.txt-vim', {'for': 'todo'}		" for todo.txt filetypes
-Plug 'vivien/vim-addon-linux-coding-style', {'for': 'c'}
+" Plug 'rust-lang/rust.vim'
+" Plug 'pangloss/vim-javascript'
 
 Plug 'LaTeX-Box-Team/LaTeX-Box', {'for': 'tex'}
 	let g:LatexBox_output_type="pdf"
@@ -244,6 +224,8 @@ Plug 'LaTeX-Box-Team/LaTeX-Box', {'for': 'tex'}
 	let g:LatexBox_latexmk_options="-pdflatex='xelatex --shell-escape -interaction=nonstopmode %O %S' -cd -f"
 	let g:LatexBox_autojump=1						" auto jump to first error after compiling
 
+Plug 'justinmk/vim-syntax-extra', {'for': 'c'}		" bison, flex, c syntax (operators, delimiters, functions..)
+Plug 'vivien/vim-addon-linux-coding-style', {'for': 'c'}
 Plug 'c.vim', {'for': 'c'}
 	let g:C_LocalTemplateFile = $HOME.'/.vim/snippets_Cvim/c-support/templates/Templates' " this allows for the templates to be versioned on .dotfiles
 
@@ -253,7 +235,24 @@ Plug 'hdima/python-syntax', {'for': 'python'}		" neccesary, vim default python s
 
 Plug 'jamessan/vim-gnupg'							" encrypts/decrypts with gpg files that end in .gpg,.pgp or .asc. plaintext only on ram
 	let g:GPGDefaultRecipients = ["0x5702AA3A <me@viccuad.me>"]
-	" let g:GPGUsePipes=1			" (might break the prompt) use pipes instead of vim /temp files (no writing to disk)
+	let g:GPGUsePipes=1			" (might break the prompt) use pipes instead of vim /temp files (no writing to disk)
+
+Plug 'Shougo/vinarise.vim', {'on': 'Vinarise'}		" hexadecimal editor
+
+Plug 'sudar/vim-arduino-syntax', {'for': 'arduino'}
+Plug 'jplaut/vim-arduino-ino', {'for': 'arduino'}	" provides ino calls (Needs inotool, picocom)
+    " <Leader>ac - Compile the current sketch
+    " <Leader>ad - Compile and deploy the current sketch
+    " <Leader>as - Open a serial port in screen
+
+Plug 'kana/vim-textobj-user'						" create your own text objects without pain
+Plug 'reedes/vim-textobj-quote'						" put ‘typographic quotes’ instead of 'straight quotes' (needs vim-textobject-user)
+	augroup textobj_quote
+		autocmd!
+		autocmd FileType markdown call textobj#quote#init()
+		autocmd FileType textile call textobj#quote#init()
+		autocmd FileType text call textobj#quote#init({'educate': 0})
+	augroup END
 
 call plug#end()
 " }}}
@@ -269,19 +268,31 @@ let c_comment_strings = 0		" dont highlight strings inside C comments
 
 " Python language
 let python_space_errors = 1
-autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
+augroup python_files
+	autocmd!
+	autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
+augroup END
 
 " Java language
 let java_space_errors = 1
 
-" Markdown instead of modula2
-autocmd BufNewFile,BufReadPost *.md setl filetype=markdown spell textwidth=0 wrapmargin=0
+" Markdown instead of modula2:
+augroup markdown_files
+	autocmd!
+	autocmd BufNewFile,BufReadPost *.md setl filetype=markdown spell textwidth=0 wrapmargin=0
+augroup END
 
 " TXT files
-autocmd BufNewFile,BufReadPost *.txt setl spell textwidth=0 wrapmargin=0
+augroup txt_files
+	autocmd!
+	autocmd BufNewFile,BufReadPost *.txt setl spell textwidth=0 wrapmargin=0
+augroup END
 
 " Mail files from mutt
-autocmd FileType mail setl nonumber spell textwidth=0 wrapmargin=0
+augroup mail_files
+	autocmd!
+	autocmd FileType mail setl nonumber spell textwidth=0 wrapmargin=0
+augroup END
 " }}}
 
 " Spaces & Tabs {{{
