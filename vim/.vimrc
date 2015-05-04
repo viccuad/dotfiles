@@ -345,8 +345,7 @@ set sidescrolloff=5 				" keep at least 5 lines left/right
 set splitright 						" vertical splits use right half of screen
 set splitbelow 						" horizontal splits use bottom half of screen
 set noerrorbells					" no error bells please
-set visualbell
-set vb t_vb=						" no beep or flash
+set visualbell t_vb=				" no beep or flash
 if has('autocmd')
 	autocmd GUIEnter * set visualbell t_vb= 	"redo t_vb= for gui so it takes place
 endif
@@ -422,15 +421,13 @@ highlight String cterm=italic gui=italic	" put strings in italic (needs to be af
 " terminal: Use a blinking upright bar cursor in Insert mode, and a blinking block in normal
 " this could be done with Plugin 'jszakmeister/vim-togglecursor'
 " change cursor to a '|' when on vim console and insert mode:
-if &term == 'xterm-256color' || &term == 'screen-256color'
+if &term == 'xterm-256color' || &term == 'rxvt-unicode-256color' || &term == 'screen-256color' || &term == 'screen-256color-it'
 	let &t_SI = "\<Esc>[5 q"
 	let &t_EI = "\<Esc>[1 q"
+	" urxvt has not implemented the bar cursor until 9.21, if that's the case, use an underbar: let &t_SI = "\<Esc>[3 q"
 endif
-" urxvt has not implemented the bar cursor until 9.21, lets use an underbar: let &t_SI = "\<Esc>[3 q"
-if &term == 'rxvt-unicode-256color'
-	let &t_SI = "\<Esc>[5 q"
-	let &t_EI = "\<Esc>[1 q"
-endif
+
+set isfname+=32										"netrw: to open files with spaces
 " }}}
 
 " Persistence {{{
@@ -474,10 +471,9 @@ let mapleader = "\<Space>"
 nnoremap <leader><Tab>   :bnext<CR>
 nnoremap <leader><S-Tab> :bprevious<CR>
 
-" remap jk to escape:  You'll never type jk anyway, so it's great!
+" remap jk and kj to escape:  You'll never type it anyway, so it's great!
 inoremap jk <Esc>
-xnoremap jk <Esc>
-cnoremap jk <Esc>
+inoremap kj <Esc>
 
 " use hjkl-movement between rows when soft wrapping:
 nnoremap j gj
@@ -503,54 +499,48 @@ nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 
 " list of shared binds:
-" write file without confirmation:
-map <silent> <F2> :write<CR>
-
 " remove trailing whitespaces:
-"nnoremap <silent> <F3> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let"@/=_s<Bar>:nohl<CR>
+map <F1> :%s/\s\+$//<CR>
 
-" remove trailing whitespaces:
-map <F3> :%s/\s\+$//<CR>
+" toggle spell checking:
+map <F2> :setlocal spell!<CR>
+
+" cycle between Wordy dictionaries:
+map <F3> :NextWordy<CR>
 
 " close buffer:
 map <silent> <F4> <Esc>:bd<CR>
 
-" toggle spell checking:
-map <F5> :setlocal spell!<CR>
-
 " open urls, files, etc. example: http://google.com:
 noremap <F6> :!xdg-open <cfile><CR><CR>
-set isfname+=32										" to open files with spaces
-
-" open (vim-shell plugin):
-"<F6>
 
 " previous c error (c.vim plugin):
-map  <silent> <F7>    <Esc>:cprevious<CR>
+map  <F7> <Esc>:cprevious<CR>
 
-" next c error (c.vim plugin)
-map  <silent> <F8>    <Esc>:cnext<CR>
+" next c error (c.vim plugin):
+map  <F8> <Esc>:cnext<CR>
 
-" compile & link c code (alt+<F9> write + compile, ctrl+<F9> compile + run) (c.vim plugin)
+" compile & link c code: (alt+<F9> write + compile, ctrl+<F9> compile + run) (c.vim plugin)
 "<F9>
 
-" maximize (vim-shell plugin):
-"<F11>
+" Syntax group under cursor:
+nnoremap <leader>h :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-" Google it:
-" <leader>?
-function! s:goog()
-  let url = 'https://encrypted.google.com/search?hl=en&q='
-  " Excerpt from vim-unimpared
-  let q = substitute(
-        \ '"'.@0.'"',
-        \ '[^A-Za-z0-9_.~-]',
-        \ '\="%".printf("%02X", char2nr(submatch(0)))',
-        \ 'g')
-  call system('open ' . url . q)
+" Zoom / Restore window:j
+function! s:ZoomToggle() abort
+    if exists('t:zoomed') && t:zoomed
+        execute t:zoom_winrestcmd
+        let t:zoomed = 0
+    else
+        let t:zoom_winrestcmd = winrestcmd()
+        resize
+        vertical resize
+        let t:zoomed = 1
+    endif
 endfunction
-xnoremap <leader>? y:call <SID>goog()<cr>
-
+command! ZoomToggle call s:ZoomToggle()
 " }}}
 
 " Folding {{{
