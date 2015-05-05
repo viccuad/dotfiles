@@ -293,6 +293,9 @@ augroup mail_files
 	autocmd!
 	autocmd FileType mail setl nonumber spell textwidth=0 wrapmargin=0
 augroup END
+
+" Latex files
+let g:tex_flavor = "latex"		" default tex flavour if not specified in the file
 " }}}
 
 " Spaces & Tabs {{{
@@ -528,7 +531,7 @@ nnoremap <leader>h :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") .
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-" Zoom / Restore window:j
+" Zoom / Restore window:
 function! s:ZoomToggle() abort
     if exists('t:zoomed') && t:zoomed
         execute t:zoom_winrestcmd
