@@ -31,5 +31,5 @@ setopt HIST_REDUCE_BLANKS   # remove superflous blanks from each line added to h
 setopt complete_aliases
 
 # Base16-shell colors
-BASE16_SHELL="$ZSH/zsh/nostow/base16-shell/base16-bright.dark.sh"
-[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+# BASE16_SHELL="$ZSH/zsh/nostow/base16-shell/base16-bright.dark.sh"
+# [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
