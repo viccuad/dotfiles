@@ -1,0 +1,15 @@
+#Ignore everything
+*
+
+# ...even if they are in subdirectories
+!*/
+
+# don't ignore gitignore
+!.gitignore
+
+# Don't ignore selected files
+!readme.nostow.md
+!.config/autostart/*
+!.gnupg/gpg.conf
+!.gnupg/gpg-agent.conf
+!.gnupg/scdaemon.conf
