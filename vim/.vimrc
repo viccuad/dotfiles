@@ -10,6 +10,10 @@ set spelllang=en,es
 " }}}
 
 " Vim-Plug Config {{{
+
+" Automatic installation shouldn't fire up, because we have our trusted plug.vim
+" in '~/.vim/autoload/plug.vim'
+
 " Automatic installation:
 if empty(glob('~/.vim/autoload/plug.vim'))
 		silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -120,7 +124,7 @@ Plug 'sjl/badwolf'									" badwolf color theme
 
 " FUNCTIONALITY:
 Plug 'matchit.zip'									" cicles between if, then, else..
-Plug 'tpope/vim-surround'							" surround strings faster (csXX, dsX, ysMX, yssX)
+Plug 'tpope/vim-surround'							" surround strings faster (ysiwX,csXX, dsX, ysMX, yssX)
 Plug 'tpope/vim-speeddating'						" fixes vim incrementing of dates, times, etc (<C-A>, <C-X>)
 " Plug 'tpope/vim-vinegar'							" enhances the netrw split file explorer
 " Plug 'tpope/vim-fugitive'							" git support
@@ -141,6 +145,7 @@ Plug 'christoomey/vim-tmux-navigator'				" seamlessly navigate between tmux and 
 Plug 'reedes/vim-wordy', {'on': 'NextWordy'}		" adds dictionaries for uncovering usage problems in your writing
 Plug 'Keithbsmiley/investigate.vim'					" search the language docs with gK
 " Plug 'drawit'										" to draw lines and diagrams (<leader>di to start, <leader>ds to stop)
+Plug 'osyo-manga/vim-over'							" :substitute live preview to view changes as you are doing them
 
 Plug 'mhinz/vim-signify'							" show +,-,~ git changes on the gutter
 	let g:signify_vcs_list = ['git']
@@ -215,6 +220,7 @@ Plug 'honza/vim-snippets'							" Snippets are separated from the engine.
 Plug 'freitass/todo.txt-vim', {'for': 'todo'}		" for todo.txt filetypes
 " Plug 'rust-lang/rust.vim'
 " Plug 'pangloss/vim-javascript'
+Plug 'trapd00r/irc.vim'
 
 Plug 'LaTeX-Box-Team/LaTeX-Box', {'for': 'tex'}
 	let g:LatexBox_output_type="pdf"
