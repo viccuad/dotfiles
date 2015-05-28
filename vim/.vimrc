@@ -355,8 +355,8 @@ set scrolloff=5						" keep at least 5 lines above/below
 set sidescrolloff=5 				" keep at least 5 lines left/right
 set splitright 						" vertical splits use right half of screen
 set splitbelow 						" horizontal splits use bottom half of screen
-set noerrorbells					" no error bells please
-set visualbell t_vb=				" no beep or flash
+set noerrorbells					" no sound bells please
+set visualbell t_vb=				" no flash screen for the visual bell
 if has('autocmd')
 	autocmd GUIEnter * set visualbell t_vb= 	"redo t_vb= for gui so it takes place
 endif
@@ -388,7 +388,7 @@ if has("gui_running")
 		set guifont=Consolas:h11:cANSI
 	endif
 else
-	set t_Co=256					" force number of colors to 256 inside vim. this shouldn't be done, better with TERM
+	" set t_Co=256					" force number of colors to 256 inside vim. this shouldn't be done, better with TERM
 	set background=dark 			" if using a dark background, for syntax highlighting
 	" colorscheme wombat256
 	" colorscheme wombat256mod
@@ -491,6 +491,14 @@ nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
+
+" include the default behaviour by doing reverse mappings so you can move linewise with gj and gk:
+nnoremap gj j
+nnoremap gk k
+
+
+" keep the cursor in place when joining lines with J (by dropping a mark and returning there):
+nnoremap J mzJ`z
 
 " force yourself to stop using the arrow keys:
 map <up>    <nop>
