@@ -25,6 +25,12 @@ setopt INC_APPEND_HISTORY SHARE_HISTORY  # adds history incrementally and share 
 setopt HIST_IGNORE_ALL_DUPS  # don't record duplicates in history
 setopt HIST_REDUCE_BLANKS   # remove superflous blanks from each line added to history
 
+# Use vi keybindings:
+bindkey -v
+
+# bind history search:
+bindkey '^R' history-incremental-search-backward
+
 # don't expand aliases _before_ completion has finished
 #   like: git comm-[tab]
 #   this makes the alias a distinct command for completion purposes
