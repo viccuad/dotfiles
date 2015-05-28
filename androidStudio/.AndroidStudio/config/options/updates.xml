@@ -1,0 +1,13 @@
+<application>
+  <component name="UpdatesConfigurable">
+    <knownUpdateChannels>
+      <item value="AI-1-eap" />
+      <item value="AI-1-milestone" />
+      <item value="AI-1-beta" />
+      <item value="AI-1-release" />
+      <item value="AI-0-beta" />
+    </knownUpdateChannels>
+    <option name="LAST_TIME_CHECKED" value="1431814483323" />
+    <option name="LAST_BUILD_CHECKED" value="AI-135.1653844" />
+  </component>
+</application>

@@ -1,33 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <versions>
-  <component name="AndroidLayouts" version="1420757316862" />
-  <component name="ChangeListManager" version="1420757316885" />
-  <component name="ChangesViewManager" version="1420757316885" />
-  <component name="CompilerConfiguration" version="1420757316888" />
-  <component name="CreatePatchCommitExecutor" version="1420757316893" />
-  <component name="DaemonCodeAnalyzer" version="1420757316893" />
-  <component name="Encoding" version="1420757316897" />
-  <component name="ExecutionTargetManager" version="1420757316897" />
-  <component name="FavoritesManager" version="1420757316898" />
-  <component name="FileEditorManager" version="1420757316905" />
-  <component name="GradleLocalSettings" version="1420757316917" />
-  <component name="GradleSettings" version="1420757316918" />
-  <component name="ProjectFrameBounds" version="1420757318105" />
-  <component name="ProjectLevelVcsManager" version="1420757318105" />
-  <component name="ProjectModuleManager" version="1420757318107" />
-  <component name="ProjectReloadState" version="1420757318110" />
-  <component name="ProjectRootManager" version="1420757318110" />
+  <component name="AndroidLayouts" version="1431814529345" />
+  <component name="ChangeListManager" version="1431814529360" />
+  <component name="ChangesViewManager" version="1431814529360" />
+  <component name="CompilerConfiguration" version="1431814529363" />
+  <component name="CreatePatchCommitExecutor" version="1431814529366" />
+  <component name="DaemonCodeAnalyzer" version="1431814529366" />
+  <component name="Encoding" version="1431814529369" />
+  <component name="ExecutionTargetManager" version="1431814529370" />
+  <component name="FavoritesManager" version="1431814529370" />
+  <component name="FileEditorManager" version="1431814529372" />
+  <component name="GradleLocalSettings" version="1431814529381" />
+  <component name="GradleSettings" version="1431814529381" />
+  <component name="ProjectFrameBounds" version="1431814529402" />
+  <component name="ProjectLevelVcsManager" version="1431814529402" />
+  <component name="ProjectModuleManager" version="1431814529404" />
+  <component name="ProjectReloadState" version="1431814529404" />
+  <component name="ProjectRootManager" version="1431814529405" />
   <component name="ProjectView" version="1420757318111" />
-  <component name="PropertiesComponent" version="1420757318111" />
-  <component name="RunManager" version="1420757318141" />
-  <component name="ShelveChangesManager" version="1420757318141" />
-  <component name="TaskManager" version="1420757318165" />
-  <component name="ToolWindowManager" version="1420757318167" />
-  <component name="Vcs.Log.UiProperties" version="1420757318168" />
-  <component name="VcsContentAnnotationSettings" version="1420757318169" />
-  <component name="VcsDirectoryMappings" version="1420757318169" />
-  <component name="VcsManagerConfiguration" version="1420757318169" />
-  <component name="XDebuggerManager" version="1420757318190" />
-  <component name="editorHistoryManager" version="1420757318192" />
+  <component name="PropertiesComponent" version="1431814529405" />
+  <component name="RunManager" version="1431814529413" />
+  <component name="ShelveChangesManager" version="1431814529413" />
+  <component name="SvnConfiguration" version="1431814549465" />
+  <component name="TaskManager" version="1431814529416" />
+  <component name="ToolWindowManager" version="1431814529418" />
+  <component name="Vcs.Log.UiProperties" version="1431814529419" />
+  <component name="VcsContentAnnotationSettings" version="1431814529419" />
+  <component name="VcsDirectoryMappings" version="1431814529419" />
+  <component name="VcsManagerConfiguration" version="1431814529420" />
+  <component name="XDebuggerManager" version="1431814529424" />
+  <component name="editorHistoryManager" version="1431814529426" />
 </versions>
 

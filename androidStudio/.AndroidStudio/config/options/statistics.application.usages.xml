@@ -1,33 +1,38 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <application>
   <component name="StatisticsApplicationUsages">
-    <group name="run-configuration-type">
-      <project id="My Application" values="AndroidRunConfigurationType" />
-    </group>
-    <group name="language-level">
-      <project id="My Application" values="JDK_1_7" />
-      <project id="spirit2_free" values="JDK_1_6" />
-    </group>
-    <group name="module type">
-      <project id="My Application" values="JAVA_MODULE" />
-      <project id="spirit2_free" values="JAVA_MODULE" />
+    <group name="vcs">
+      <project id="open-keychain" values="Git" collectionTime="1431815722889" />
     </group>
     <group name="frameworks">
-      <project id="My Application" values="android-gradle,java-gradle,android" />
-      <project id="spirit2_free" values="android-gradle,android" />
+      <project id="open-keychain" values="android,android-gradle" collectionTime="1431815722890" />
+      <project id="spirit2_free" values="android-gradle,android" collectionTime="0" />
+      <project id="My Application" values="android-gradle,java-gradle,android" collectionTime="1431814614661" />
+    </group>
+    <group name="run-configuration-type">
+      <project id="My Application" values="AndroidRunConfigurationType" collectionTime="1431814614663" />
+    </group>
+    <group name="language-level">
+      <project id="open-keychain" values="JDK_1_6" collectionTime="1431815722934" />
+      <project id="spirit2_free" values="JDK_1_6" collectionTime="0" />
+      <project id="My Application" values="JDK_1_7" collectionTime="1431814614706" />
     </group>
     <group name="file-type">
-      <project id="My Application" values="Images,Properties,Groovy,ARCHIVE,AIDL,UNKNOWN,IDEA_MODULE,JAVA,ProGuard File,XML,PLAIN_TEXT" />
-      <project id="spirit2_free" values="ARCHIVE,XML,IDEA_MODULE,Images,Groovy,Properties,JAVA,PLAIN_TEXT,UNKNOWN,C++" />
+      <project id="open-keychain" values="Groovy,ARCHIVE,Manifest,Native,PLAIN_TEXT,ProGuard File,AIDL,Images,XML,UNKNOWN,JSON,Properties,JAVA,IDEA_MODULE,HTML" collectionTime="1431815722928" />
+      <project id="spirit2_free" values="C++,ARCHIVE,IDEA_MODULE,JAVA,Images,Properties,PLAIN_TEXT,XML,UNKNOWN,Groovy" collectionTime="0" />
+      <project id="My Application" values="Groovy,Properties,UNKNOWN,Images,ARCHIVE,AIDL,JAVA,PLAIN_TEXT,IDEA_MODULE,XML,ProGuard File" collectionTime="1431814614684" />
+    </group>
+    <group name="module type">
+      <project id="open-keychain" values="JAVA_MODULE" collectionTime="1431815722890" />
+      <project id="spirit2_free" values="JAVA_MODULE" collectionTime="0" />
+      <project id="My Application" values="JAVA_MODULE" collectionTime="1431814614662" />
     </group>
   </component>
   <component name="UsageTrigger">
     <counts>
       <entry feature="execute.AndroidRunConfigurationType.Run" count="1" />
       <entry feature="ide.settings.Appearance" count="1" />
-      <entry feature="ideaapp.started" count="6" />
+      <entry feature="ideaapp.started" count="8" />
       <entry feature="tips.of.the.day.next" count="3" />
     </counts>
   </component>
 </application>
-

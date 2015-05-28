@@ -1,0 +1,22 @@
+<application>
+  <component name="DimensionService">
+    <location key="WELCOME_SCREEN.0.0.1280.800" x="639" y="316" />
+    <location key="com.intellij.ide.util.TipDialog.0.0.1280.800" x="351" y="231" />
+    <location key="AndroidExtendedDeviceChooserDialog.0.0.1280.800" x="398" y="195" />
+    <location key="FileChooserDialogImpl.0.0.1280.800" x="412" y="140" />
+    <location key="ProcessPopupWindow.0.0.1280.800" x="954" y="639" />
+    <location key="NewModule_or_Project.wizard.0.0.1280.800" x="373" y="172" />
+    <size key="AndroidExtendedDeviceChooserDialog.0.0.1280.800" width="476" height="446" />
+    <size key="FileChooserDialogImpl.0.0.1280.800" width="448" height="538" />
+    <size key="ProcessPopupWindow.0.0.1280.800" width="325" height="105" />
+    <size key="GridCell.Tab.0.left.0.0.1280.800" width="619" height="185" />
+    <size key="GridCell.Tab.0.center.0.0.1280.800" width="619" height="185" />
+    <size key="GridCell.Tab.0.right.0.0.1280.800" width="619" height="185" />
+    <size key="GridCell.Tab.0.bottom.0.0.1280.800" width="619" height="185" />
+    <size key="GridCell.Tab.1.left.0.0.1280.800" width="619" height="185" />
+    <size key="GridCell.Tab.1.center.0.0.1280.800" width="619" height="185" />
+    <size key="GridCell.Tab.1.right.0.0.1280.800" width="619" height="185" />
+    <size key="GridCell.Tab.1.bottom.0.0.1280.800" width="619" height="185" />
+    <size key="NewModule_or_Project.wizard.0.0.1280.800" width="524" height="481" />
+  </component>
+</application>
