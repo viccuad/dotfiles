@@ -240,7 +240,8 @@ Plug 'hdima/python-syntax', {'for': 'python'}		" neccesary, vim default python s
 	" you can change between py v2 and v3 with :Python2Syntax and :Python3Syntax
 
 Plug 'jamessan/vim-gnupg'							" encrypts/decrypts with gpg files that end in .gpg,.pgp or .asc. plaintext only on ram
-	let g:GPGDefaultRecipients = ["0x5702AA3A <me@viccuad.me>"]
+	" let g:GPGDefaultRecipients = ["0x5702AA3A <me@viccuad.me>"]
+	let g:GPGDefaultRecipients = ["0x9F15E3402D7995C3 <me@viccuad.me>"]
 	let g:GPGUsePipes=1			" (might break the prompt) use pipes instead of vim /temp files (no writing to disk)
 
 Plug 'Shougo/vinarise.vim', {'on': 'Vinarise'}		" hexadecimal editor
