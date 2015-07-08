@@ -1,11 +1,50 @@
+# Vim files:
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
 *~
-*.swp
-*.swo
-# OS generated files:
+
+# Linux files:
+*~
+.directory
+.Trash-*
+# MACOSX files:
 .DS_Store
 .DS_Store?
+.AppleDouble
+.LSOverride
+# Icon must end with two \r
+Icon
+# Thumbnails
 ._*
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
 .Spotlight-V100
+.TemporaryItems
 .Trashes
-ehthumbs.db
+.VolumeIcon.icns
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows files:
+# Windows image file caches
 Thumbs.db
+ehthumbs.db
+# Folder config file
+Desktop.ini
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+# Windows shortcuts
+*.lnk
