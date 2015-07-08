@@ -1,7 +1,7 @@
 alias reload!='. ~/.zshrc'
 
 # ls options:
-LS_OPTIONS=(-F --color);
+LS_OPTIONS=(-F --color=auto);
 alias ls='ls $LS_OPTIONS'
 alias ll='ls -lh'
 alias la='ls -lah'
