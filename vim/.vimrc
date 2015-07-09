@@ -15,15 +15,15 @@ set spelllang=en,es
 " in '~/.vim/autoload/plug.vim'
 
 " Automatic installation:
-if empty(glob('~/.vim/autoload/plug.vim'))
-		silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-		\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-		autocmd VimEnter * PlugInstall
-endif
+" if empty(glob('~/.vim/autoload/plug.vim'))
+" 		silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+" 		\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" 		autocmd VimEnter * PlugInstall
+" endif
 
-" For Mac/Linux users
+" For Mac/Linux users:
 call plug#begin('~/.vim/bundle')
-" For Windows users
+" For Windows users:
 " call plug#begin('~/vimfiles/bundle')
 
 " ADD YOUR PLUGINS HERE:
@@ -85,7 +85,7 @@ Plug 'junegunn/limelight.vim', {'on': 'Limelight'}	" hyperfocus mode
 " Plug 'zefei/vim-colortuner', {'on': 'Colorturner'}			" saturation, hue, etc tuning (only works with true colours: neovim, gvim)
 	let g:colortuner_filepath = '~/.vim/.vim-colortuner'
 
-Plug 'bling/vim-airline'							" status/tabline (NEEDS powerline font)
+Plug 'bling/vim-airline'									" status/tabline (NEEDS powerline font)
 	let g:airline_powerline_fonts = 1 						" automatically populate the g:airline_symbols dictionary with the powerline symbols
 	set laststatus=2 										" always show statusline
 	set noshowmode 											" hide the default mode text (e.g. -- INSERT -- below the statusline)
@@ -108,7 +108,7 @@ Plug 'bling/vim-airline'							" status/tabline (NEEDS powerline font)
 " Plug 'edkolev/tmuxline.vim'							" clone airline to tmux (its set up, only uncomment if you want to change the tmux statusline theme again)
 	" To export current statusline to a file which can be sourced by tmux.conf on startup:
 	" :TmuxlineSnapshot! ~/.tmux/tmuxline
-	"let g:tmuxline_powerline_separators = 0		" use block separators instead
+	"let g:tmuxline_powerline_separators = 0			" use block separators instead
 	let g:tmuxline_preset = {
 		\'a'    : '#S',
 		\'b'    : '#W',
@@ -270,8 +270,8 @@ filetype indent on				" enable filetype-specific indenting. can conflict with se
 filetype plugin on				" enable filetype-specific plugins
 
 " C language
-let c_space_errors = 1
-let c_comment_strings = 0		" dont highlight strings inside C comments
+let g:c_space_errors = 1
+let g:c_comment_strings = 0		" dont highlight strings inside C comments
 
 " Python language
 let python_space_errors = 1
@@ -304,6 +304,12 @@ augroup END
 
 " Latex files
 let g:tex_flavor = "latex"		" default tex flavour if not specified in the file
+
+" Help files
+augroup help_files
+	autocmd!
+	autocmd FileType help wincmd L	" always open help files in vertical splits
+augroup END
 " }}}
 
 " Spaces & Tabs {{{
@@ -315,7 +321,6 @@ set listchars=tab:\|·,trail:·,eol:¬	" show tabs, eol and trailing whitespace 
 " }}}
 
 " Line wrap {{{
-" gq: performs 'rewrap the text'
 set wrap							" soft wrap long lines, visually, instead of changing the file
 set linebreak						" wrap long lines at characters in 'breakat' rather than at the last character that fits
 set breakindent						" wrapped lines are visually indented
@@ -420,9 +425,6 @@ else
 	endif
 	" highlight ColorColumn ctermbg=0 guibg=#000000 	" colorcolumn for wombat256
 	" highlight ColorColumn ctermbg=232 guibg=#080808 	" colorcolumn for wombat256mod
-	" highlight ColorColumn ctermbg=233 guibg=#121212	" colorcolumn for xoria256
-	" highlight ColorColumn ctermbg=235 guibg=#262626	" colorcolumn for base16-default
-	" highlight ColorColumn ctermbg=0 guibg=#303030		" colorcolumn for base16
 endif
 
 " colorscheme settings I want to be there even if I change themes:
@@ -432,7 +434,7 @@ highlight String cterm=italic gui=italic	" put strings in italic (needs to be af
 " terminal: Use a blinking upright bar cursor in Insert mode, and a blinking block in normal
 " this could be done with Plugin 'jszakmeister/vim-togglecursor'
 " change cursor to a '|' when on vim console and insert mode:
-if &term == 'xterm-256color' || &term == 'rxvt-unicode-256color' || &term == 'screen-256color' || &term == 'screen-256color-it'
+if &term == 'xterm-256color' || &term == 'rxvt-unicode-256color' || &term == 'screen-256color' || &term == 'screen-256color-it' || &term == 'tmux-256color'
 	let &t_SI = "\<Esc>[5 q"
 	let &t_EI = "\<Esc>[1 q"
 	" urxvt has not implemented the bar cursor until 9.21, if that's the case, use an underbar: let &t_SI = "\<Esc>[3 q"
@@ -579,7 +581,7 @@ set autoread								" watch for file changes
 set nomodeline								" dont make vim check beginning and ending lines of files for options. HUGE VULNERABILITY
 " jump to the last position when reopening a file:
 if has("autocmd")
-	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+	autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 " }}}
 
