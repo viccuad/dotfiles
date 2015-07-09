@@ -7,6 +7,7 @@ let $LANG = 'en_US.utf8'
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
 set spelllang=en,es
+set complete+=kspell			" add dictionary words to completion
 " }}}
 
 " Vim-Plug Config {{{
@@ -440,7 +441,12 @@ if &term == 'xterm-256color' || &term == 'rxvt-unicode-256color' || &term == 'sc
 	" urxvt has not implemented the bar cursor until 9.21, if that's the case, use an underbar: let &t_SI = "\<Esc>[3 q"
 endif
 
-set isfname+=32										"netrw: to open files with spaces
+" netrw:
+set isfname+=32										" to open files with spaces
+let g:netrw_liststyle=3								" default to tree view (you can rotate netrw views with i)
+" Netrw remote transfers
+let g:netrw_altv          = 1						" change from left splitting to right splitting
+let g:netrw_special_syntax= 1						" highlight certain files (*.bak, *.zip..)
 " }}}
 
 " Persistence {{{
@@ -501,6 +507,9 @@ nnoremap gk k
 
 " keep the cursor in place when joining lines with J (by dropping a mark and returning there):
 nnoremap J mzJ`z
+
+" Y yanks lines from the cursor to the end of the line: (as said in :h Y)
+map Y y$
 
 " force yourself to stop using the arrow keys:
 map <up>    <nop>
