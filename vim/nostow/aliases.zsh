@@ -8,7 +8,7 @@ alias vis="vim --servername VIM"
 alias vimmin="vim -u ~/.vimrc_minimal"
 
 # only have 1 open gvim window
-gvim() { command gvim --remote-silent "$@" || command gvim "$@"; }
+gvim() { command gvim -p --remote-silent "$@" || command gvim -p "$@"; }
 
 # for vim-superman plugin for man
 vman() {
