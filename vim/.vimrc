@@ -30,10 +30,13 @@ call plug#begin('~/.vim/bundle')
 " ADD YOUR PLUGINS HERE:
 
 " LOOKS:
-"Plug 'ScrollColors'								" scroll themes with :SCROLLCOLOR
-"Plug 'mimicpak'									" more color themes
 Plug 'chriskempson/base16-vim'						" base16 color themes
-Plug 'morhetz/gruvbox'
+Plug 'miyakogi/conoline.vim'							" show cursorline only on current buffer, change its color
+	let g:conoline_auto_enable = 1
+	let g:conoline_use_colorscheme_default_normal = 1	" Use colors defined by colorscheme in normal mode.
+	let g:conoline_use_colorscheme_default_insert = 1	" Use colors defined by colorscheme in insert mode.
+
+" Plug 'morhetz/gruvbox'								" retro color scheme
 	let g:gruvbox_bold=1
 	let g:gruvbox_italic=1
 	let g:gruvbox_underline=1
@@ -118,6 +121,9 @@ Plug 'bling/vim-airline'									" status/tabline (NEEDS powerline font)
 		\'y'    : '%R',
 		\'z'    : '#H #(rainbarf --width 10 --bolt --remaining --rgb)'}
 
+" Plug 'nathanaelkane/vim-indent-guides'				" show colored indents
+	let g:indent_guides_enable_on_vim_startup = 1
+	let g:indent_guides_auto_colors = 0
 Plug 'sjl/badwolf'									" badwolf color theme
 	let g:badwolf_darkgutter = 1					" make the gutters darker than the background.
 	let g:badwolf_tabline = 1 						" make the tabline the same color as the background
@@ -127,30 +133,55 @@ Plug 'sjl/badwolf'									" badwolf color theme
 Plug 'matchit.zip'									" cicles between if, then, else..
 Plug 'tpope/vim-surround'							" surround strings faster (ysiwX,csXX, dsX, ysMX, yssX)
 Plug 'tpope/vim-speeddating'						" fixes vim incrementing of dates, times, etc (<C-A>, <C-X>)
-" Plug 'tpope/vim-vinegar'							" enhances the netrw split file explorer
 " Plug 'tpope/vim-fugitive'							" git support
-" Plug 'airblade/vim-gitgutter'						" show +,-,~ git changes on the gutter
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}	" show list of variables, functions, classes.. (NEEDS exuberant-ctags)
-"Plug 'kien/ctrlp.vim'								" full path fuzzy file,buffer,mru,tag.. finder
 Plug 'scrooloose/syntastic'							" automatic syntax checking
 Plug 'LargeFile'									" disables certain features of vim for speed in large files
 Plug 'AndrewRadev/inline_edit.vim', {'on': 'InlineEdit'}	" change code inside other code with ':InlineEdit'
 Plug 'tpope/vim-commentary'							" comment with motion support
 Plug 'tmux-plugins/vim-tmux-focus-events'			" let terminal vim to know about focus changes (autoread, etc)
 Plug 'junegunn/vim-peekaboo'						" shows the contents of the registers on pop-up buffer
-"Plug 'tasklist.vim'								" <leader> t shows a list of TODOs and FIXMEs
+Plug 'tasklist.vim'									" <leader> t shows a list of TODOs and FIXMEs
 Plug 'christoomey/vim-tmux-navigator'				" seamlessly navigate between tmux and vim panels
-" Plug 'utl.vim'									" universal Text Linking: execute URLs, footnotes, open emails, organize
 " Plug 'jceb/vim-orgmode'							" emacs org-mode in vim (needs utl.vim for links)
-" Plug 'kshenoy/vim-signature'						" place, toggle and display marks
+" Plug 'utl.vim'									" universal Text Linking: execute URLs, footnotes, open emails, organize (orgmode dependency)
 Plug 'reedes/vim-wordy', {'on': 'NextWordy'}		" adds dictionaries for uncovering usage problems in your writing
 Plug 'Keithbsmiley/investigate.vim'					" search the language docs with gK
 " Plug 'drawit'										" to draw lines and diagrams (<leader>di to start, <leader>ds to stop)
-Plug 'osyo-manga/vim-over'							" :substitute live preview to view changes as you are doing them
+" Plug 'osyo-manga/vim-over'							" :substitute live preview to view changes as you are doing them
+Plug 'loremipsum', {'on': 'Loremipsum'}				" insert a dummy text of a certain length
+
+Plug 'matze/vim-move'								" move blocks of text in visual and normal mode (<A-j>, <A-k>)
+	let g:move_map_keys = 0
+	vmap <C-j> <Plug>MoveBlockDown
+	vmap <C-k> <Plug>MoveBlockUp
+	" FIXME: this two don't work:
+	nmap <A-j> <Plug>MoveLineDown
+	nmap <A-k> <Plug>MoveLineUp
+
+" Plug 'qstrahl/vim-matchmaker'						" highlights matches for the word under the cursor
+	let g:matchmaker_enable_startup = 1
+
+Plug 'haya14busa/incsearch.vim'						" highlights every occurrence of the search before hitting enter
+	let g:incsearch#auto_nohlsearch = 1				" hlsearch will be automatically turned of after a cursor move
+	map /  <Plug>(incsearch-forward)
+	map ?  <Plug>(incsearch-backward)
+	map g/ <Plug>(incsearch-stay)
+	map n  <Plug>(incsearch-nohl-n)
+	map N  <Plug>(incsearch-nohl-N)
+	map *  <Plug>(incsearch-nohl-*)
+	map #  <Plug>(incsearch-nohl-#)
+	map g* <Plug>(incsearch-nohl-g*)
+	map g# <Plug>(incsearch-nohl-g#)
 
 Plug 'mhinz/vim-signify'							" show +,-,~ git changes on the gutter
 	let g:signify_vcs_list = ['git']
 	let g:signify_sign_change = '~'
+
+Plug 'kshenoy/vim-signature'						" place, toggle and display marks
+	" enable git-gutter and vim-signify color support:
+	let g:SignatureMarkTextHLDynamic = 1
+	let g:SignatureMarkerTextHLDynamic = 1
 
 Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}			" visualize vim undo tree
 	let g:gundo_auto_preview = 0
@@ -219,9 +250,8 @@ Plug 'honza/vim-snippets'							" Snippets are separated from the engine.
 
 " FILETYPE:
 Plug 'freitass/todo.txt-vim', {'for': 'todo'}		" for todo.txt filetypes
-" Plug 'rust-lang/rust.vim'
-" Plug 'pangloss/vim-javascript'
-Plug 'trapd00r/irc.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'skammer/vim-css-color', {'for': 'css'}		" highlight colors in css files (only works in gvim and css)
 
 Plug 'LaTeX-Box-Team/LaTeX-Box', {'for': 'tex'}
 	let g:LatexBox_output_type="pdf"
@@ -236,8 +266,8 @@ Plug 'vivien/vim-addon-linux-coding-style', {'for': 'c'}
 Plug 'c.vim', {'for': 'c'}
 	let g:C_LocalTemplateFile = $HOME.'/.vim/snippets_Cvim/c-support/templates/Templates' " this allows for the templates to be versioned on .dotfiles
 
-Plug 'hdima/python-syntax', {'for': 'python'}		" neccesary, vim default python syntax has a regex bug as of 7.4.663
-	let python_highlight_all = 1
+Plug 'hdima/python-syntax', {'for': 'python'}		" necessary, Vim default python syntax has a regex bug as of 7.4.663
+	let g:python_highlight_all = 1
 	" you can change between py v2 and v3 with :Python2Syntax and :Python3Syntax
 
 Plug 'jamessan/vim-gnupg'							" encrypts/decrypts with gpg files that end in .gpg,.pgp or .asc. plaintext only on ram
