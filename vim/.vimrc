@@ -31,6 +31,11 @@ call plug#begin('~/.vim/bundle')
 
 " LOOKS:
 Plug 'chriskempson/base16-vim'						" base16 color themes
+
+Plug 'viccuad/badfox'									" badfox color theme
+	let g:badfox_darkgutter = 1							" make the gutters darker than the background.
+	let g:badfox_tabline = 1 							" make the tabline the same color as the background
+
 Plug 'miyakogi/conoline.vim'							" show cursorline only on current buffer, change its color
 	let g:conoline_auto_enable = 1
 	let g:conoline_use_colorscheme_default_normal = 1	" Use colors defined by colorscheme in normal mode.
@@ -124,10 +129,6 @@ Plug 'bling/vim-airline'									" status/tabline (NEEDS powerline font)
 " Plug 'nathanaelkane/vim-indent-guides'				" show colored indents
 	let g:indent_guides_enable_on_vim_startup = 1
 	let g:indent_guides_auto_colors = 0
-Plug 'sjl/badwolf'									" badwolf color theme
-	let g:badwolf_darkgutter = 1					" make the gutters darker than the background.
-	let g:badwolf_tabline = 1 						" make the tabline the same color as the background
-
 
 " FUNCTIONALITY:
 Plug 'matchit.zip'									" cicles between if, then, else..
@@ -401,9 +402,9 @@ set ttimeoutlen=500					" the time in milliseconds that is waited for a key code
 
 if has("gui_running")
 	set guiheadroom=0				" vim padding: fix it in ~/.gtkrc-2.0
-	set background=dark 			" if using a dark background, for syntax highlighting
 
 	colorscheme base16-monokai
+	set background=dark 			" this shouldn't be necessary, but colorschemes bad behave putting background before hi Normal
 	let g:airline_theme= "base16"
 
 	set guioptions-=T				" remove Toolbar
@@ -425,34 +426,12 @@ if has("gui_running")
 	endif
 else
 	" set t_Co=256					" force number of colors to 256 inside vim. this shouldn't be done, better with TERM
-	set background=dark 			" if using a dark background, for syntax highlighting
 	" colorscheme wombat256
 	" colorscheme wombat256mod
-	" colorscheme xoria256
-	" colorscheme base16-default
-	" colorscheme base16-tomorrow
-	" let base16colorspace=256		" access colors present in 256 colorspace
-	" colorscheme base16-flat
-	" colorscheme gruvbox
-	colorscheme badwolf
-	if g:colors_name == "badwolf"
+	colorscheme badfox
+	if g:colors_name == "badfox"
 		let g:airline_theme= "badwolf"
-		" fix sign column:
-		highlight SignColumn ctermbg=232 guibg=#080808		" SignColumn for badwolf
-		highlight SignifySignAdd ctermfg=154 guifg=#aeee00 ctermbg=232 guibg=#080808
-		highlight SignifySignChange ctermfg=214 guifg=#ffa724 ctermbg=232 guibg=#080808
-		highlight SignifySignDelete ctermfg=196 guifg=#ff2c4b ctermbg=232 guibg=#080808
-		" change color column:
-		highlight ColorColumn ctermbg=233 guibg=#121212		" ColorColumn for badwolf
-		" change vertical splits:
-		" highlight VertSplit ctermbg=232 guibg=#080808		" same as SignColumn
-		" highlight VertSplit ctermbg=238 guibg=#444444		" same as status line
-		highlight VertSplit ctermfg=238 guifg=#444444 ctermbg=233 guibg=#121212		" fg: same as status line, bg: same as ColorColumn
-		" set fillchars+=vert:\ 				" delete split | separators
 		set fillchars+=vert:│					" complete utf fill separator
-	endif
-	if g:colors_name == "gruvbox"
-		let g:airline_theme= "gruvbox"
 	endif
 	" highlight ColorColumn ctermbg=0 guibg=#000000 	" colorcolumn for wombat256
 	" highlight ColorColumn ctermbg=232 guibg=#080808 	" colorcolumn for wombat256mod
@@ -533,7 +512,6 @@ vnoremap k gk
 " include the default behaviour by doing reverse mappings so you can move linewise with gj and gk:
 nnoremap gj j
 nnoremap gk k
-
 
 " keep the cursor in place when joining lines with J (by dropping a mark and returning there):
 nnoremap J mzJ`z
