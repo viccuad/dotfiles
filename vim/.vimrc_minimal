@@ -2,6 +2,10 @@
 
 " this is a minimal vimrc, to be used with vim in secure mode: no .vimrc and no plugins
 
+" When you Vim finds .vimrc it gets itself into nocompatible mode automatically. 
+" If it finds .exrc instead or you use -u you need to tell Vim to be in nocompatible mode:
+set nocompatible
+
 " Lang {{{
 language messages en_US.utf8
 set langmenu=en_US.utf8
