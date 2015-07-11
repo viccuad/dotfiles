@@ -437,10 +437,6 @@ else
 	" highlight ColorColumn ctermbg=232 guibg=#080808 	" colorcolumn for wombat256mod
 endif
 
-" colorscheme settings I want to be there even if I change themes:
-highlight Comment cterm=italic gui=italic	" put comments in italic (needs to be after your colorscheme) (needs tmux to be correctly set)
-highlight String cterm=italic gui=italic	" put strings in italic (needs to be after your colorscheme) (needs tmux to be correctly set)
-
 " terminal: Use a blinking upright bar cursor in Insert mode, and a blinking block in normal
 " this could be done with Plugin 'jszakmeister/vim-togglecursor'
 " change cursor to a '|' when on vim console and insert mode:
