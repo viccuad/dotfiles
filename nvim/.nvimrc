@@ -7,9 +7,14 @@ let $LANG = 'en_US.utf8'
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
 set spelllang=en,es
+set complete+=kspell			" add dictionary words to completion
 " }}}
 
 " Vim-Plug Config {{{
+
+" Automatic installation shouldn't fire up, because we have our trusted plug.vim
+" in '~/.vim/autoload/plug.vim'
+
 " Automatic installation:
 if empty(glob('~/.nvim/autoload/plug.vim'))
 		silent !curl -fLo ~/.nvim/autoload/plug.vim --create-dirs
@@ -25,10 +30,18 @@ call plug#begin('~/.nvim/bundle')
 " ADD YOUR PLUGINS HERE:
 
 " LOOKS:
-"Plug 'ScrollColors'								" scroll themes with :SCROLLCOLOR
-"Plug 'mimicpak'									" more color themes
 Plug 'chriskempson/base16-vim'						" base16 color themes
-Plug 'morhetz/gruvbox'
+
+Plug 'viccuad/badfox'									" badfox color theme
+	let g:badfox_darkgutter = 1							" make the gutters darker than the background.
+	let g:badfox_tabline = 1 							" make the tabline the same color as the background
+
+Plug 'miyakogi/conoline.vim'							" show cursorline only on current buffer, change its color
+	let g:conoline_auto_enable = 1
+	let g:conoline_use_colorscheme_default_normal = 1	" Use colors defined by colorscheme in normal mode.
+	let g:conoline_use_colorscheme_default_insert = 1	" Use colors defined by colorscheme in insert mode.
+
+" Plug 'morhetz/gruvbox'								" retro color scheme
 	let g:gruvbox_bold=1
 	let g:gruvbox_italic=1
 	let g:gruvbox_underline=1
@@ -81,7 +94,7 @@ Plug 'junegunn/limelight.vim', {'on': 'Limelight'}	" hyperfocus mode
 Plug 'zefei/vim-colortuner'", {'on': 'Colorturner'}			" saturation, hue, etc tuning (only works with true colours: neovim, gvim)
 	let g:colortuner_filepath = '~/.vim/.vim-colortuner'
 
-Plug 'bling/vim-airline'							" status/tabline (NEEDS powerline font)
+Plug 'bling/vim-airline'									" status/tabline (NEEDS powerline font)
 	let g:airline_powerline_fonts = 1 						" automatically populate the g:airline_symbols dictionary with the powerline symbols
 	set laststatus=2 										" always show statusline
 	set noshowmode 											" hide the default mode text (e.g. -- INSERT -- below the statusline)
@@ -89,14 +102,8 @@ Plug 'bling/vim-airline'							" status/tabline (NEEDS powerline font)
 	"let g:airline#extensions#tabline#left_sep = ' '		" straight separators
 	"let g:airline#extensions#tabline#left_alt_sep = '|'
 	let g:airline#extensions#tabline#buffer_idx_mode = 1	" display numbers in the tab line, and use mappings <leader>1 to <leader>9
-	if has("gui_running")
-		let g:airline_theme= "base16"
-	else
-		" let g:airline_theme= "badwolf"
-		let g:airline_theme= "gruvbox"
-	endif
 	let g:airline#extensions#tmuxline#enabled = 0
-  	let g:airline#extensions#tagbar#enabled = 0
+	let g:airline#extensions#tagbar#enabled = 0
 	let g:airline_theme_patch_func = 'AirlineThemePatch'
 	function! AirlineThemePatch(palette)
 			if g:airline_theme == 'badwolf'
@@ -109,8 +116,8 @@ Plug 'bling/vim-airline'							" status/tabline (NEEDS powerline font)
 
 " Plug 'edkolev/tmuxline.vim'							" clone airline to tmux (its set up, only uncomment if you want to change the tmux statusline theme again)
 	" To export current statusline to a file which can be sourced by tmux.conf on startup:
-	" :TmuxlineSnapshot ~/.tmux/tmuxline
-	"let g:tmuxline_powerline_separators = 0		" use block separators instead
+	" :TmuxlineSnapshot! ~/.tmux/tmuxline
+	"let g:tmuxline_powerline_separators = 0			" use block separators instead
 	let g:tmuxline_preset = {
 		\'a'    : '#S',
 		\'b'    : '#W',
@@ -119,37 +126,63 @@ Plug 'bling/vim-airline'							" status/tabline (NEEDS powerline font)
 		\'y'    : '%R',
 		\'z'    : '#H #(rainbarf --width 10 --bolt --remaining --rgb)'}
 
-Plug 'sjl/badwolf'									" badwolf color theme
-	let g:badwolf_darkgutter = 1					" make the gutters darker than the background.
-	let g:badwolf_tabline = 1 						" make the tabline the same color as the background
-
+" Plug 'nathanaelkane/vim-indent-guides'				" show colored indents
+	let g:indent_guides_enable_on_vim_startup = 1
+	let g:indent_guides_auto_colors = 0
 
 " FUNCTIONALITY:
 Plug 'matchit.zip'									" cicles between if, then, else..
-Plug 'tpope/vim-surround'							" surround strings faster (csXX, dsX, ysMX, yssX)
+Plug 'tpope/vim-surround'							" surround strings faster (ysiwX,csXX, dsX, ysMX, yssX)
 Plug 'tpope/vim-speeddating'						" fixes vim incrementing of dates, times, etc (<C-A>, <C-X>)
-Plug 'tpope/vim-vinegar'							" enhances the netrw split file explorer
 " Plug 'tpope/vim-fugitive'							" git support
-" Plug 'airblade/vim-gitgutter'						" show +,-,~ git changes on the gutter
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}	" show list of variables, functions, classes.. (NEEDS exuberant-ctags)
-"Plug 'kien/ctrlp.vim'								" full path fuzzy file,buffer,mru,tag.. finder
 Plug 'scrooloose/syntastic'							" automatic syntax checking
 Plug 'LargeFile'									" disables certain features of vim for speed in large files
 Plug 'AndrewRadev/inline_edit.vim', {'on': 'InlineEdit'}	" change code inside other code with ':InlineEdit'
 Plug 'tpope/vim-commentary'							" comment with motion support
-Plug 'tmux-plugins/vim-tmux-focus-events'			" lterminal vim to know about focus changes (autoread, etc)
+Plug 'tmux-plugins/vim-tmux-focus-events'			" let terminal vim to know about focus changes (autoread, etc)
 Plug 'junegunn/vim-peekaboo'						" shows the contents of the registers on pop-up buffer
-"Plug 'tasklist.vim'								" <leader> t shows a list of TODOs and FIXMEs
+Plug 'tasklist.vim'									" <leader> t shows a list of TODOs and FIXMEs
 Plug 'christoomey/vim-tmux-navigator'				" seamlessly navigate between tmux and vim panels
-" Plug 'utl.vim'									" universal Text Linking: execute URLs, footnotes, open emails, organize
 " Plug 'jceb/vim-orgmode'							" emacs org-mode in vim (needs utl.vim for links)
-" Plug 'kshenoy/vim-signature'						" place, toggle and display marks
+" Plug 'utl.vim'									" universal Text Linking: execute URLs, footnotes, open emails, organize (orgmode dependency)
 Plug 'reedes/vim-wordy', {'on': 'NextWordy'}		" adds dictionaries for uncovering usage problems in your writing
 Plug 'Keithbsmiley/investigate.vim'					" search the language docs with gK
+" Plug 'drawit'										" to draw lines and diagrams (<leader>di to start, <leader>ds to stop)
+" Plug 'osyo-manga/vim-over'							" :substitute live preview to view changes as you are doing them
+Plug 'loremipsum', {'on': 'Loremipsum'}				" insert a dummy text of a certain length
+
+Plug 'matze/vim-move'								" move blocks of text in visual and normal mode (<A-j>, <A-k>)
+	let g:move_map_keys = 0
+	vmap <C-j> <Plug>MoveBlockDown
+	vmap <C-k> <Plug>MoveBlockUp
+	" FIXME: this two don't work:
+	nmap <A-j> <Plug>MoveLineDown
+	nmap <A-k> <Plug>MoveLineUp
+
+" Plug 'qstrahl/vim-matchmaker'						" highlights matches for the word under the cursor
+	let g:matchmaker_enable_startup = 1
+
+Plug 'haya14busa/incsearch.vim'						" highlights every occurrence of the search before hitting enter
+	let g:incsearch#auto_nohlsearch = 1				" hlsearch will be automatically turned of after a cursor move
+	map /  <Plug>(incsearch-forward)
+	map ?  <Plug>(incsearch-backward)
+	map g/ <Plug>(incsearch-stay)
+	map n  <Plug>(incsearch-nohl-n)
+	map N  <Plug>(incsearch-nohl-N)
+	map *  <Plug>(incsearch-nohl-*)
+	map #  <Plug>(incsearch-nohl-#)
+	map g* <Plug>(incsearch-nohl-g*)
+	map g# <Plug>(incsearch-nohl-g#)
 
 Plug 'mhinz/vim-signify'							" show +,-,~ git changes on the gutter
 	let g:signify_vcs_list = ['git']
 	let g:signify_sign_change = '~'
+
+Plug 'kshenoy/vim-signature'						" place, toggle and display marks
+	" enable git-gutter and vim-signify color support:
+	let g:SignatureMarkTextHLDynamic = 1
+	let g:SignatureMarkerTextHLDynamic = 1
 
 Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}			" visualize vim undo tree
 	let g:gundo_auto_preview = 0
@@ -218,8 +251,8 @@ Plug 'honza/vim-snippets'							" Snippets are separated from the engine.
 
 " FILETYPE:
 Plug 'freitass/todo.txt-vim', {'for': 'todo'}		" for todo.txt filetypes
-" Plug 'rust-lang/rust.vim'
-" Plug 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript'
+Plug 'skammer/vim-css-color', {'for': 'css'}		" highlight colors in css files (only works in gvim and css)
 
 Plug 'LaTeX-Box-Team/LaTeX-Box', {'for': 'tex'}
 	let g:LatexBox_output_type="pdf"
@@ -234,18 +267,18 @@ Plug 'vivien/vim-addon-linux-coding-style', {'for': 'c'}
 Plug 'c.vim', {'for': 'c'}
 	let g:C_LocalTemplateFile = $HOME.'/.nvim/snippets_Cvim/c-support/templates/Templates' " this allows for the templates to be versioned on .dotfiles
 
-Plug 'hdima/python-syntax', {'for': 'python'}		" neccesary, vim default python syntax has a regex bug as of 7.4.663
-	let python_highlight_all = 1
+Plug 'hdima/python-syntax', {'for': 'python'}		" necessary, Vim default python syntax has a regex bug as of 7.4.663
+	let g:python_highlight_all = 1
 	" you can change between py v2 and v3 with :Python2Syntax and :Python3Syntax
 
 Plug 'jamessan/vim-gnupg'							" encrypts/decrypts with gpg files that end in .gpg,.pgp or .asc. plaintext only on ram
-	let g:GPGDefaultRecipients = ["0x5702AA3A <me@viccuad.me>"]
+	let g:GPGDefaultRecipients = ["0x9F15E3402D7995C3 <me@viccuad.me>"]
 	let g:GPGUsePipes=1			" (might break the prompt) use pipes instead of vim /temp files (no writing to disk)
 
 Plug 'Shougo/vinarise.vim', {'on': 'Vinarise'}		" hexadecimal editor
 
-Plug 'sudar/vim-arduino-syntax'
-Plug 'jplaut/vim-arduino-ino', {'do': 'pip install --user inotool && sudo apt-get install picocom'} " provides ino calls (Needs inotool, picocom)
+Plug 'sudar/vim-arduino-syntax', {'for': 'arduino'}
+Plug 'jplaut/vim-arduino-ino', {'for': 'arduino'}	" provides ino calls (Needs inotool, picocom)
     " <Leader>ac - Compile the current sketch
     " <Leader>ad - Compile and deploy the current sketch
     " <Leader>as - Open a serial port in screen
@@ -268,8 +301,8 @@ filetype indent on				" enable filetype-specific indenting. can conflict with se
 filetype plugin on				" enable filetype-specific plugins
 
 " C language
-let c_space_errors = 1
-let c_comment_strings = 0		" dont highlight strings inside C comments
+let g:c_space_errors = 1
+let g:c_comment_strings = 0		" dont highlight strings inside C comments
 
 " Python language
 let python_space_errors = 1
@@ -281,7 +314,8 @@ augroup END
 " Java language
 let java_space_errors = 1
 
-" Markdown instead of modula2
+" Markdown instead of modula2:
+let g:markdown_fenced_languages = ['asm', 'sh', 'bash=sh', 'c', 'python', 'css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml', 'html']
 augroup markdown_files
 	autocmd!
 	autocmd BufNewFile,BufReadPost *.md setl filetype=markdown spell textwidth=0 wrapmargin=0
@@ -298,6 +332,15 @@ augroup mail_files
 	autocmd!
 	autocmd FileType mail setl nonumber spell textwidth=0 wrapmargin=0
 augroup END
+
+" Latex files
+let g:tex_flavor = "latex"		" default tex flavour if not specified in the file
+
+" Help files
+augroup help_files
+	autocmd!
+	autocmd FileType help wincmd L	" always open help files in vertical splits
+augroup END
 " }}}
 
 " Spaces & Tabs {{{
@@ -309,7 +352,6 @@ set listchars=tab:\|·,trail:·,eol:¬	" show tabs, eol and trailing whitespace 
 " }}}
 
 " Line wrap {{{
-" gq: performs 'rewrap the text'
 set wrap							" soft wrap long lines, visually, instead of changing the file
 set linebreak						" wrap long lines at characters in 'breakat' rather than at the last character that fits
 set breakindent						" wrapped lines are visually indented
@@ -331,6 +373,7 @@ syntax on							" enable syntax processing
 set synmaxcol=2048					" prevents huge slow downs from syntax highlighting
 set number							" show line numbers
 "set relativenumber					" show relative numbers. can be on at the same time that number
+
 set cursorline						" highlight current line
 set conceallevel=2					" display unicode characters instead of they plaintext counterparts (epsilon, lambda, etc)
 " don't change colors of concealed characters:
@@ -349,8 +392,8 @@ set scrolloff=5						" keep at least 5 lines above/below
 set sidescrolloff=5 				" keep at least 5 lines left/right
 set splitright 						" vertical splits use right half of screen
 set splitbelow 						" horizontal splits use bottom half of screen
-set noerrorbells					" no error bells please
-set visualbell t_vb=				" no beep or flash
+set noerrorbells					" no sound bells please
+set visualbell t_vb=				" no flash screen for the visual bell
 if has('autocmd')
 	autocmd GUIEnter * set visualbell t_vb= 	"redo t_vb= for gui so it takes place
 endif
@@ -359,9 +402,11 @@ set ttimeoutlen=500					" the time in milliseconds that is waited for a key code
 
 if has("gui_running")
 	set guiheadroom=0				" vim padding: fix it in ~/.gtkrc-2.0
-	set background=dark 			" if using a dark background, for syntax highlighting
 
 	colorscheme base16-monokai
+	set background=dark 			" this shouldn't be necessary, but colorschemes bad behave putting background before hi Normal
+	let g:airline_theme= "base16"
+
 	set guioptions-=T				" remove Toolbar
 	set guioptions+=c				" use console dialogs
 	set guioptions-=r				" remove right-hand scrollbar
@@ -380,38 +425,37 @@ if has("gui_running")
 		set guifont=Consolas:h11:cANSI
 	endif
 else
-	set t_Co=256					" force number of colors to 256 inside vim. this shouldn't be done, better with TERM
-	set background=dark 			" if using a dark background, for syntax highlighting
-	" colorscheme badwolf
+	" set t_Co=256					" force number of colors to 256 inside vim. this shouldn't be done, better with TERM
 	" colorscheme wombat256
 	" colorscheme wombat256mod
-	" colorscheme xoria256
-	" colorscheme base16-default
-	" colorscheme base16-tomorrow
-	"let base16colorspace=256		" access colors present in 256 colorspace
-	colorscheme gruvbox
-	" highlight ColorColumn ctermbg=232 guibg=#080808		" colorcolumn for badwolf
+	colorscheme badfox
+	if g:colors_name == "badfox"
+		let g:airline_theme= "badwolf"
+		set fillchars+=vert:│					" complete utf fill separator
+	endif
 	" highlight ColorColumn ctermbg=0 guibg=#000000 	" colorcolumn for wombat256
 	" highlight ColorColumn ctermbg=232 guibg=#080808 	" colorcolumn for wombat256mod
-	" highlight ColorColumn ctermbg=233 guibg=#121212	" colorcolumn for xoria256
-	" highlight ColorColumn ctermbg=235 guibg=#262626	" colorcolumn for base16-default
-	" highlight ColorColumn ctermbg=0 guibg=#303030		" colorcolumn for base16
 endif
 
 " colorscheme settings I want to be there even if I change themes:
 highlight Comment cterm=italic gui=italic	" put comments in italic (needs to be after your colorscheme) (needs tmux to be correctly set)
-highlight clear SignColumn					" sets the git gutter to the same color as the number column (needs to be after your colorscheme)
+highlight String cterm=italic gui=italic	" put strings in italic (needs to be after your colorscheme) (needs tmux to be correctly set)
 
 " terminal: Use a blinking upright bar cursor in Insert mode, and a blinking block in normal
 " this could be done with Plugin 'jszakmeister/vim-togglecursor'
 " change cursor to a '|' when on vim console and insert mode:
-if &term == 'xterm-256color' || &term == 'rxvt-unicode-256color' || &term == 'screen-256color' || &term == 'screen-256color-it'
+if &term == 'xterm-256color' || &term == 'rxvt-unicode-256color' || &term == 'screen-256color' || &term == 'screen-256color-it' || &term == 'tmux-256color'
 	let &t_SI = "\<Esc>[5 q"
 	let &t_EI = "\<Esc>[1 q"
 	" urxvt has not implemented the bar cursor until 9.21, if that's the case, use an underbar: let &t_SI = "\<Esc>[3 q"
 endif
 
-set isfname+=32										"netrw: to open files with spaces
+" netrw:
+set isfname+=32										" to open files with spaces
+let g:netrw_liststyle=3								" default to tree view (you can rotate netrw views with i)
+" Netrw remote transfers
+let g:netrw_altv          = 1						" change from left splitting to right splitting
+let g:netrw_special_syntax= 1						" highlight certain files (*.bak, *.zip..)
 " }}}
 
 " Persistence {{{
@@ -452,22 +496,33 @@ command! Q q
 let mapleader = "\<Space>"
 
 " use tab key to cycle through the buffers:
-" if has('nvim')
-" 	nnoremap <C-Tab>   :bnext<CR>
-" 	nnoremap <C-S-Tab> :bprevious<CR>
-" else
+if has('nvim')
+	nnoremap <C-Tab>   :bnext<CR>
+	nnoremap <C-S-Tab> :bprevious<CR>
+else
 	nnoremap <leader><Tab>   :bnext<CR>
 	nnoremap <leader><S-Tab> :bprevious<CR>
-" endif
+endif
 
-" remap jk to escape:  You'll never type jk anyway, so it's great!
+" remap jk and kj to escape:  You'll never type it anyway, so it's great!
 inoremap jk <Esc>
+inoremap kj <Esc>
 
 " use hjkl-movement between rows when soft wrapping:
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
+
+" include the default behaviour by doing reverse mappings so you can move linewise with gj and gk:
+nnoremap gj j
+nnoremap gk k
+
+" keep the cursor in place when joining lines with J (by dropping a mark and returning there):
+nnoremap J mzJ`z
+
+" Y yanks lines from the cursor to the end of the line: (as said in :h Y)
+map Y y$
 
 " force yourself to stop using the arrow keys:
 map <up>    <nop>
@@ -516,6 +571,19 @@ nnoremap <leader>h :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") .
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
+" Zoom / Restore window:
+function! s:ZoomToggle() abort
+    if exists('t:zoomed') && t:zoomed
+        execute t:zoom_winrestcmd
+        let t:zoomed = 0
+    else
+        let t:zoom_winrestcmd = winrestcmd()
+        resize
+        vertical resize
+        let t:zoomed = 1
+    endif
+endfunction
+command! ZoomToggle call s:ZoomToggle()
 " }}}
 
 " Folding {{{
