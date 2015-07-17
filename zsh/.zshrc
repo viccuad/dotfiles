@@ -1,3 +1,6 @@
+# This is a shim config that loads the rest, inside the nostow/ dir
+
+
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
 

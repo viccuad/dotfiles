@@ -30,12 +30,3 @@ bindkey -v
 
 # bind history search:
 bindkey '^R' history-incremental-search-backward
-
-# don't expand aliases _before_ completion has finished
-#   like: git comm-[tab]
-#   this makes the alias a distinct command for completion purposes
-setopt complete_aliases
-
-# Base16-shell colors
-# BASE16_SHELL="$ZSH/zsh/nostow/base16-shell/base16-bright.dark.sh"
-# [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
