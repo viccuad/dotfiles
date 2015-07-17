@@ -59,8 +59,8 @@ let g:tex_flavor = "latex"		" default tex flavour if not specified in the file
 " Help files
 augroup help_files
 	autocmd!
-	autocmd FileType help wincmd L	" always open help files in vertical splits
-augroup END
+	autocmd filetype help wincmd l	" always open help files in vertical splits
+augroup end
 " }}}
 
 " Spaces & Tabs {{{
@@ -95,6 +95,12 @@ set synmaxcol=2048					" prevents huge slow downs from syntax highlighting
 set number							" show line numbers
 "set relativenumber					" show relative numbers. can be on at the same time that number
 set cursorline						" highlight current line
+
+augroup cursorline
+	autocmd!
+	autocmd winenter * setlocal cursorline		" make cursorline appear only in the focused window  todo: remove if using conoline
+	autocmd winleave * setlocal nocursorline
+augroup END
 
 set conceallevel=2					" display unicode characters instead of they plaintext counterparts (epsilon, lambda, etc)
 " don't change colors of concealed characters:
@@ -147,7 +153,7 @@ else
 	" set t_Co=256					" force number of colors to 256 inside vim. this shouldn't be done, better with TERM
 	set background=dark 			" if using a dark background, for syntax highlighting
 	colorscheme wombat256mod
-	highlight ColorColumn ctermbg=232 guibg=#080808 	" colorcolumn for wombat256mod
+	highlight ColorColumn ctermbg=234 guibg=#1C1C1C 	" colorcolumn for wombat256mod
 endif
 
 " colorscheme settings I want to be there even if I change themes:
