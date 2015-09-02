@@ -1,0 +1,9 @@
+#!/bin/bash
+# example file to be used with --hookdir
+#
+# add non-free and contrib distributions to 
+# /etc/apt/sources.list 
+
+echo ' Add sid non-free mirror to distribution'
+echo 'deb '$(awk '/^deb / {print $2} ' < /etc/apt/sources.list | head -1 )' sid contrib non-free' >> /etc/apt/sources.list
+apt-get update

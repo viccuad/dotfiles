@@ -1,0 +1,6 @@
+﻿# debsign customizations:
+DEBSIGN_KEYID=0xA2591E231E251F36
+
+# lintian customizations:
+DEBUILD_DPKG_BUILDPACKAGE_OPTS="-us -uc -I -i"
+DEBUILD_LINTIAN_OPTS="-i -I --show-overrides"

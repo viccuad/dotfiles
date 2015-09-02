@@ -91,7 +91,8 @@ smtphost reportbug.debian.org
 ui gtk2
 
 # Editor
-editor "vim"
+# Commented: let it use $EDITOR env var
+# editor "vim"
 
 # Always use template mode (bypass all prompts, output to stdout)
 # template

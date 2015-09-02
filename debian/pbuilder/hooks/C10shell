@@ -1,0 +1,6 @@
+#!/bin/bash
+set -e
+apt-get -y --force-yes install vim bash mc
+# invoke shell if build fails
+cd /tmp/buildd/*/debian/..
+/bin/bash < /dev/tty > /dev/tty 2> /dev/tty

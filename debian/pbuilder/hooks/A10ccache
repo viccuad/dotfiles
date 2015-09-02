@@ -1,0 +1,6 @@
+#!/bin/sh
+set -e
+# increase the ccache caching size
+ccache -M 4G
+# output the current statistics
+ccache -s

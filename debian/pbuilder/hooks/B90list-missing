@@ -1,0 +1,12 @@
+#!/bin/bash
+# example file to be used with --hookdir
+#
+# 343894: script from q-funk.
+
+# Depends on CDBS module in debian/rules:
+# include /usr/share/cdbs/1/rules/utils.mk 
+echo "I: checking for missing files."
+cd /tmp/buildd/*/debian
+cd ..
+fakeroot debian/rules list-missing
+#EOF

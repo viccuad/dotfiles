@@ -1,0 +1,28 @@
+#!/bin/bash
+# example file to be used with --hookdir
+#
+# try to install the resulting debs.
+
+echo "Trying to install resulting packages and test upgrades"
+set -ex
+
+
+PKGNAMES=$(cd /tmp/buildd && ls -1 *.deb | sed 's/_.*$//' )
+
+# install-remove check
+dpkg -i /tmp/buildd/*.deb
+dpkg --remove $PKGNAMES
+
+# install-purge check
+dpkg -i /tmp/buildd/*.deb
+dpkg --purge $PKGNAMES
+
+# upgrade-remove check
+apt-get install -y "${APTGETOPT[@]}"  $PKGNAMES || true
+dpkg -i /tmp/buildd/*.deb
+dpkg --remove $PKGNAMES
+
+# upgrade-purge check
+apt-get install -y "${APTGETOPT[@]}" $PKGNAMES || true
+dpkg -i /tmp/buildd/*.deb
+dpkg --purge $PKGNAMES
