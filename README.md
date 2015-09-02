@@ -49,7 +49,7 @@ To install run this:
 
 ```
 sh
-git clone https://github.com/viccuad/dotfiles.git ~/.dotfiles
+git clone --recursive https://github.com/viccuad/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 ./install.sh
 ```
