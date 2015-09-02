@@ -30,10 +30,12 @@ call plug#begin('~/.vim/bundle')
 " ADD YOUR PLUGINS HERE:
 
 " LOOKS:
-Plug 'chriskempson/base16-vim'						" base16 color themes
+Plug 'guns/xterm-color-table.vim', {'on': 'XtermColorTable'}
+Plug 'chriskempson/base16-vim'							" base16 color themes
 
 Plug 'viccuad/badfox'									" badfox color theme
 	let g:badfox_darkgutter = 1							" make the gutters darker than the background.
+	let g:badfox_darkcolorcolumn = 0 					" make the colorcolumn the same color as the gutter
 	let g:badfox_tabline = 1 							" make the tabline the same color as the background
 
 Plug 'miyakogi/conoline.vim'							" show cursorline only on current buffer, change its color
@@ -104,6 +106,7 @@ Plug 'bling/vim-airline'									" status/tabline (NEEDS powerline font)
 	let g:airline#extensions#tabline#buffer_idx_mode = 1	" display numbers in the tab line, and use mappings <leader>1 to <leader>9
 	let g:airline#extensions#tmuxline#enabled = 0
 	let g:airline#extensions#tagbar#enabled = 0
+	let g:airline#extensions#tagbar#flags = 's'
 	let g:airline_theme_patch_func = 'AirlineThemePatch'
 	function! AirlineThemePatch(palette)
 			if g:airline_theme == 'badwolf'
@@ -144,13 +147,22 @@ Plug 'tmux-plugins/vim-tmux-focus-events'			" let terminal vim to know about foc
 Plug 'junegunn/vim-peekaboo'						" shows the contents of the registers on pop-up buffer
 Plug 'tasklist.vim'									" <leader> t shows a list of TODOs and FIXMEs
 Plug 'christoomey/vim-tmux-navigator'				" seamlessly navigate between tmux and vim panels
-" Plug 'jceb/vim-orgmode'							" emacs org-mode in vim (needs utl.vim for links)
-" Plug 'utl.vim'									" universal Text Linking: execute URLs, footnotes, open emails, organize (orgmode dependency)
+Plug 'jceb/vim-orgmode'							" emacs org-mode in vim (needs utl.vim for links)
+Plug 'utl.vim'									" universal Text Linking: execute URLs, footnotes, open emails, organize (orgmode dependency)
+Plug 'mattn/calendar-vim'						" provides a calendar when entering dates on orgmode
 Plug 'reedes/vim-wordy', {'on': 'NextWordy'}		" adds dictionaries for uncovering usage problems in your writing
 Plug 'Keithbsmiley/investigate.vim'					" search the language docs with gK
 " Plug 'drawit'										" to draw lines and diagrams (<leader>di to start, <leader>ds to stop)
 " Plug 'osyo-manga/vim-over'							" :substitute live preview to view changes as you are doing them
 Plug 'loremipsum', {'on': 'Loremipsum'}				" insert a dummy text of a certain length
+
+Plug 'unblevable/quick-scope'						" highlight characters when doing f,F,t,T
+	let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+Plug 'vasconcelloslf/vim-interestingwords'			" highlight all words (<leader>k, <leader>K)
+	let g:interestingWordsGUIColors = ['#99B3FF', '#B399FF', '#E699FF', '#FF99B3', '#99FFE6', '#FFD65C', '#99FFB3', '#E6FF99', '#FFB399', '#5CD6FF', '#99FF99', '#FFF6CC']
+
+" Plug 'lilydjwg/colorizer'
 
 Plug 'matze/vim-move'								" move blocks of text in visual and normal mode (<A-j>, <A-k>)
 	let g:move_map_keys = 0
@@ -254,6 +266,8 @@ Plug 'freitass/todo.txt-vim', {'for': 'todo'}		" for todo.txt filetypes
 Plug 'pangloss/vim-javascript'
 Plug 'skammer/vim-css-color', {'for': 'css'}		" highlight colors in css files (only works in gvim and css)
 
+" Plug 'lervag/vimtex', {'for': 'tex'}
+
 Plug 'LaTeX-Box-Team/LaTeX-Box', {'for': 'tex'}
 	let g:LatexBox_output_type="pdf"
 	let g:LatexBox_latexmk_async=1 					" allow Latexmk to run in the background and load any compilation errors in a quickfix window after it finishes running.
@@ -273,7 +287,7 @@ Plug 'hdima/python-syntax', {'for': 'python'}		" necessary, Vim default python s
 
 Plug 'jamessan/vim-gnupg'							" encrypts/decrypts with gpg files that end in .gpg,.pgp or .asc. plaintext only on ram
 	" let g:GPGDefaultRecipients = ["0x5702AA3A <me@viccuad.me>"]
-	let g:GPGDefaultRecipients = ["0x9F15E3402D7995C3 <me@viccuad.me>"]
+	let g:GPGDefaultRecipients = ["0xA2591E231E251F36 <me@viccuad.me>"]
 	let g:GPGUsePipes=1			" (might break the prompt) use pipes instead of vim /temp files (no writing to disk)
 
 Plug 'Shougo/vinarise.vim', {'on': 'Vinarise'}		" hexadecimal editor
@@ -285,13 +299,13 @@ Plug 'jplaut/vim-arduino-ino', {'for': 'arduino'}	" provides ino calls (Needs in
     " <Leader>as - Open a serial port in screen
 
 Plug 'kana/vim-textobj-user'						" create your own text objects without pain
-Plug 'reedes/vim-textobj-quote'						" put ‘typographic quotes’ instead of 'straight quotes' (needs vim-textobject-user)
-	augroup textobj_quote
-		autocmd!
-		autocmd FileType markdown call textobj#quote#init()
-		autocmd FileType textile call textobj#quote#init()
-		autocmd FileType text call textobj#quote#init({'educate': 0})
-	augroup END
+" Plug 'reedes/vim-textobj-quote'						" put ‘typographic quotes’ instead of 'straight quotes' (needs vim-textobject-user)
+	" augroup textobj_quote
+	" 	autocmd!
+	" 	autocmd FileType markdown call textobj#quote#init()
+	" 	autocmd FileType textile call textobj#quote#init()
+	" 	" autocmd FileType text call textobj#quote#init({'educate': 0})
+	" augroup END
 
 call plug#end()
 " }}}
@@ -319,19 +333,19 @@ let java_space_errors = 1
 let g:markdown_fenced_languages = ['asm', 'sh', 'bash=sh', 'c', 'python', 'css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml', 'html']
 augroup markdown_files
 	autocmd!
-	autocmd BufNewFile,BufReadPost *.md setl filetype=markdown spell textwidth=0 wrapmargin=0
+	autocmd BufNewFile,BufReadPost *.md setl filetype=markdown spell textwidth=80 wrapmargin=80
 augroup END
 
 " TXT files
 augroup txt_files
 	autocmd!
-	autocmd BufNewFile,BufReadPost *.txt setl spell textwidth=0 wrapmargin=0
+	autocmd BufNewFile,BufReadPost *.txt setl spell textwidth=80 wrapmargin=80
 augroup END
 
 " Mail files from mutt
 augroup mail_files
 	autocmd!
-	autocmd FileType mail setl nonumber spell textwidth=0 wrapmargin=0
+	autocmd FileType mail setl nonumber spell textwidth=72 wrapmargin=72
 augroup END
 
 " Latex files
@@ -340,16 +354,18 @@ let g:tex_flavor = "latex"		" default tex flavour if not specified in the file
 " Help files
 augroup help_files
 	autocmd!
-	autocmd FileType help wincmd L	" always open help files in vertical splits
-augroup END
+	autocmd filetype help wincmd l	" always open help files in vertical splits
+augroup end
 " }}}
 
 " Spaces & Tabs {{{
 set tabstop=4						" number of visual spaces per TAB
-" set autoindent smartindent		" copy indent from current line when starting a new line, and smart indent automatically inserts one level of indentation in some cases.
-set listchars=tab:\|·,trail:·,eol:¬	" show tabs, eol and trailing whitespace when showing separators
-"set listchars=tab:\ \ ,trail:·		" only show trailing whitespace when showing separators. the tab is 2 spaces
-"set list							" show listchars
+set autoindent smartindent			" copy indent from current line when starting a new line, and smart indent automatically inserts one level of indentation in some cases.
+" set listchars=tab:\|·,trail:·,eol:¬	" show tabs, eol and trailing whitespace when showing separators
+" set listchars=tab:\├\─,trail:·,eol:↵,extends:→,precedes:←	" show tabs, eol and trailing whitespace when showing separators
+set listchars=tab:\╶\─,trail:·,eol:↵,extends:→,precedes:←	" show tabs, eol and trailing whitespace when showing separators
+" set listchars=tab:▸\ ,trail:·,eol:↵,extends:→,precedes:←	" show tabs, eol and trailing whitespace when showing separators
+set list							" show listchars
 " }}}
 
 " Line wrap {{{
@@ -385,6 +401,7 @@ set cpoptions+=$					" put a '$' at the end of the changed text
 set showmatch						" highlight matching brackets
 set mouse=a							" enable mouse usage (all modes)
 set mousehide						" hide the mouse when typing text
+set ttymouse=sgr					" to have correct mouse support in xterm > 233 (if using tmux, as screen is hardcoded)
 set backspace=indent,eol,start		" allow backspacing over all of that
 set ruler 							" show the cursor position and line number at the bar
 set lazyredraw						" don't redraw while in macros
@@ -578,7 +595,7 @@ command! ZoomToggle call s:ZoomToggle()
 " }}}
 
 " Folding {{{
-set foldmethod=syntax
+set foldmethod=marker
 set foldlevel=99
 set foldnestmax=10			" max 10 depth
 set nofoldenable			" don't fold files by default on open
@@ -586,7 +603,7 @@ set foldlevelstart=1		" start with fold level of 1
 " }}}
 
 " Launch {{{
-set encoding=utf8
+set encoding=utf-8
 set autowrite								" automatically save before commands like :next and :make
 set autochdir								" automatically cd into the directory that the file is in (this will break plugins if activated!!!)
 "autocmd BufEnter * silent! lcd %:p:h		" automatically cd into the dir of the file. this breaks less
