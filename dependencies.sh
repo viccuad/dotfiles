@@ -4,10 +4,18 @@
 # rainbarf  # from github, needs compiling. Right now the bin is in bin.nostow
 
 # tools:
-sudo apt-get install vim nvim tmux git ack-grep tig git-gui picocom mutt weechat
-
+sudo apt-get install vim \
+# ncurses for tmux-256color:
+tmux ncurses-term \
+git tig git-gui \
+ack-grep \
+picocom \
+mutt-patched \
+weechat \
 # autocompletion/syntax:
-sudo apt-get install python-jedi python3-jedi exuberant-ctags build-essential cmake python-dev
+python-jedi python3-jedi \
+exuberant-ctags \
+build-essential cmake python-dev \ # for youcompleteme c support, when building clang
 
 # for arduino development:
-pip install --user inotool
+# pip install --user inotool
