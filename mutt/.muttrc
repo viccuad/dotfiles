@@ -5,39 +5,57 @@
 # WARNING: WE AREN'T CHECKING IF THE GPG FILE IS SIGNED TO YOU
 source "gpg2 -dq $HOME/.mutt/private_config.gpg |"
 
+
 # MailRetrieval {{{
 # Wait to enter mailbox manually:
 set imap_passive
+
 # Automatically poll subscribed mailboxes for new mail: (new in 1.5.11)
 set imap_check_subscribed
+
 # Reduce polling frequency to a sane level: (in seconds)
 set mail_check=120
+
 # And poll the current mailbox more often: (not needed with IDLE in post 1.5.11)
 set timeout=60
+
 # keep a cache of headers for faster loading: (1.5.9+?)
 # set header_cache=~/.hcache
 # Display download progress every 5K
 set net_inc=5
+
 # Use 1 dir per mail directory, and each mail is a file:
 set mbox_type=Maildir
+
 # set up default folders:
 set record= +Sent
 set postponed= +Drafts
 set trash= +Trash
 # }}}
 
+
 # MailHeader {{{
+set edit_headers=yes
 #my_hdr X-Info: Keep It Simple, Stupid.
-#
 ### OS Info.
 my_hdr X-Operating-System: `uname -o` #, kernel `uname -r`
-#
+
 ### This header only appears to MS Outlook users
-my_hdr X-Message-Flag: WARNING!! Outlook sucks
-#
+# my_hdr X-Message-Flag: WARNING!! Outlook sucks
+
 ### Custom Mail-User-Agent ID.
 #my_hdr User-Agent: Every email client sucks, this one just sucks less.
+
+#inform your recipient of the web address of your public key
+# my_hdr X-PGP-Key: https://keybase.io/viccuad/key.asc
+my_hdr X-PGP-Key: http://viccuad.me/assets/publickey.txt
+
+#Default From
+my_hdr From: Víctor Cuadrado Juan <me@viccuad.me>
+#my_hdr Organization: http://www.viccuad.me/
+#my_hdr X-Attribution: viccuad
 # }}}
+
 
 # Signature {{{
 # set signature="fortune pathtofortunefile|"
@@ -51,59 +69,89 @@ set sort_alias = alias
 set reverse_alias = yes
 source $alias_file
 # }}}
+#
 
 # GPG {{{
-# GPG hooks for mutt:
-# set pgp_decode_command="gpg %?p?--passphrase-fd 0? --no-verbose --batch --output - %f"
-# set pgp_verify_command="gpg --no-verbose --batch --output - --verify %s %f"
-# set pgp_decrypt_command="gpg --passphrase-fd 0 --no-verbose --batch --output - %f"
-# set pgp_sign_command="gpg --no-verbose --batch --output - --passphrase-fd 0 --armor --detach-sign --textmode %?a?-u %a? %f"
-# set pgp_clearsign_command="gpg --no-verbose --batch --output - --passphrase-fd 0 --armor --textmode --clearsign %?a?-u %a? %f"
-# set pgp_encrypt_only_command="pgpewrap gpg --batch --quiet --no-verbose --output - --encrypt --textmode --armor --always-trust --encrypt-to 0x5702AA3A -- -r %r -- %f"
-# set pgp_encrypt_sign_command="pgpewrap gpg --passphrase-fd 0 --batch --quiet --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust --encrypt-to 0x5702AA3A -- -r %r -- %f"
-# set pgp_import_command="gpg --no-verbose --import -v %f"
-# set pgp_export_command="gpg --no-verbose --export --armor %r"
-# set pgp_verify_key_command="gpg --no-verbose --batch --fingerprint --check-sigs %r"
-# set pgp_list_pubring_command="gpg --no-verbose --batch --with-colons --list-keys %r"
-# set pgp_list_secring_command="gpg --no-verbose --batch --with-colons --list-secret-keys %r"
-# set pgp_autosign=yes
-# set pgp_sign_as=0x5702AA3A
-# set pgp_replyencrypt=yes
-# set pgp_timeout=120
-
-set pgp_auto_decode = yes
-# send-hook "~f @work.tld" set pgp_autosign = no
-# send-hook "~f @personal.tld" set pgp_autosign = yes
-set pgp_autosign = yes
-set pgp_sign_as=0x5702AA3A
-set pgp_replysign = yes
-set pgp_replyencrypt = yes
-set crypt_replysignencrypted = yes
-set crypt_verify_sig = yes
-set pgp_use_gpg_agent = yes
 set crypt_use_gpgme = yes
+set pgp_use_gpg_agent = yes
 set pgp_good_sign="^gpg: Good signature from"
+
+set pgp_autosign = yes
+set pgp_sign_as=0xA2591E231E251F36
+set pgp_auto_decode = yes
+set pgp_verify_sig
+set pgp_replysign
+set pgp_replyencrypt
+set pgp_replysignencrypted
+# set pgp_autoencrypt
+
+# GPG hooks for mutt:
+# # decode application/pgp
+# set pgp_decode_command="gpg %?p?--passphrase-fd 0? --no-verbose --batch -o - %f"
+
+# # verify a pgp/mime signature
+# set pgp_verify_command="gpg --no-verbose --batch -o - --verify %s %f"
+
+# # decrypt a pgp/mime attachment
+# set pgp_decrypt_command="gpg --passphrase-fd 0 --no-verbose --batch -o - %f"
+
+# # create a pgp/mime signed attachment
+# set pgp_sign_command="gpg --no-verbose --batch -o - --passphrase-fd 0 --armor --detach-sign --textmode %?a?-u %a? %f"
+
+# # create a application/pgp signed (old-style) message
+# set pgp_clearsign_command="gpg --no-verbose --batch -o - --passphrase-fd 0 --armor --textmode --clearsign %?a?-u %a? %f"
+
+# # create a pgp/mime encrypted attachment
+# set pgp_encrypt_only_command="/usr/lib/mutt/pgpewrap gpg -v --batch -o - --encrypt --textmode --armor --always-trust %?a?-u %a? -- -r %r -- %f"
+
+# # create a pgp/mime encrypted and signed attachment
+# set pgp_encrypt_sign_command="/usr/lib/mutt/pgpewrap gpg --passphrase-fd 0 -v --batch -o - --encrypt --sign --armor --always-trust %?a?-u %a? -- -r %r -- %f"
+
+# # import a key into the public key ring
+# set pgp_import_command="gpg --no-verbose --import -v %f"
+
+# # export a key from the public key ring
+# set pgp_export_command="gpg --no-verbose --export --armor %r"
+
+# # verify a key
+# set pgp_verify_key_command="gpg --no-verbose --batch --fingerprint --check-sigs %r"
+
+# # read in the public key ring
+# set pgp_list_pubring_command="gpg --no-verbose --batch --with-colons --list-keys %r" 
+
+# # read in the secret key ring
+# set pgp_list_secring_command="gpg --no-verbose --batch --with-colons --list-secret-keys %r" 
+
+# receive key from keyserver:
+# Hmm, has anyone got this to work?
+#set pgp_getkeys_command="wrap.sh -g %r"
+#set pgp_getkeys_command="gpg -q --batch --keyserver the.earth.li --recv-keys %r"
+
+# pgp-hook viccuad.me 0xA2591E231E251F36
 # }}}
+
 
 # Binds {{{
 # Request fetch imap:
 bind index "^" imap-fetch-mail
+
 # Open a graphical browser for HTML mail:
 macro attach 'V' "<pipe-entry>cat >~/.cache/mutt/mail.html && xdg-open ~/.cache/mutt/mail.html && rm ~/.cache/mutt/mail.html<enter>"
+
 # Rebind backspace so it works in some xterm-like terminals:
 bind index,pager ^? previous-line
-# if enter-command is available from the UI, it is possible to see the pw
+
+# if enter-command is available from the UI, it is possible to see the password
 # unencripted. we make every command that the user intends to use bound to a key
 # in advance, to fix this:
 bind generic,alias,attach,browser,editor,index,compose,pager,pgp,postpone ':' noop
 # }}}
 
+
 # LookAndFeel {{{
 set send_charset="utf-8"
-
 # Sort messages by topic:
 set sort=threads
-
 set date_format="%y-%m-%d %T"
 set index_format="%2C | %Z [%d] %-30.30F (%-4.4c) %s"
 
@@ -131,16 +179,21 @@ folder-hook ! .*[sS]ent.* 'set my_col_from = `echo $((30 * ($(tput cols)-35-24) 
 # Asks to include message when replying
 # set include=ask-yes
 #
-# # Asks to postpone a message when not sent
+# Asks to postpone a message when not sent
 # set postpone=ask-yes
 #
-# # Ask before printing
-# set print=ask-yes
+# Ask before printing
+set print=ask-yes
+
+# Ask before moving
+set move=ask-yes
 # }}}
+
 
 # Sidebar {{{
 # you need mutt-patched, patched for sidebar
 set sidebar_sort = no
+
 # which mailboxes to list in the sidebar
 mailboxes +INBOX
 set sidebar_delim='|'
@@ -154,5 +207,9 @@ bind pager \CP sidebar-prev
 bind pager \CN sidebar-next
 bind pager \CO sidebar-open
 # }}}
+
+
+# a good example of .muttrc:
+# http://www.earth.li/~huggie/mutt/muttrc.html
 
 # vim:foldmethod=marker:foldlevel=0

@@ -1,15 +1,16 @@
 set my_user='user'
-set my_pass='pass'
+set my_pass=''
+set my_mailprovider='mail.provider.net'
 
 # IMAP:
 # Automatically log in to this mailbox at startup
-set spoolfile="imaps://$my_user:$my_pass@mailprovider/"
+set spoolfile="imaps://$my_user:$my_pass@$my_mailprovider/"
 # Define the entry point for the folder browser (c?)
-set folder="imaps://$my_user@mailprovider/"
+set folder="imaps://$my_user@$my_mailprovider:/"
 
 # set from to ensure mutt doesn't put user@localhost.localhost
 set realname="John Doe"
-set from="my@mail"
+set from="john@doe.com"
 set edit_headers = yes
 set use_from=yes
 set use_envelope_from=yes
@@ -19,7 +20,7 @@ set ssl_starttls=yes
 set ssl_force_tls=yes
 
 # SMTP:
-set smtp_url="smtps://$my_user:$my_pass@mailprovider:465/"
+set smtp_url="smtps://$my_user:$my_pass@$my_mailprovider:465/"
 
 # MailLists {{{
 lists
