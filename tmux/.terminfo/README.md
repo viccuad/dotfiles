@@ -1,3 +1,5 @@
+From the tmux FAQ:
+
 tmux supports italics, yet uses Screen's terminfo. Work is underway to create a
 Tmux terminfo to be added to the terminfo database. As it will need some time
 to trickle down to distros, we are going to make our own Tmux terminfo until
@@ -34,6 +36,7 @@ And tell tmux to use it in ~/.tmux.conf:
 
 If your terminal supports 256 colors, use:
 
+	$ mkdir $HOME/.terminfo/
 	$ screen_terminfo="screen-256color"
 	$ infocmp "$screen_terminfo" | sed \
 	  -e 's/^screen-256color[^|]*|[^,]*,/screen-256color|screen with italics support,/' \
@@ -52,4 +55,10 @@ capable font enabled, for example, add to ~/.Xdefaults:
 
 	urxvt.italicFont: xft:Bitstream Vera Sans Mono:italic:autohint=true
 
+dircolors bug with ls and tmux-256colors not present:
+https://www.mail-archive.com/search?l=tmux-users@lists.sourceforge.net&q=subject:"LS+Colors+bugged+with+urxvt\+tmux\+256color+FAQ+Terminfo"&o=newest&f=1
+
+
+I need to add tmux, tmux-256color as they are provided by the ncurses-term package 
+into http://sources.debian.net/src/coreutils/8.23-4/src/dircolors.hin/?hl=51#L51
 
