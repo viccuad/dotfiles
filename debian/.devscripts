@@ -1,4 +1,5 @@
-﻿# debsign customizations:
+﻿
+# debsign customizations:
 DEBSIGN_KEYID=0xA2591E231E251F36
 
 # lintian customizations:
