@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# invoke tmux if build fails
+
+set -e
+apt-get -y --force-yes install vim bash mc tmux
+# invoke tmux if build fails
+cd /tmp/buildd/*/debian/..
+/bin/tmux < /dev/tty > /dev/tty 2> /dev/tty

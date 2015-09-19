@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# run apt-get update before trying to satisfy build-dependency
+# NEEDS: 
+# BINDMOUNTS="/var/cache/pbuilder/result" on .pbuilderrc
+
+# from: 
+# https://www.netfort.gr.jp/~dancer/software/pbuilder-doc/pbuilder-doc.html#apt-getupdateonbuild-depend
+
+cd /var/cache/pbuilder/result/
+/usr/bin/dpkg-scanpackages . /dev/null >> /var/cache/pbuilder/result/Packages
+/usr/bin/apt-get update

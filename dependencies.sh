@@ -6,7 +6,7 @@
 # tools:
 sudo apt-get install vim \
 # ncurses for tmux-256color:
-tmux ncurses-term \
+tmux ncurses-term xsel \
 git tig git-gui \
 ack-grep \
 picocom \
@@ -16,6 +16,7 @@ weechat \
 python-jedi python3-jedi \
 exuberant-ctags \
 build-essential cmake python-dev \ # for youcompleteme c support, when building clang
+trash-cli
 
 # for arduino development:
 # pip install --user inotool

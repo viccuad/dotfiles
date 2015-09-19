@@ -1,0 +1,5 @@
+#Ignore everything on pbuilder
+pbuilder/*
+
+# Don't ignore selected files
+!pbuilder/hooks
