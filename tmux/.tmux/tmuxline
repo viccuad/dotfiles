@@ -1,5 +1,5 @@
 # This tmux statusbar config was created by tmuxline.vim
-# on lun, 04 may 2015
+# on mié, 16 sep 2015
 
 set -g status-bg "colour233"
 set -g message-command-fg "colour222"
@@ -26,4 +26,4 @@ setw -g window-status-bg "colour233"
 set -g status-left "#[fg=colour232,bg=colour154] #S #[fg=colour154,bg=colour238,nobold,nounderscore,noitalics]#[fg=colour222,bg=colour238] #W #[fg=colour238,bg=colour233,nobold,nounderscore,noitalics]"
 set -g status-right "#[fg=colour238,bg=colour233,nobold,nounderscore,noitalics]#[fg=colour222,bg=colour238] %R #[fg=colour154,bg=colour238,nobold,nounderscore,noitalics]#[fg=colour232,bg=colour154] #H #(rainbarf --width 10 --bolt --remaining --rgb) "
 setw -g window-status-format "#[fg=colour233,bg=colour233,nobold,nounderscore,noitalics]#[default] #I #W #[fg=colour233,bg=colour233,nobold,nounderscore,noitalics]"
-setw -g window-status-current-format "#[fg=colour233,bg=colour238,nobold,nounderscore,noitalics]#[fg=colour222,bg=colour238] #I #W #[fg=colour238,bg=colour233,nobold,nounderscore,noitalics]"
+setw -g window-status-current-format "#[fg=colour233,bg=colour238,nobold,nounderscore,noitalics]#[fg=colour222,bg=colour238] #I #{?window_zoomed_flag,#[fg=red](,}#W#{?window_zoomed_flag,#[fg=red]),} #[fg=colour238,bg=colour233,nobold,nounderscore,noitalics]"
