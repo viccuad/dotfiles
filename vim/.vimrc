@@ -101,8 +101,8 @@ Plug 'bling/vim-airline'									" status/tabline (NEEDS powerline font)
 	set laststatus=2 										" always show statusline
 	set noshowmode 											" hide the default mode text (e.g. -- INSERT -- below the statusline)
 	let g:airline#extensions#tabline#enabled = 1			" automatically displays all buffers when there's only one tab open
-	"let g:airline#extensions#tabline#left_sep = ' '		" straight separators
-	"let g:airline#extensions#tabline#left_alt_sep = '|'
+	" let g:airline#extensions#tabline#left_sep = ' '		" straight separators
+	" let g:airline#extensions#tabline#left_alt_sep = '|'
 	let g:airline#extensions#tabline#buffer_idx_mode = 1	" display numbers in the tab line, and use mappings <leader>1 to <leader>9
 	let g:airline#extensions#tmuxline#enabled = 0
 	let g:airline#extensions#tagbar#enabled = 0
@@ -119,13 +119,14 @@ Plug 'bling/vim-airline'									" status/tabline (NEEDS powerline font)
 
 " Plug 'edkolev/tmuxline.vim'							" clone airline to tmux (its set up, only uncomment if you want to change the tmux statusline theme again)
 	" To export current statusline to a file which can be sourced by tmux.conf on startup:
+	" :Tmuxline airline
 	" :TmuxlineSnapshot! ~/.tmux/tmuxline
 	"let g:tmuxline_powerline_separators = 0			" use block separators instead
 	let g:tmuxline_preset = {
 		\'a'    : '#S',
 		\'b'    : '#W',
 		\'win'  : '#I #W',
-		\'cwin' : '#I #W',
+		\'cwin' : '#I #{?window_zoomed_flag,#[fg=red](,}#W#{?window_zoomed_flag,#[fg=red]),}',
 		\'y'    : '%R',
 		\'z'    : '#H #(rainbarf --width 10 --bolt --remaining --rgb)'}
 
@@ -137,7 +138,6 @@ Plug 'bling/vim-airline'									" status/tabline (NEEDS powerline font)
 Plug 'matchit.zip'									" cicles between if, then, else..
 Plug 'tpope/vim-surround'							" surround strings faster (ysiwX,csXX, dsX, ysMX, yssX)
 Plug 'tpope/vim-speeddating'						" fixes vim incrementing of dates, times, etc (<C-A>, <C-X>)
-" Plug 'tpope/vim-fugitive'							" git support
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}	" show list of variables, functions, classes.. (NEEDS exuberant-ctags)
 Plug 'scrooloose/syntastic'							" automatic syntax checking
 Plug 'LargeFile'									" disables certain features of vim for speed in large files
@@ -155,6 +155,10 @@ Plug 'Keithbsmiley/investigate.vim'					" search the language docs with gK
 " Plug 'drawit'										" to draw lines and diagrams (<leader>di to start, <leader>ds to stop)
 " Plug 'osyo-manga/vim-over'							" :substitute live preview to view changes as you are doing them
 Plug 'loremipsum', {'on': 'Loremipsum'}				" insert a dummy text of a certain length
+
+Plug 'tpope/vim-fugitive'							" git support
+	" each time you open a git object using fugitive it creates a new buffer. This autocloses them after:
+	autocmd BufReadPost fugitive://* set bufhidden=delete
 
 Plug 'unblevable/quick-scope'						" highlight characters when doing f,F,t,T
 	let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
@@ -374,13 +378,15 @@ set linebreak						" wrap long lines at characters in 'breakat' rather than at t
 set breakindent						" wrapped lines are visually indented
 let &colorcolumn=join(range(81,200),",") " colors columns past 80
 set textwidth=80
-set formatoptions=tcrql 			" t autowrap to textwidth
+set formatoptions=tcrqljw 			" t autowrap to textwidth
 									" c autowrap comments to textwidth
 									" r autoinsert comment leader with <enter>
 									" q allow formatting of comments with gq
 									" l	Long lines are not broken in insert mode: When a line was longer than 'textwidth' when the insert command started, Vim does not automatically format it.
 									" 1	Don't break a line after a one-letter word. It's broken before it instead (if possible).
 									" j	Where it makes sense, remove a comment leader when joining lines
+									" a automatic formatting of paragraphs
+									" w trailing white space indicates a paragraph continues in the next line
 " }}}
 
 " Look and feel {{{
@@ -509,8 +515,10 @@ command! Q q
 let mapleader = "\<Space>"
 
 " use tab key to cycle through the buffers:
-nnoremap <leader><Tab>   :bnext<CR>
-nnoremap <leader><S-Tab> :bprevious<CR>
+" nnoremap <leader><Tab>   :bnext<CR>
+" nnoremap <leader><S-Tab> :bprevious<CR>
+nnoremap <leader>l   :bnext<CR>
+nnoremap <leader>h :bprevious<CR>
 
 " remap jk and kj to escape:  You'll never type it anyway, so it's great!
 inoremap jk <Esc>
@@ -575,7 +583,7 @@ map  <F8> <Esc>:cnext<CR>
 "<F9>
 
 " Syntax group under cursor:
-nnoremap <leader>h :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+nnoremap <leader><F9> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
