@@ -1,0 +1,29 @@
+set my_user='me@viccuad.me'
+set my_pass=`pass show gandi/me@viccuad.me`
+set my_mailprovider='mail.gandi.net'
+
+# IMAP:
+# Automatically log in to this mailbox at startup
+set spoolfile="imaps://$my_user:$my_pass@$my_mailprovider/"
+# Define the entry point for the folder browser (c?)
+set folder="imaps://$my_user@$my_mailprovider:/"
+
+# set from to ensure mutt doesn't put user@localhost.localhost
+set realname="Víctor Cuadrado Juan"
+set from="me@viccuad.me"
+set edit_headers = yes
+set use_from=yes
+set use_envelope_from=yes
+# activate TLS if available on the server
+set ssl_starttls=yes
+# always use SSL when connecting to a server
+set ssl_force_tls=yes
+
+# SMTP:
+set smtp_url="smtps://$my_user:$my_pass@$my_mailprovider:465/"
+
+
+# MailLists {{{
+lists
+subscribe debian-devel-announce debian-news debian-security debian-devel debian-mentors debian-security-announce
+# }}}

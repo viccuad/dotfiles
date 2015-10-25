@@ -3,7 +3,8 @@
 # by you, so nobody can substitute *your* config with a rogue one that has been
 # merely encripted *to* your key.
 # WARNING: WE AREN'T CHECKING IF THE GPG FILE IS SIGNED TO YOU
-source "gpg2 -dq $HOME/.mutt/private_config.gpg |"
+# source "gpg2 -dq $HOME/.mutt/private_config.gpg |"
+source ~/.mutt/private_config.rc
 
 
 # MailRetrieval {{{
@@ -46,10 +47,6 @@ my_hdr X-Operating-System: `uname -o` #, kernel `uname -r`
 ### Custom Mail-User-Agent ID.
 #my_hdr User-Agent: Every email client sucks, this one just sucks less.
 
-#inform your recipient of the web address of your public key
-# my_hdr X-PGP-Key: https://keybase.io/viccuad/key.asc
-my_hdr X-PGP-Key: http://viccuad.me/assets/publickey.txt
-
 #Default From
 my_hdr From: Víctor Cuadrado Juan <me@viccuad.me>
 #my_hdr Organization: http://www.viccuad.me/
@@ -59,7 +56,7 @@ my_hdr From: Víctor Cuadrado Juan <me@viccuad.me>
 
 # Signature {{{
 # set signature="fortune pathtofortunefile|"
-set signature = "~/.mutt/signature"
+set signature = "~/.dotfiles/mail/nostow/viccuadme_signature"
 # }}}
 
 # Alias {{{
@@ -75,7 +72,6 @@ source $alias_file
 set crypt_use_gpgme = yes
 set pgp_use_gpg_agent = yes
 set pgp_good_sign="^gpg: Good signature from"
-
 set pgp_autosign = yes
 set pgp_sign_as=0xA2591E231E251F36
 set pgp_auto_decode = yes
@@ -84,6 +80,9 @@ set pgp_replysign
 set pgp_replyencrypt
 set pgp_replysignencrypted
 # set pgp_autoencrypt
+#inform your recipient of the web address of your public key
+# my_hdr X-PGP-Key: https://keybase.io/viccuad/key.asc
+my_hdr X-PGP-Key: http://viccuad.me/assets/publickey.txt
 
 # GPG hooks for mutt:
 # # decode application/pgp
@@ -117,10 +116,10 @@ set pgp_replysignencrypted
 # set pgp_verify_key_command="gpg --no-verbose --batch --fingerprint --check-sigs %r"
 
 # # read in the public key ring
-# set pgp_list_pubring_command="gpg --no-verbose --batch --with-colons --list-keys %r" 
+# set pgp_list_pubring_command="gpg --no-verbose --batch --with-colons --list-keys %r"
 
 # # read in the secret key ring
-# set pgp_list_secring_command="gpg --no-verbose --batch --with-colons --list-secret-keys %r" 
+# set pgp_list_secring_command="gpg --no-verbose --batch --with-colons --list-secret-keys %r"
 
 # receive key from keyserver:
 # Hmm, has anyone got this to work?
@@ -196,7 +195,7 @@ set sidebar_sort = no
 
 # which mailboxes to list in the sidebar
 mailboxes +INBOX
-set sidebar_delim='|'
+set sidebar_delim='│'
 
 # ctrl-shift-n, ctrl-shift-p to select next, prev folder
 # ctrl-shift-o to open selected folder
