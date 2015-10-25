@@ -1,0 +1,66 @@
+# $Id: caffrc.sample 505 2013-10-18 08:16:20Z weasel $
+# vim:ft=perl:
+
+$CONFIG{'owner'}       = 'John Doe';
+$CONFIG{'email'}       = 'user@example.com';
+
+# you can get your long keyid from
+#   gpg --with-colons --list-key <yourkeyid|name|emailaddress..>
+#
+# if you have a v4 key, it will simply be the last 16 digits of
+# your fingerprint.
+
+# This is the list of keys whose signatures you want to mail around.  Usually
+# you would list all your keys here.  To specify which keys to sign with, set
+# local-user.  See the manpage for further details.
+$CONFIG{'keyid'}       = [ qw{DE7AAF6E94C09C7F 62AF4031C82E0039} ];
+$CONFIG{'also-encrypt-to'} = [ qw{DE7AAF6E94C09C7F} ];
+$CONFIG{'caffhome'}    = $ENV{'HOME'}.'/.caff';
+
+# The options below need not be changed for normal operation.
+
+# Paths to GnuPG binaries:
+# $CONFIG{'gpg'}           = 'gpg';
+# $CONFIG{'gpg-sign'}      = $CONFIG{'gpg'};
+# $CONFIG{'gpg-delsig'}    = '/home/weasel/tmp/gpg/gnupg-1.3.92/g10/gpg';
+
+# defaults to ~/.gnupg/secring.gpg
+# $CONFIG{'secret-keyring'} = '/tmp/gpg/secring.gpg';
+
+# Don't export UIDs by default, on which your latest signature is older than this age.
+# $CONFIG{'export-sig-age'} = 24*60*60;
+
+# Keyserver to download keys from. Default: pool.sks-keyservers.net.
+# $CONFIG{'keyserver'}      = 'pgp.surfnet.nl';
+
+# Boolean options, all default to false (0).
+#
+# Skip fetching the keys from the keyserver.
+# $CONFIG{'no-download'}    = 1;
+# Skip signing the keys.
+# $CONFIG{'no-sign'}        = 1;
+# Ask to continue before starting the signing (for offline signing).
+# $CONFIG{'ask-sign'}       = 1;
+
+# $CONFIG{'mail-template'} = <<'EOM'
+# Hi,
+# 
+# please find attached the user id{(scalar @uids >= 2 ? 's' : '')}
+# {foreach $uid (@uids) {
+#     $OUT .= "\t".$uid."\n";
+# };}of your key {$key} signed by me.
+# 
+# Note that I did not upload your key to any keyservers.
+# If you have multiple user ids, I sent the signature for each user id
+# separately to that user id's associated email address. You can import
+# the signatures by running each through `gpg --import`.
+# 
+# If you want this new signature to be available to others, please upload
+# it yourself. With GnuPG this can be done using
+# 	gpg --keyserver pool.sks-keyservers.net --send-key {$key}
+# 
+# If you have any questions, don't hesitate to ask.
+# 
+# Regards,
+# {$owner}
+# EOM

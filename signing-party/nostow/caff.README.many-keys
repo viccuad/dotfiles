@@ -1,0 +1,96 @@
+Using caff to sign lots of keys
+-------------------------------
+
+If you have loads of keys to sign (sometimes, there are keysigning parties with
+more than 100 participants), keysigning can be awkward, even with caff. It gets
+worse if you have multiple local keys and want to sign with all.
+
+Some hints to get the signing done faster:
+
+* Use fingerprints instead of key ids.
+
+  caff and gpg allow you to specify the full fingerprint. This will save you
+  from having to check the fingerprint yourself. If you have a text file with
+  all fingerprints, use that and then run
+
+  $ xargs caff <options> <ksp-fingerprints.txt
+
+  For convenience, caff also allows spaces in fingerprints/keyids as output by
+  gpg --fingerprint.
+
+* Use gpgparticipants(1) formated input when possible.
+
+  When the KSP organizer provides a gpgparticipants(1) compatible list
+  of all the participants, it can be convenient to transcribe the
+  annotations made on the spot on the printout back to the digital copy.
+  Then you can run
+
+  $ caff <options> <ksp-annotated.txt
+
+  caff will ignore participants for which both the "ID" and
+  "Fingerprint" checkboxes are not *both* marked with an 'x'.
+  (Moreover, keys are selected using their 40-hex digits fingerprint,
+  which must be present in the list.)
+
+* If you prefer to do the signing offline.
+
+  You'll have to make caff's GNUPGHOME know the keys that are to be
+  signed, somehow.  A possibility is to run multiple passes as explained
+  below.  However if the keyring of all participants has been provided
+  by the KSP organizers, then --key-file can be enough:
+
+  $ caff <options> --no-download --key-file keyring.asc <ksp-annotated.txt
+
+  Note however that if keys in keyring.asc were stripped off all (non
+  self-)signatures, for instance if keyring.asc was created with
+  '--export-options export-minimal', caff won't be able to detect your
+  old signatures unless they are already present in its own keyring
+  (which should be the case if signing is never done without caff).
+
+  Note also that if keys in keyring.asc were stripped off their
+  encryption subkeys (which fortunately gpg never does when exporting,
+  but which a zealous KSP organizer could have done manually to reduce
+  the file size), caff may send unencrypted mails.
+
+* v3 keys are evil.
+
+  V3 keys (pgp 2.6x keys) are deprecated.  Not only do they rely on md5 for
+  their fingerprint and signatures, they also use the patented IDEA algorithm
+  for encryption.  Also, there are several attacks that make creating new keys
+  with the same keyid trivial.  Others make it possible to create different
+  keys with the same fingerprint (tho the key will not actually contain valid
+  RSA parameters).
+
+  Because of these problems a lot of people (like caff's author) refuse to sign
+  v3 keys these days.
+
+  If you still want to sign v3 keys, sign v3 separately. Batch processing does
+  not work. See README.v3-keys.
+
+* Use multiple passes.
+
+  Going through retrieving, signing, and mailing keys can help, e.g.:
+
+  $ xargs caff --no-sign --no-export-old --no-mail     <ksp-fingerprints.txt
+  $ xargs caff --no-download --no-export-old --no-mail <ksp-fingerprints.txt
+  $ xargs caff --no-download --no-sign --no-export-old <ksp-fingerprints.txt
+
+* If you have multiple local keys, use -u <mykey1>,<mykey2>.
+
+  $ caff -u <mykey1>,<mykey2> <keyids to sign>
+
+* Use gpg-agent.
+
+  See README.gpg-agent.
+
+* Use gpg-sign-args.
+
+  $CONFIG{'gpg-sign-args'} = "save";
+
+  This automatically saves the key after signing in gpg. The advantage is that
+  you do not have to type "save" for each key. The disadvantage is that you
+  cannot choose which UIDs to sign by answering "no" at the "Really sign?"
+  prompt any more; you will have *not* to send out some mails. (And you have
+  unwanted signatures lingering around in ~/.caff/gnupghome/pubring.gpg.)
+
+ -- Guilhem Moulin <guilhem@guilhem.org>  Thu, 03 Apr 2014 12:43:13 +0200
