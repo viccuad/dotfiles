@@ -147,13 +147,13 @@ Plug 'tmux-plugins/vim-tmux-focus-events'			" let terminal vim to know about foc
 Plug 'junegunn/vim-peekaboo'						" shows the contents of the registers on pop-up buffer
 Plug 'tasklist.vim'									" <leader> t shows a list of TODOs and FIXMEs
 Plug 'christoomey/vim-tmux-navigator'				" seamlessly navigate between tmux and vim panels
-Plug 'jceb/vim-orgmode'							" emacs org-mode in vim (needs utl.vim for links)
-Plug 'utl.vim'									" universal Text Linking: execute URLs, footnotes, open emails, organize (orgmode dependency)
-Plug 'mattn/calendar-vim'						" provides a calendar when entering dates on orgmode
+" Plug 'jceb/vim-orgmode'							" emacs org-mode in vim (needs utl.vim for links)
+" Plug 'utl.vim'									" universal Text Linking: execute URLs, footnotes, open emails, organize (orgmode dependency)
+Plug 'mattn/calendar-vim'							" provides a calendar when entering dates on orgmode
 Plug 'reedes/vim-wordy', {'on': 'NextWordy'}		" adds dictionaries for uncovering usage problems in your writing
 Plug 'Keithbsmiley/investigate.vim'					" search the language docs with gK
 " Plug 'drawit'										" to draw lines and diagrams (<leader>di to start, <leader>ds to stop)
-" Plug 'osyo-manga/vim-over'							" :substitute live preview to view changes as you are doing them
+" Plug 'osyo-manga/vim-over'						" :substitute live preview to view changes as you are doing them
 Plug 'loremipsum', {'on': 'Loremipsum'}				" insert a dummy text of a certain length
 
 Plug 'tpope/vim-fugitive'							" git support
@@ -180,7 +180,7 @@ Plug 'matze/vim-move'								" move blocks of text in visual and normal mode (<A
 	let g:matchmaker_enable_startup = 1
 
 Plug 'haya14busa/incsearch.vim'						" highlights every occurrence of the search before hitting enter
-	let g:incsearch#auto_nohlsearch = 1				" hlsearch will be automatically turned of after a cursor move
+	let g:incsearch#auto_nohlsearch = 0				" hlsearch will be automatically turned off after a cursor move
 	map /  <Plug>(incsearch-forward)
 	map ?  <Plug>(incsearch-backward)
 	map g/ <Plug>(incsearch-stay)
@@ -270,13 +270,14 @@ Plug 'freitass/todo.txt-vim', {'for': 'todo'}		" for todo.txt filetypes
 Plug 'pangloss/vim-javascript'
 Plug 'skammer/vim-css-color', {'for': 'css'}		" highlight colors in css files (only works in gvim and css)
 
-" Plug 'lervag/vimtex', {'for': 'tex'}
+Plug 'lervag/vimtex', {'for': 'tex'}
 
 Plug 'LaTeX-Box-Team/LaTeX-Box', {'for': 'tex'}
 	let g:LatexBox_output_type="pdf"
 	let g:LatexBox_latexmk_async=1 					" allow Latexmk to run in the background and load any compilation errors in a quickfix window after it finishes running.
 	"let g:LatexBox_latexmk_preview_continuously=1 	" Latexmk will track the currently edited file for writes and recompile automatically when necessary
-	let g:LatexBox_quickfix=3 						" recommended by preview_continously
+	let g:LatexBox_quickfix=4 						" recommended by preview_continously
+	let g:LatexBox_autojump=0						" automatically jump to first error after latexmk
 	let g:LatexBox_latexmk_options="-pdflatex='xelatex --shell-escape -interaction=nonstopmode %O %S' -cd -f"
 	let g:LatexBox_autojump=1						" auto jump to first error after compiling
 
@@ -337,7 +338,7 @@ let java_space_errors = 1
 let g:markdown_fenced_languages = ['asm', 'sh', 'bash=sh', 'c', 'python', 'css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml', 'html']
 augroup markdown_files
 	autocmd!
-	autocmd BufNewFile,BufReadPost *.md setl filetype=markdown spell textwidth=80 wrapmargin=80
+	autocmd BufNewFile,BufReadPost *.md setl filetype=markdown spell wrap nolinebreak nolist formatoptions-=t
 augroup END
 
 " TXT files
@@ -376,15 +377,15 @@ set list							" show listchars
 set wrap							" soft wrap long lines, visually, instead of changing the file
 set linebreak						" wrap long lines at characters in 'breakat' rather than at the last character that fits
 set breakindent						" wrapped lines are visually indented
-let &colorcolumn=join(range(81,200),",") " colors columns past 80
+let &colorcolumn=join(range(73,200),",") " colors columns past 80
 set textwidth=80
 set formatoptions=tcrqljw 			" t autowrap to textwidth
 									" c autowrap comments to textwidth
 									" r autoinsert comment leader with <enter>
 									" q allow formatting of comments with gq
-									" l	Long lines are not broken in insert mode: When a line was longer than 'textwidth' when the insert command started, Vim does not automatically format it.
-									" 1	Don't break a line after a one-letter word. It's broken before it instead (if possible).
-									" j	Where it makes sense, remove a comment leader when joining lines
+									" l long lines are not broken in insert mode: When a line was longer than 'textwidth' when the insert command started, Vim does not automatically format it.
+									" 1 don't break a line after a one-letter word. It's broken before it instead (if possible).
+									" j where it makes sense, remove a comment leader when joining lines
 									" a automatic formatting of paragraphs
 									" w trailing white space indicates a paragraph continues in the next line
 " }}}
@@ -421,14 +422,19 @@ if has('autocmd')
 	autocmd GUIEnter * set visualbell t_vb= 	"redo t_vb= for gui so it takes place
 endif
 set timeout							" time out on key codes
-set ttimeoutlen=500					" the time in milliseconds that is waited for a key code or mapped key sequence to complete
+set ttimeoutlen=20					" the time in milliseconds that is waited for a key code or mapped key sequence to complete
 
 if has("gui_running")
 	set guiheadroom=0				" vim padding: fix it in ~/.gtkrc-2.0
 
 	colorscheme base16-monokai
 	set background=dark 			" this shouldn't be necessary, but colorschemes bad behave putting background before hi Normal
-	let g:airline_theme= "base16"
+	highlight ColorColumn ctermbg=0 guibg=#272822 			" colorcolumn for base16-monokai
+	let g:airline_theme= "badwolf"
+	function! AirlineThemePatch(palette)
+		let a:palette.normal.airline_c = [ '#8cffba' , '#272822' , 121 , 233 ]
+		let a:palette.insert.airline_c = [ '#0a9dff' , '#272822' , 39  , 233 ]
+	endfunction
 
 	set guioptions-=T				" remove Toolbar
 	set guioptions+=c				" use console dialogs
@@ -475,9 +481,11 @@ let g:netrw_liststyle=3								" default to tree view (you can rotate netrw view
 " Netrw remote transfers
 let g:netrw_altv          = 1						" change from left splitting to right splitting
 let g:netrw_special_syntax= 1						" highlight certain files (*.bak, *.zip..)
+
+set grepprg=ack										" use ack instead of grep:
 " }}}
 
-" Persistence {{{
+" Persistence , Backup and Swap files {{{
 set viminfo+=% "save and restore the buffer list expected if vim is started with a file name argument
 set viminfo+=n$HOME/.vim/.viminfo
 " delete the empty buffer that appears on startup:
@@ -489,11 +497,47 @@ set undofile						" save undo's after file closes
 set undodir=$HOME/.vim/undo			" where to save undo histories
 set undolevels=1000					" how many undos
 set undoreload=10000				" number of lines to save for undo
-" }}}
 
-" Backup and Swap files {{{
 set backupdir=$HOME/.vim/backup		" for backup files
 set directory=$HOME/.vim/backup		" for .swp files
+
+
+" Don't backup files in temp directories or shm
+if exists('&backupskip')
+    set backupskip+=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*
+endif
+
+" Don't keep swap files in temp directories or shm
+if has('autocmd')
+    augroup swapskip
+        autocmd!
+        silent! autocmd BufNewFile,BufReadPre
+            \ /tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*
+            \ setlocal noswapfile
+    augroup END
+endif
+
+" Don't keep undo files in temp directories or shm
+if has('persistent_undo') && has('autocmd')
+    augroup undoskip
+        autocmd!
+        silent! autocmd BufWritePre
+            \ /tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*
+            \ setlocal noundofile
+    augroup END
+endif
+
+" Don't keep viminfo for files in temp directories or shm
+if has('viminfo')
+    if has('autocmd')
+        augroup viminfoskip
+            autocmd!
+            silent! autocmd BufNewFile,BufReadPre
+                \ /tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*
+                \ setlocal viminfo=
+        augroup END
+    endif
+endif
 " }}}
 
 " Searching {{{
@@ -513,6 +557,7 @@ command! W w
 command! Q q
 
 let mapleader = "\<Space>"
+let maplocalleader = "\\"
 
 " use tab key to cycle through the buffers:
 " nnoremap <leader><Tab>   :bnext<CR>
@@ -522,7 +567,7 @@ nnoremap <leader>h :bprevious<CR>
 
 " remap jk and kj to escape:  You'll never type it anyway, so it's great!
 inoremap jk <Esc>
-inoremap kj <Esc>
+" inoremap kj <Esc>
 
 " use hjkl-movement between rows when soft wrapping:
 nnoremap j gj
