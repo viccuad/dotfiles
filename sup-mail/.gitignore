@@ -1,0 +1,13 @@
+#Ignore everything
+*
+
+# ...even if they are in subdirectories
+!*/
+
+# don't ignore gitignore
+!.gitignore
+
+# Don't ignore selected files
+!.sup/config.yaml
+!.sup/sources.yaml
+!./sup/hooks/*

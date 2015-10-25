@@ -1,0 +1,36 @@
+---
+:accounts:
+  :default:
+    :name: Víctor
+    :email: me@viccuad.me
+    :alternates:
+    - victorcuad@gmail.com
+    :sendmail: msmtp -t --read-envelope-from
+    :signature: "/home/vic/.dotfiles/mail/nostow/meviccuadme_signature"
+    :gpgkey: '0xA2591E231E251F36'
+:editor: vim -f -c 'set ft=mail' '+/^\s*\n/' '+nohl'
+:thread_by_subject: yes
+:edit_signature: false
+:ask_for_from: false
+:ask_for_to: true
+:ask_for_cc: true
+:ask_for_bcc: false
+:ask_for_subject: true
+:account_selector: true
+:confirm_no_attachments: true
+:confirm_top_posting: true
+:jump_to_open_message: true
+:discard_snippets_from_encrypted_messages: false
+:load_more_threads_when_scrolling: true
+:default_attachment_save_dir: ''
+:sent_source: maildir:/home/vic/Mail/meviccuadme/INBOX
+:archive_sent: true
+:poll_interval: 300
+:wrap_width: 0
+:slip_rows: 0
+:col_jump: 2
+:stem_language: english
+:sync_back_to_maildir: true
+:continuous_scroll: false
+:always_edit_async: false
+:time_mode: 24h
