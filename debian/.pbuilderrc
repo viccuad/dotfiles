@@ -91,3 +91,6 @@ fi
 # parallel make
 #DEBBUILDOPTS=-j8
 # }}}
+
+# always be verbose:
+DH_VERBOSE=1
