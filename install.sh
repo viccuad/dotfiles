@@ -48,6 +48,25 @@ setup_gitconfig () {
 }
 
 stow_dotfiles() {
+  user 'Do you want to install the dependencies? (yes/no) '
+  read answer
+  while [[ $answer != yes && $answer != no ]]
+  do
+    echo you have entered an invalid response. Please try again
+    read answer
+  done
+  if [[ $answer == yes ]]
+  then
+    installdependencies="yes"
+    if cat dependencies.sh && bash dependencies.sh
+	then
+      success "bare DOTFILES dependencies installed. Specific dependencies will be installed for each dotfiles subdir"
+    else
+      fail "bare DOTFILES dependencies not installed"
+    fi
+  else
+    installdependencies="no"
+  fi
   user 'Do you want to make a dry run and only show what would happen? (yes/no) '
   read answer
   while [[ $answer != yes && $answer != no ]]
@@ -95,6 +114,20 @@ stow_dotfiles() {
           success "$target installed"
         else
           fail "$target not installed"
+        fi
+        if [[ $installdependencies == yes ]]
+        then
+          if [ -f "$target/nostow/dependencies.sh" ]
+          then
+            if cat dependencies.sh && bash dependencies.sh
+            then
+              success "$target dependencies installed"
+            else
+              fail "$target dependencies not installed"
+            fi
+          else
+            success "$target has no dependencies file"
+          fi
         fi
       fi
     fi
