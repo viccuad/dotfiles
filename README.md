@@ -24,15 +24,22 @@ them, stowable files that follow to path they should have from `~/`.
 
 There's a few special files in the hierarchy.
 
-- containing **nostow**: Any files containing `nostow` in their filename will not 
+ - containing **nostow**: Any files containing `nostow` in their filename will not 
 	get symlinked by stow. 
-- **/nostow/bin/**: Anything in `bin/` will get added to your `$PATH` and be made
+
+ - **/nostow/bin/**: Anything in `bin/` will get added to your `$PATH` and be made
   available everywhere.
-- **topic/nostow/*.zsh**: Any files ending in `.zsh` get loaded into your
+
+ - **topic/nostow/dependencies.sh**: A wrapper to install the needed software for 
+  that topic (normally, Debian packages)
+
+ - **topic/nostow/*.zsh**: Any files ending in `.zsh` get loaded into your
   environment.
-- **topic/nostow/path.zsh**: Any file named `path.zsh` is loaded first and is
+
+ - **topic/nostow/path.zsh**: Any file named `path.zsh` is loaded first and is
   expected to setup `$PATH` or similar.
-- **topic/nostow/completion.zsh**: Any file named `completion.zsh` is loaded
+
+ - **topic/nostow/completion.zsh**: Any file named `completion.zsh` is loaded
   last and is expected to setup autocomplete.
 
 If you're adding a new area to your forked dotfiles — say, "Java" — you 
@@ -54,8 +61,8 @@ cd ~/.dotfiles
 ./install.sh
 ```
 The install script will ask if you want to set your Zsh as the default
-shell, make a new gitconfig, make a dry run that does not write
-anything, etc.
+shell, make a new gitconfig, install the dependencies, make a dry run that
+does not write anything, etc.
 Installing a dir will symlink the appropriate files in `.dotfiles` to your 
 home directory. Everything is configured and tweaked within `~/.dotfiles`. 
 
@@ -69,3 +76,6 @@ To uninstall run:
 ```
 ./uninstall.sh
 ```
+## todo
+
+ - [] implement something like [vcsh](https://github.com/RichiH/vcsh) or move to it
