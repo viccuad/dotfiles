@@ -29,11 +29,16 @@ if [ -z "${DIST}" ] && [ -r "debian/changelog" ]; then
     if $(echo "$STABLE_BACKPORTS_SUITE" | grep -q $DIST); then
         DIST="$STABLE_CODENAME"
     fi
+    # Use the unstable suite for unreleased.
+    if $(echo "UNRELEASED" | grep -i $DIST); then
+        DIST="$UNSTABLE_CODENAME"
+    fi
 fi
 
 # Optionally set a default distribution if none is used. Note that you can set
 # your own default (i.e. ${DIST:="unstable"}).
-: ${DIST:="$(lsb_release --short --codename)"}
+# : ${DIST:="$(lsb_release --short --codename)"}
+: ${DIST:="unstable"}
 
 # Optionally change Debian release states in $DIST to their names.
 case "$DIST" in
