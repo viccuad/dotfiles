@@ -73,7 +73,6 @@ nnoremap h <C-p>
 nnoremap l <C-n>
 
 " This is totally awesome - remap jk to escape.  You'll never type jk anyway, so it's great!
-inoremap jk <Esc>
 cnoremap jk <Esc>
 
 " Move the current tab to the left
