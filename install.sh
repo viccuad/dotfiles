@@ -119,7 +119,7 @@ stow_dotfiles() {
         then
           if [ -f "$target/nostow/dependencies.sh" ]
           then
-            if cat dependencies.sh && bash dependencies.sh
+            if cat "$target/nostow/dependencies.sh" && bash "$target/nostow/dependencies.sh"
             then
               success "$target dependencies installed"
             else
