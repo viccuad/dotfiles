@@ -114,6 +114,15 @@ allow_unsigned_uploads = 0
 # Allow uploads for UNRELEASED packages
 allowed_distributions = .*
 
+[debomatic-arm64]
+fqdn           = debomatic-arm64.debian.net
+incoming       = /srv/debomatic-arm64
+login          = debomatic
+method         = scp
+allow_unsigned_uploads  = 0
+allow_dcut     = 1
+scp_compress   = 1
+
 [local]
 method			= local
 incoming		= ~/public_html/debian/mini-dinstall/incoming
