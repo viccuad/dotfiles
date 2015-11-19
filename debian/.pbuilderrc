@@ -1,3 +1,10 @@
+# Usage:
+# `pdebuild` or `pbuilder` : for default codename, namely unstable
+# `DIST=codename pdebuild` or `sudo -E DIST=codename pbuilder` : for selected codename
+# (use `sudo -E` to preserve the environment and make pbuilder use $BASEDIR and
+# this pbuilderrc).
+
+
 BASEDIR="$HOME/pbuilder"
 
 # Codenames for Debian suites according to their alias. Update these when
@@ -10,9 +17,6 @@ STABLE_BACKPORTS_SUITE="$STABLE_CODENAME-backports"
 # List of Debian suites.
 DEBIAN_SUITES=($UNSTABLE_CODENAME $TESTING_CODENAME $STABLE_CODENAME
     "unstable" "testing" "stable")
-
-# List of Ubuntu suites. Update these when needed.
-# UBUNTU_SUITES=("saucy" "raring" "precise")
 
 # Mirrors to use. Update these to your preferred mirror.
 DEBIAN_MIRROR="httpredir.debian.org"
