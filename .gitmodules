@@ -10,3 +10,6 @@
 [submodule "tmux/.tmux/plugins/tpm"]
 	path = tmux/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm.git
+[submodule "debian/nostow/reproducible-misc"]
+	path = debian/nostow/reproducible-misc
+	url = https://anonscm.debian.org/git/reproducible/misc.git

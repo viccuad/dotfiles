@@ -1,3 +1,0 @@
-export TZ="/usr/share/zoneinfo/Etc/GMT-14"
-export LANG="fr_CH.UTF-8"
-export LC_ALL="fr_CH.UTF-8"

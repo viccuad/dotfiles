@@ -1,7 +1,0 @@
-#!/bin/sh
-
-set -e
-
-echo "I: Changing /bin/sh to bash" >&2
-echo "dash dash/sh boolean false" | debconf-set-selections
-DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
