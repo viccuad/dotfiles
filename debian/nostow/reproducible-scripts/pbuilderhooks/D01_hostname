@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+
+# exit if we are in the same UTS namespace than init
+[ "$(readlink /proc/1/ns/uts)" = "$(readlink /proc/self/ns/uts)" ] && exit 0
+
+echo "I: Changing hostname to test build reproducibility" >&2
+sed -e '/^127.0.0.1/s/$/ i-capture-the-hostname i-capture-the-hostname.i-capture-the-domain/' -i /etc/hosts
+hostname i-capture-the-hostname
+domainname i-capture-the-domain
