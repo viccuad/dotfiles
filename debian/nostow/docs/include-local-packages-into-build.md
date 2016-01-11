@@ -17,7 +17,7 @@ EXTRAPACKAGES="apt-utils"
  {{{
 touch /path/to/the/dir/deps/Packages
 }}}
- 1. Create your base.tgz (e.g. ''sudo pbuilder create'') or update with --override-config (e.g. ''sudo pbuilder --update --override-config --distribution sid'') so pbuilder picks up the sources.list changes.
+ 1. Create your base.tgz (e.g. ''sudo pbuilder create'') or update with --override-config (e.g. ''sudo -E DIST=unstable pbuilder --update --override-config'') so pbuilder picks up the sources.list changes.
  1. Put a file like D05deps to your $HOOKDIR, make it executable and put this in there:
  {{{#!plain
 #!/bin/bash

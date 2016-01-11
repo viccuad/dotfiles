@@ -1,0 +1,3 @@
+#!/bin/bash
+(cd ~/pbuilder/deps;ls; apt-ftparchive packages . > Packages)
+apt-get update
