@@ -25,5 +25,5 @@ set smtp_url="smtps://$my_user:$my_pass@$my_mailprovider:465/"
 
 # MailLists {{{
 lists
-subscribe debian-devel-announce debian-news debian-security debian-devel debian-mentors debian-security-announce
+subscribe debian-devel-announce debian-news debian-security debian-devel debian-mentors debian-security-announce bugs.debian.org pkg-multimedia-maintainers@lists.alioth.debian.org pkg-multimedia-commits@lists.alioth.debian.org
 # }}}
