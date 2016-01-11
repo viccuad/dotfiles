@@ -1,4 +1,4 @@
-" this file has ordered commands for it to work. don't blindly change the order.
+" this file has ordered commands for it to work. Don't blindly change the order.
 
 " Lang {{{
 language messages en_US.utf8
@@ -13,53 +13,33 @@ set complete+=kspell			" add dictionary words to completion
 " Vim-Plug Config {{{
 
 " Automatic installation shouldn't fire up, because we have our trusted plug.vim
-" in '~/.vim/autoload/plug.vim'
+" in '~/.config/nvim/autoload/plug.vim'
 
 " Automatic installation:
-if empty(glob('~/.nvim/autoload/plug.vim'))
-		silent !curl -fLo ~/.nvim/autoload/plug.vim --create-dirs
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+		silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
 		\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 		autocmd VimEnter * PlugInstall
 endif
 
 " For Mac/Linux users
-call plug#begin('~/.nvim/bundle')
+call plug#begin('~/.config/nvim/bundle')
 " For Windows users
 " call plug#begin('~/vimfiles/bundle')
 
 " ADD YOUR PLUGINS HERE:
 
 " LOOKS:
-Plug 'chriskempson/base16-vim'						" base16 color themes
-
 Plug 'viccuad/badfox'									" badfox color theme
-	let g:badfox_darkgutter = 1							" make the gutters darker than the background.
+	let g:badfox_darkgutter = 0							" make the gutters darker than the background.
+	let g:badfox_darkcolorcolumn = 0					" make the colorcolumn the same color as the gutter
 	let g:badfox_tabline = 1 							" make the tabline the same color as the background
+    let g:airline_theme="badwolf"
 
 Plug 'miyakogi/conoline.vim'							" show cursorline only on current buffer, change its color
 	let g:conoline_auto_enable = 1
 	let g:conoline_use_colorscheme_default_normal = 1	" Use colors defined by colorscheme in normal mode.
 	let g:conoline_use_colorscheme_default_insert = 1	" Use colors defined by colorscheme in insert mode.
-
-" Plug 'morhetz/gruvbox'								" retro color scheme
-	let g:gruvbox_bold=1
-	let g:gruvbox_italic=1
-	let g:gruvbox_underline=1
-	let g:gruvbox_undercurl=1
-	let g:gruvbox_termcolors=256
-	let g:gruvbox_contrast_dark="hard"
-	let g:gruvbox_contrast_light="hard"
-	" let g:gruvbox_hls_cursor="orange"
-	let g:gruvbox_sign_column="dark0"
-	let g:gruvbox_color_column="dark0"
-	let g:gruvbox_vert_split="dark0"
-	let g:gruvbox_italicize_comments=1
-	let g:gruvbox_italicize_strings=1
-	let g:gruvbox_invert_selection=0
-	let g:gruvbox_invert_signs=0
-	let g:gruvbox_invert_indent_guides=0
-	let g:gruvbox_invert_tabline=0
-	let g:gruvbox_improved_warnings=1
 
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}			" distraction free mode
 Plug 'junegunn/limelight.vim', {'on': 'Limelight'}	" hyperfocus mode
@@ -91,66 +71,79 @@ Plug 'junegunn/limelight.vim', {'on': 'Limelight'}	" hyperfocus mode
 		autocmd  User GoyoLeave nested call <SID>goyo_leave()
 	augroup END
 
-Plug 'zefei/vim-colortuner'", {'on': 'Colorturner'}			" saturation, hue, etc tuning (only works with true colours: neovim, gvim)
-	let g:colortuner_filepath = '~/.vim/.vim-colortuner'
+Plug 'zefei/vim-colortuner', {'on': 'Colortuner'}			" saturation, hue, etc tuning (only works with true colours: neovim, gvim)
+	let g:colortuner_filepath = '~/.config/nvim/vim-colortuner'
 
 Plug 'bling/vim-airline'									" status/tabline (NEEDS powerline font)
 	let g:airline_powerline_fonts = 1 						" automatically populate the g:airline_symbols dictionary with the powerline symbols
 	set laststatus=2 										" always show statusline
 	set noshowmode 											" hide the default mode text (e.g. -- INSERT -- below the statusline)
 	let g:airline#extensions#tabline#enabled = 1			" automatically displays all buffers when there's only one tab open
-	"let g:airline#extensions#tabline#left_sep = ' '		" straight separators
-	"let g:airline#extensions#tabline#left_alt_sep = '|'
+	" let g:airline#extensions#tabline#left_sep = ' '		" straight separators
+	" let g:airline#extensions#tabline#left_alt_sep = '|'
 	let g:airline#extensions#tabline#buffer_idx_mode = 1	" display numbers in the tab line, and use mappings <leader>1 to <leader>9
 	let g:airline#extensions#tmuxline#enabled = 0
 	let g:airline#extensions#tagbar#enabled = 0
+	let g:airline#extensions#tagbar#flags = 's'
 	let g:airline_theme_patch_func = 'AirlineThemePatch'
 	function! AirlineThemePatch(palette)
 			if g:airline_theme == 'badwolf'
-					let a:palette.normal.airline_c = [ '#8cffba' , '#242321' , 121 , 233 ]
-					let a:palette.insert.airline_c = [ '#0a9dff' , '#242321' , 39  , 233 ]
-			elseif g:airline_theme == 'gruvbox'
-					let a:palette.normal.airline_c = [ '#8cffba' , '#1C1C1C' , 121 , 234 ]
+					let a:palette.normal.airline_c = [ '#8cffba' , '#242321' , 121 , 235 ]
+					let a:palette.insert.airline_c = [ '#0a9dff' , '#242321' , 39  , 235 ]
 			endif
 	endfunction
 
 " Plug 'edkolev/tmuxline.vim'							" clone airline to tmux (its set up, only uncomment if you want to change the tmux statusline theme again)
 	" To export current statusline to a file which can be sourced by tmux.conf on startup:
+	" :Tmuxline airline
 	" :TmuxlineSnapshot! ~/.tmux/tmuxline
 	"let g:tmuxline_powerline_separators = 0			" use block separators instead
 	let g:tmuxline_preset = {
 		\'a'    : '#S',
 		\'b'    : '#W',
+		\'c'    : '#{prefix_highlight}',
 		\'win'  : '#I #W',
-		\'cwin' : '#I #W',
+		\'cwin' : '#I #{?window_zoomed_flag,#[fg=red](,}#W#{?window_zoomed_flag,#[fg=red]),}',
 		\'y'    : '%R',
 		\'z'    : '#H #(rainbarf --width 10 --bolt --remaining --rgb)'}
 
-" Plug 'nathanaelkane/vim-indent-guides'				" show colored indents
-	let g:indent_guides_enable_on_vim_startup = 1
-	let g:indent_guides_auto_colors = 0
 
 " FUNCTIONALITY:
 Plug 'matchit.zip'									" cicles between if, then, else..
 Plug 'tpope/vim-surround'							" surround strings faster (ysiwX,csXX, dsX, ysMX, yssX)
 Plug 'tpope/vim-speeddating'						" fixes vim incrementing of dates, times, etc (<C-A>, <C-X>)
-" Plug 'tpope/vim-fugitive'							" git support
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}	" show list of variables, functions, classes.. (NEEDS exuberant-ctags)
-Plug 'scrooloose/syntastic'							" automatic syntax checking
 Plug 'LargeFile'									" disables certain features of vim for speed in large files
 Plug 'AndrewRadev/inline_edit.vim', {'on': 'InlineEdit'}	" change code inside other code with ':InlineEdit'
 Plug 'tpope/vim-commentary'							" comment with motion support
-Plug 'tmux-plugins/vim-tmux-focus-events'			" let terminal vim to know about focus changes (autoread, etc)
 Plug 'junegunn/vim-peekaboo'						" shows the contents of the registers on pop-up buffer
-Plug 'tasklist.vim'									" <leader> t shows a list of TODOs and FIXMEs
 Plug 'christoomey/vim-tmux-navigator'				" seamlessly navigate between tmux and vim panels
+Plug 'tmux-plugins/vim-tmux-focus-events'			" let terminal vim to know about focus changes (autoread, etc)
 " Plug 'jceb/vim-orgmode'							" emacs org-mode in vim (needs utl.vim for links)
 " Plug 'utl.vim'									" universal Text Linking: execute URLs, footnotes, open emails, organize (orgmode dependency)
+" Plug 'mattn/calendar-vim'							" provides a calendar when entering dates on orgmode
 Plug 'reedes/vim-wordy', {'on': 'NextWordy'}		" adds dictionaries for uncovering usage problems in your writing
 Plug 'Keithbsmiley/investigate.vim'					" search the language docs with gK
 " Plug 'drawit'										" to draw lines and diagrams (<leader>di to start, <leader>ds to stop)
-" Plug 'osyo-manga/vim-over'							" :substitute live preview to view changes as you are doing them
+" Plug 'osyo-manga/vim-over'						" :substitute live preview to view changes as you are doing them
 Plug 'loremipsum', {'on': 'Loremipsum'}				" insert a dummy text of a certain length
+Plug 'kana/vim-textobj-user'						" create your own text objects without pain
+
+Plug 'rking/ag.vim'									" use ag instead of grep
+	let g:ag_working_path_mode="r"					" always start searching from the project root instead of the cwd
+
+Plug 'tpope/vim-fugitive'							" git support
+	" each time you open a git object using fugitive it creates a new buffer. This autocloses them after:
+	autocmd BufReadPost fugitive://* set bufhidden=delete
+
+Plug 'unblevable/quick-scope'						" highlight characters when doing f,F,t,T
+	let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+Plug 'vasconcelloslf/vim-interestingwords'			" highlight all words (<leader>k, <leader>K)
+	let g:interestingWordsGUIColors = ['#99B3FF', '#B399FF', '#E699FF', '#FF99B3', '#99FFE6', '#FFD65C', '#99FFB3', '#E6FF99', '#FFB399', '#5CD6FF', '#99FF99', '#FFF6CC']
+
+" Plug 'lilydjwg/colorizer'							" j
+	let g:colorizer_maxlines = 1000					" for performance reasons
 
 Plug 'matze/vim-move'								" move blocks of text in visual and normal mode (<A-j>, <A-k>)
 	let g:move_map_keys = 0
@@ -164,7 +157,7 @@ Plug 'matze/vim-move'								" move blocks of text in visual and normal mode (<A
 	let g:matchmaker_enable_startup = 1
 
 Plug 'haya14busa/incsearch.vim'						" highlights every occurrence of the search before hitting enter
-	let g:incsearch#auto_nohlsearch = 1				" hlsearch will be automatically turned of after a cursor move
+	let g:incsearch#auto_nohlsearch = 0				" hlsearch will be automatically turned off after a cursor move
 	map /  <Plug>(incsearch-forward)
 	map ?  <Plug>(incsearch-backward)
 	map g/ <Plug>(incsearch-stay)
@@ -215,64 +208,77 @@ Plug 'jez/vim-superman'								" wrapper around man.vim's Man command
 	noremap K :SuperMan <cword><CR>
 
 
+" LINTING:
+" Plug 'scrooloose/syntastic'							" automatic syntax checking
+Plug 'benekastah/neomake'							" asynchronous :make using Neovim's job-control
+
 " COMPLETION AND SNIPPETS:
-Plug 'Raimondi/delimitMate'							" provides insert mode auto-completion for quotes,parens,brackets..
-Plug 'Valloric/YouCompleteMe', {'do': './install.sh --clang-completer'}		" (NEEDS to be compiled, read the docs!)
-	"let g:ycm_auto_trigger = 0		" turn off the as-you-type popup and the popup you'd get after typing . or -> in say C++. You can still use it by <C-Space> shortcut.
-	let g:ycm_global_ycm_extra_conf = '~/.nvim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+" deoplete
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+" Plug 'Raimondi/delimitMate'							" provides insert mode auto-completion for quotes,parens,brackets..
+Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer'}		" (NEEDS to be compiled, read the docs!)
+" 	"let g:ycm_auto_trigger = 0		" turn off the as-you-type popup and the popup you'd get after typing . or -> in say C++. You can still use it by <C-Space> shortcut.
+" 	let g:ycm_global_ycm_extra_conf = '~/.config/nvim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 
 Plug 'SirVer/ultisnips'								" compatible with YouCompleteMe, this is the snippets engine
-Plug 'honza/vim-snippets'							" Snippets are separated from the engine.
-	let g:UltiSnipsEnableSnipMate = 0 " don't look for SnipMate snippets, in the 'snippets' dir
-	let g:UltiSnipsSnippetDirectories=["snippets_UltiSnips"]
-	" Ultisnips and YouCompleteMe integration, both work with tab
-	function! g:UltiSnips_Complete()
-		call UltiSnips#ExpandSnippet()
-		if g:ulti_expand_res == 0
-			if pumvisible()
-				return "\<C-n>"
-			else
-				call UltiSnips#JumpForwards()
-				if g:ulti_jump_forwards_res == 0
-					return "\<TAB>"
-				endif
-			endif
-		endif
-		return ""
-	endfunction
-	au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
-	let g:UltiSnipsJumpForwardTrigger="<tab>"
-	let g:UltiSnipsListSnippets="<c-e>"
-	" this maps Enter key to <C-y> to chose the current highlight item
-	" and close the selection list, same as other IDEs:
-	" CONFLICTS with some plugins like tpope/Endwise
-	inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Plug 'honza/vim-snippets'							" Snippets are separated from the engine.
+" 	let g:UltiSnipsEnableSnipMate = 0 " don't look for SnipMate snippets, in the 'snippets' dir
+" 	let g:UltiSnipsSnippetDirectories=["snippets_UltiSnips"]
+" 	" Ultisnips and YouCompleteMe integration, both work with tab
+" 	function! g:UltiSnips_Complete()
+" 		call UltiSnips#ExpandSnippet()
+" 		if g:ulti_expand_res == 0
+" 			if pumvisible()
+" 				return "\<C-n>"
+" 			else
+" 				call UltiSnips#JumpForwards()
+" 				if g:ulti_jump_forwards_res == 0
+" 					return "\<TAB>"
+" 				endif
+" 			endif
+" 		endif
+" 		return ""
+" 	endfunction
+" 	au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+" 	let g:UltiSnipsJumpForwardTrigger="<tab>"
+" 	let g:UltiSnipsListSnippets="<c-e>"
+" 	" this maps Enter key to <C-y> to chose the current highlight item
+" 	" and close the selection list, same as other IDEs:
+" 	" CONFLICTS with some plugins like tpope/Endwise
+" 	inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 
 " FILETYPE:
 Plug 'freitass/todo.txt-vim', {'for': 'todo'}		" for todo.txt filetypes
 Plug 'pangloss/vim-javascript'
-Plug 'skammer/vim-css-color', {'for': 'css'}		" highlight colors in css files (only works in gvim and css)
+Plug 'ap/vim-css-color', {'for': 'css'}		" highlight colors in css files (only works in gvim and css)
 
-Plug 'LaTeX-Box-Team/LaTeX-Box', {'for': 'tex'}
-	let g:LatexBox_output_type="pdf"
-	let g:LatexBox_latexmk_async=1 					" allow Latexmk to run in the background and load any compilation errors in a quickfix window after it finishes running.
-	"let g:LatexBox_latexmk_preview_continuously=1 	" Latexmk will track the currently edited file for writes and recompile automatically when necessary
-	let g:LatexBox_quickfix=3 						" recommended by preview_continously
-	let g:LatexBox_latexmk_options="-pdflatex='xelatex --shell-escape -interaction=nonstopmode %O %S' -cd -f"
-	let g:LatexBox_autojump=1						" auto jump to first error after compiling
+Plug 'lervag/vimtex', {'for': 'tex'}
+	let g:vimtex_fold_enabled = 0
+	let g:vimtex_indent_enabled = 0					" deactivate automatic indents
+	let g:tex_flavor = 'latex'						" always use latex filetype instead of plaintex for .tex files
+	" let g:vimtex_latexmk_options="-pdflatex='xelatex --shell-escape -interaction=nonstopmode %O %S' -cd -f"
+	let g:vimtex_latexmk_options="-pdflatex='xelatex --shell-escape'"
+	" let g:vimtex_latexmk_continuous=0
+	" let g:vimtex_latexmk_background=0
+	let g:vimtex_quickfix_autojump=1				" autojump to first error
 
 Plug 'justinmk/vim-syntax-extra', {'for': 'c'}		" bison, flex, c syntax (operators, delimiters, functions..)
 Plug 'vivien/vim-addon-linux-coding-style', {'for': 'c'}
 Plug 'c.vim', {'for': 'c'}
-	let g:C_LocalTemplateFile = $HOME.'/.nvim/snippets_Cvim/c-support/templates/Templates' " this allows for the templates to be versioned on .dotfiles
+	let g:C_LocalTemplateFile = $HOME.'/.config/nvim/snippets_Cvim/c-support/templates/Templates' " this allows for the templates to be versioned on .dotfiles
 
 Plug 'hdima/python-syntax', {'for': 'python'}		" necessary, Vim default python syntax has a regex bug as of 7.4.663
 	let g:python_highlight_all = 1
 	" you can change between py v2 and v3 with :Python2Syntax and :Python3Syntax
+Plug 'davidhalter/jedi-vim'							" python autocompletion for vim
+Plug 'klen/python-mode'
+Plug 'hynek/vim-python-pep8-indent'					" indentation behavior as in PEP8
 
 Plug 'jamessan/vim-gnupg'							" encrypts/decrypts with gpg files that end in .gpg,.pgp or .asc. plaintext only on ram
-	let g:GPGDefaultRecipients = ["0x9F15E3402D7995C3 <me@viccuad.me>"]
+	" let g:GPGDefaultRecipients = ["0x5702AA3A <me@viccuad.me>"]
+	let g:GPGDefaultRecipients = ["0xA2591E231E251F36 <me@viccuad.me>"]
 	let g:GPGUsePipes=1			" (might break the prompt) use pipes instead of vim /temp files (no writing to disk)
 
 Plug 'Shougo/vinarise.vim', {'on': 'Vinarise'}		" hexadecimal editor
@@ -282,15 +288,6 @@ Plug 'jplaut/vim-arduino-ino', {'for': 'arduino'}	" provides ino calls (Needs in
     " <Leader>ac - Compile the current sketch
     " <Leader>ad - Compile and deploy the current sketch
     " <Leader>as - Open a serial port in screen
-
-Plug 'kana/vim-textobj-user'						" create your own text objects without pain
-Plug 'reedes/vim-textobj-quote'						" put ‘typographic quotes’ instead of 'straight quotes' (needs vim-textobject-user)
-	augroup textobj_quote
-		autocmd!
-		autocmd FileType markdown call textobj#quote#init()
-		autocmd FileType textile call textobj#quote#init()
-		autocmd FileType text call textobj#quote#init({'educate': 0})
-	augroup END
 
 call plug#end()
 " }}}
@@ -318,19 +315,19 @@ let java_space_errors = 1
 let g:markdown_fenced_languages = ['asm', 'sh', 'bash=sh', 'c', 'python', 'css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml', 'html']
 augroup markdown_files
 	autocmd!
-	autocmd BufNewFile,BufReadPost *.md setl filetype=markdown spell textwidth=0 wrapmargin=0
+	autocmd BufNewFile,BufReadPost *.md setl filetype=markdown spell wrap nolinebreak nolist formatoptions-=t
 augroup END
 
 " TXT files
 augroup txt_files
 	autocmd!
-	autocmd BufNewFile,BufReadPost *.txt setl spell textwidth=0 wrapmargin=0
+	autocmd BufNewFile,BufReadPost *.txt setl spell textwidth=80 wrapmargin=80
 augroup END
 
 " Mail files from mutt
 augroup mail_files
 	autocmd!
-	autocmd FileType mail setl nonumber spell textwidth=0 wrapmargin=0
+	autocmd FileType mail setl nonumber spell textwidth=72 wrapmargin=72
 augroup END
 
 " Latex files
@@ -339,31 +336,37 @@ let g:tex_flavor = "latex"		" default tex flavour if not specified in the file
 " Help files
 augroup help_files
 	autocmd!
-	autocmd FileType help wincmd L	" always open help files in vertical splits
-augroup END
+	autocmd filetype help wincmd L	" always open help files in vertical splits
+augroup end
 " }}}
 
 " Spaces & Tabs {{{
 set tabstop=4						" number of visual spaces per TAB
-" set autoindent smartindent		" copy indent from current line when starting a new line, and smart indent automatically inserts one level of indentation in some cases.
-set listchars=tab:\|·,trail:·,eol:¬	" show tabs, eol and trailing whitespace when showing separators
-"set listchars=tab:\ \ ,trail:·		" only show trailing whitespace when showing separators. the tab is 2 spaces
-"set list							" show listchars
+set autoindent smartindent			" copy indent from current line when starting a new line, and smart indent automatically inserts one level of indentation in some cases.
+set listchars=tab:\╶\─,trail:·,eol:↵,extends:→,precedes:←	" show tabs, eol and trailing whitespace when showing separators
+set list							" show listchars
 " }}}
 
 " Line wrap {{{
 set wrap							" soft wrap long lines, visually, instead of changing the file
 set linebreak						" wrap long lines at characters in 'breakat' rather than at the last character that fits
+" if has('linebreak')
+" 	set breakindent
+" 	let &showbreak = '↳ '
+" 	set cpo+=n
+" end
 set breakindent						" wrapped lines are visually indented
-let &colorcolumn=join(range(81,200),",") " colors columns past 80
+let &colorcolumn=join(range(73,220),",") " colors columns past 80
 set textwidth=80
-set formatoptions=tcrql 			" t autowrap to textwidth
+set formatoptions=tcrqljw 			" t autowrap to textwidth
 									" c autowrap comments to textwidth
 									" r autoinsert comment leader with <enter>
 									" q allow formatting of comments with gq
-									" l	Long lines are not broken in insert mode: When a line was longer than 'textwidth' when the insert command started, Vim does not automatically format it.
-									" 1	Don't break a line after a one-letter word. It's broken before it instead (if possible).
-									" j	Where it makes sense, remove a comment leader when joining lines
+									" l long lines are not broken in insert mode: When a line was longer than 'textwidth' when the insert command started, Vim does not automatically format it.
+									" 1 don't break a line after a one-letter word. It's broken before it instead (if possible).
+									" j where it makes sense, remove a comment leader when joining lines
+									" a automatic formatting of paragraphs
+									" w trailing white space indicates a paragraph continues in the next line
 " }}}
 
 " Look and feel {{{
@@ -373,7 +376,6 @@ syntax on							" enable syntax processing
 set synmaxcol=2048					" prevents huge slow downs from syntax highlighting
 set number							" show line numbers
 "set relativenumber					" show relative numbers. can be on at the same time that number
-
 set cursorline						" highlight current line
 set conceallevel=2					" display unicode characters instead of they plaintext counterparts (epsilon, lambda, etc)
 " don't change colors of concealed characters:
@@ -398,14 +400,19 @@ if has('autocmd')
 	autocmd GUIEnter * set visualbell t_vb= 	"redo t_vb= for gui so it takes place
 endif
 set timeout							" time out on key codes
-set ttimeoutlen=500					" the time in milliseconds that is waited for a key code or mapped key sequence to complete
+set ttimeoutlen=20					" the time in milliseconds that is waited for a key code or mapped key sequence to complete
 
 if has("gui_running")
 	set guiheadroom=0				" vim padding: fix it in ~/.gtkrc-2.0
 
 	colorscheme base16-monokai
 	set background=dark 			" this shouldn't be necessary, but colorschemes bad behave putting background before hi Normal
-	let g:airline_theme= "base16"
+	highlight ColorColumn ctermbg=0 guibg=#272822 			" colorcolumn for base16-monokai
+	let g:airline_theme= "badwolf"
+	function! AirlineThemePatch(palette)
+		let a:palette.normal.airline_c = [ '#8cffba' , '#272822' , 121 , 233 ]
+		let a:palette.insert.airline_c = [ '#0a9dff' , '#272822' , 39  , 233 ]
+	endfunction
 
 	set guioptions-=T				" remove Toolbar
 	set guioptions+=c				" use console dialogs
@@ -425,56 +432,38 @@ if has("gui_running")
 		set guifont=Consolas:h11:cANSI
 	endif
 else
-	" set t_Co=256					" force number of colors to 256 inside vim. this shouldn't be done, better with TERM
-	" colorscheme wombat256
-	" colorscheme wombat256mod
 	colorscheme badfox
-	if g:colors_name == "badfox"
-		let g:airline_theme= "badwolf"
-		set fillchars+=vert:│					" complete utf fill separator
-	endif
-	" highlight ColorColumn ctermbg=0 guibg=#000000 	" colorcolumn for wombat256
-	" highlight ColorColumn ctermbg=232 guibg=#080808 	" colorcolumn for wombat256mod
-endif
-
-" colorscheme settings I want to be there even if I change themes:
-highlight Comment cterm=italic gui=italic	" put comments in italic (needs to be after your colorscheme) (needs tmux to be correctly set)
-highlight String cterm=italic gui=italic	" put strings in italic (needs to be after your colorscheme) (needs tmux to be correctly set)
-
-" terminal: Use a blinking upright bar cursor in Insert mode, and a blinking block in normal
-" this could be done with Plugin 'jszakmeister/vim-togglecursor'
-" change cursor to a '|' when on vim console and insert mode:
-if &term == 'xterm-256color' || &term == 'rxvt-unicode-256color' || &term == 'screen-256color' || &term == 'screen-256color-it' || &term == 'tmux-256color'
-	let &t_SI = "\<Esc>[5 q"
-	let &t_EI = "\<Esc>[1 q"
-	" urxvt has not implemented the bar cursor until 9.21, if that's the case, use an underbar: let &t_SI = "\<Esc>[3 q"
+	set fillchars+=vert:│					" complete utf fill separator
 endif
 
 " netrw:
-set isfname+=32										" to open files with spaces
-let g:netrw_liststyle=3								" default to tree view (you can rotate netrw views with i)
+set isfname+=32									" to open files with spaces
+let g:netrw_liststyle=3							" default to tree view (you can rotate netrw views with i)
 " Netrw remote transfers
-let g:netrw_altv          = 1						" change from left splitting to right splitting
-let g:netrw_special_syntax= 1						" highlight certain files (*.bak, *.zip..)
+let g:netrw_altv          = 1					" change from left splitting to right splitting
+let g:netrw_special_syntax= 1					" highlight certain files (*.bak, *.zip..)
+
+call matchadd('TrollStopper', '[^\d0-\d127]')	" highlights weird unicode chars that try to pass as normal. eg:
+												" ⅰnt ⅿain() { рrintf ("Ηello troll!\n"); }
 " }}}
 
-" Persistence {{{
+" Persistence , Backup and Swap files {{{
 set viminfo+=% "save and restore the buffer list expected if vim is started with a file name argument
-set viminfo+=n$HOME/.nvim/.nviminfo
+" set viminfo+=n$HOME/.nvim/.nviminfo
 " delete the empty buffer that appears on startup:
 "autocmd VimEnter * nested if  bufname('')==''  &&  line('$') == 1 &&  col('$')==1 &&  !&modified | bd % | endif
 
 set hidden							" don't mark buffers as abandoned if hidden
 set history=1000
 set undofile						" save undo's after file closes
-set undodir=$HOME/.nvim/undo			" where to save undo histories
+" set undodir=$HOME/.nvim/undo			" where to save undo histories
 set undolevels=1000					" how many undos
 set undoreload=10000				" number of lines to save for undo
 " }}}
 
 " Backup and Swap files {{{
-set backupdir=$HOME/.nvim/backup		" for backup files
-set directory=$HOME/.nvim/backup		" for .swp files
+" set backupdir=$HOME/.nvim/backup		" for backup files
+" set directory=$HOME/.nvim/backup		" for .swp files
 " }}}
 
 " Searching {{{
@@ -494,19 +483,15 @@ command! W w
 command! Q q
 
 let mapleader = "\<Space>"
+let maplocalleader = "\\"
 
-" use tab key to cycle through the buffers:
-if has('nvim')
-	nnoremap <C-Tab>   :bnext<CR>
-	nnoremap <C-S-Tab> :bprevious<CR>
-else
-	nnoremap <leader><Tab>   :bnext<CR>
-	nnoremap <leader><S-Tab> :bprevious<CR>
-endif
+nnoremap <leader><Tab>   :bnext<CR>
+nnoremap <leader><S-Tab> :bprevious<CR>
+nnoremap <leader>l   :bnext<CR>
+nnoremap <leader>h :bprevious<CR>
 
-" remap jk and kj to escape:  You'll never type it anyway, so it's great!
+" remap jk to escape:  You'll never type it anyway, so it's great!
 inoremap jk <Esc>
-inoremap kj <Esc>
 
 " use hjkl-movement between rows when soft wrapping:
 nnoremap j gj
@@ -566,28 +551,10 @@ map  <F8> <Esc>:cnext<CR>
 " compile & link c code: (alt+<F9> write + compile, ctrl+<F9> compile + run) (c.vim plugin)
 "<F9>
 
-" Syntax group under cursor:
-nnoremap <leader>h :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-
-" Zoom / Restore window:
-function! s:ZoomToggle() abort
-    if exists('t:zoomed') && t:zoomed
-        execute t:zoom_winrestcmd
-        let t:zoomed = 0
-    else
-        let t:zoom_winrestcmd = winrestcmd()
-        resize
-        vertical resize
-        let t:zoomed = 1
-    endif
-endfunction
-command! ZoomToggle call s:ZoomToggle()
 " }}}
 
 " Folding {{{
-set foldmethod=syntax
+set foldmethod=marker
 set foldlevel=99
 set foldnestmax=10			" max 10 depth
 set nofoldenable			" don't fold files by default on open
@@ -595,7 +562,7 @@ set foldlevelstart=1		" start with fold level of 1
 " }}}
 
 " Launch {{{
-set encoding=utf8
+set encoding=utf-8
 set autowrite								" automatically save before commands like :next and :make
 set autochdir								" automatically cd into the directory that the file is in (this will break plugins if activated!!!)
 "autocmd BufEnter * silent! lcd %:p:h		" automatically cd into the dir of the file. this breaks less
@@ -603,7 +570,7 @@ set autoread								" watch for file changes
 set nomodeline								" dont make vim check beginning and ending lines of files for options. HUGE VULNERABILITY
 " jump to the last position when reopening a file:
 if has("autocmd")
-	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+	autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 " }}}
 

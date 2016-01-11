@@ -1,3 +1,5 @@
+alias nv="nvim"
+
 # Open last modified file in vim
 alias nVim="nvim `ls -t | head -1`"
 
@@ -5,7 +7,7 @@ alias nVim="nvim `ls -t | head -1`"
 alias nvis="nvim --servername VIM"
 
 # Open vim in secure mode: no .vimrc and no plugins
-alias nvimmin="nvim -u ~/.nvimrc_minimal"
+alias nvimmin="nvim -u ~/.config/nvim/minimal_init.vim"
 
 # for vim-superman plugin for man
 nvman() {

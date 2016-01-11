@@ -17,8 +17,8 @@ filetype indent on				" enable filetype-specific indenting. can conflict with se
 filetype plugin on				" enable filetype-specific plugins
 
 " C language
-let c_space_errors = 1
-let c_comment_strings = 0		" dont highlight strings inside C comments
+let g:c_space_errors = 1
+let g:c_comment_strings = 0		" dont highlight strings inside C comments
 
 " Python language
 let python_space_errors = 1
@@ -30,31 +30,34 @@ augroup END
 " Java language
 let java_space_errors = 1
 
-" Markdown instead of modula2
+" Markdown instead of modula2:
+let g:markdown_fenced_languages = ['asm', 'sh', 'bash=sh', 'c', 'python', 'css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml', 'html']
 augroup markdown_files
 	autocmd!
-	autocmd BufNewFile,BufReadPost *.md setl filetype=markdown spell textwidth=0 wrapmargin=0
+	autocmd BufNewFile,BufReadPost *.md setl filetype=markdown spell wrap nolinebreak nolist formatoptions-=t
 augroup END
 
 " TXT files
 augroup txt_files
 	autocmd!
-	autocmd BufNewFile,BufReadPost *.txt setl spell textwidth=0 wrapmargin=0
+	autocmd BufNewFile,BufReadPost *.txt setl spell textwidth=80 wrapmargin=80
 augroup END
 
 " Mail files from mutt
 augroup mail_files
 	autocmd!
-	autocmd FileType mail setl nonumber spell textwidth=0 wrapmargin=0
+	autocmd FileType mail setl nonumber spell textwidth=72 wrapmargin=72
 augroup END
 " }}}
 
 " Spaces & Tabs {{{
 set tabstop=4						" number of visual spaces per TAB
 set autoindent smartindent			" copy indent from current line when starting a new line, and smart indent automatically inserts one level of indentation in some cases.
-set listchars=tab:\|·,trail:·,eol:¬	" show tabs, eol and trailing whitespace when showing separators
-"set listchars=tab:\ \ ,trail:·		" only show trailing whitespace when showing separators. the tab is 2 spaces
-"set list							" show listchars
+" set listchars=tab:\|·,trail:·,eol:¬	" show tabs, eol and trailing whitespace when showing separators
+" set listchars=tab:\├\─,trail:·,eol:↵,extends:→,precedes:←	" show tabs, eol and trailing whitespace when showing separators
+set listchars=tab:\╶\─,trail:·,eol:↵,extends:→,precedes:←	" show tabs, eol and trailing whitespace when showing separators
+" set listchars=tab:▸\ ,trail:·,eol:↵,extends:→,precedes:←	" show tabs, eol and trailing whitespace when showing separators
+set list							" show listchars
 " }}}
 
 " Line wrap {{{
@@ -62,15 +65,17 @@ set listchars=tab:\|·,trail:·,eol:¬	" show tabs, eol and trailing whitespace 
 set wrap							" soft wrap long lines, visually, instead of changing the file
 set linebreak						" wrap long lines at characters in 'breakat' rather than at the last character that fits
 set breakindent						" wrapped lines are visually indented
-" &colorcolumn=join(range(81,200),",") " colors columns past 80
+let &colorcolumn=join(range(73,220),",") " colors columns past 80
 set textwidth=80
-set formatoptions=tcrql 			" t autowrap to textwidth
+set formatoptions=tcrqljw 			" t autowrap to textwidth
 									" c autowrap comments to textwidth
 									" r autoinsert comment leader with <enter>
 									" q allow formatting of comments with gq
-									" l	Long lines are not broken in insert mode: When a line was longer than 'textwidth' when the insert command started, Vim does not automatically format it.
-									" 1	Don't break a line after a one-letter word. It's broken before it instead (if possible).
-									" j	Where it makes sense, remove a comment leader when joining lines
+									" l long lines are not broken in insert mode: When a line was longer than 'textwidth' when the insert command started, Vim does not automatically format it.
+									" 1 don't break a line after a one-letter word. It's broken before it instead (if possible).
+									" j where it makes sense, remove a comment leader when joining lines
+									" a automatic formatting of paragraphs
+									" w trailing white space indicates a paragraph continues in the next line
 " }}}
 
 " Look and feel {{{
@@ -98,14 +103,13 @@ set scrolloff=5						" keep at least 5 lines above/below
 set sidescrolloff=5 				" keep at least 5 lines left/right
 set splitright 						" vertical splits use right half of screen
 set splitbelow 						" horizontal splits use bottom half of screen
-set noerrorbells					" no error bells please
-set ttyfast
-set visualbell t_vb=				" no beep or flash
+set noerrorbells					" no sound bells please
+set visualbell t_vb=				" no flash screen for the visual bell
 if has('autocmd')
 	autocmd GUIEnter * set visualbell t_vb= 	"redo t_vb= for gui so it takes place
 endif
 set timeout							" time out on key codes
-set ttimeoutlen=500					" the time in milliseconds that is waited for a key code or mapped key sequence to complete
+set ttimeoutlen=20					" the time in milliseconds that is waited for a key code or mapped key sequence to complete
 
 if has("gui_running")
 	set guiheadroom=0				" vim padding: fix it in ~/.gtkrc-2.0
@@ -206,7 +210,7 @@ let mapleader = "\<Space>"
 	nnoremap <leader><S-Tab> :bprevious<CR>
 " endif
 
-" remap jk to escape:  You'll never type jk anyway, so it's great!
+" remap jk to escape:  You'll never type it anyway, so it's great!
 inoremap jk <Esc>
 
 " use hjkl-movement between rows when soft wrapping:
@@ -214,6 +218,16 @@ nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
+
+" include the default behaviour by doing reverse mappings so you can move linewise with gj and gk:
+nnoremap gj j
+nnoremap gk k
+
+" keep the cursor in place when joining lines with J (by dropping a mark and returning there):
+nnoremap J mzJ`z
+
+" Y yanks lines from the cursor to the end of the line: (as said in :h Y)
+map Y y$
 
 " force yourself to stop using the arrow keys:
 map <up>    <nop>
@@ -245,7 +259,7 @@ set foldlevelstart=1		" start with fold level of 1
 " }}}
 
 " Launch {{{
-set encoding=utf8
+set encoding=utf-8
 set autowrite								" automatically save before commands like :next and :make
 set autochdir								" automatically cd into the directory that the file is in (this will break plugins if activated!!!)
 "autocmd BufEnter * silent! lcd %:p:h		" automatically cd into the dir of the file. this breaks less
@@ -253,7 +267,7 @@ set autoread								" watch for file changes
 set nomodeline								" dont make vim check beginning and ending lines of files for options. HUGE VULNERABILITY
 " jump to the last position when reopening a file:
 if has("autocmd")
-	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+	autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 " }}}
 
