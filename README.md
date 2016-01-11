@@ -58,6 +58,8 @@ To install run this:
 sh
 git clone --recursive https://github.com/viccuad/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
+git submodule init
+git submodule update
 ./install.sh
 ```
 The install script will ask if you want to set your Zsh as the default
