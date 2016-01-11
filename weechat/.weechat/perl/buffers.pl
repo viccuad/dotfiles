@@ -20,6 +20,12 @@
 #
 # History:
 #
+# 2015-03-29, Ed Santiago <ed@edsantiago.com>
+#     v5.1: merged buffers: always indent, except when filling is horizontal
+# 2014-12-12
+#     v5.0: fix cropping non-latin buffer names
+# 2014-08-29, Patrick Steinhardt <ps@pks.im>:
+#     v4.9: add support for specifying custom buffer names
 # 2014-07-19, Sebastien Helleu <flashcode@flashtux.org>:
 #     v4.8: add support of ctrl + mouse wheel to jump to previous/next buffer,
 #           new option "mouse_wheel"
@@ -160,7 +166,7 @@ use strict;
 use Encode qw( decode encode );
 # -----------------------------[ internal ]-------------------------------------
 my $SCRIPT_NAME = "buffers";
-my $SCRIPT_VERSION = "4.8";
+my $SCRIPT_VERSION = "5.1";
 
 my $BUFFERS_CONFIG_FILE_NAME = "buffers";
 my $buffers_config_file;
@@ -208,6 +214,8 @@ weechat::hook_signal("buffer_renamed", "buffers_signal_buffer", "");
 weechat::hook_signal("buffer_switch", "buffers_signal_buffer", "");
 weechat::hook_signal("buffer_hidden", "buffers_signal_buffer", "");  # WeeChat >= 0.4.4
 weechat::hook_signal("buffer_unhidden", "buffers_signal_buffer", "");  # WeeChat >= 0.4.4
+weechat::hook_signal("buffer_localvar_added", "buffers_signal_buffer", "");
+weechat::hook_signal("buffer_localvar_changed", "buffers_signal_buffer", "");
 
 weechat::hook_signal("window_switch", "buffers_signal_buffer", "");
 weechat::hook_signal("hotlist_changed", "buffers_signal_hotlist", "");
@@ -1102,8 +1110,14 @@ sub build_buffers
             my $key;
             if (weechat::config_integer( $options{"sort"} ) eq 1) # number = 0; name = 1
             {
-                my $name = $buffer->{"name"};
-                $name = $buffer->{"short_name"} if (weechat::config_boolean( $options{"short_names"} ) eq 1);
+                my $name = weechat::buffer_get_string($buffer->{"pointer"}, "localvar_custom_name");
+                if (not defined $name or $name eq "") {
+                    if (weechat::config_boolean( $options{"short_names"} ) eq 1) {
+                        $name = $buffer->{"short_name"};
+                    } else {
+                        $name = $buffer->{"name"};
+                    }
+                }
                 if (weechat::config_integer($options{"name_size_max"}) >= 1){
                     $name = encode("UTF-8", substr(decode("UTF-8", $name), 0, weechat::config_integer($options{"name_size_max"})));
                 }
@@ -1286,8 +1300,17 @@ sub build_buffers
             }
             else
             {
-                my $indent = "";
-                $indent = ((" " x length($buffer->{"number"}))." ") if (($position eq "left") || ($position eq "right"));
+                # Indentation aligns channels in a visually appealing way
+                # when viewing list top-to-bottom...
+                my $indent = (" " x length($buffer->{"number"}))." ";
+                # ...except when list is top/bottom and channels left-to-right.
+                my $option_pos = weechat::config_string( weechat::config_get( "weechat.bar.buffers.position" ) );
+                if (($option_pos eq 'top') || ($option_pos eq 'bottom')) {
+                    my $option_filling = weechat::config_string( weechat::config_get( "weechat.bar.buffers.filling_top_bottom" ) );
+                    if ($option_filling =~ /horizontal/) {
+                        $indent = '';
+                    }
+                }
                 $str .= weechat::color("default")
                     .$color_bg
                     .$indent;
@@ -1364,38 +1387,31 @@ sub build_buffers
 
         $str .= weechat::color($color) . weechat::color(",".$bg);
 
-        if (weechat::config_boolean( $options{"short_names"} ) eq 1)
+        my $name = weechat::buffer_get_string($buffer->{"pointer"}, "localvar_custom_name");
+        if (not defined $name or $name eq "")
         {
-            if (weechat::config_integer($options{"name_size_max"}) >= 1)                # check max_size of buffer name
-            {
-                $str .= encode("UTF-8", substr(decode("UTF-8", $buffer->{"short_name"}), 0, weechat::config_integer($options{"name_size_max"})));
-                $str .= weechat::color(weechat::config_color( $options{"color_number_char"})).weechat::config_string($options{"name_crop_suffix"}) if (length($buffer->{"short_name"}) > weechat::config_integer($options{"name_size_max"}));
-                $str .= add_inactive_parentless($buffer->{"type"}, $buffer->{"nicks_count"});
-                $str .= add_hotlist_count($buffer->{"pointer"}, %hotlist);
+            if (weechat::config_boolean( $options{"short_names"} ) eq 1) {
+                $name = $buffer->{"short_name"};
+            } else {
+                $name = $buffer->{"name"};
             }
-            else
-            {
-                $str .= $buffer->{"short_name"};
-                $str .= add_inactive_parentless($buffer->{"type"}, $buffer->{"nicks_count"});
-                $str .= add_hotlist_count($buffer->{"pointer"}, %hotlist);
-            }
+        }
+
+        if (weechat::config_integer($options{"name_size_max"}) >= 1)                # check max_size of buffer name
+        {
+            $name = decode("UTF-8", $name);
+            $str .= encode("UTF-8", substr($name, 0, weechat::config_integer($options{"name_size_max"})));
+            $str .= weechat::color(weechat::config_color( $options{"color_number_char"})).weechat::config_string($options{"name_crop_suffix"}) if (length($name) > weechat::config_integer($options{"name_size_max"}));
+            $str .= add_inactive_parentless($buffer->{"type"}, $buffer->{"nicks_count"});
+            $str .= add_hotlist_count($buffer->{"pointer"}, %hotlist);
         }
         else
         {
-            if (weechat::config_integer($options{"name_size_max"}) >= 1)                # check max_size of buffer name
-            {
-                $str .= encode("UTF-8", substr(decode("UTF-8", $buffer->{"name"},), 0, weechat::config_integer($options{"name_size_max"})));
-                $str .= weechat::color(weechat::config_color( $options{"color_number_char"})).weechat::config_string($options{"name_crop_suffix"}) if (length($buffer->{"name"}) > weechat::config_integer($options{"name_size_max"}));
-                $str .= add_inactive_parentless($buffer->{"type"}, $buffer->{"nicks_count"});
-                $str .= add_hotlist_count($buffer->{"pointer"}, %hotlist);
-            }
-            else
-            {
-                $str .= $buffer->{"name"};
-                $str .= add_inactive_parentless($buffer->{"type"}, $buffer->{"nicks_count"});
-                $str .= add_hotlist_count($buffer->{"pointer"}, %hotlist);
-            }
+            $str .= $name;
+            $str .= add_inactive_parentless($buffer->{"type"}, $buffer->{"nicks_count"});
+            $str .= add_hotlist_count($buffer->{"pointer"}, %hotlist);
         }
+
         if ( weechat::buffer_get_string($buffer->{"pointer"}, "localvar_type") eq "server" and weechat::config_boolean($options{"show_lag"}) eq 1)
         {
             my $color_lag = weechat::config_color(weechat::config_get("irc.color.item_lag_finished"));

@@ -1,0 +1,5 @@
+#
+# WeeChat crontab for script cron.py
+# format: min hour monthday month weekday repeat buffer command args
+#
+* * 1 * * * core.weechat command /purgelogs age 100 delete
