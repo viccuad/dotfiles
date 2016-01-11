@@ -6,7 +6,6 @@ colorscheme indigo
 set visualbell
 
 " remove gui things
-"set gui=nonavigation
 set gui=noaddons,nobookmarks,nomenu,nonavigation,tabs
 set noscrollbars
 set status+=ssl
@@ -50,7 +49,7 @@ set hlsearch
 set complete=sSb
 
 set defsearch=duckduckgo
-set suggestengines=yahoo
+set suggestengines=duckduckgo
 "}}}
 
 " Mappings {{{
