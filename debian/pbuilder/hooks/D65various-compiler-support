@@ -1,0 +1,71 @@
+#!/bin/sh
+#
+# pbuilder hook script: choose optional compiler rather than default one
+#
+# Sometimes we want to choose other compiler than default, because of improving
+# code to conform to standard, check compiler quality or so. This script will
+# ease it. Try enable hook script and set "CHOOSE_COMPILER" variables as clang,
+# gcc-*, or other compilers (note: however, now only clang and gcc can works
+# well and others fails to build).
+#
+# i.e.)
+#  $ sudo CHOOSE_COMPILER="clang" pbuilder --build foobar_1.0-1.dsc
+#  $ sudo CHOOSE_COMPILER="gcc-4.6" pbuilder --build foobar_1.0-1.dsc
+#
+
+set -e
+
+# check whether we are asked to change the compiler.
+case "${CHOOSE_COMPILER}" in
+    clang)
+        newcc=/usr/bin/"${CHOOSE_COMPILER}"
+        newcxx=/usr/bin/"${CHOOSE_COMPILER}"++
+        ;;
+    clang-*)
+        use_clang_version=$(echo ${CHOOSE_COMPILER} | sed -e s/clang-//)
+        clang_package=clang-"${use_clang_version}"
+        newcc=/usr/bin/clang-"${use_clang_version}"
+        newcxx=/usr/bin/clang++-"${use_clang_version}"
+        ;;
+    gcc-*)
+        use_gcc_version=$(echo ${CHOOSE_COMPILER} | sed -e s/gcc-//)
+        gxx_package=g++-"${use_gcc_version}"
+        newcc=/usr/bin/"${CHOOSE_COMPILER}"
+        newcxx=/usr/bin/g++-"${use_gcc_version}"
+        ;;
+    tcc)
+        newcc=/usr/bin/"${CHOOSE_COMPILER}"
+        newcxx=/bin/false
+        not_gcc_compat=1
+        ;;
+    pcc)
+        newcc=/usr/bin/"${CHOOSE_COMPILER}"
+        newcxx=/bin/false
+        not_gcc_compat=1
+        ;;
+    *)
+        exit 0
+        ;;
+esac
+
+apt-get -y install "${CHOOSE_COMPILER}" ${gxx_package} ${clang_package}
+
+if [ ! -x /usr/bin/"${CHOOSE_COMPILER}" ]; then
+    echo >&2 "E: Package ${CHOOSE_COMPILER} does not contain compiler driver?"
+    exit 1
+fi
+
+ln -sf "${newcc}" /usr/bin/cc
+ln -sf "${newcxx}" /usr/bin/c++
+
+if [ -z "${not_gcc_compat}" ]; then
+    (
+    cd /usr/bin
+    ln -sf "$newcc" gcc
+    ln -sf "$newcxx" g++
+    )
+else
+    rm -f /usr/bin/gcc /usr/bin/g++
+fi
+
+exit 0

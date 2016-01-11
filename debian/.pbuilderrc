@@ -67,6 +67,9 @@ if [ -n "${ARCH}" ]; then
     DEBOOTSTRAPOPTS=("--arch" "$ARCH" "${DEBOOTSTRAPOPTS[@]}")
 fi
 BASETGZ="$BASEDIR/$NAME-base.tgz"
+# if [ ! -z $BASETGZ ]; then
+#     BASETGZ="$BASEDIR/$NAME-base.tgz"
+# fi
 # Optionally, set BASEPATH (and not BASETGZ) if using cowbuilder
 # BASEPATH="/var/cache/pbuilder/$NAME/base.cow/"
 DISTRIBUTION="$DIST"

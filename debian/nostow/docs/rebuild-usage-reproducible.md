@@ -1,4 +1,4 @@
-I have an alias `rebuild`, just call it with the foobar package name.
+I have an alias `rebuild`, just call it with the foobar package name, inside the pbuilder result folder that contains it
 
 ## From the wiki: https://wiki.debian.org/ReproducibleBuilds/Howto#Testing_procedure
 
