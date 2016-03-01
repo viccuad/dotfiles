@@ -34,7 +34,7 @@ Plug 'guns/xterm-color-table.vim', {'on': 'XtermColorTable'}
 Plug 'chriskempson/base16-vim'							" base16 color themes
 
 Plug 'viccuad/badfox'									" badfox color theme
-	let g:badfox_darkgutter = 1							" make the gutters darker than the background.
+	let g:badfox_darkgutter = 0							" make the gutters darker than the background.
 	let g:badfox_darkcolorcolumn = 0 					" make the colorcolumn the same color as the gutter
 	let g:badfox_tabline = 1 							" make the tabline the same color as the background
 
@@ -125,6 +125,7 @@ Plug 'bling/vim-airline'									" status/tabline (NEEDS powerline font)
 	let g:tmuxline_preset = {
 		\'a'    : '#S',
 		\'b'    : '#W',
+		\'c'    : '#{prefix_highlight}',
 		\'win'  : '#I #W',
 		\'cwin' : '#I #{?window_zoomed_flag,#[fg=red](,}#W#{?window_zoomed_flag,#[fg=red]),}',
 		\'y'    : '%R',
@@ -380,8 +381,13 @@ set list							" show listchars
 " Line wrap {{{
 set wrap							" soft wrap long lines, visually, instead of changing the file
 set linebreak						" wrap long lines at characters in 'breakat' rather than at the last character that fits
+" if has('linebreak')
+" 	set breakindent
+" 	let &showbreak = '↳ '
+" 	set cpo+=n
+" end
 set breakindent						" wrapped lines are visually indented
-let &colorcolumn=join(range(73,200),",") " colors columns past 80
+let &colorcolumn=join(range(73,220),",") " colors columns past 80
 set textwidth=80
 set formatoptions=tcrqljw 			" t autowrap to textwidth
 									" c autowrap comments to textwidth
@@ -451,7 +457,7 @@ if has("gui_running")
 		"set guifont=Monospace\ 10
 		"set guifont=DejaVu\ Sans\ Mono\ 10
 		"set guifont=Terminus\ 9
-		set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 8
+		set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
 	elseif has("gui_macvim")
 		set guifont=Menlo\ Regular:h14
 	elseif has("gui_win32")
@@ -464,6 +470,10 @@ else
 	colorscheme badfox
 	if g:colors_name == "badfox"
 		let g:airline_theme= "badwolf"
+		function! AirlineThemePatch(palette)
+			let a:palette.normal.airline_c = [ '#8cffba' , '#272822' , 121 , 235 ]
+			let a:palette.insert.airline_c = [ '#0a9dff' , '#272822' , 39  , 235 ]
+		endfunction
 		set fillchars+=vert:│					" complete utf fill separator
 	endif
 	" highlight ColorColumn ctermbg=0 guibg=#000000 	" colorcolumn for wombat256
