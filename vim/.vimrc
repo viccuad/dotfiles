@@ -156,6 +156,10 @@ Plug 'Keithbsmiley/investigate.vim'					" search the language docs with gK
 " Plug 'osyo-manga/vim-over'						" :substitute live preview to view changes as you are doing them
 Plug 'loremipsum', {'on': 'Loremipsum'}				" insert a dummy text of a certain length
 
+Plug 'rking/ag.vim'									" use ag instead of grep
+	let g:ag_working_path_mode="r"					" always start searching from the project root instead of the cwd
+	nnoremap <localleader>t :Ag \'TODO\|FIXME\|BUG\'<CR>
+
 Plug 'tpope/vim-fugitive'							" git support
 	" each time you open a git object using fugitive it creates a new buffer. This autocloses them after:
 	autocmd BufReadPost fugitive://* set bufhidden=delete
@@ -482,7 +486,6 @@ let g:netrw_liststyle=3								" default to tree view (you can rotate netrw view
 let g:netrw_altv          = 1						" change from left splitting to right splitting
 let g:netrw_special_syntax= 1						" highlight certain files (*.bak, *.zip..)
 
-set grepprg=ack										" use ack instead of grep:
 " }}}
 
 " Persistence , Backup and Swap files {{{
