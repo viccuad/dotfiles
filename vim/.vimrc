@@ -496,6 +496,8 @@ let g:netrw_liststyle=3								" default to tree view (you can rotate netrw view
 let g:netrw_altv          = 1						" change from left splitting to right splitting
 let g:netrw_special_syntax= 1						" highlight certain files (*.bak, *.zip..)
 
+call matchadd('ErrorMsg', '[^\d0-\d127]')		" highlights weird unicode chars that try to pass as normal. eg:
+													" ⅰnt ⅿain() { рrintf ("Ηello troll!\n"); }
 " }}}
 
 " Persistence , Backup and Swap files {{{
