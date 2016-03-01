@@ -156,15 +156,6 @@ endif
 highlight Comment cterm=italic gui=italic	" put comments in italic (needs to be after your colorscheme) (needs tmux to be correctly set)
 highlight clear SignColumn					" sets the git gutter to the same color as the number column (needs to be after your colorscheme)
 
-" terminal: Use a blinking upright bar cursor in Insert mode, and a blinking block in normal
-" this could be done with Plugin 'jszakmeister/vim-togglecursor'
-" change cursor to a '|' when on vim console and insert mode:
-if &term == 'xterm-256color' || &term == 'rxvt-unicode-256color' || &term == 'screen-256color' || &term == 'screen-256color-it'
-	let &t_SI = "\<Esc>[5 q"
-	let &t_EI = "\<Esc>[1 q"
-	" urxvt has not implemented the bar cursor until 9.21, if that's the case, use an underbar: let &t_SI = "\<Esc>[3 q"
-endif
-
 set isfname+=32										"netrw: to open files with spaces
 " }}}
 
