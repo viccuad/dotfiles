@@ -10,3 +10,5 @@ alias la='ls -lah'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+
+alias th='trash'
