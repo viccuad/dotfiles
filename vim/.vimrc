@@ -146,7 +146,7 @@ Plug 'AndrewRadev/inline_edit.vim', {'on': 'InlineEdit'}	" change code inside ot
 Plug 'tpope/vim-commentary'							" comment with motion support
 Plug 'tmux-plugins/vim-tmux-focus-events'			" let terminal vim to know about focus changes (autoread, etc)
 Plug 'junegunn/vim-peekaboo'						" shows the contents of the registers on pop-up buffer
-Plug 'tasklist.vim'									" <leader> t shows a list of TODOs and FIXMEs
+" Plug 'tasklist.vim'									" <leader> t shows a list of TODOs and FIXMEs
 Plug 'christoomey/vim-tmux-navigator'				" seamlessly navigate between tmux and vim panels
 " Plug 'jceb/vim-orgmode'							" emacs org-mode in vim (needs utl.vim for links)
 " Plug 'utl.vim'									" universal Text Linking: execute URLs, footnotes, open emails, organize (orgmode dependency)
@@ -232,9 +232,6 @@ Plug 'vim-scripts/Conque-GDB', {'on': 'ConqueGDB'}	" GDB integration inside vim
 	let g:ConqueTerm_CloseOnEnd = 1 				" close conque when program ends running
 	let g:ConqueTerm_StartMessages = 0				" display warning messages if conqueTerm is configured incorrectly
 
-Plug 'jez/vim-superman'								" wrapper around man.vim's Man command
-	noremap K :SuperMan <cword><CR>
-
 
 " COMPLETION AND SNIPPETS:
 Plug 'Raimondi/delimitMate'							" provides insert mode auto-completion for quotes,parens,brackets..
@@ -275,7 +272,12 @@ Plug 'freitass/todo.txt-vim', {'for': 'todo'}		" for todo.txt filetypes
 Plug 'pangloss/vim-javascript'
 Plug 'skammer/vim-css-color', {'for': 'css'}		" highlight colors in css files (only works in gvim and css)
 
-Plug 'lervag/vimtex', {'for': 'tex'}
+" Plug 'lervag/vimtex', {'for': 'tex'}
+	let g:vimtex_fold_enabled = 0
+	let g:vimtex_indent_enabled = 0					" deactivate automatic indents
+	let g:tex_flavor = 'latex'						" always use latex filetype instead of plaintex for .tex files
+	let g:vimtex_latexmk_options="-pdflatex='xelatex --shell-escape -interaction=nonstopmode %O %S' -cd -f"
+	let g:vimtex_quickfix_autojump=1				" autojump t first error
 
 Plug 'LaTeX-Box-Team/LaTeX-Box', {'for': 'tex'}
 	let g:LatexBox_output_type="pdf"
@@ -294,6 +296,7 @@ Plug 'c.vim', {'for': 'c'}
 Plug 'hdima/python-syntax', {'for': 'python'}		" necessary, Vim default python syntax has a regex bug as of 7.4.663
 	let g:python_highlight_all = 1
 	" you can change between py v2 and v3 with :Python2Syntax and :Python3Syntax
+Plug 'davidhalter/jedi-vim'							" python autocompletion for vim
 
 Plug 'jamessan/vim-gnupg'							" encrypts/decrypts with gpg files that end in .gpg,.pgp or .asc. plaintext only on ram
 	" let g:GPGDefaultRecipients = ["0x5702AA3A <me@viccuad.me>"]
