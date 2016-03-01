@@ -44,32 +44,9 @@ Plug 'miyakogi/conoline.vim'							" show cursorline only on current buffer, cha
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}			" distraction free mode
 Plug 'junegunn/limelight.vim', {'on': 'Limelight'}	" hyperfocus mode
 	let g:limelight_paragraph_span = 0
-	function! s:goyo_enter()
-		if has('gui_running')
-			set fullscreen
-			set linespace=7
-		elseif exists('$TMUX')
-			silent !tmux set status off
-		endif
-		" hi NonText ctermfg=101
-		Limelight
-	endfunction
-	function! s:goyo_leave()
-		if has('gui_running')
-			set nofullscreen
-			set linespace=0
-		elseif exists('$TMUX')
-			silent !tmux set status on
-		endif
-		Limelight!
-	endfunction
-	augroup goyo_plus_limeligh
-		autocmd!
-		autocmd! User GoyoEnter
-		autocmd! User GoyoLeave
-		autocmd  User GoyoEnter nested call <SID>goyo_enter()
-		autocmd  User GoyoLeave nested call <SID>goyo_leave()
-	augroup END
+	let g:limelight_conceal_guifg = 'DarkGray'		" Neovim not yet with truecolor support
+	autocmd! User GoyoEnter Limelight
+	autocmd! User GoyoLeave Limelight!
 
 Plug 'zefei/vim-colortuner', {'on': 'Colortuner'}			" saturation, hue, etc tuning (only works with true colours: neovim, gvim)
 	let g:colortuner_filepath = '~/.config/nvim/vim-colortuner'
@@ -111,7 +88,6 @@ Plug 'bling/vim-airline'									" status/tabline (NEEDS powerline font)
 " FUNCTIONALITY:
 Plug 'matchit.zip'									" cicles between if, then, else..
 Plug 'tpope/vim-surround'							" surround strings faster (ysiwX,csXX, dsX, ysMX, yssX)
-Plug 'tpope/vim-speeddating'						" fixes vim incrementing of dates, times, etc (<C-A>, <C-X>)
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}	" show list of variables, functions, classes.. (NEEDS exuberant-ctags)
 Plug 'LargeFile'									" disables certain features of vim for speed in large files
 Plug 'AndrewRadev/inline_edit.vim', {'on': 'InlineEdit'}	" change code inside other code with ':InlineEdit'
@@ -119,15 +95,19 @@ Plug 'tpope/vim-commentary'							" comment with motion support
 Plug 'junegunn/vim-peekaboo'						" shows the contents of the registers on pop-up buffer
 Plug 'christoomey/vim-tmux-navigator'				" seamlessly navigate between tmux and vim panels
 Plug 'tmux-plugins/vim-tmux-focus-events'			" let terminal vim to know about focus changes (autoread, etc)
-" Plug 'jceb/vim-orgmode'							" emacs org-mode in vim (needs utl.vim for links)
-" Plug 'utl.vim'									" universal Text Linking: execute URLs, footnotes, open emails, organize (orgmode dependency)
-" Plug 'mattn/calendar-vim'							" provides a calendar when entering dates on orgmode
 Plug 'reedes/vim-wordy', {'on': 'NextWordy'}		" adds dictionaries for uncovering usage problems in your writing
-Plug 'Keithbsmiley/investigate.vim'					" search the language docs with gK
+Plug 'keith/investigate.vim'						" search the language docs with gK
 " Plug 'drawit'										" to draw lines and diagrams (<leader>di to start, <leader>ds to stop)
 " Plug 'osyo-manga/vim-over'						" :substitute live preview to view changes as you are doing them
-Plug 'loremipsum', {'on': 'Loremipsum'}				" insert a dummy text of a certain length
-Plug 'kana/vim-textobj-user'						" create your own text objects without pain
+" Plug 'janko-m/vim-test'							" run test suites from inside vim
+
+" Plug 'kana/vim-textobj-user'						" create your own text objects (dependency for the following)
+	" Plug 'PeterRincker/vim-argumentative'			" Argument text object (via, >a)
+	" Plug 'kana/vim-textobj-indent'					" Indent text object (vii)
+	" Plug 'kana/vim-textobj-line'					" Line text object (vil)
+	" Plug 'kana/vim-textobj-entire'					" Entire buffer text object (vae)
+	" Plug 'nelstrom/vim-textobj-rubyblock'			" Ruby block text object (vir)
+	" Plug 'glts/vim-textobj-comment'					" Comment text object (vac)
 
 Plug 'rking/ag.vim'									" use ag instead of grep
 	let g:ag_working_path_mode="r"					" always start searching from the project root instead of the cwd
@@ -142,19 +122,14 @@ Plug 'unblevable/quick-scope'						" highlight characters when doing f,F,t,T
 Plug 'vasconcelloslf/vim-interestingwords'			" highlight all words (<leader>k, <leader>K)
 	let g:interestingWordsGUIColors = ['#99B3FF', '#B399FF', '#E699FF', '#FF99B3', '#99FFE6', '#FFD65C', '#99FFB3', '#E6FF99', '#FFB399', '#5CD6FF', '#99FF99', '#FFF6CC']
 
-" Plug 'lilydjwg/colorizer'							" j
-	let g:colorizer_maxlines = 1000					" for performance reasons
 
-Plug 'matze/vim-move'								" move blocks of text in visual and normal mode (<A-j>, <A-k>)
-	let g:move_map_keys = 0
-	vmap <C-j> <Plug>MoveBlockDown
-	vmap <C-k> <Plug>MoveBlockUp
-	" FIXME: this two don't work:
-	nmap <A-j> <Plug>MoveLineDown
-	nmap <A-k> <Plug>MoveLineUp
-
-" Plug 'qstrahl/vim-matchmaker'						" highlights matches for the word under the cursor
-	let g:matchmaker_enable_startup = 1
+" Plug 'matze/vim-move'								" move blocks of text in visual and normal mode (<A-j>, <A-k>)
+	" let g:move_map_keys = 0
+	" vmap <C-j> <Plug>MoveBlockDown
+	" vmap <C-k> <Plug>MoveBlockUp
+	" " FIXME: this two don't work:
+	" nmap <A-j> <Plug>MoveLineDown
+	" nmap <A-k> <Plug>MoveLineUp
 
 Plug 'haya14busa/incsearch.vim'						" highlights every occurrence of the search before hitting enter
 	let g:incsearch#auto_nohlsearch = 0				" hlsearch will be automatically turned off after a cursor move
@@ -204,55 +179,41 @@ Plug 'vim-scripts/Conque-GDB', {'on': 'ConqueGDB'}	" GDB integration inside vim
 	let g:ConqueTerm_CloseOnEnd = 1 				" close conque when program ends running
 	let g:ConqueTerm_StartMessages = 0				" display warning messages if conqueTerm is configured incorrectly
 
-Plug 'jez/vim-superman'								" wrapper around man.vim's Man command
-	noremap K :SuperMan <cword><CR>
+
+" FINDER:
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 
 " LINTING:
-" Plug 'scrooloose/syntastic'							" automatic syntax checking
+" Plug 'scrooloose/syntastic'						" automatic syntax checking
 Plug 'benekastah/neomake'							" asynchronous :make using Neovim's job-control
+	autocmd! BufWritePost * Neomake
 
-" COMPLETION AND SNIPPETS:
-" deoplete
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
-" Plug 'Raimondi/delimitMate'							" provides insert mode auto-completion for quotes,parens,brackets..
-Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer'}		" (NEEDS to be compiled, read the docs!)
-" 	"let g:ycm_auto_trigger = 0		" turn off the as-you-type popup and the popup you'd get after typing . or -> in say C++. You can still use it by <C-Space> shortcut.
-" 	let g:ycm_global_ycm_extra_conf = '~/.config/nvim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+" COMPLETION:
+Plug 'cohama/lexima.vim'							" provides insert mode auto-completion for quotes,parens,brackets.
+Plug 'Shougo/deoplete.nvim'							" autocompletion interface
+	let g:deoplete#enable_at_startup = 1
+	let g:deoplete#sources= {}
+	let g:deoplete#sources._ = []					" load all sources for all filetypes
 
-Plug 'SirVer/ultisnips'								" compatible with YouCompleteMe, this is the snippets engine
-" Plug 'honza/vim-snippets'							" Snippets are separated from the engine.
-" 	let g:UltiSnipsEnableSnipMate = 0 " don't look for SnipMate snippets, in the 'snippets' dir
-" 	let g:UltiSnipsSnippetDirectories=["snippets_UltiSnips"]
-" 	" Ultisnips and YouCompleteMe integration, both work with tab
-" 	function! g:UltiSnips_Complete()
-" 		call UltiSnips#ExpandSnippet()
-" 		if g:ulti_expand_res == 0
-" 			if pumvisible()
-" 				return "\<C-n>"
-" 			else
-" 				call UltiSnips#JumpForwards()
-" 				if g:ulti_jump_forwards_res == 0
-" 					return "\<TAB>"
-" 				endif
-" 			endif
-" 		endif
-" 		return ""
-" 	endfunction
-" 	au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
-" 	let g:UltiSnipsJumpForwardTrigger="<tab>"
-" 	let g:UltiSnipsListSnippets="<c-e>"
-" 	" this maps Enter key to <C-y> to chose the current highlight item
-" 	" and close the selection list, same as other IDEs:
-" 	" CONFLICTS with some plugins like tpope/Endwise
-" 	inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" SNIPPETS:
+Plug 'SirVer/ultisnips'								" compatible with deoplete, this is the snippets engine
+	let g:UltiSnipsEditSplit="vertical"				" edit new snippets on a vertical split instead of the current window
+	" let g:UltiSnipsNoPythonWarning = 1				" don't notify of python warnings
+	" Trigger configuration:
+	let g:UltiSnipsExpandTrigger="<tab>"
+	let g:UltiSnipsJumpForwardTrigger="<c-j>"
+	let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
+Plug 'honza/vim-snippets'							" snippets, that are used by the completion engine
 
 
 " FILETYPE:
 Plug 'freitass/todo.txt-vim', {'for': 'todo'}		" for todo.txt filetypes
 Plug 'pangloss/vim-javascript'
-Plug 'ap/vim-css-color', {'for': 'css'}		" highlight colors in css files (only works in gvim and css)
+Plug 'gorodinskiy/vim-coloresque'				"  css/less/sass/html color preview for vim
 
 Plug 'lervag/vimtex', {'for': 'tex'}
 	let g:vimtex_fold_enabled = 0
@@ -260,19 +221,26 @@ Plug 'lervag/vimtex', {'for': 'tex'}
 	let g:tex_flavor = 'latex'						" always use latex filetype instead of plaintex for .tex files
 	" let g:vimtex_latexmk_options="-pdflatex='xelatex --shell-escape -interaction=nonstopmode %O %S' -cd -f"
 	let g:vimtex_latexmk_options="-pdflatex='xelatex --shell-escape'"
-	" let g:vimtex_latexmk_continuous=0
-	" let g:vimtex_latexmk_background=0
+	let g:vimtex_latexmk_continuous=0
+	let g:vimtex_latexmk_background=0				" TODO: until neovim has --remote, watch the builds for errors manually
 	let g:vimtex_quickfix_autojump=1				" autojump to first error
 
 Plug 'justinmk/vim-syntax-extra', {'for': 'c'}		" bison, flex, c syntax (operators, delimiters, functions..)
 Plug 'vivien/vim-addon-linux-coding-style', {'for': 'c'}
-Plug 'c.vim', {'for': 'c'}
-	let g:C_LocalTemplateFile = $HOME.'/.config/nvim/snippets_Cvim/c-support/templates/Templates' " this allows for the templates to be versioned on .dotfiles
+" Plug 'c.vim', {'for': 'c'}						" TODO: right now conflicts with ultisnips
+	" let g:C_LocalTemplateFile = $HOME.'/.config/nvim/snippets_Cvim/c-support/templates/Templates' " this allows for the templates to be versioned on .dotfiles
 
 Plug 'hdima/python-syntax', {'for': 'python'}		" necessary, Vim default python syntax has a regex bug as of 7.4.663
 	let g:python_highlight_all = 1
 	" you can change between py v2 and v3 with :Python2Syntax and :Python3Syntax
 Plug 'davidhalter/jedi-vim'							" python autocompletion for vim
+	" use jedi-vim onmi completion with deoplete:
+	autocmd FileType python setlocal omnifunc=jedi#completions
+	let g:jedi#completions_enabled = 0
+	let g:jedi#auto_vim_configuration = 0
+	let g:jedi#smart_auto_mappings = 0
+	let g:jedi#show_call_signatures = 0
+
 Plug 'klen/python-mode'
 Plug 'hynek/vim-python-pep8-indent'					" indentation behavior as in PEP8
 
@@ -401,6 +369,7 @@ if has('autocmd')
 endif
 set timeout							" time out on key codes
 set ttimeoutlen=20					" the time in milliseconds that is waited for a key code or mapped key sequence to complete
+set fillchars+=vert:│				" complete utf fill separator
 
 if has("gui_running")
 	set guiheadroom=0				" vim padding: fix it in ~/.gtkrc-2.0
@@ -433,7 +402,6 @@ if has("gui_running")
 	endif
 else
 	colorscheme badfox
-	set fillchars+=vert:│					" complete utf fill separator
 endif
 
 " netrw:
@@ -443,7 +411,7 @@ let g:netrw_liststyle=3							" default to tree view (you can rotate netrw views
 let g:netrw_altv          = 1					" change from left splitting to right splitting
 let g:netrw_special_syntax= 1					" highlight certain files (*.bak, *.zip..)
 
-call matchadd('TrollStopper', '[^\d0-\d127]')	" highlights weird unicode chars that try to pass as normal. eg:
+call matchadd('ErrorMsg', '[^\d0-\d127]')		" highlights weird unicode chars that try to pass as normal. eg:
 												" ⅰnt ⅿain() { рrintf ("Ηello troll!\n"); }
 " }}}
 
