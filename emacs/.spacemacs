@@ -96,6 +96,7 @@ values."
                                       ;; xclip
                                       w3m      ;; for gnus
                                       smtpmail ;; for gnus
+                                      highlight-chars
                                       )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(
@@ -347,6 +348,8 @@ layers configuration. You are free to put any user code."
 
 ;;;; LINUM and HL-LINE ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+  ;; TODO fix: line numbers inherit underlines from the beginning of the line
+
   (setq hl-line-sticky-flag nil) ;; highlights the line about point in the selected window only
 
   (set-face-background 'linum  (face-attribute 'hl-line :background))
@@ -469,9 +472,15 @@ layers configuration. You are free to put any user code."
         whitespace-display-mappings '(
                                       (space-mark 32 [183] [46]) ; 32 SPACE, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
                                       (newline-mark 10 [8629 10]) ; 10 LINE FEED
-                                      (tab-mark 9 [8594 9] [92 9])
+                                      ;; (tab-mark 9 [8594 9] [92 9])
                                       )
         )
+
+  ;; (require 'highlight-chars)
+  ;; (add-hook 'prog-mode-hook 'hc-highlight-tabs)
+  ;; (custom-set-faces
+  ;;  '(hc-tab ((t (:Strike-through "red")))))
+
 
   ;; (custom-set-faces
   ;;  '(whitespace-space ((t (:foreground "#363636"))))
@@ -558,9 +567,9 @@ layers configuration. You are free to put any user code."
 
 ;;;; END OF FILE ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-  ;; (setq ;; don't insert newline at the end of the file automatically
-  ;;  require-final-newline nil
-  ;;  mode-require-final-newline nil)
+  (setq ;; insert newline at the end of the file automatically
+   require-final-newline t
+   mode-require-final-newline t)
 
 ;;;; COLORS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
