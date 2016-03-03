@@ -1,0 +1,717 @@
+# sbuild.conf: sbuild settings.                                    -*- Perl -*-
+# Default settings are commented out.
+# Note that all possible settings are listed here.  Many may be set on
+# the command-line, and do not normally need setting here,
+# e.g. $verbose.  Others need setting by each individual user in their
+# ~/.sbuildrc, but are listed here for completeness.
+
+
+##
+## Build environment
+##
+
+# LD_LIBRARY_PATH
+# Type: STRING
+# Library search path to use inside the chroot.
+#$ld_library_path = undef;
+
+# PATH
+# Type: STRING
+# PATH to set when running dpkg-buildpackage.
+#$path =
+#'/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games';
+
+
+
+##
+## Build options
+##
+
+# APPEND_TO_VERSION
+# Type: STRING
+# Suffix to append to version number.  May be useful for derivative
+# distributions.
+#$append_to_version = undef;
+
+# BUILD_ARCH
+# Type: STRING
+# Build architecture (Arch we are building on).
+#build_arch = ...;
+
+# BUILD_ARCH_ALL
+# Type: BOOL
+# Build architecture: all packages by default. Set by the --arch-all and
+# --no-arch-all command line options.
+$build_arch_all = 1;
+
+# BUILD_ARCH_ANY
+# Type: BOOL
+# Build architecture: any packages by default. Set by the --arch-any and
+# --no-arch-any command line options.
+#$build_arch_any = 1;
+
+# BUILD_ENV_CMND
+# Type: STRING
+# This command is run with the dpkg-buildpackage command line passed to it
+# (in the chroot, if doing a chrooted build).  It is used by the sparc
+# buildd (which is sparc64) to call the wrapper script that sets the
+# environment to sparc (32-bit).  It could be used for other build
+# environment setup scripts.  Note that this is superceded by schroot's
+# 'command-prefix' option
+#$build_env_cmnd = '';
+
+# BUILD_PATH
+# Type: STRING
+# By default the package is built in a path of the following format
+# /build/packagename-XXXXXX/packagename-version/ where XXXXXX is a random
+# ascii string. This option allows one to specify a custom path where the
+# package is built inside the chroot. Notice that the sbuild user in the
+# chroot must have permissions to create the path. Common writable
+# locations are subdirectories of /tmp or /build. The buildpath must be an
+# empty directory because the last component of the path will be removed
+# after the build is finished. If you are running multiple sbuild instances
+# with the same build path in parallel for the same package, make sure that
+# your build path is not in a directory commonly mounted by all sbuild
+# instances (like /tmp or /home). In that case, use for example /build
+# instead. Otherwise, your builds will probably fail or contain wrong
+# content.
+#$build_path = undef;
+
+# BUILD_PROFILES
+# Type: STRING
+# Build profiles. Separated by spaces.
+#$build_profiles = '';
+
+# BUILD_SOURCE
+# Type: BOOL
+# By default, do not build a source package (binary only build).  Set to 1
+# to force creation of a source package, but note that this is
+# inappropriate for binary NMUs, where the option will always be disabled.
+# Set by the --source and --no-source command line options.
+$build_source = 1;
+
+# CHECK_SPACE
+# Type: BOOL
+# Check free disk space prior to starting a build.  sbuild requires the
+# free space to be at least twice the size of the unpacked sources to allow
+# a build to proceed.  Can be disabled to allow building if space is very
+# limited, but the threshold to abort a build has been exceeded despite
+# there being sufficient space for the build to complete.
+#$check_space = 1;
+
+# CLEAN_SOURCE
+# Type: BOOL
+# When running sbuild from within an unpacked source tree, run the 'clean'
+# target before generating the source package. This might require some of
+# the build dependencies necessary for running the 'clean' target to be
+# installed on the host machine. Only disable if you start from a clean
+# checkout and you know what you are doing.
+#$clean_source = 1;
+
+# DISTRIBUTION
+# Type: STRING
+# Default distribution.  By default, no distribution is defined, and the
+# user must specify it with the -d option.  However, a default may be
+# configured here if desired.  Users must take care not to upload to the
+# wrong distribution when this option is set, for example experimental
+# packages will be built for upload to unstable when this is not what is
+# required.
+$distribution = unstable;
+
+# FORCE_ORIG_SOURCE
+# Type: BOOL
+# By default, the -s option only includes the .orig.tar.gz when needed
+# (i.e. when the Debian revision is 0 or 1).  By setting this option to 1,
+# the .orig.tar.gz will always be included when -s is used.  This is
+# equivalent to --force-orig-source.
+#$force_orig_source = 0;
+
+# GCC_SNAPSHOT
+# Type: BOOL
+# Build using current GCC snapshot?
+#$gcc_snapshot = 0;
+
+# HOST_ARCH
+# Type: STRING
+# Host architecture (Arch we are building for)
+#host_arch = ...;
+
+# PGP_OPTIONS
+# Type: ARRAY:STRING
+# Additional signing options for dpkg-buildpackage
+#$pgp_options = [
+#		  '-us',
+#		  '-uc'
+#		];
+
+# TOOLCHAIN_REGEX
+# Type: ARRAY:STRING
+# Regular expressions identifying toolchain packages.  Note that for
+# backward compatibility, this is also settable using the array
+# @toolchain_regex (deprecated), rather than an array reference.
+#$toolchain_regex = [
+#		      'binutils$',
+#		      'dpkg-dev$',
+#		      'gcc-[\\d.]+$',
+#		      'g\\+\\+-[\\d.]+$',
+#		      'libstdc\\+\\+',
+#		      'libc[\\d.]+-dev$',
+#		      'linux-kernel-headers$',
+#		      'linux-libc-dev$',
+#		      'gnumach-dev$',
+#		      'hurd-dev$',
+#		      'kfreebsd-kernel-headers$'
+#		    ];
+
+
+
+##
+## Build timeouts
+##
+
+# INDIVIDUAL_STALLED_PKG_TIMEOUT
+# Type: HASH:NUMERIC
+# Some packages may exceed the general timeout (e.g. redirecting output to
+# a file) and need a different timeout.  This has is a mapping between
+# source package name and timeout.  Note that for backward compatibility,
+# this is also settable using the hash %individual_stalled_pkg_timeout
+# (deprecated) , rather than a hash reference.
+#    %individual_stalled_pkg_timeout = (smalleiffel => 300,
+#    				   jade => 300,
+#    				   atlas => 300,
+#    				   glibc => 1000,
+#    				   'gcc-3.3' => 300,
+#    				   kwave => 600);
+#$individual_stalled_pkg_timeout = {};
+
+# LOCK_INTERVAL
+# Type: NUMERIC
+# Lock wait interval (seconds).  Maximum wait time is (max_lock_trys x
+# lock_interval).
+#$lock_interval = 5;
+
+# MAX_LOCK_TRYS
+# Type: NUMERIC
+# Number of times to try waiting for a lock.
+#$max_lock_trys = 120;
+
+# STALLED_PKG_TIMEOUT
+# Type: NUMERIC
+# Time (in minutes) of inactivity after which a build is terminated.
+# Activity is measured by output to the log file.
+#$stalled_pkg_timeout = 150;
+
+
+
+##
+## Build validation
+##
+
+# LINTIAN
+# Type: STRING
+# Path to lintian binary
+#$lintian = 'lintian';
+
+# LINTIAN_OPTIONS
+# Type: ARRAY:STRING
+# Options to pass to lintian.  Each option is a separate arrayref element. 
+# For example, ['-i', '-v'] to add -i and -v.
+#$lintian_opts = [];
+
+# PIUPARTS
+# Type: STRING
+# Path to piuparts binary
+#$piuparts = 'piuparts';
+
+# PIUPARTS_OPTIONS
+# Type: ARRAY:STRING
+# Options to pass to piuparts.	Each option is a separate arrayref element.
+#  For example, ['-b', '<chroot_tarball>'] to add -b and <chroot_tarball>.
+#$piuparts_opts = [];
+
+# PIUPARTS_ROOT_ARGS
+# Type: ARRAY:STRING
+# Preceding arguments to launch piuparts as root. If no arguments are
+# specified, piuparts will be launched via sudo.
+#$piuparts_root_args = [];
+
+# RUN_LINTIAN
+# Type: BOOL
+# Run lintian?
+#$run_lintian = 0;
+
+# RUN_PIUPARTS
+# Type: BOOL
+# Run piuparts
+#$run_piuparts = 0;
+
+
+
+##
+## Chroot options
+##
+
+# APT_ALLOW_UNAUTHENTICATED
+# Type: BOOL
+# Force APT to accept unauthenticated packages.  By default,
+# unauthenticated packages are not allowed.  This is to keep the build
+# environment secure, using apt-secure(8).  By setting this to 1,
+# APT::Get::AllowUnauthenticated is set to "true" when running apt-get.
+# This is disabled by default: only enable it if you know what you are
+# doing.
+#$apt_allow_unauthenticated = 0;
+
+# APT_CLEAN
+# Type: BOOL
+# APT clean.  1 to enable running "apt-get clean" at the start of each
+# build, or 0 to disable.
+#$apt_clean = 0;
+
+# APT_DISTUPGRADE
+# Type: BOOL
+# APT distupgrade.  1 to enable running "apt-get dist-upgrade" at the start
+# of each build, or 0 to disable.
+#$apt_distupgrade = 1;
+
+# APT_UPDATE
+# Type: BOOL
+# APT update.  1 to enable running "apt-get update" at the start of each
+# build, or 0 to disable.
+#$apt_update = 1;
+
+# APT_UPDATE_ARCHIVE_ONLY
+# Type: BOOL
+# Update local temporary APT archive directly (1, the default) or set to 0
+# to disable and do a full apt update (not recommended in case the mirror
+# content has changed since the build started).
+#$apt_update_archive_only = 1;
+
+# APT_UPGRADE
+# Type: BOOL
+# APT upgrade.	1 to enable running "apt-get upgrade" at the start of each
+# build, or 0 to disable.
+#$apt_upgrade = 0;
+
+# CHROOT
+# Type: STRING
+# Default chroot (defaults to distribution[-arch][-sbuild])
+#$chroot = undef;
+
+# CHROOT_MODE
+# Type: STRING
+# Mechanism to use for chroot virtualisation.  Possible value are "schroot"
+# (default) and "sudo".
+#$chroot_mode = 'schroot';
+
+# CHROOT_SETUP_SCRIPT
+# Type: STRING
+# Script to run to perform custom setup tasks in the chroot.
+#$chroot_setup_script = undef;
+
+# CHROOT_SPLIT
+# Type: BOOL
+# Run in split mode?  In split mode, apt-get and dpkg are run on the host
+# system, rather than inside the chroot.
+#$chroot_split = 0;
+
+# EXTERNAL_COMMANDS
+# Type: HASH:ARRAY:STRING
+# External commands to run at various stages of a build. Commands are held
+# in a hash of arrays of arrays data structure.
+#    $external_commands = {
+#        "pre-build-commands" => [
+#            ['foo', 'arg1', 'arg2'],
+#            ['bar', 'arg1', 'arg2', 'arg3'],
+#        ],
+#        "chroot-setup-commands" => [
+#            ['foo', 'arg1', 'arg2'],
+#            ['bar', 'arg1', 'arg2', 'arg3'],
+#        ],
+#        "build-deps-failed-commands" => [
+#            ['foo', 'arg1', 'arg2'],
+#            ['bar', 'arg1', 'arg2', 'arg3'],
+#        ],
+#        "build-failed-commands" => [
+#            ['foo', 'arg1', 'arg2'],
+#            ['bar', 'arg1', 'arg2', 'arg3'],
+#        ],
+#        "starting-build-commands" => [
+#            ['foo', 'arg1', 'arg2'],
+#            ['bar', 'arg1', 'arg2', 'arg3'],
+#        ],
+#        "finished-build-commands" => [
+#            ['foo', 'arg1', 'arg2'],
+#            ['bar', 'arg1', 'arg2', 'arg3'],
+#        ],
+#        "chroot-cleanup-commands" => [
+#            ['foo', 'arg1', 'arg2'],
+#            ['bar', 'arg1', 'arg2', 'arg3'],
+#        ],
+#        "post-build-commands" => [
+#            ['foo', 'arg1', 'arg2'],
+#            ['bar', 'arg1', 'arg2', 'arg3'],
+#        ],
+#    };
+#$external_commands = {
+#			'build-deps-failed-commands' => [],
+#			'build-failed-commands' => [],
+#			'chroot-cleanup-commands' => [],
+#			'chroot-setup-commands' => [],
+#			'finished-build-commands' => [],
+#			'post-build-commands' => [],
+#			'pre-build-commands' => [],
+#			'starting-build-commands' => []
+#		      };
+
+# LOG_EXTERNAL_COMMAND_ERROR
+# Type: BOOL
+# Log standard error of commands run by sbuild?
+#$log_external_command_error = 1;
+
+# LOG_EXTERNAL_COMMAND_OUTPUT
+# Type: BOOL
+# Log standard output of commands run by sbuild?
+#$log_external_command_output = 1;
+
+# PACKAGE_CHECKLIST
+# Type: STRING
+# Where to store list currently installed packages inside chroot
+#$package_checklist = '/var/lib/sbuild/package-checklist';
+
+# PURGE_BUILD_DEPS
+# Type: STRING
+# When to purge the build dependencies after a build; possible values are
+# "never", "successful", and "always"
+#$purge_build_deps = 'always';
+
+# PURGE_BUILD_DIRECTORY
+# Type: STRING
+# When to purge the build directory after a build; possible values are
+# "never", "successful", and "always"
+#$purge_build_directory = 'always';
+
+# PURGE_SESSION
+# Type: STRING
+# Purge the schroot session following a build.	This is useful in
+# conjunction with the --purge and --purge-deps options when using snapshot
+# chroots, since by default the snapshot will be deleted. Possible values
+# are "always" (default), "never", and "successful"
+#$purge_session = 'always';
+
+
+
+##
+## Core options
+##
+
+# ARCHIVE
+# Type: STRING
+# Archive being built.	Only set in build log.	This might be useful for
+# derivative distributions.
+#$archive = undef;
+
+# BUILD_DIR
+# Type: STRING
+# This option is deprecated.  Directory for chroot symlinks and sbuild
+# logs.  Defaults to the current directory if unspecified.  It is used as
+# the location of chroot symlinks (obsolete) and for current build log
+# symlinks and some build logs.  There is no default; if unset, it defaults
+# to the current working directory.  $HOME/build is another common
+# configuration.
+#    $build_dir = '/home/pete/build';
+#build_dir = ...;
+
+# BUILD_ENVIRONMENT
+# Type: HASH:STRING
+# Environment to set during the build.	Defaults to setting PATH and
+# LD_LIBRARY_PATH only.  Note that these environment variables are not
+# subject to filtering with ENVIRONMENT_FILTER.  Example:
+#    $build_environment = {
+#            'CCACHE_DIR' => '/build/cache'
+#    };
+#$build_environment = {};
+
+# BUILD_USER
+# Type: STRING
+# Username used for running dpkg-buildpackage. By default the user running
+# sbuild is used within the chroot as well but that might allow a process
+# from within the chroot to break out of the chroot by attaching to a
+# process running outside the chroot with eg. gdb and then becoming root
+# inside the chroot through schroot and thus be able to leave the chroot.
+#build_user = ...;
+
+# CORE_DEPENDS
+# Type: ARRAY:STRING
+# Packages which must be installed in the chroot for all builds.
+#$core_depends = [
+#		   'build-essential:native',
+#		   'fakeroot:native'
+#		 ];
+
+# ENVIRONMENT_FILTER
+# Type: ARRAY:STRING
+# Only environment variables matching one of the regular expressions in
+# this arrayref will be passed to dpkg-buildpackage and other programs run
+# by sbuild.
+#$environment_filter = [
+#			 '^PATH$',
+#			 '^DEB(IAN|SIGN)?_[A-Z_]+$',
+#			 '^(C(PP|XX)?|LD|F)FLAGS(_APPEND)?$',
+#			 '^USER(NAME)?$',
+#			 '^LOGNAME$',
+#			 '^HOME$',
+#			 '^TERM$',
+#			 '^SHELL$'
+#		       ];
+
+# JOB_FILE
+# Type: STRING
+# Job status file (only used in batch mode)
+#$job_file = 'build-progress';
+
+# SBUILD_MODE
+# Type: STRING
+# sbuild behaviour; possible values are "user" (exit status reports build
+# failures) and "buildd" (exit status does not report build failures) for
+# use in a buildd setup.  "buildd" also currently implies enabling of
+# "legacy features" such as chroot symlinks in the build directory and the
+# creation of current symlinks in the build directory.
+#$sbuild_mode = 'user';
+
+
+
+##
+## Dependency resolution
+##
+
+# BUILD_DEP_RESOLVER
+# Type: STRING
+# Build dependency resolver.  The 'apt' resolver is currently the default,
+# and recommended for most users.  This resolver uses apt-get to resolve
+# dependencies.  Alternative resolvers are 'apt', 'aptitude' and 'aspcud'.
+# The 'apt' resolver uses a built-in resolver module while the 'aptitude'
+# resolver uses aptitude to resolve build dependencies.  The aptitude
+# resolver is similar to apt, but is useful in more complex situations,
+# such as where multiple distributions are required, for example when
+# building from experimental, where packages are needed from both unstable
+# and experimental, but defaulting to unstable. If the dependency situation
+# is too complex for either apt or aptitude to solve it, you can use the
+# 'aspcud' resolver which is a real SAT solver and will thus alwyas find a
+# solution if a solution exists.
+#$build_dep_resolver = 'apt';
+
+# RESOLVE_ALTERNATIVES
+# Type: BOOL
+# Should the dependency resolver use alternatives in Build-Depends,
+# Build-Depends-Arch and Build-Depends-Indep?  By default, using 'apt'
+# resolver, only the first alternative will be used; all other alternatives
+# will be removed.  When using the 'aptitude' resolver, it will default to
+# using all alternatives.  Note that this does not include
+# architecture-specific alternatives, which are reduced to the build
+# architecture prior to alternatives removal.  This should be left disabled
+# when building for unstable; it may be useful when building for
+# experimental or backports.  Set to undef to use the default, 1 to enable,
+# or 0 to disable.
+#    $resolve_alternatives = 0;
+#$resolve_alternatives = undef;
+
+# SBUILD_BUILD_DEPENDS_PUBLIC_KEY
+# Type: STRING
+# GPG public key for temporary local apt archive.
+#$sbuild_build_depends_public_key =
+#'/var/lib/sbuild/apt-keys/sbuild-key.pub';
+
+# SBUILD_BUILD_DEPENDS_SECRET_KEY
+# Type: STRING
+# GPG secret key for temporary local apt archive.
+#$sbuild_build_depends_secret_key =
+#'/var/lib/sbuild/apt-keys/sbuild-key.sec';
+
+
+
+##
+## Logging options
+##
+
+# COMPRESS_BUILD_LOG_MAILS
+# Type: BOOL
+# Should build log mails be compressed?
+#$compress_build_log_mails = 1;
+
+# DEBUG
+# Type: NUMERIC
+# Debug logging level
+#$debug = 0;
+
+# LOG_COLOUR
+# Type: BOOL
+# Colour log messages such as critical failures, warnings and success
+#$log_colour = 1;
+
+# LOG_DIR
+# Type: STRING
+# Directory for storing build logs.  This defaults to '.' when SBUILD_MODE
+# is set to 'user' (the default), and to '$HOME/logs' when SBUILD_MODE is
+# set to 'buildd'.
+#$log_dir = undef;
+
+# LOG_FILTER
+# Type: BOOL
+# Filter variable strings from log messages such as the chroot name and
+# build directory
+#$log_filter = 1;
+
+# MAILFROM
+# Type: STRING
+# email address set in the From line of build logs
+#$mailfrom = 'Source Builder <sbuild>';
+
+# MAILTO
+# Type: STRING
+# email address to mail build logs to
+#$mailto = '';
+
+# MAILTO_HASH
+# Type: HASH:STRING
+# Like MAILTO, but per-distribution.  This is a hashref mapping
+# distribution name to MAILTO.	Note that for backward compatibility, this
+# is also settable using the hash %mailto (deprecated), rather than a hash
+# reference.
+#$mailto_hash = {};
+
+# MIME_BUILD_LOG_MAILS
+# Type: BOOL
+# Should build log mails be MIME encoded?
+#$mime_build_log_mails = 1;
+
+# VERBOSE
+# Type: NUMERIC
+# Verbose logging level
+#$verbose = 0;
+
+
+
+##
+## Maintainer options
+##
+
+# KEY_ID
+# Type: STRING
+# Key ID to use in .changes for the current upload.  It overrides both
+# $maintainer_name and $uploader_name.
+#$key_id = undef;
+
+# MAINTAINER_NAME
+# Type: STRING
+# Name to use as override in .changes files for the Maintainer field.  The
+# Maintainer field will not be overridden unless set here.
+#$maintainer_name = undef;
+
+# UPLOADER_NAME
+# Type: STRING
+# Name to use as override in .changes file for the Changed-By: field.
+#$uploader_name = undef;
+
+
+
+##
+## Multiarch support (transitional)
+##
+
+# CROSSBUILD_CORE_DEPENDS
+# Type: HASH:ARRAY:STRING
+# Per-architecture dependencies required for cross-building. By default, if
+# a Debian architecture is not found as a key in this hash, the package
+# crossbuild-essential-${hostarch}:native will be installed.
+#    
+#    $crossbuild_core_depends = {
+#        nios2 => ['crossbuild-essential-nios2:native', 'special-package'],
+#        musl-linux-mips => ['crossbuild-essential-musl-linux-mips:native', 'super-special'],
+#    }
+#$crossbuild_core_depends = {};
+
+
+
+##
+## Programs
+##
+
+# APTITUDE
+# Type: STRING
+# Path to aptitude binary
+#$aptitude = 'aptitude';
+
+# APT_CACHE
+# Type: STRING
+# Path to apt-cache binary
+#$apt_cache = 'apt-cache';
+
+# APT_GET
+# Type: STRING
+# Path to apt-get binary
+#$apt_get = 'apt-get';
+
+# DCMD
+# Type: STRING
+# Path to dcmd binary
+#$dcmd = 'dcmd';
+
+# DPKG_SOURCE
+# Type: STRING
+# Path to dpkg-source binary
+#$dpkg_source = 'dpkg-source';
+
+# DPKG_SOURCE_OPTIONS
+# Type: ARRAY:STRING
+# Additional command-line options for dpkg-source
+#$dpkg_source_opts = [];
+
+# FAKEROOT
+# Type: STRING
+# Path to fakeroot binary
+#$fakeroot = 'fakeroot';
+
+# MAILPROG
+# Type: STRING
+# Program to use to send mail
+#$mailprog = '/usr/sbin/sendmail';
+
+# MD5SUM
+# Type: STRING
+# Path to md5sum binary
+#$md5sum = 'md5sum';
+
+# SCHROOT_OPTIONS
+# Type: ARRAY:STRING
+# Additional command-line options for schroot
+#$schroot_options = [
+#		      '-q'
+#		    ];
+
+# SU
+# Type: STRING
+# Path to su binary
+#$su = 'su';
+
+# SUDO
+# Type: STRING
+# Path to sudo binary
+#$sudo = 'sudo';
+
+# XAPT
+# Type: STRING
+#$xapt = 'xapt';
+
+
+
+##
+## Statistics
+##
+
+# STATS_DIR
+# Type: STRING
+# Directory for writing build statistics to
+#$stats_dir = '/sbuild-nonexistent/stats';
+
+# Don't remove this, Perl needs it:
+1;
