@@ -531,6 +531,15 @@ layers configuration. You are free to put any user code."
   (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
   (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
 
+  ;; Make v$ exclude the carriage return
+  (evil-define-motion evil-last-non-blank (count)
+    :type inclusive
+    (evil-end-of-line count)
+    (re-search-backward "^\\|[^[:space:]]")
+    (setq evil-this-type (if (eolp) 'exclusive 'inclusive)))
+  (define-key evil-visual-state-map "$" 'evil-last-non-blank)
+
+
 ;;;; COMMENTS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
   (set-face-italic 'font-lock-comment-face t)
