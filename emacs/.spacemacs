@@ -34,7 +34,7 @@ values."
             shell-default-position 'bottom)
      (spell-checking :variables
                      spell-checking-enable-by-default t
-                     spell-checking-enable-auto-dictionary t ;; detect the current language from the buffer content
+                     spell-checking-enable-auto-dictionary nil ;; detect the current language from the buffer content
                      )
      syntax-checking
      ;; semantic ;; display current function interface at the top of the screen
@@ -596,6 +596,7 @@ layers configuration. You are free to put any user code."
 ;;;; LANGUAGES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
   (setq c-default-style "linux")  ;; or k&r for example
+  (setq ispell-dictionary "english")
 
   ;; TODO enable spell checking for text modes
 
