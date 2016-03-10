@@ -91,12 +91,12 @@ values."
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(
-                                      evil-terminal-cursor-changer ;; has been temporarily disabled: https://github.com/7696122/evil-terminal-cursor-changer/issues/8
+                                      evil-terminal-cursor-changer ;; has been temporarily disabled: https://github.com/7696122/evil-terminal-cursor-changer/issues/8 TODO
                                       key-chord ;; to not have hiccups on the line with jk
                                       ;; xclip
                                       w3m      ;; for gnus
                                       smtpmail ;; for gnus
-                                      highlight-chars
+                                      highlight-chars ;; for tab, troll chars
                                       hlinum ;; highlight current line number
                                       )
    ;; A list of packages and/or extensions that will not be install and loaded.
@@ -376,30 +376,7 @@ layers configuration. You are free to put any user code."
   (setq
    fci-rule-column 81 ;; because the utf char is to the left
    fci-always-use-textual-rule t
-
-   ;; not so good unicodes:
-   ;; fci-rule-character ?\u2502 ;; full dash
-   ;; fci-rule-character ?\u030d ;; little dash up
-   ;; fci-rule-character ?\u0951 ;; little dash up
-   ;; fci-rule-character ?\u05bc ;; little point middle
-   ;; fci-rule-character ?\u0732 ;; two little points up and down
-
-   ;; good unicodes:
-   ;; fci-rule-character ?\u05d9 ;; little dash middle
-   ;; fci-rule-character ?\u20d3 ;; medium slim dash middle
-   ;; fci-rule-character ?\u05d5 ;; medium dash middle
-   ;; fci-rule-character ?\u0964 ;; medium medium-slim dash middle
-
-   ;; weird but slim unicodes: ð ð etc
-   ;; fci-rule-character ?\u1d0da
-   ;; fci-rule-character ?\u1d0db
-   ;; fci-rule-character ?\u1d1c4
-   ;; fci-rule-character ?\u1d1c3
-
-   ;; fci-rule-character ?\u23a5 ;; right box vertical
-   ;; fci-rule-character ?\u2503 ;; right box vertical
    fci-rule-character ?\u258E ;; left 1/4 block
-
    fci-rule-color (face-attribute 'hl-line :background)
    )
 
@@ -535,7 +512,7 @@ layers configuration. You are free to put any user code."
   ;; highlights weird unicode chars that try to pass as
   ;; normal. eg:↵ ⅰnt ⅿain() { рrintf ("Ηello troll!\n");
 
-;;;; VIM ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;; EVIL ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
   ;; use key-chord instead of evil-escape to not have hiccups on the line:
   (key-chord-mode 1)
