@@ -3,3 +3,4 @@
 /.weechat/logs/*
 /.weechat/certs/*
 /.weechat/otr/*
+/.weechat/chanstat/peak_data.csv
