@@ -97,6 +97,7 @@ values."
                                       w3m      ;; for gnus
                                       smtpmail ;; for gnus
                                       highlight-chars
+                                      hlinum ;; highlight current line number
                                       )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(
@@ -352,31 +353,23 @@ layers configuration. You are free to put any user code."
 
   (setq hl-line-sticky-flag nil) ;; highlights the line about point in the selected window only
 
-  (set-face-background 'linum  (face-attribute 'hl-line :background))
+  ;; (set-face-background 'linum  (face-attribute 'hl-line :background))
 
-  ;; make current line number color, and add separation with hl-line:
-  (defface my-linum-hl
-    ;; `((t :inherit linum :background ,(face-background 'hl-line nil t))) ;; only background as hl-line
-    `((t :inherit linum :foreground ,(face-foreground 'font-lock-string-face nil t)))  ;; current line number
-    "Face for the current line number."
-    :group 'linum)
-  (defvar my-linum-format-string "%3d")
-  (add-hook 'linum-before-numbering-hook 'my-linum-get-format-string)
-  (defun my-linum-get-format-string ()
-    (let* ((width (1+ (length (number-to-string
-                               (count-lines (point-min) (point-max))))))
-           (format (concat "%" (number-to-string width) "d ")))
-      (setq my-linum-format-string format)))
-  (defvar my-linum-current-line-number 0)
-  (setq linum-format 'my-linum-format)
-  (defun my-linum-format (line-number)
-    (propertize (format my-linum-format-string line-number) 'face
-                (if (eq line-number my-linum-current-line-number)
-                    'my-linum-hl 'linum)))
-  (defadvice linum-update (around my-linum-update)
-    (let ((my-linum-current-line-number (line-number-at-pos)))
+  ;; Show line numbers, dynamically with spaces on either side:
+  (defadvice linum-update-window (around linum-dynamic activate)
+    (let* ((w (length (number-to-string
+                       (count-lines (point-min) (point-max)))))
+           (linum-format (concat " %" (number-to-string w) "d ")))
       ad-do-it))
-  (ad-activate 'linum-update)
+
+  ;; highlight current line number as well
+  (use-package hlinum
+    :config
+    (hlinum-activate)
+    (set-face-attribute 'linum-highlight-face nil
+                        :foreground (face-foreground 'default nil t)
+                        :background (face-attribute 'hl-line :background)))
+
 
 ;;;; RULER ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
