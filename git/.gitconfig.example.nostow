@@ -15,11 +15,13 @@
 [alias]
 	lg1 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative
 	lg2 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(bold white)— %an%C(reset)' --abbrev-commit
-	l = !"git lg1"
+	l = log --oneline --decorate --graph --all
 	s = status
 	ds = diff --stages
 	aa = add --all
 	pa = push --all --follow-tags origin
+	last = log -1 HEAD
+	unstage = reset HEAD --
 [color]
 	ui = true
 	branch = auto
@@ -37,3 +39,10 @@
 	excludesfile = /home/vic/.gitignore_global
 [diff]
 	tool = vimdiff
+[merge]
+	tool = vimdiff
+[pull]
+	# https://git-scm.com/book/en/v2/Git-Branching-Rebasing#Rebase-vs.-Merge
+	# rebase = true
+[dpm]
+	pristineTarCommit = true
