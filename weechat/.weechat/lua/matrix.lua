@@ -1,5 +1,6 @@
 -- WeeChat Matrix.org Client
 -- vim: expandtab:ts=4:sw=4:sts=4
+-- luacheck: globals weechat
 
 --[[
  Author: xt <xt@xt.gg>
@@ -48,7 +49,7 @@ This script maps this as follows:
 
 local json = require 'cjson' -- apt-get install lua-cjson
 local olmstatus, olm = pcall(require, 'olm') -- LuaJIT olm FFI binding ln -s ~/olm/olm.lua /usr/local/share/lua/5.1
-local w = require'weechat'
+local w = weechat
 
 local SCRIPT_NAME = "matrix"
 local SCRIPT_AUTHOR = "xt <xt@xt.gg>"
@@ -65,6 +66,7 @@ local OUT = {}
 local BUFFER
 local Room
 local MatrixServer
+local Olm
 local DEBUG = false
 -- How many seconds to timeout if nothing happened on the server. If something
 -- happens before it will return sooner.
@@ -2041,6 +2043,8 @@ function Room:formatNick(user_id)
     if not nick then
         return user_id
     end
+    -- Remove nasty white space
+    nick = nick:gsub('[\n\t]', '')
     local color
     if user_id == SERVER.user_id then
         color = w.color('chat_nick_self')
