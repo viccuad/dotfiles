@@ -2,13 +2,16 @@
 
 My dotfiles! 
 
+#### spacemacs inside tmux
+![emacs_tmux](https://github.com/viccuad/dotfiles/raw/master/emacs_tmux.png)
+
 #### gvim
 ![gvim](https://github.com/viccuad/dotfiles/raw/master/gvim.png)
 
 #### vim inside tmux
 ![vim_tmux](https://github.com/viccuad/dotfiles/raw/master/vim_tmux.png)
 
-#### vim + gdb (ConqueGDB plugin)
+#### old vim + gdb (ConqueGDB plugin)
 ![vim_gdb](https://github.com/viccuad/dotfiles/raw/master/vim_gdb.png)
 
 
