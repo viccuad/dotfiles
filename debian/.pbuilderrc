@@ -5,6 +5,13 @@
 # this pbuilderrc).
 
 
+# Set how much output you want from pbuilder, valid values are
+# E => errors only
+# W => errors and warnings
+# I => errors, warnings and informational
+# D => all of the above and debug messages
+LOGLEVEL=I
+
 BASEDIR="$HOME/pbuilder"
 
 # Codenames for Debian suites according to their alias. Update these when
