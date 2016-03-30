@@ -95,5 +95,6 @@ rprompt_time() {
 precmd() {
 		# set_prompt
 		__git_ps1 "$(prompt_names)$(prompt_last_status) $(prompt_pwd)" "$(prompt_symbol) "
-		RPROMPT="$(rprompt_todo) $(rprompt_time)"
+		# RPROMPT="$(rprompt_todo) $(rprompt_time)"
+		RPROMPT="$(rprompt_time)"
 }
