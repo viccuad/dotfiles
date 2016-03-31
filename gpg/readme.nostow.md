@@ -1,12 +1,19 @@
 # Rationale of sharing this info
 
-There is no security risk on sharing gpg.conf, scdaemon.conf and gpg-agent.conf. Either it’s non important info, or that info is already shared on my gpg public key (eg: cypher preferences, etc). 
+There is no security risk on sharing gpg.conf, scdaemon.conf and gpg-agent.conf.
+Either it’s non important info, or that info is already shared on my gpg public
+key (eg: cypher preferences, etc).
 
-Of course, don’t forget to craft a sane .gitignore to ignore all the files except those selected few!
+Of course, don’t forget to craft a sane .gitignore to ignore all the files
+except those selected few!
 
 # Disable the `gnome-keyring-daemon`
 
-If you are using Gnome 3 (or something based on it), we have a problem. The `gpg-agent` protocol implementation of `gnome-keyring` is very incomplete and hence breaks at least the smartcard functions of gpg and most functions of gpgsm. Instead of using it, we are going to deactivate `gnome-keyring-daemon` ang use `gpg-agent` instead. 
+If you are using Gnome 3 (or something based on it), we have a problem. The
+`gpg-agent` protocol implementation of `gnome-keyring` is very incomplete and
+hence breaks at least the smartcard functions of gpg and most functions of
+gpgsm. Instead of using it, we are going to deactivate `gnome-keyring-daemon`
+ang use `gpg-agent` instead.
 
 If you are on Debian and using Gnome3,
 https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=773304
