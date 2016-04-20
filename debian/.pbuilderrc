@@ -1,8 +1,8 @@
 # Usage:
 # `pdebuild` or `pbuilder` : for default codename, namely unstable
-# `DIST=codename pdebuild` or `sudo -E DIST=codename pbuilder` : for selected codename
-# (use `sudo -E` to preserve the environment and make pbuilder use $BASEDIR and
-# this pbuilderrc).
+# `DIST=codename pdebuild` or `DIST=codename pbuilder` : for selected codename
+# (configure sudoers or use `sudo -E` to preserve the environment and make
+# pbuilder use $BASEDIR and this pbuilderrc).
 
 
 # Set how much output you want from pbuilder, valid values are
@@ -16,14 +16,15 @@ BASEDIR="$HOME/pbuilder"
 
 # Codenames for Debian suites according to their alias. Update these when
 # needed.
+EXPERIMENTAL_CODENAME="experimental"
 UNSTABLE_CODENAME="sid"
 TESTING_CODENAME="stretch"
 STABLE_CODENAME="jessie"
 STABLE_BACKPORTS_SUITE="$STABLE_CODENAME-backports"
 
 # List of Debian suites.
-DEBIAN_SUITES=($UNSTABLE_CODENAME $TESTING_CODENAME $STABLE_CODENAME
-    "unstable" "testing" "stable")
+DEBIAN_SUITES=($EXPERIMENTAL_CODENAME $UNSTABLE_CODENAME $TESTING_CODENAME $STABLE_CODENAME
+    "experimental" "unstable" "testing" "stable")
 
 # Mirrors to use. Update these to your preferred mirror.
 DEBIAN_MIRROR="httpredir.debian.org"
@@ -35,6 +36,7 @@ if [ -z "${DIST}" ] && [ -r "debian/changelog" ]; then
     # Use the unstable suite for certain suite values.
     if $(echo "experimental UNRELEASED" | grep -q $DIST); then
         DIST="$UNSTABLE_CODENAME"
+        PBUILDERSATISFYDEPENDSCMD="/usr/lib/pbuilder/pbuilder-satisfydepends-experimental"
     fi
     # Use the stable suite for stable-backports.
     if $(echo "$STABLE_BACKPORTS_SUITE" | grep -q $DIST); then
@@ -92,8 +94,7 @@ if $(echo ${DEBIAN_SUITES[@]} | grep -q $DIST); then
     COMPONENTS="main contrib non-free"
     DEBOOTSTRAPOPTS=("${DEBOOTSTRAPOPTS[@]}" "--keyring=/usr/share/keyrings/debian-archive-keyring.gpg")
     # Local dependencies
-    #OTHERMIRROR="deb [trusted=yes] file://$BASEDIR/deps ./"
-    OTHERMIRROR="deb [trusted=yes] file://$BASEDIR/deps ./|deb http://incoming.debian.org/debian-buildd/ buildd-jessie main|deb http://security.debian.org/ jessie/updates main|deb http://ftp.de.debian.org/debian jessie-updates main"
+    OTHERMIRROR="deb [trusted=yes] file://$BASEDIR/deps ./"
     BINDMOUNTS="$BASEDIR/deps"
     # this is necessary for running ''apt-ftparchive'' in the hook
     EXTRAPACKAGES="apt-utils"
