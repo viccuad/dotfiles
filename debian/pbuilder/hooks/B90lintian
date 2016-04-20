@@ -7,6 +7,7 @@ install_packages lintian
 echo "+++++ lintian output +++++"
 # su -c "lintian -i -I --show-overrides /tmp/buildd/*.changes" - pbuilder
 # use this version if you don’t want lintian to fail the build
-su -c "lintian -i -I --pedantic --show-overrides /tmp/buildd/*.changes; :" - pbuilder
+# su -c "lintian -i -I --pedantic --show-overrides /tmp/buildd/*.changes; :" - pbuilder
+su -c "lintian -EIi --pedantic --show-overrides --color always $BUILDDIR/*.changes; :" - pbuilder
 echo "+++++ end of lintian output +++++"
 
