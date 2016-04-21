@@ -35,8 +35,7 @@ if [ -z "${DIST}" ] && [ -r "debian/changelog" ]; then
     DIST=$(dpkg-parsechangelog | awk '/^Distribution: / {print $2}')
     # Use the unstable suite for certain suite values.
     if $(echo "experimental UNRELEASED" | grep -q $DIST); then
-        DIST="$UNSTABLE_CODENAME"
-        PBUILDERSATISFYDEPENDSCMD="/usr/lib/pbuilder/pbuilder-satisfydepends-experimental"
+        DIST="$EXPERIMENTAL_CODENAME"
     fi
     # Use the stable suite for stable-backports.
     if $(echo "$STABLE_BACKPORTS_SUITE" | grep -q $DIST); then
