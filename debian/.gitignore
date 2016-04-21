@@ -6,6 +6,6 @@ pbuilder/*
 
 # Don't ignore 'deps' dir
 pbuilder/deps/*
-!pbuilder/deps
+# !pbuilder/deps
 # Don't ignore empty 'Packages' file:
 !pbuilder/deps/Packages
