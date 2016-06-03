@@ -1,0 +1,71 @@
+# Default Example
+# ===============
+#
+# This is simply the default xboxdrv configuration, replicated as INI
+# file with a few comments
+#
+# made for an xbox360 controller
+#
+# usage: xboxdrv --detach-kernel-driver -c unepic.config
+
+[xboxdrv-daemon]
+
+[autofire]
+
+[axis-sensitivity]
+
+[axismap]
+
+[buttonmap]
+
+[calibration]
+
+[evdev-absmap]
+
+[evdev-keymap]
+
+[modifier]
+
+[relative-axis]
+
+[xboxdrv]
+silent = true
+ui-clear = true
+trigger-as-button = true
+
+deadzone = 6000
+dpad-as-button = true
+
+
+# vendor-id = -1
+# wireless-id = 0
+
+[ui-buttonmap]
+A=KEY_W
+B=KEY_ENTER
+X=KEY_SPACE
+Y=KEY_M
+
+START=KEY_I
+GUIDE=KEY_Z
+BACK=KEY_N
+
+LB=KEY_1
+RB=KEY_2
+
+DL=KEY_LEFT
+DR=KEY_RIGHT
+DU=KEY_UP
+DD=KEY_DOWN
+
+LT=KEY_LEFTSHIFT
+RT=KEY_TAB
+
+[ui-axismap]
+
+X2=KEY_7:KEY_8
+Y2=KEY_9:KEY_0
+X1=KEY_3:KEY_4
+Y1=KEY_5:KEY_6
+
+# EOF #
