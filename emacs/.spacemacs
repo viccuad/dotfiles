@@ -62,14 +62,16 @@ values."
      extra-langs
      html
      (latex :variables
-            latex-build-command "LatexMk -pdflatex='xelatex --shell-escape'"
+            ;; latex-build-command "LatexMk -pdflatex='xelatex --shell-escape'"
+            ;; latex-build-command "LatexMk"
             )
      markdown
      vimscript
-     cscope
+     ;; cscope
      python
      django
      shell-scripts
+     ansible
      sql
      emoji
      selectric
@@ -82,10 +84,12 @@ values."
      ;;              ;; geolocation-enable-weather-forecast t
      ;;              ;; geolocation-enable-automatic-theme-changer t
      ;;              )
-     (golden-ratio :variables
-                   setq golden-ratio-auto-scale t ;; for wide screens
-                   )
+     ;; (golden-ratio :variables
+     ;;               setq golden-ratio-auto-scale t ;; for wide screens
+     ;;               )
      gnus
+     vagrant
+     ranger
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -98,10 +102,12 @@ values."
                                       w3m      ;; for gnus
                                       smtpmail ;; for gnus
                                       highlight-chars ;; for tab, troll chars
-                                      hlinum ;; highlight current line number
+                                      ;; hlinum ;; highlight current line number
+                                      ;; nlinum ;; faster line num package
                                       )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(
+                                    ;; linum
                                     )
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
@@ -169,7 +175,7 @@ values."
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 13
+                               :size 9
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -228,7 +234,7 @@ values."
    dotspacemacs-helm-position 'bottom
    ;; If non nil the paste micro-state is enabled. When enabled pressing `p`
    ;; several times cycle between the kill ring content. (default nil)
-   dotspacemacs-enable-paste-micro-state nil
+   dotspacemacs-enable-paste-micro-state t
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
    ;; the commands bound to the current keystroke sequence. (default 0.4)
    dotspacemacs-which-key-delay 0.4
@@ -337,6 +343,32 @@ layers configuration. You are free to put any user code."
   ;; (with-eval-after-load 'flycheck
   ;;   (flycheck-pos-tip-mode))
 
+  ;; TODO: add flycheck-tip package to see tips on a pop-up instead of the bottom echo area
+
+  ;; (flycheck-define-checker proselint
+  ;;     "A linter for prose."
+  ;;     :command ("proselint" source-inplace)
+  ;;     :error-patterns
+  ;;     ((warning line-start (file-name) ":" line ":" column ": "
+  ;;               (id (one-or-more (not (any " "))))
+  ;;               (message (one-or-more not-newline)
+  ;;                       (zero-or-more "\n" (any " ") (one-or-more not-newline)))
+  ;;               line-end))
+  ;;     :modes (text-mode markdown-mode gfm-mode))
+  ;; (add-to-list 'flycheck-checkers 'proselint)
+
+;;;; AVY ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+  avy-all-windows 'all-frames
+
+;;;; Smartparens ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+  (setq-default
+    sp-highlight-pair-overlay nil
+    sp-highlight-wrap-overlay nil
+    sp-highlight-wrap-tag-overlay nil
+  )
+
 ;;;; CURSOR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
   (blink-cursor-mode t)
@@ -354,7 +386,7 @@ layers configuration. You are free to put any user code."
 
   (setq hl-line-sticky-flag nil) ;; highlights the line about point in the selected window only
 
-  ;; (set-face-background 'linum  (face-attribute 'hl-line :background))
+  (set-face-background 'linum  (face-attribute 'hl-line :background))
 
   ;; Show line numbers, dynamically with spaces on either side:
   (defadvice linum-update-window (around linum-dynamic activate)
@@ -371,6 +403,33 @@ layers configuration. You are free to put any user code."
                         :foreground (face-foreground 'default nil t)
                         :background (face-attribute 'hl-line :background)))
 
+  ;; nlinum:
+  ;; (global-nlinum-mode)
+
+  ;; ;; Line number gutter in ncurses mode
+  ;; (unless window-system
+  ;;   (setq nlinum-format "%d "))
+
+  ;; ;; Preset nlinum width of whole document for nlinum
+  ;; (add-hook 'nlinum-mode-hook
+  ;;           (lambda ()
+  ;;             (when nlinum-mode
+  ;;               (setq nlinum--width
+  ;;                     ;; works with the default `nlinum-format'
+  ;;                     (length (number-to-string
+  ;;                              (count-lines (point-min) (point-max)))))
+  ;;               ;; use this instead if your `nlinum-format' has one space
+  ;;               ;; (or other character) after the number
+  ;;               ;;(1+ (length (number-to-string
+  ;;               ;;             (count-lines (point-min) (point-max)))))
+  ;;               (nlinum--flush))))
+
+  ;; (spacemacs|add-toggle line-numbers
+  ;;   :status nlinum-mode
+  ;;   :on (global-nlinum-mode)
+  ;;   :off (global-nlinum-mode -1)
+  ;;   :documentation "Show the line numbers."
+  ;;   :evil-leader "tn")
 
 ;;;; RULER ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -524,6 +583,7 @@ layers configuration. You are free to put any user code."
    ;;   evil-escape-delay 0.1
    evil-want-fine-undo nil ;; use vim undo, to undo last insert mode as a chunk:
    ;; evil-move-cursor-back nil ;; don't move cursor back when going to normal mode from insert
+   evil-shift-round nil ;; this makes possible to put the shifting back how it was when using > and then <
    )
 
   (fset 'evil-visual-update-x-selection 'ignore) ;; prevent visual selections to override system clipboard:
@@ -573,12 +633,78 @@ layers configuration. You are free to put any user code."
       (setq interprogram-paste-function 'xclip-paste-function)
       ))
 
-;;;; LANGUAGES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;; FLYSPELL ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-  (setq c-default-style "linux")  ;; or k&r for example
   (setq ispell-dictionary "english")
-
   ;; TODO enable spell checking for text modes
+
+;;;; FILE TYPES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+  ;; text-mode
+  (add-hook 'text-mode-hook 'auto-fill-mode)
+
+  ;; dired-mode
+  (add-hook 'dired-mode-hook 'deer) ;; needs ranger layer
+
+  ;; Makefile
+  (add-hook 'makefile-mode-hook 'whitespace-mode)
+
+  ;; C-C++
+  (setq c-default-style "linux")
+  (push '(other . "linux") c-default-style)  ;; or k&r for example
+  (with-eval-after-load 'projectile
+    (push '("C" "h") projectile-other-file-alist)) ;; make projective jump from .C to .h files and viceversa
+  (setq-default dotspacemacs-configuration-layers
+                '((c-c++ :variables
+                         c-c++-default-mode-for-headers 'c-mode))) ;; it can be c++-mode
+
+  ;; LATEX
+  ;; when you open up a compiled PDF, the preview will update automatically when you recompile:
+  (add-hook 'doc-view-mode-hook 'auto-revert-mode)
+
+  ;; (eval-after-load "tex"
+  ;;   '(add-to-list 'TeX-command-list
+  ;;                 '("XeLaTeX" "xelatex -interaction=nonstopmode %s"
+  ;;                   TeX-run-command t t :help "Run xelatex") t))
+
+  ;;set xetex mode in tex/latex
+  ;; (add-hook 'LaTeX-mode-hook (lambda()
+  ;; (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex%(mode)%' %t" TeX-run-TeX nil t))
+  ;; (setq TeX-command-default "XeLaTeX")
+  ;; (setq TeX-save-query nil)
+  ;; ))
+
+  ;; (setq latex-run-command "xelatex")
+
+  ; Set XeLaTeX
+  ;; (load "preview-latex.el" nil t t)
+  ;; (setq TeX-engine-alist
+  ;;       '((xelatex "XeLaTeX" "xetex" "xelatex" "xelatex")))
+  ;; (add-hook 'LaTeX-mode-hook
+  ;;           '(lambda ()
+  ;;              (setq TeX-engine 'xelatex)))
+  ;; (add-hook 'LaTeX-mode-hook (lambda()
+  ;;                              (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex%(mode)%' %t" TeX-run-TeX nil t))
+  ;;                              (setq TeX-command-default "XeLaTeX")
+  ;;                              (setq TeX-save-query  nil )
+  ;;                              (setq TeX-show-compilation nil)
+  ;;                              (flyspell-mode t)
+  ;;                              ))
+
+  ;; (add-hook 'LaTeX-mode-hook (lambda() (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex%(mode)%' %t" TeX-run-TeX nil t)) (setq TeX-command-default "XeLaTeX")))
+
+  ;;set xetex mode in tex/latex
+  ;; (add-hook 'LaTeX-mode-hook (lambda()
+  ;;                                (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex%(mode)%' %t" TeX-run-TeX nil t))
+  ;;                                (setq TeX-command-default "XeLaTeX")
+  ;;                                (setq TeX-save-query nil)
+  ;;                                (setq TeX-show-compilation t)
+  ;;                                ))
+
+  ;; (setq TeX-show-compilation t)
+  (setq TeX-source-correlate-mode t) ;; enable synctex, .pdf to .tex backward search
+  (setq TeX-source-correlate-start-server t)
+  (setq TeX-source-correlate-method 'synctex)
 
 ;;;; WIDTH ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -600,6 +726,10 @@ layers configuration. You are free to put any user code."
           org-tag-alist '(("@work" . ?w) ("@home" . ?h) ("debian" . ?l)))
   )
 
+;;;; SAFE LOCAL VARS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; for .dir-locals.el files
+  (put 'helm-make-build-dir 'safe-local-variable 'stringp)
+
 ;;;; TODO ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
   ;; fix zshenv warning
@@ -617,3 +747,13 @@ layers configuration. You are free to put any user code."
 )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(org-agenda-files
+   (quote
+    ("~/Debian/python-neovim/python-neovim.org" "~/Debian/purple-matrix/purple-matrix.org" "~/Debian/guitarix/guitarix.org" "~/Debian/drumgizmo/drumgizmo.org" "~/Debian/dgedit/dgedit.org" "~/Debian/debian.org")))
+ )
