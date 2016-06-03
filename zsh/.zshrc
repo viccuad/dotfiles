@@ -41,3 +41,9 @@ do
 done
 
 unset config_files
+
+# load autojump:
+source /usr/share/autojump/autojump.sh
+
+# load shell syntax highlighting. Must be last because it loads ZLE widgets:
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
