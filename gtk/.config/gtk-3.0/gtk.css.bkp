@@ -1,0 +1,19 @@
+/* get rid of window titlebars padding: */
+
+.header-bar.default-decoration {
+    /* padding-top: 0px; */
+    /* padding-bottom: 0px; */
+	/* font-size: 0.7em; */
+	padding: 0;
+}
+
+.header-bar.default-decoration .button.titlebutton {
+    /* padding-top: 0px; */
+    /* padding-bottom: 0px; */
+	padding: 0;
+	border-width: 0;
+}
+
+
+/* GtkHeaderBar {padding-top:0; padding-bottom:0;} */
+/* GtkHeaderBar GtkButton {padding-top:0; padding-bottom:0;} */
