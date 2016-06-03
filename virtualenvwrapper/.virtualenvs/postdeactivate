@@ -1,0 +1,19 @@
+#!/usr/bin/zsh
+# This hook is sourced after every virtualenv is deactivated.
+
+# Remove precmd_functions array to have default precmd() (and therefore prompts)
+unset precmd_functions
+
+# Update cached $PATH entries
+rehash
+
+# Restore default `cd` behaviour
+cd () {
+    builtin cd "$@"
+}
+
+# Go to the path we where before venv
+if [ $PRE_VENV_ACTIVATE_DIR ]; then
+    cd $PRE_VENV_ACTIVATE_DIR
+    unset PRE_VENV_ACTIVATE_DIR
+fi

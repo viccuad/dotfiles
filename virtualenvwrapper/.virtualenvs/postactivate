@@ -1,0 +1,44 @@
+#!/usr/bin/zsh
+# This hook is sourced after every virtualenv is activated.
+
+myprecmd() {
+    # set_prompt
+    # __git_ps1 usage: __git_ps1 pre_git_prompt post_git_prompt
+    __git_ps1 "%{${fg[green]}%}(venv `basename \"$VIRTUAL_ENV\"`) $(prompt_names)$(prompt_last_status) $(prompt_pwd)" "$(prompt_symbol) "
+    # RPROMPT="$(rprompt_todo) $(rprompt_time)"
+    RPROMPT="$(rprompt_time)"
+}
+
+# using precmd() because the git prompt, __git_ps1 needs it for colors. There's
+# a zsh array for the precmd() hook, let's use it. See:
+# http://zsh.sourceforge.net/Doc/Release/Functions.html#Special-Functions
+# We redefine precmd() by adding our own myprecmd() to the array
+precmd_functions=(myprecmd)
+
+# Update cached $PATH entries
+rehash
+
+# make `cd` point the the virtualenv root instead of `~`
+cd () {
+    if (( $# == 0 ))
+    then
+        builtin cd $VIRTUAL_ENV
+    else
+        builtin cd "$@"
+    fi
+}
+
+# Save path we are before venv (for restoring when deactivate)
+# Move to project dir
+PROJECT_DIR="$PROJECT_HOME/$(basename $VIRTUAL_ENV)"
+if [ -d $PROJECT_DIR ]; then
+    # If we aren't already within the project dir, cd into it
+    if [[ ! `pwd` == "$PROJECT_DIR*" ]]; then
+        export PRE_VENV_ACTIVATE_DIR=`pwd`
+        cd "$PROJECT_DIR"
+    fi
+fi
+unset PROJECT_DIR
+
+# Go to venv path
+# cd

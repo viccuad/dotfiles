@@ -1,0 +1,5 @@
+* DONE prompt (usar y desechar precmd)
+* TODO enter in venv dir and load, exit and deactivate
+* TODO autocomplete venv and project names
+* TODO volver a cd donde estaba antes
+* TODO add .gitignore
