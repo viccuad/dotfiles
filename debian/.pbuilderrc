@@ -3,6 +3,7 @@
 # `DIST=codename pdebuild` or `DIST=codename pbuilder` : for selected codename
 # (configure sudoers or use `sudo -E` to preserve the environment and make
 # pbuilder use $BASEDIR and this pbuilderrc).
+# For building packages for experimental, prepend DIST=experimental
 
 
 # Set how much output you want from pbuilder, valid values are
@@ -33,9 +34,12 @@ DEBIAN_MIRROR="httpredir.debian.org"
 # none set.
 if [ -z "${DIST}" ] && [ -r "debian/changelog" ]; then
     DIST=$(dpkg-parsechangelog | awk '/^Distribution: / {print $2}')
-    # Use the unstable suite for certain suite values.
+    # Use the unstable suite for certain suite values
+    # this makes use of an unstable dist + fetches experimental packages when neccesary
     if $(echo "experimental UNRELEASED" | grep -q $DIST); then
         DIST="$EXPERIMENTAL_CODENAME"
+        # DIST="$UNSTABLE_CODENAME"
+        # PBUILDERSATISFYDEPENDSCMD="/usr/lib/pbuilder/pbuilder-satisfydepends-experimental"
     fi
     # Use the stable suite for stable-backports.
     if $(echo "$STABLE_BACKPORTS_SUITE" | grep -q $DIST); then
