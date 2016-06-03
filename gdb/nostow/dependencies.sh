@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 # debian package:
-sudo apt-get install gdb
+sudo apt-get install gdb rr ltrace strace valgrind
