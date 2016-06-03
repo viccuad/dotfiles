@@ -3,6 +3,7 @@
 #
 # try to install the resulting debs.
 
+apt-get install apt
 echo "Trying to install resulting packages and test upgrades"
 set -ex
 
@@ -11,19 +12,19 @@ BUILDDIR="${BUILDDIR:-/tmp/buildd}"
 PKGNAMES=$(cd "$BUILDDIR" && ls -1 *.deb | sed 's/_.*$//' )
 
 # install-remove check
-dpkg -i "$BUILDDIR"/*.deb
-dpkg --remove $PKGNAMES
+apt install "$BUILDDIR"/*.deb
+apt remove $PKGNAMES
 
 # install-purge check
-dpkg -i "$BUILDDIR"/*.deb
-dpkg --purge $PKGNAMES
+apt install "$BUILDDIR"/*.deb
+apt purge $PKGNAMES
 
 # upgrade-remove check
-apt-get install -y "${APTGETOPT[@]}"  $PKGNAMES || true
-dpkg -i "$BUILDDIR"/*.deb
-dpkg --remove $PKGNAMES
+apt install -y "${APTGETOPT[@]}"  $PKGNAMES || true
+apt install "$BUILDDIR"/*.deb
+apt remove $PKGNAMES
 
 # upgrade-purge check
-apt-get install -y "${APTGETOPT[@]}" $PKGNAMES || true
-dpkg -i "$BUILDDIR"/*.deb
-dpkg --purge $PKGNAMES
+apt install -y "${APTGETOPT[@]}" $PKGNAMES || true
+apt install "$BUILDDIR"/*.deb
+apt purge $PKGNAMES
