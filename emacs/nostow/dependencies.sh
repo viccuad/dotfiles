@@ -9,5 +9,8 @@ sudo apt-get install gnutls openssl w3m
 # for ggtags (helm-ggtags):
 sudo apt-get install global exuberant-ctags
 
+# opensuse packages:
+sudo zypper in emacs cscope pycscope
+
 # other things:
 sudo apt-get install ditaa
