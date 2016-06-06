@@ -46,3 +46,7 @@
 	# rebase = true
 [dpm]
 	pristineTarCommit = true
+[url "git://git.debian.org"]
+	insteadOf = git+ssh://git.debian.org
+[url "git+ssh://git.debian.org"]
+	pushInsteadOf = git+ssh://git.debian.org
