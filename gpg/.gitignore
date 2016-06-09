@@ -13,3 +13,5 @@
 !.gnupg/gpg.conf
 !.gnupg/gpg-agent.conf
 !.gnupg/scdaemon.conf
+!nostow/env.zsh
+!nostow/dependencies.sh
