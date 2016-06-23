@@ -1,2 +1,2 @@
-alias sm="TERM=screen-256color emacsclient -tnw" # TODO this is hacky
+alias sm="emacsclient -t"
 alias kemacs="killall emacs"
