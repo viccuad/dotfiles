@@ -23,7 +23,9 @@ setw -g window-status-activity-fg "colour15"
 setw -g window-status-separator ""
 setw -g window-status-bg "colour234"
 
-set -g status-left "#[fg=colour15,bg=colour241] #S #[fg=colour241,bg=colour237,nobold,nounderscore,noitalics]#[fg=colour15,bg=colour237] #W #[fg=colour237,bg=colour234,nobold,nounderscore,noitalics]#[fg=colour121,bg=colour234] #{prefix_highlight} #[fg=colour234,bg=colour234,nobold,nounderscore,noitalics]"
+# set -g status-left "#[fg=colour15,bg=colour241] #S #[fg=colour241,bg=colour237,nobold,nounderscore,noitalics]#[fg=colour15,bg=colour237] #W #[fg=colour237,bg=colour234,nobold,nounderscore,noitalics]#[fg=colour121,bg=colour234] #{prefix_highlight} #[fg=colour234,bg=colour234,nobold,nounderscore,noitalics]"
+
+set -g status-left "#[fg=colour15,bg=colour241] #S #[fg=colour241,bg=colour234,nobold,nounderscore,noitalics]#[fg=colour121,bg=colour234] #{prefix_highlight} #[fg=colour234,bg=colour234,nobold,nounderscore,noitalics]"
 
 set -g status-right "#[fg=colour237,bg=colour234,nobold,nounderscore,noitalics]#[fg=colour15,bg=colour237] %R #[fg=colour241,bg=colour237,nobold,nounderscore,noitalics]#[fg=colour15,bg=colour241] #H #(rainbarf --width 10 --bolt --remaining --rgb) "
 
