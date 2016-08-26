@@ -83,12 +83,6 @@ values."
      ;; prodigy
      themes-megapack
      command-log
-     ;; theming
-     ;; (geolocation :variables
-     ;;              ;; geolocation-enable-osx-location-service-support t
-     ;;              ;; geolocation-enable-weather-forecast t
-     ;;              ;; geolocation-enable-automatic-theme-changer t
-     ;;              )
      ;; (golden-ratio :variables
      ;;               setq golden-ratio-auto-scale t ;; for wide screens
      ;;               )
@@ -713,7 +707,6 @@ layers configuration. You are free to put any user code."
   ;; fix ~ at the end of the buffer
   ;; emacs doesn't see debian-el editing d/control etc as prog-mode nor text-mode
   ;; wrap
-  ;; color of the brackets, I don't know which one I am on?
   ;; get autocompletion tooltips on terminal https://github.com/expez/company-quickhelp/issues/24
   ;; mouse on terminal
   ;; fix colors on diffs and patches
