@@ -13,3 +13,6 @@
 [submodule "debian/nostow/reproducible-misc"]
 	path = debian/nostow/reproducible-misc
 	url = https://anonscm.debian.org/git/reproducible/misc.git
+[submodule "emacs/.emacs.d"]
+	path = emacs/.emacs.d
+	url = https://github.com/syl20bnr/spacemacs
