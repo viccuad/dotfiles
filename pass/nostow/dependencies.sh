@@ -3,7 +3,10 @@
 # Debian packages:
 sudo apt-get install pass suckless-tools xdotool;
 
-# xdotool and suckless-tools are for passmenu. 
+# Suse packages
+sudo zypper in password-store xdotool pwgen
+
+# xdotool and suckless-tools are for passmenu.
 # See /usr/share/doc/pass/examples/dmenu/README.md
 
 # Read a gnome keybinding:
