@@ -1,0 +1,30 @@
+* Make virtualenv
+#+BEGIN_SRC sh
+mkvirtualenv -p <path_to_python> <name>
+#+END_SRC
+* Install deps
+#+BEGIN_SRC sh
+pip install <dep1> <dep2>
+#+END_SRC
+#+BEGIN_SRC sh
+pip install -r <requirements_file>
+#+END_SRC
+* Install package in development mode
+Makes package importable by other modules
+#+BEGIN_SRC sh
+pip install -e .
+#+END_SRC
+* Stop working
+#+BEGIN_SRC sh
+deactivate
+#+END_SRC
+* Start working again
+#+BEGIN_SRC sh
+workon <name>
+#+END_SRC
+* Delete virtualenv
+#+BEGIN_SRC sh
+rmvirtualenv <name>
+#+END_SRC
+
+

@@ -1,0 +1,24 @@
+#Ignore everything
+*
+
+# ...even if they are in subdirectories
+!*/
+
+# don't ignore gitignore
+!.gitignore
+
+# Don't ignore selected files
+!nostow/*
+!.virtualenvs/get_env_details
+!.virtualenvs/initialize
+!.virtualenvs/postactivate
+!.virtualenvs/postdeactivate
+!.virtualenvs/postmkproject
+!.virtualenvs/postmkvirtualenv
+!.virtualenvs/postrmvirtualenv
+!.virtualenvs/preactivate
+!.virtualenvs/predeactivate
+!.virtualenvs/premkproject
+!.virtualenvs/premkvirtualenv
+!.virtualenvs/prermvirtualenv
+
