@@ -84,3 +84,4 @@ To uninstall run:
 ## todo
 
  - [] implement something like [vcsh](https://github.com/RichiH/vcsh) or move to it
+ - Make optional to load folders on zsh
