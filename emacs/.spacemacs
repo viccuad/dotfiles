@@ -619,8 +619,7 @@ layers configuration. You are free to put any user code."
   (add-hook 'makefile-mode-hook 'whitespace-mode)
 
   ;; C-C++
-  (setq c-default-style "linux")
-  (push '(other . "linux") c-default-style)  ;; or k&r for example
+  (setq c-default-style "linux") ;; or k&r for example
   (with-eval-after-load 'projectile
     (push '("C" "h") projectile-other-file-alist)) ;; make projective jump from .C to .h files and viceversa
   (setq-default dotspacemacs-configuration-layers
