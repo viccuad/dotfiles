@@ -420,7 +420,6 @@ layers configuration. You are free to put any user code."
   ;;               ;;             (count-lines (point-min) (point-max)))))
   ;;               (nlinum--flush))))
 
-
 ;;;; RULER ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
   (setq
