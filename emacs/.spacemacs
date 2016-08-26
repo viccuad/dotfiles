@@ -343,22 +343,19 @@ layers configuration. You are free to put any user code."
 
 ;;;; FLYCHECK ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-  ;; (with-eval-after-load 'flycheck
-  ;;   (flycheck-pos-tip-mode))
+  (require 'flycheck)
 
-  ;; TODO: add flycheck-tip package to see tips on a pop-up instead of the bottom echo area
-
-  ;; (flycheck-define-checker proselint
-  ;;     "A linter for prose."
-  ;;     :command ("proselint" source-inplace)
-  ;;     :error-patterns
-  ;;     ((warning line-start (file-name) ":" line ":" column ": "
-  ;;               (id (one-or-more (not (any " "))))
-  ;;               (message (one-or-more not-newline)
-  ;;                       (zero-or-more "\n" (any " ") (one-or-more not-newline)))
-  ;;               line-end))
-  ;;     :modes (text-mode markdown-mode gfm-mode))
-  ;; (add-to-list 'flycheck-checkers 'proselint)
+  (flycheck-define-checker proselint
+    "A linter for prose."
+    :command ("proselint" source-inplace)
+    :error-patterns
+    ((warning line-start (file-name) ":" line ":" column ": "
+              (id (one-or-more (not (any " "))))
+              (message (one-or-more not-newline)
+                       (zero-or-more "\n" (any " ") (one-or-more not-newline)))
+              line-end))
+    :modes (text-mode markdown-mode gfm-mode))
+  (add-to-list 'flycheck-checkers 'proselint)
 
 ;;;; AVY ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
