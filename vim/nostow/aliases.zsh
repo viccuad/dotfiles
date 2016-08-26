@@ -1,4 +1,4 @@
-# Open a server instance of vim 
+# Open a server instance of vim
 alias vi="vim --servername VIM"
 alias vim="vim --servername VIM"
 
