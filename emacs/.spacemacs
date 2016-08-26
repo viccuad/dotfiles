@@ -626,6 +626,9 @@ layers configuration. You are free to put any user code."
                 '((c-c++ :variables
                          c-c++-default-mode-for-headers 'c-mode))) ;; it can be c++-mode
 
+  ;; Python
+  (add-to-list 'auto-mode-alist '("\\.gd$" . python-mode))
+
   ;; LATEX
   ;; when you open up a compiled PDF, the preview will update automatically when you recompile:
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
@@ -722,4 +725,4 @@ layers configuration. You are free to put any user code."
  '(org-agenda-files
    (quote
     ("~/Debian/python-neovim/python-neovim.org" "~/Debian/purple-matrix/purple-matrix.org" "~/Debian/guitarix/guitarix.org" "~/Debian/drumgizmo/drumgizmo.org" "~/Debian/dgedit/dgedit.org" "~/Debian/debian.org")))
- )
+ '(pyvenv-virtualenvwrapper-python "/usr/bin/python3"))
