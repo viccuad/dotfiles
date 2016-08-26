@@ -96,6 +96,7 @@ values."
                                       ;; xclip
                                       w3m      ;; for gnus
                                       smtpmail ;; for gnus
+                                      ;; gnus-notify ;;for gnus, notifications on the modeline
                                       highlight-chars ;; for tab, troll chars
                                       ;; hlinum ;; highlight current line number
                                       ;; nlinum ;; faster line num package
@@ -391,12 +392,12 @@ layers configuration. You are free to put any user code."
       ad-do-it))
 
   ;; highlight current line number as well
-  (use-package hlinum
-    :config
-    (hlinum-activate)
-    (set-face-attribute 'linum-highlight-face nil
-                        :foreground (face-foreground 'default nil t)
-                        :background (face-attribute 'hl-line :background)))
+  ;; (use-package hlinum
+  ;;   :config
+  ;;   (hlinum-activate)
+  ;;   (set-face-attribute 'linum-highlight-face nil
+  ;;                       :foreground (face-foreground 'default nil t)
+  ;;                       :background (face-attribute 'hl-line :background)))
 
   ;; nlinum:
   ;; (global-nlinum-mode)
