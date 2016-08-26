@@ -159,6 +159,9 @@ values."
    dotspacemacs-themes '(
                          badwolf
                          monokai
+                         molokai
+                         naquadah
+                         sanityinc-tomorrow-eighties
                          spacemacs-dark
                          spacemacs-light
                          solarized-dark
