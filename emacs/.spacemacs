@@ -93,7 +93,6 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(
                                       evil-terminal-cursor-changer ;; has been temporarily disabled: https://github.com/7696122/evil-terminal-cursor-changer/issues/8 TODO
-                                      key-chord ;; to not have hiccups on the line with jk
                                       ;; xclip
                                       w3m      ;; for gnus
                                       smtpmail ;; for gnus
@@ -544,10 +543,6 @@ layers configuration. You are free to put any user code."
   ;; normal. eg:↵ ⅰnt ⅿain() { рrintf ("Ηello troll!\n");
 
 ;;;; EVIL ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-  ;; use key-chord instead of evil-escape to not have hiccups on the line:
-  (key-chord-mode 1)
-  (key-chord-define evil-insert-state-map  "jk" 'evil-normal-state)
 
   (setq
    evil-escape-key-sequence "jk" ;; but also use evil-escape to escape from "everything" in Emacs
