@@ -268,7 +268,7 @@ values."
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
    dotspacemacs-inactive-transparency 90
    ;; If non nil unicode symbols are displayed in the mode line. (default t)
-   dotspacemacs-mode-line-unicode-symbols t
+   dotspacemacs-mode-line-unicode-symbols nil
    ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth
    ;; scrolling overrides the default behavior of Emacs which recenters the
    ;; point when it reaches the top or bottom of the screen. (default t)
@@ -327,9 +327,10 @@ layers configuration. You are free to put any user code."
   (add-hook 'text-mode-hook 'spacemacs/toggle-truncate-lines-off)
   ;; TODO after an autocompletion, the truncate-lines gets back on (open an issue)
 
-  (setq powerline-default-separator 'utf-8)
-  ;; (for other separators than arrows, use
+  (setq powerline-default-separator 'utf-8) ;; default separators are arrows
+  ;; (for other separators than arrows, redefine
   ;; powerline-utf-8-separator-left and powerline-utf-8-separator-right)
+  (spaceline-compile) ;; needed for applying the change
 
   (setq visible-bell t)  ;; Don't let Emacs hurt your ears
 
