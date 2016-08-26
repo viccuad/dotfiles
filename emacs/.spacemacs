@@ -28,17 +28,12 @@ values."
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-help-tooltip t
                       auto-completion-enable-sort-by-usage t)
-     gtags
-     org
-     (shell :variables
-            shell-default-height 30
-            shell-default-position 'bottom)
      (spell-checking :variables
                      spell-checking-enable-by-default t
                      spell-checking-enable-auto-dictionary nil ;; detect the current language from the buffer content
                      )
      syntax-checking
-     ;; semantic ;; display current function interface at the top of the screen
+     semantic ;; display current function interface at the top of the screen
      git
      (version-control :variables
                       version-control-global-margin t
@@ -55,11 +50,16 @@ values."
      vinegar
      vim-empty-lines ;; TODO disable and look how tildes look at the end of file
      tmux
-     ;; prodigy
      (c-c++ :variables
             c-c++-enable-clang-support t
             )
+     cscope
+     gtags
      extra-langs
+     org
+     (shell :variables
+            shell-default-height 30
+            shell-default-position 'bottom)
      html
      (latex :variables
             ;; latex-build-command "LatexMk -pdflatex='xelatex --shell-escape'"
@@ -67,17 +67,22 @@ values."
             )
      markdown
      vimscript
-     ;; cscope
      python
      django
      shell-scripts
-     ansible
      sql
+     vagrant
+     ansible
+     salt
+     typography
      emoji
      selectric
      speed-reading
+     ranger
+     gnus
+     ;; prodigy
      themes-megapack
-     typography
+     command-log
      ;; theming
      ;; (geolocation :variables
      ;;              ;; geolocation-enable-osx-location-service-support t
@@ -87,9 +92,6 @@ values."
      ;; (golden-ratio :variables
      ;;               setq golden-ratio-auto-scale t ;; for wide screens
      ;;               )
-     gnus
-     vagrant
-     ranger
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
