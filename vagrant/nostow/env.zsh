@@ -1,1 +1,2 @@
 # export VAGRANT_DEFAULT_PROVIDER="lxc"
+# export VAGRANT_LOG=INFO
