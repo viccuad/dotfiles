@@ -1,8 +1,8 @@
 # $Id: caffrc.sample 505 2013-10-18 08:16:20Z weasel $
 # vim:ft=perl:
 
-$CONFIG{'owner'}       = 'John Doe';
-$CONFIG{'email'}       = 'user@example.com';
+$CONFIG{'owner'}       = 'Víctor Cuadrado Juan';
+$CONFIG{'email'}       = 'me@viccuad.me';
 
 # you can get your long keyid from
 #   gpg --with-colons --list-key <yourkeyid|name|emailaddress..>
@@ -13,8 +13,8 @@ $CONFIG{'email'}       = 'user@example.com';
 # This is the list of keys whose signatures you want to mail around.  Usually
 # you would list all your keys here.  To specify which keys to sign with, set
 # local-user.  See the manpage for further details.
-$CONFIG{'keyid'}       = [ qw{DE7AAF6E94C09C7F 62AF4031C82E0039} ];
-$CONFIG{'also-encrypt-to'} = [ qw{DE7AAF6E94C09C7F} ];
+$CONFIG{'keyid'}       = [ qw{A2591E231E251F36} ];
+$CONFIG{'also-encrypt-to'} = [ qw{A2591E231E251F36} ];
 $CONFIG{'caffhome'}    = $ENV{'HOME'}.'/.caff';
 
 # The options below need not be changed for normal operation.
@@ -42,25 +42,29 @@ $CONFIG{'caffhome'}    = $ENV{'HOME'}.'/.caff';
 # Ask to continue before starting the signing (for offline signing).
 # $CONFIG{'ask-sign'}       = 1;
 
-# $CONFIG{'mail-template'} = <<'EOM'
-# Hi,
-# 
-# please find attached the user id{(scalar @uids >= 2 ? 's' : '')}
-# {foreach $uid (@uids) {
-#     $OUT .= "\t".$uid."\n";
-# };}of your key {$key} signed by me.
-# 
-# Note that I did not upload your key to any keyservers.
-# If you have multiple user ids, I sent the signature for each user id
-# separately to that user id's associated email address. You can import
-# the signatures by running each through `gpg --import`.
-# 
-# If you want this new signature to be available to others, please upload
-# it yourself. With GnuPG this can be done using
-# 	gpg --keyserver pool.sks-keyservers.net --send-key {$key}
-# 
-# If you have any questions, don't hesitate to ask.
-# 
-# Regards,
-# {$owner}
-# EOM
+$CONFIG{'mail-template'} = <<'EOM'
+Hi,
+
+please find attached the user id{(scalar @uids >= 2 ? 's' : '')}
+{foreach $uid (@uids) {
+    $OUT .= "\t".$uid."\n";
+};}of your key {$key} signed by me.
+
+Note that I did not upload your key to any keyservers.
+If you have multiple user ids, I sent the signature for each user id
+separately to that user id's associated email address. You can import
+the signatures by running each through `gpg --import`.
+
+If you want this new signature to be available to others, please upload
+it yourself. With GnuPG this can be done using
+	gpg --keyserver pool.sks-keyservers.net --send-key {$key}
+
+If you have any questions, you should perhaps read:
+https://wiki.debian.org/Keysigning
+https://www.debian.org/events/keysigning.html
+
+or don't hesitate to ask (as far as I can answer).
+
+Regards,
+{$owner}
+EOM
