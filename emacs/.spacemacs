@@ -361,13 +361,12 @@ layers configuration. You are free to put any user code."
 
   avy-all-windows 'all-frames
 
-;;;; Smartparens ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;; SMARTPARENS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
   (setq-default
     sp-highlight-pair-overlay nil
     sp-highlight-wrap-overlay nil
-    sp-highlight-wrap-tag-overlay nil
-  )
+    sp-highlight-wrap-tag-overlay nil)
 
 ;;;; CURSOR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -424,17 +423,11 @@ layers configuration. You are free to put any user code."
   ;;               ;;             (count-lines (point-min) (point-max)))))
   ;;               (nlinum--flush))))
 
-  ;; (spacemacs|add-toggle line-numbers
-  ;;   :status nlinum-mode
-  ;;   :on (global-nlinum-mode)
-  ;;   :off (global-nlinum-mode -1)
-  ;;   :documentation "Show the line numbers."
-  ;;   :evil-leader "tn")
 
 ;;;; RULER ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
   (setq
-   fci-rule-column 81 ;; because the utf char is to the left
+   fci-rule-column 81 ;; +1 because the utf char is to the left
    fci-always-use-textual-rule t
    fci-rule-character ?\u258E ;; left 1/4 block
    fci-rule-color (face-attribute 'hl-line :background)
@@ -510,22 +503,6 @@ layers configuration. You are free to put any user code."
   ;; (add-hook 'prog-mode-hook 'hc-highlight-tabs)
   ;; (custom-set-faces
   ;;  '(hc-tab ((t (:Strike-through "red")))))
-
-
-  ;; (custom-set-faces
-  ;;  '(whitespace-space ((t (:foreground "#363636"))))
-  ;;  ;; '(whitespace-empty ((t (:foreground "firebrick" :background "SlateGray1"))))
-  ;;  ;; '(whitespace-hspace ((t (:foreground "lightgray" :background "LemonChiffon3"))))
-  ;;  ;; '(whitespace-line ((t (:foreground "black" :background "red"))))
-  ;;  '(whitespace-newline ((t (:foreground "#363636"))))
-  ;;  '(whitespace-space-after-tab ((t (:foreground "#363636"))))
-  ;;  '(whitespace-space-before-tab ((t (:foreground "#363636"))))
-  ;;  ;; '(whitespace-space-after-tab ((t (:foreground "black" :background "green"))))
-  ;;  ;; '(whitespace-space-before-tab ((t (:foreground "black" :background "DarkOrange"))))
-  ;;  '(whitespace-tab ((t (:foreground "#363636"))))
-  ;;  '(whitespace-indentation ((t (:foreground "#363636"))))
-  ;;  ;; '(whitespace-trailing ((t (:foreground "red" :background "yellow"))))
-  ;;  )
 
 
   ;; TODO: add lines to highlight whitespace-tab
@@ -735,7 +712,6 @@ layers configuration. You are free to put any user code."
   ;; fix zshenv warning
   ;; fix ~ at the end of the buffer
   ;; emacs doesn't see debian-el editing d/control etc as prog-mode nor text-mode
-  ;; try autocompletion with the other engine
   ;; wrap
   ;; color of the brackets, I don't know which one I am on?
   ;; get autocompletion tooltips on terminal https://github.com/expez/company-quickhelp/issues/24
