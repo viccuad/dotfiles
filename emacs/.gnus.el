@@ -390,3 +390,6 @@ attachment"
 
 ;;       epg-debug t ;;  then read the *epg-debug*" buffer
 ;; )
+
+;; Debian goodies
+(require 'gnus-BTS) ;; makes debian bug numbers clickable
