@@ -12,3 +12,4 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 
 alias th='trash'
+alias xdg='xdg-open'
