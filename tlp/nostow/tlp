@@ -216,7 +216,7 @@ RESTORE_DEVICE_STATE_ON_STARTUP=0
 #DEVICES_TO_ENABLE_ON_AC="bluetooth wifi wwan"
 
 # Radio devices to disable on battery: bluetooth, wifi, wwan
-#DEVICES_TO_DISABLE_ON_BAT="bluetooth wifi wwan"
+#DEVICES_TO_DISABLE_ON_BAT="wifi"
 
 # Radio devices to disable on battery when not in use (not connected):
 # bluetooth, wifi, wwan
