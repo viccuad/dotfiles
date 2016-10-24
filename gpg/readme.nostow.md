@@ -7,7 +7,21 @@ key (eg: cypher preferences, etc).
 Of course, don’t forget to craft a sane .gitignore to ignore all the files
 except those selected few!
 
+
+# Ensuring gpg-agent is always available with systemd
+
+```
+systemctl --user enable gpg-agent.socket
+systemctl --user enable gpg-agent-ssh.socket
+systemctl --user enable gpg-agent-restricted.socket
+```
+
+For more information, read /usr/share/doc/gnupg-agent/README.Debian
+
+
 # Disable the `gnome-keyring-daemon`
+
+Note: Starting from v2.1, this is not needed anymore
 
 If you are using Gnome 3 (or something based on it), we have a problem. The
 `gpg-agent` protocol implementation of `gnome-keyring` is very incomplete and
@@ -33,6 +47,3 @@ mkdir ~/.config/autostart/
 cp /etc/xdg/autostart/gnome-keyring-gpg.desktop ~/.config/autostart/
 echo 'Hidden=true' >> ~/.config/autostart/gnome-keyring-gpg.desktop
 ```
-
-
-
