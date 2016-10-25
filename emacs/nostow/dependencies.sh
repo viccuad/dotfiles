@@ -20,5 +20,5 @@ sudo apt-get install ditaa
 # for python layer:
 sudo apt-get install # missing package: autoflake
 
-# opensuse packages:
-sudo zypper in emacs cscope pycscope
+# latex
+sudo apt install pandoc

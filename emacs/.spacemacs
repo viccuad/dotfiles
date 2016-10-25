@@ -73,6 +73,7 @@ values."
      tmux
      (c-c++ :variables
             c-c++-enable-clang-support t
+            c-c++-default-mode-for-headers 'c-mode ;; it can be c++-mode
             )
      cscope
      gtags
@@ -86,6 +87,7 @@ values."
             ;; latex-build-command "LatexMk -pdflatex='xelatex --shell-escape'"
             ;; latex-build-command "LatexMk"
             )
+     pandoc
      markdown
      vimscript
      (python :variables
@@ -694,9 +696,6 @@ you should place your code here."
   (setq c-default-style "linux") ;; or k&r for example
   (with-eval-after-load 'projectile
     (push '("C" "h") projectile-other-file-alist)) ;; make projective jump from .C to .h files and viceversa
-  (setq-default dotspacemacs-configuration-layers
-                '((c-c++ :variables
-                         c-c++-default-mode-for-headers 'c-mode))) ;; it can be c++-mode
 
   ;; Python
   (add-to-list 'auto-mode-alist '("\\.gd$" . python-mode))
