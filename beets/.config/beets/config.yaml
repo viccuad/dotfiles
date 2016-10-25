@@ -1,36 +1,133 @@
-# usage: beet import
+# usage: beet import <dir>
 # config at: /home/vic/.config/beets/config.yaml
-directory: ~/Música
-library: ~/Música/musiclibrary.blb
-log: ~/Música/beetslog.txt
+verbose: 0
+asciify_paths: no
+max_filename_length: 0
+library: library.db
 
-threaded: yes
-color: yes
+replace:
+    '[\\/]': _
+    ^\.: _
+    '[\x00-\x1f]': _
+    '[<>:"\?\*\|]': _
+    \.$: _
+    \s+$: ''
+    ^\s+: ''
+original_date: no
 
-import:
-        move: no
-        copy: yes
-        resume: ask
+clutter: [Thumbs.DB, .DS_Store]
 
-# Plugins: 
-#
-# fetch album art, genres, and lyrics: fetchart lyrics lastgenre
-#   dependencies: sudo pip install requests pylast 
-# acoustic fingerprinting: chroma
-#   dependencies: sudo apt-get install libchromaprint0 libchromaprint-tools
-#                 sudo pip install pyacoustid
-plugins: fetchart lyrics lastgenre chroma
-
-# Plugins configs:
-lastgenre:
-        canonical: yes # make a genre tree, good for more obscure genres
-chroma:
-        auto: no
-# acoustid:
-        # apikey: 
+plugins: []
+ignore_hidden: yes
 
 paths:
-        default: $albumartist/(${year}) $album%aunique{}/$track $title
-        singleton: Non-Album/$artist/$title
-        comp: Compilations/$album%aunique{}/$track $title
-        albumtype:soundtrack: Soundtracks/$(${year}) album/$track $title
+    default: $albumartist/(${year}) $album%aunique{}/$track $title
+    singleton: Non-Album/$artist/$title
+    comp: Compilations/$album%aunique{}/$track $title
+    albumtype:soundtrack: Soundtracks/$(${year}) album/$track $title
+
+format_item: $artist - $album - $title
+sort_case_insensitive: yes
+art_filename: cover
+format_album: $albumartist - $album
+path_sep_replace: _
+
+import:
+    write: yes
+    copy: yes
+    move: no
+    link: no
+    delete: no
+    resume: ask
+    incremental: no
+    quiet_fallback: skip
+    none_rec_action: ask
+    timid: no
+    log:
+    autotag: yes
+    quiet: no
+    singletons: no
+    default_action: apply
+    languages: []
+    detail: no
+    flat: no
+    group_albums: no
+    pretend: no
+    search_ids: []
+    duplicate_action: ask
+
+sort_album: albumartist+ album+
+sort_item: artist+ album+ disc+ track+
+
+match:
+    strong_rec_thresh: 0.04
+    medium_rec_thresh: 0.25
+    rec_gap_thresh: 0.25
+    max_rec:
+        missing_tracks: medium
+        unmatched_tracks: medium
+    distance_weights:
+        source: 2.0
+        artist: 3.0
+        album: 3.0
+        media: 1.0
+        mediums: 1.0
+        year: 1.0
+        country: 0.5
+        label: 0.5
+        catalognum: 0.5
+        albumdisambig: 0.5
+        album_id: 5.0
+        tracks: 2.0
+        missing_tracks: 0.9
+        unmatched_tracks: 0.6
+        track_title: 3.0
+        track_artist: 2.0
+        track_index: 1.0
+        track_length: 2.0
+        track_id: 5.0
+    preferred:
+        countries: []
+        media: []
+        original_year: no
+    ignored: []
+    required: []
+    track_length_grace: 10
+    track_length_max: 30
+
+statefile: state.pickle
+time_format: '%Y-%m-%d %H:%M:%S'
+pluginpath: []
+
+musicbrainz:
+    host: musicbrainz.org
+    ratelimit: 1
+    ratelimit_interval: 1.0
+    searchlimit: 5
+per_disc_numbering: no
+threaded: yes
+va_name: Various Artists
+id3v23: no
+ignore:
+- .*
+- '*~'
+- System Volume Information
+- lost+found
+
+ui:
+    terminal_width: 80
+    length_diff_thresh: 10.0
+    color: yes
+    colors:
+        text_success: green
+        text_warning: yellow
+        text_error: red
+        text_highlight: red
+        text_highlight_minor: lightgray
+        action_default: turquoise
+        action: blue
+timeout: 5.0
+directory: ~/Music
+format_raw_length: no
+terminal_encoding:
+
