@@ -1,0 +1,19 @@
+{
+    "fqdn": "ppa.launchpad.net",
+    "incoming": "~%(ppa)s",
+    "login": "anonymous",
+    "meta": "ubuntu",
+    "method": "ftp",
+    "supported-distribution": {
+        "allowed": [
+            "release"
+        ],
+        "known": [
+            "release",
+            "proposed",
+            "updates",
+            "backports",
+            "security"
+        ]
+    }
+}

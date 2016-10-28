@@ -8,14 +8,17 @@ hash			= md5
 allow_unsigned_uploads	= 0
 allow_dcut		= 0
 run_lintian		= 1
-run_dinstall		= 0
-check_version		= 0
+run_dinstall		= 1
+check_version		= 1
 scp_compress		= 0
 post_upload_command	=
 pre_upload_command	=
 passive_ftp		= 1
 default_host_main	=
 allowed_distributions	= (?!UNRELEASED)
+
+# Currently implemented in ftp only
+progress_indicator = 2
 
 [ftp-master]
 fqdn			= ftp.upload.debian.org

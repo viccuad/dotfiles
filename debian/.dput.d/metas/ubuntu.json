@@ -1,0 +1,16 @@
+{
+    "allow_dcut": false,
+    "check-debs": {
+        "enforce": "source",
+        "skip": false
+    },
+    "codenames": "ubuntu",
+    "hooks": [
+        "supported-distribution",
+        "checksum",
+        "suite-mismatch",
+        "check-debs",
+        "gpg"
+    ],
+    "valid_commands": []
+}

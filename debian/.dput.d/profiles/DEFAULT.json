@@ -1,0 +1,17 @@
+{
+    "allow_dcut": false,
+    "allow_unsigned_uploads": false,
+    "allowed_distributions": "(?!UNRELEASED)",
+    "default_host_main": "",
+    "full_upload_log": false,
+    "hash": "sha1",
+    "interface": "cli",
+    "login": "*",
+    "meta": "boring",
+    "method": "ftp",
+    "passive_ftp": true,
+    "post_upload_command": "",
+    "pre_upload_command": "",
+    "run_lintian": true,
+    "scp_compress": true
+}

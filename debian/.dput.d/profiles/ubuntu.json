@@ -1,0 +1,22 @@
+{
+    "fqdn": "upload.ubuntu.com",
+    "incoming": "/ubuntu",
+    "login": "anonymous",
+    "meta": "ubuntu",
+    "method": "ftp",
+    "supported-distribution": {
+        "allowed": [
+            "release",
+            "proposed",
+            "backports",
+            "security"
+        ],
+        "known": [
+            "release",
+            "proposed",
+            "updates",
+            "backports",
+            "security"
+        ]
+    }
+}

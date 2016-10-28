@@ -1,0 +1,8 @@
+{
+    "default_host_main": "ftp-master", 
+    "fqdn": "ftp.upload.debian.org", 
+    "incoming": "/pub/UploadQueue/", 
+    "login": "anonymous", 
+    "meta": "debian", 
+    "method": "ftp"
+}

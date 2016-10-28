@@ -1,0 +1,12 @@
+{
+    "-hooks": [
+        "check-debs",
+        "allowed-distribution"
+    ],
+    "allowed_distributions": ".*",
+    "fqdn": "mentors.debian.net",
+    "incoming": ".",
+    "login": "anonymous",
+    "meta": "debian",
+    "method": "ftp"
+}

@@ -1,0 +1,24 @@
+{
+    "allow_dcut": true,
+    "allowed-distribution": {
+        "codename-groups": [
+            "general", "backport", "rm-managed"
+        ]
+    },
+    "codenames": "debian",
+    "hooks": [
+        "allowed-distribution",
+        "protected-distribution",
+        "checksum",
+        "suite-mismatch",
+        "gpg"
+    ],
+    "valid_commands": [
+        "break-the-archive",
+        "cancel",
+        "dm",
+        "reschedule",
+        "rm",
+        "upload"
+    ]
+}

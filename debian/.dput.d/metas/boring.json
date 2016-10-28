@@ -1,0 +1,11 @@
+{
+    "allow_dcut": false,
+    "allowed-distribution": {},
+    "codenames": null,
+    "hooks": [
+        "allowed-distribution",
+        "checksum",
+        "suite-mismatch",
+        "gpg"
+    ]
+}
