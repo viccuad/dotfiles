@@ -442,7 +442,10 @@ you should place your code here."
   '(cursor ((t (:inverse-video t))))
 
   (unless (display-graphic-p)
-    (require 'evil-terminal-cursor-changer))
+    (require 'evil-terminal-cursor-changer)
+    (evil-terminal-cursor-changer-activate) ; or (etcc-on)
+    )
+
 
 ;;;; LINUM and HL-LINE ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
