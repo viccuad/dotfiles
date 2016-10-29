@@ -457,11 +457,11 @@ you should place your code here."
   (set-face-background 'linum  (face-attribute 'hl-line :background))
 
   ;; Show line numbers, dynamically with spaces on either side:
-  ;; (defadvice linum-update-window (around linum-dynamic activate)
-  ;;   (let* ((w (length (number-to-string
-  ;;                      (count-lines (point-min) (point-max)))))
-  ;;          (linum-format (concat " %" (number-to-string w) "d ")))
-  ;;     ad-do-it))
+  (defadvice linum-update-window (around linum-dynamic activate)
+    (let* ((w (length (number-to-string
+                       (count-lines (point-min) (point-max)))))
+           (linum-format (concat " %" (number-to-string w) "d ")))
+      ad-do-it))
 
   ;; highlight current line number as well
   ;; (use-package hlinum
