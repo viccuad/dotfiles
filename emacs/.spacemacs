@@ -545,7 +545,7 @@ you should place your code here."
                            ;; via display table:
                            ;; space-mark
                            tab-mark
-                           newline-mark
+                           ;; newline-mark
                            face
                            spaces            ;; SPACEs and HARD SPACEs
                            ;; lines          ;; lines that go past whitespace-line-column
