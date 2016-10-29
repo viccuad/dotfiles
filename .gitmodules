@@ -16,3 +16,6 @@
 [submodule "emacs/.emacs.d"]
 	path = emacs/.emacs.d
 	url = https://github.com/syl20bnr/spacemacs
+[submodule "suse/nostow/ssh-ident"]
+	path = suse/nostow/ssh-ident
+	url = https://github.com/ccontavalli/ssh-ident.git
