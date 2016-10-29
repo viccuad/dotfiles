@@ -53,6 +53,7 @@ values."
      (spell-checking :variables
                      spell-checking-enable-by-default t
                      spell-checking-enable-auto-dictionary nil ;; detect the current language from the buffer content
+                     ;; enable-flyspell-auto-completion t pop-up for spelling errors automatically
                      )
      syntax-checking
      ;; semantic ;; display current function interface at the top of the screen
@@ -540,7 +541,6 @@ you should place your code here."
   (add-hook 'prog-mode-hook #'whitespace-mode)
   (add-hook 'text-mode-hook #'whitespace-mode)
 
-
   (setq whitespace-style '(
                            ;; via display table:
                            ;; space-mark
@@ -794,6 +794,7 @@ you should place your code here."
   ;; mouse on terminal
   ;; fix colors on diffs and patches
   ;; CTRL + hjkl to move inside emacs windows/buffers
+  ;; make emacsclient independent and don't close, if 2 instances have the same buffer open
 
 
 )
