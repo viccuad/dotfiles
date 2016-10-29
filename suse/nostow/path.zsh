@@ -1,1 +1,3 @@
-PATH="$PATH:/mounts/work/src/bin"
+if cat /etc/os-release | grep ID=opensuse ; then
+   export PATH="$ZSH/suse/nostow/bin:$PATH";
+fi
