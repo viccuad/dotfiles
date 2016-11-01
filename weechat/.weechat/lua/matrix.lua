@@ -1681,7 +1681,7 @@ Room.create = function(obj)
         room.name = room.identifier
     end
     if not room.server then
-        room.server = ''
+        room.server = 'matrix'
     end
 
     room.visibility = obj.visibility
@@ -1697,11 +1697,11 @@ function Room:SetName(name)
         return
     end
     -- override hierarchy
-    if self.roomname then
+    if self.roomname and self.roomname ~= '' then
         name = self.roomname
     elseif self.canonical_alias then
         name = self.canonical_alias
-        local short_name, _ = self.canonical_alias:match('(.+):(.+)')
+        local short_name, _ = self.canonical_alias:match('^(.-):(.+)$')
         if short_name then
             name = short_name
         end
@@ -1732,6 +1732,7 @@ function Room:SetName(name)
     if buffer_name == name then
         return
     end
+
 
     w.buffer_set(self.buffer, "short_name", name)
     w.buffer_set(self.buffer, "name", name)
@@ -2524,7 +2525,7 @@ function Room:ParseChunk(chunk, backlog, chunktype)
                 end
                 if sender ~= chunk.state_key then -- Kick
                     tag{"irc_quit","irc_kick","irc_smart_filter"}
-                    local reason = chunk.content.reason
+                    local reason = chunk.content.reason or ''
                     local sender_nick = self.users[chunk.sender]
                     local data = ('%s%s\t%s%s%s has kicked %s%s%s (%s).'):format(
                         wcolor('weechat.color.chat_prefix_quit'),
