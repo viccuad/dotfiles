@@ -528,8 +528,8 @@ you should place your code here."
   ;;  whitespace-line-column 80)
 
   ;; (spacemacs/toggle-whitespace-globally-on)
-  (add-hook 'prog-mode-hook #'whitespace-mode)
-  (add-hook 'text-mode-hook #'whitespace-mode)
+  ;; (add-hook 'prog-mode-hook #'whitespace-mode)
+  ;; (add-hook 'text-mode-hook #'whitespace-mode)
 
   (setq whitespace-style '(
                            ;; via display table:
