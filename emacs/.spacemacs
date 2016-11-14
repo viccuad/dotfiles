@@ -197,9 +197,9 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         badwolf
                          monokai
                          spacemacs-dark
+                         badwolf
                          minimal
                          leuven
                          tangotango
@@ -399,12 +399,23 @@ you should place your code here."
   (unless (file-exists-p (concat spacemacs-cache-directory "undo"))
     (make-directory (concat spacemacs-cache-directory "undo")))
 
-  ;; custom set faces for autocompletion pop-ups
-  (custom-set-faces
-   '(company-tooltip-common
-     ((t (:inherit company-tooltip :weight bold :underline nil))))
-   '(company-tooltip-common-selection
-     ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
+;;;; CUSTOM FACES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+  ;; for monokai
+      ;; custom set faces for autocompletion pop-ups
+      (custom-set-faces
+      '(company-tooltip-common
+        ((t (:inherit company-tooltip :weight bold :underline nil))))
+      '(company-tooltip-common-selection
+        ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
+
+      (set-face-background 'linum  (face-attribute 'hl-line :background))
+
+      (setq fci-rule-color "#000000")
+
+      (set-face-italic 'font-lock-comment-face t)
+      ;; (custom-set-variables
+      ;; '(monokai-distinct-fringe-background t))
 
 ;;;; FLYCHECK ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -450,11 +461,7 @@ you should place your code here."
 
 ;;;; LINUM and HL-LINE ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-  ;; TODO fix: line numbers inherit underlines from the beginning of the line
-
   (setq hl-line-sticky-flag nil) ;; highlights the line about point in the selected window only
-
-  (set-face-background 'linum  (face-attribute 'hl-line :background))
 
   ;; Show line numbers, dynamically with spaces on either side:
   (defadvice linum-update-window (around linum-dynamic activate)
@@ -495,7 +502,6 @@ you should place your code here."
    fci-rule-column 81 ;; +1 because the utf char is to the left
    fci-always-use-textual-rule t
    fci-rule-character ?\u258E ;; left 1/4 block
-   fci-rule-color (face-attribute 'hl-line :background)
    )
 
   ;; Activate column indicator as global mode, except for org-mode:
@@ -631,11 +637,6 @@ you should place your code here."
     (re-search-backward "^\\|[^[:space:]]")
     (setq evil-this-type (if (eolp) 'exclusive 'inclusive)))
   (define-key evil-visual-state-map "$" 'evil-last-non-blank)
-
-
-;;;; COMMENTS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-  (set-face-italic 'font-lock-comment-face t)
 
 ;;;; END OF FILE ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
