@@ -19,7 +19,7 @@ bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
 # allow ctrl-a for going to the beginning of the line (standart behaviour)
-bindkey '^A' beginning-of-line
+bindkey '^a' beginning-of-line
 
 # make mode changes instantenous, 10ms for key sequences:
 # NOTE: setting KEYTIMEOUT too low prohibits zle from recognizing double press
