@@ -67,7 +67,6 @@ values."
      evil-commentary
      evil-snipe
      vinegar
-     vim-empty-lines ;; TODO disable and look how tildes look at the end of file
      tmux
      (c-c++ :variables
             c-c++-enable-clang-support t
