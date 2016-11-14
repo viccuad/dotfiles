@@ -6,7 +6,7 @@ sudo apt-get install emacs24 emacs-goodies-el markdown xclip cscope shellcheck \
 #missing python-pyscope python-yapf
 
 # for gnus:
-sudo apt-get install gnutls openssl w3m
+sudo apt-get install gnutls gnutls-bin openssl w3m
 
 # for ggtags (helm-ggtags):
 sudo apt-get install global exuberant-ctags
@@ -22,3 +22,6 @@ sudo apt-get install # missing package: autoflake
 
 # latex
 sudo apt install pandoc
+
+# shell script layer
+sudo apt install shellcheck python3-bashate
