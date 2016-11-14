@@ -57,7 +57,7 @@ values."
      git
      (version-control :variables
                       version-control-global-margin t
-                      version-control-diff-tool 'diff-hl
+                      version-control-diff-tool 'git-gutter
                       )
      (colors :variables
              ;; colors-enable-rainbow-identifiers t
@@ -511,8 +511,7 @@ you should place your code here."
    diff-hl-margin-mode t ;; so it works in TUI
    )
 
-
-  ;; (git-gutter:linum-setup)
+  (git-gutter:linum-setup) ;; make it work with linum
 
 ;;;; GIT ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
