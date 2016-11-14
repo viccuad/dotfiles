@@ -534,7 +534,7 @@ you should place your code here."
   (setq whitespace-style '(
                            ;; via display table:
                            ;; space-mark
-                           tab-mark
+                           ;; tab-mark
                            ;; newline-mark
                            face
                            spaces            ;; SPACEs and HARD SPACEs
@@ -542,7 +542,7 @@ you should place your code here."
                            ;; lines-tail     ;; part of lines that go past whitespace-line-column
                            tabs
                            newline
-                           ;; empty             ;; empty lines at beginning and end of buffer
+                           empty             ;; empty lines at beginning and end of buffer
                            trailing        
                            ;; evaluated in this order:
                            indentation                ;; either 8 or more spaces, or tabs, depending on indent-tab-mode
@@ -560,7 +560,7 @@ you should place your code here."
         whitespace-display-mappings '(
                                       (space-mark 32 [183] [46]) ; 32 SPACE, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
                                       (newline-mark 10 [8629 10]) ; 10 LINE FEED
-                                      ;; (tab-mark 9 [8594 9] [92 9])
+                                      (tab-mark 9 [8594 9] [92 9])
                                       )
         )
 
