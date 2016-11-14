@@ -37,8 +37,6 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      helm
-     ;; auto-completion
-     ;; better-defaults
      emacs-lisp
      (auto-completion :variables
                       auto-completion-return-key-behavior 'complete
@@ -60,7 +58,6 @@ values."
      (version-control :variables
                       version-control-global-margin t
                       version-control-diff-tool 'diff-hl
-                      ;; version-control-diff-tool 'git-gutter+
                       )
      (colors :variables
              ;; colors-enable-rainbow-identifiers t
@@ -92,7 +89,7 @@ values."
      markdown
      vimscript
      (python :variables
-     ;;         python-enable-yapf-format-on-save t
+            ;; python-enable-yapf-format-on-save t
      )
      django
      shell-scripts
@@ -106,9 +103,10 @@ values."
      speed-reading
      ranger
      gnus
-     ;; prodigy
+     ;; prodigy ;; manage system services
      themes-megapack
      command-log
+     ;; nlinum ;; faster than linum, but git-gutter doesn't work on it yet
      ;; (golden-ratio :variables
      ;;               setq golden-ratio-auto-scale t ;; for wide screens
      ;;               )
@@ -124,8 +122,6 @@ values."
                                       smtpmail ;; for gnus
                                       ;; gnus-notify ;;for gnus, notifications on the modeline
                                       highlight-chars ;; for tab, troll chars
-                                      ;; hlinum ;; highlight current line number
-                                      ;; nlinum ;; faster line num package
                                       )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -204,14 +200,13 @@ values."
    dotspacemacs-themes '(
                          badwolf
                          monokai
+                         spacemacs-dark
+                         minimal
+                         leuven
+                         tangotango
                          molokai
                          naquadah
-                         sanityinc-tomorrow-eighties
-                         spacemacs-dark
-                         spacemacs-light
-                         solarized-dark
-                         solarized-light
-                         zenburn)
+                         )
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
@@ -394,8 +389,6 @@ you should place your code here."
   ;; TODO after an autocompletion, the truncate-lines gets back on (open an issue)
 
   (setq powerline-default-separator 'utf-8) ;; default separators are arrows
-  ;; (for other separators than arrows, redefine
-  ;; powerline-utf-8-separator-left and powerline-utf-8-separator-right)
   (spaceline-compile) ;; needed for applying the change
 
   (setq visible-bell t)  ;; Don't let Emacs hurt your ears
@@ -449,6 +442,7 @@ you should place your code here."
   '(etcc-use-color nil)
   '(cursor ((t (:inverse-video t))))
 
+  ;; for evil-terminal-cursor-changer:
   (unless (display-graphic-p)
     (require 'evil-terminal-cursor-changer)
     (evil-terminal-cursor-changer-activate) ; or (etcc-on)
@@ -477,9 +471,6 @@ you should place your code here."
   ;;   (set-face-attribute 'linum-highlight-face nil
   ;;                       :foreground (face-foreground 'default nil t)
   ;;                       :background (face-attribute 'hl-line :background)))
-
-  ;; nlinum:
-  ;; (global-nlinum-mode)
 
   ;; ;; Line number gutter in ncurses mode
   ;; (unless window-system
@@ -520,10 +511,6 @@ you should place your code here."
    diff-hl-margin-mode t ;; so it works in TUI
    )
 
-  ;; (set-face-background 'diff-hl-insert  (face-attribute 'default :background))
-  ;; (set-face-background 'diff-hl-delete  (face-attribute 'default :background))
-  ;; (set-face-background 'diff-hl-change  (face-attribute 'default :background))
-  ;; (set-face-foreground 'diff-hl-change  "orange")
 
   ;; (git-gutter:linum-setup)
 
@@ -786,7 +773,6 @@ you should place your code here."
 ;;;; TODO ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
   ;; fix zshenv warning
-  ;; fix ~ at the end of the buffer
   ;; emacs doesn't see debian-el editing d/control etc as prog-mode nor text-mode
   ;; wrap
   ;; get autocompletion tooltips on terminal https://github.com/expez/company-quickhelp/issues/24
@@ -794,6 +780,9 @@ you should place your code here."
   ;; fix colors on diffs and patches
   ;; CTRL + hjkl to move inside emacs windows/buffers
   ;; make emacsclient independent and don't close, if 2 instances have the same buffer open
+  ;; highlight tabs and indentation
+  ;;   https://github.com/antonj/Highlight-Indentation-for-Emacs
+  ;; https://www.gnu.org/software/emacs/manual/html_node/eintr/index.html#SEC_Contents
 
 
 )
