@@ -57,8 +57,7 @@ into `$HOME` when you run `install.sh`.
 
 To install run this:
 
-```
-sh
+```sh
 git clone --recursive https://github.com/viccuad/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 git submodule init
