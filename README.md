@@ -1,3 +1,10 @@
+# ABANDONED IN FAVOUR OF:
+## https://github.com/viccuad/salt-configs
+
+
+--------------------------------------------------------------------------
+
+
 # viccuad's dotfiles
 
 My dotfiles!
