@@ -1,5 +1,5 @@
 # ABANDONED IN FAVOUR OF:
-## https://github.com/viccuad/salt-configs
+## https://github.com/viccuad/ansible-configs
 
 
 --------------------------------------------------------------------------
